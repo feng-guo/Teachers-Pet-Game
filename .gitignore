@@ -1,3 +1,5 @@
 *.java~
 *.class
-/TeachersPet/nbproject/private/
+/TeachersPet/nbproject/*
+*.xml
+*.mf
