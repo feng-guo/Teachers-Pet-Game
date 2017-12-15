@@ -5,19 +5,18 @@
  */
 package teacherspet;
 
-/**
- *
- * @author sihan
- */
 class PlayableCharacter extends Character {
-    String description; 
+    String description;
     //Possibly dumb stats to display??
-    
-    public void levelUp(int changeHealth, int changeAttack, int changeIntelligence, int changeDefence, int changeSpeed) {
-        changeInitialHealth(changeHealth);
-        changeAttack(changeAttack);
-        changeIntelligence(intelligenceIncrease)
+    PlayableCharacter(int health, int attack, int intelligence, int defence, )
+
+    public void levelUp(int healthIncrease, int attackIncrease, int intelligenceIncrease, int defenceIncrease, int speedIncrease) {
+        changeInitialHealth(healthIncrease);
+        changeAttack(attackIncrease);
+        changeIntelligence(intelligenceIncrease);
+        changeDefence(defenceIncrease);
+        changeSpeed(speedIncrease);
     }
-    
-    
+
+
 }

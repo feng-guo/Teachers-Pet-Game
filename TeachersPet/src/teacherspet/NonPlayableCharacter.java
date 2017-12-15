@@ -1,0 +1,3 @@
+class NonPlayableCharacter extends Character {
+  
+}
