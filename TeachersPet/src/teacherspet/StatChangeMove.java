@@ -1,5 +1,5 @@
 class StatChangeMove extends Move {
-    private int multiplier;
+    private int multiplier; //Changes how much a stat changes by
     private String statType;
 
     StatChangeMove (String name, double hitChance, String type, int multiplier, String statType) {
