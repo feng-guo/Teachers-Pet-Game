@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="TeachersPet/src/teacherspet"/>
+	<classpathentry kind="lib" path="TeachersPet/lib/gdx-backend-lwjgl-natives.jar"/>
+	<classpathentry kind="lib" path="TeachersPet/lib/gdx-backend-lwjgl.jar"/>
+	<classpathentry kind="lib" path="TeachersPet/lib/gdx-natives.jar"/>
+	<classpathentry kind="lib" path="TeachersPet/lib/gdx.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
