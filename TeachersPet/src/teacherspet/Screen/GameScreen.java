@@ -1,19 +1,24 @@
 package Screen;
 
-import com.badlogic.gdx.Gdx; 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import Controller.PlayerController;
+
 import Model.Actor;
+import Model.Camera;
 import Model.TERRAIN;
 import Model.TileMap;
+
 import Run.FinalGame;
 import Run.Settings;
 
 public class GameScreen extends AbstractScreen{
 
 	private PlayerController controller;
+	
+	private Camera camera;
 	private Actor player;
 	private TileMap map;
 	
@@ -32,6 +37,7 @@ public class GameScreen extends AbstractScreen{
 		
 		map = new TileMap(10, 10);
 		player = new Actor(map, 0, 0);
+		camera = new Camera();
 		
 		controller = new PlayerController(player);
 	}
@@ -53,7 +59,15 @@ public class GameScreen extends AbstractScreen{
 
 	@Override
 	public void render(float delta) {
+		
+		camera.update(player.getX() + 0.5f, player.getY() + 0.5f);
+
+		
 		batch.begin();
+		
+		float worldStartX = Gdx.graphics.getWidth()/2 - camera.getCameraX()*Settings.SCALED_TILE_SIZE;
+		float worldStartY = Gdx.graphics.getHeight()/2 - camera.getCameraY()*Settings.SCALED_TILE_SIZE;
+		
 		
 		for (int i = 0; i < map.getWidth(); i++) {
 			for (int j = 0; j < map.getHeight(); j++) {
@@ -66,14 +80,14 @@ public class GameScreen extends AbstractScreen{
 					render = grass2;
 				}
 				
-				batch.draw(render, i*Settings.SCALED_TILE_SIZE, j*Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE);
+				batch.draw(render, worldStartX+i*Settings.SCALED_TILE_SIZE, worldStartY+j*Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE);
 			}
 			
 		}
 		
 		
 		
-		batch.draw(fengDown1, player.getX()*Settings.SCALED_TILE_SIZE, player.getY()*Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE*1.5f);
+		batch.draw(fengDown1, worldStartX+player.getX()*Settings.SCALED_TILE_SIZE, worldStartY+player.getY()*Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE*1.3f);
 		batch.end();
 	}
 
