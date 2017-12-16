@@ -3,7 +3,7 @@
  * @author Feng
  */
 abstract class Character {
-
+    //Character states
     private int initialHealth;
     private int currentHealth;
     private int attack;
@@ -11,9 +11,11 @@ abstract class Character {
     private int defence;
     private int speed;
 
+    //Character attributes
     private String type;
     private String name;
 
+    //Character moveset
     private Move[] moveset;
 
     Character(int health, int attack, int intelligence, int defence, int speed, String type, String name, Move[] moveset) {
@@ -34,15 +36,12 @@ abstract class Character {
     public int getInitialHealth() {
         return initialHealth;
     }
-
     public void changeInitialHealth(int change) {
         initialHealth += change;
     }
-
     public int getCurrentHealth() {
         return currentHealth;
     }
-
     public void changeCurrentHealth(int change) {
         currentHealth += change;
     }
@@ -52,7 +51,6 @@ abstract class Character {
     public void resetCurrentHealth() {
         currentHealth = initialHealth;
     }
-
     public void faintCharacter() {
         currentHealth = 0;
     }
@@ -61,7 +59,6 @@ abstract class Character {
     public int getAttack() {
         return attack;
     }
-
     public void changeAttack(int change) {
         attack += change;
     }
@@ -70,7 +67,6 @@ abstract class Character {
     public int getIntelligence() {
         return intelligence;
     }
-
     public void changeIntelligence(int change) {
         intelligence += change;
     }
@@ -79,7 +75,6 @@ abstract class Character {
     public int getDefence() {
         return defence;
     }
-
     public void changeDefence(int change) {
         defence += change;
     }
@@ -88,7 +83,6 @@ abstract class Character {
     public int getSpeed() {
         return speed;
     }
-
     public void changeSpeed(int change) {
         speed += change;
     }
