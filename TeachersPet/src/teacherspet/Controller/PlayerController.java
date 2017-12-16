@@ -2,13 +2,13 @@ package Controller;
 
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
-import Model.Player;
+import Model.Actor;
 
 public class PlayerController extends InputAdapter {
 	
-	private Player player;
+	private Actor player;
 	
-	public PlayerController (Player p) {
+	public PlayerController (Actor p) {
 		this.player = p;
 	}
 	

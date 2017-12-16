@@ -1,27 +1,37 @@
 package Screen;
 
-import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Gdx; 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import Controller.PlayerController;
-import Model.Player;
+import Model.Actor;
+import Model.TERRAIN;
+import Model.TileMap;
 import Run.FinalGame;
 import Run.Settings;
 
 public class GameScreen extends AbstractScreen{
 
 	private PlayerController controller;
-	private Player player;
+	private Actor player;
+	private TileMap map;
+	
 	private SpriteBatch batch;
 	private Texture fengDown1;
+	private Texture grass1;
+	private Texture grass2;
 	
 	public GameScreen(FinalGame app) {
 		super(app);
 		fengDown1 = new Texture("TeachersPet/images/sprites/feng_down_1.png");
+		grass1 = new Texture("TeachersPet/images/sprites/grass_1.png");
+		grass2 = new Texture("TeachersPet/images/sprites/grass_2.png");
+
 		batch = new SpriteBatch();
 		
-		player = new Player(0, 0);
+		map = new TileMap(10, 10);
+		player = new Actor(map, 0, 0);
 		
 		controller = new PlayerController(player);
 	}
@@ -44,7 +54,26 @@ public class GameScreen extends AbstractScreen{
 	@Override
 	public void render(float delta) {
 		batch.begin();
-		batch.draw(fengDown1, player.getX()*Settings.SCALED_TILE_SIZE, player.getY()*Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE);
+		
+		for (int i = 0; i < map.getWidth(); i++) {
+			for (int j = 0; j < map.getHeight(); j++) {
+				
+				Texture render;
+				
+				if (map.getTile(i, j).getTerrain() == TERRAIN.GRASS_1) {
+					render = grass1;
+				} else {
+					render = grass2;
+				}
+				
+				batch.draw(render, i*Settings.SCALED_TILE_SIZE, j*Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE);
+			}
+			
+		}
+		
+		
+		
+		batch.draw(fengDown1, player.getX()*Settings.SCALED_TILE_SIZE, player.getY()*Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE*1.5f);
 		batch.end();
 	}
 

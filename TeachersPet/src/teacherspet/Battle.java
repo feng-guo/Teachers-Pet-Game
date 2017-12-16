@@ -154,7 +154,7 @@ class Battle /*extends Interaction*/ {
     } else if (move instanceof HealthMove) {
       selfMove((HealthMove) move, attacker);
     } else if (move instanceof  StatChangeMove && move.getHitChance() == 2.0) {
-      selfStatMove((StatChangeMove)move, attacker) //To be added
+      //selfStatMove((StatChangeMove)move, attacker) //To be added
     } else if (move instanceof StatChangeMove) {
       statChangeMove((StatChangeMove) move, attacker);
     } else if (move instanceof StatusMove) {
