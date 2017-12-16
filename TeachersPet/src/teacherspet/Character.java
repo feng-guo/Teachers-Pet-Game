@@ -1,5 +1,3 @@
-package teacherspet;
-
 /**
  *
  * @author Feng
@@ -16,7 +14,9 @@ abstract class Character {
     private String type;
     private String name;
 
-    Character(int health, int attack, int intelligence, int defence, int speed, String type, String name) {
+    private Move[] moveset;
+
+    Character(int health, int attack, int intelligence, int defence, int speed, String type, String name, Move[] moveset) {
         //Integer variables
         this.initialHealth = health;
         this.currentHealth = health;
@@ -27,6 +27,7 @@ abstract class Character {
         //String variables
         this.type = type;
         this.name = name;
+        this.moveset = moveset;
     }
 
     //Changing health
@@ -45,9 +46,15 @@ abstract class Character {
     public void changeCurrentHealth(int change) {
         currentHealth += change;
     }
-
+    public void setCurrentHealth(int health) {
+        currentHealth = health;
+    }
     public void resetCurrentHealth() {
         currentHealth = initialHealth;
+    }
+
+    public void faintCharacter() {
+        currentHealth = 0;
     }
 
     //Attack
@@ -78,11 +85,29 @@ abstract class Character {
     }
 
     //Speed
-    public int getSpeed(){
+    public int getSpeed() {
         return speed;
     }
 
     public void changeSpeed(int change) {
         speed += change;
+    }
+
+    //Name
+    public String getName() {
+        return name;
+    }
+
+    //Type
+    public String getType() {
+        return type;
+    }
+
+    //Moveset
+    public Move[] getMoveset() {
+        return moveset;
+    }
+    public void changeMoveset(int arrayNumber, Move move) {
+        moveset[arrayNumber] = move;
     }
 }

@@ -1,9 +1,9 @@
 class NonPlayableCharacter extends Character {
-  String speech;
-  boolean defeated; //Tells whether or not the character has been defeated
+  private String speech;
+  private boolean defeated; //Tells whether or not the character has been defeated
 
-  NonPlayableCharacter(int health, int attack, int intelligence, int defence, int speed, String type, String name, String speech) {
-    super(health, attack, intelligence, defence, speed, type, name);
+  NonPlayableCharacter(int health, int attack, int intelligence, int defence, int speed, String type, String name, String speech, Move[] moveset) {
+    super(health, attack, intelligence, defence, speed, type, name, moveset);
     this.speech = speech;
     this.defeated = false;
   }
@@ -12,10 +12,12 @@ class NonPlayableCharacter extends Character {
     return speech;
   }
 
+
   public boolean getDefeated() {
     return defeated;
   }
-  public void setDefeated(boolean defeated) {
-    this.defeated = defeated;
+  public void faintCharacter() {
+    defeated = true;
+    setCurrentHealth(0);
   }
 }
