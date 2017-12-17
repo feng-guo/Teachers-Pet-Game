@@ -6,5 +6,11 @@
 	<classpathentry kind="lib" path="TeachersPet/lib/gdx-backend-lwjgl.jar"/>
 	<classpathentry kind="lib" path="TeachersPet/lib/gdx-natives.jar"/>
 	<classpathentry kind="lib" path="TeachersPet/lib/gdx.jar"/>
+	<classpathentry kind="lib" path="TeachersPet/lib/gdx-freetype-natives.jar"/>
+	<classpathentry kind="lib" path="TeachersPet/lib/gdx-freetype.jar"/>
+	<classpathentry kind="lib" path="TeachersPet/lib/gdx-sources.jar"/>
+	<classpathentry kind="lib" path="TeachersPet/lib/gdx-tools.jar"/>
+	<classpathentry kind="lib" path="TeachersPet/lib/tween-engine-api-sources.jar"/>
+	<classpathentry kind="lib" path="TeachersPet/lib/tween-engine-api.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
