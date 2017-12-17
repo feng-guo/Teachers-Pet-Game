@@ -16,19 +16,19 @@ public class PlayerController extends InputAdapter {
 	@Override
 	public boolean keyDown(int keycode) {
 		
-		if(keycode == Keys.UP) {
+		if(keycode == Keys.W) {
 			player.move(0, 1);
 		}
 		
-		if(keycode == Keys.DOWN) {
+		if(keycode == Keys.S) {
 			player.move(0, -1);
 		}
 		
-		if(keycode == Keys.LEFT) {
+		if(keycode == Keys.A) {
 			player.move(-1, 0);
 		}
 		
-		if(keycode == Keys.RIGHT) {
+		if(keycode == Keys.D) {
 			player.move(1, 0);
 		}
 		
