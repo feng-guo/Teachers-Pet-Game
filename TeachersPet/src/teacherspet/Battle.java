@@ -154,7 +154,7 @@ class Battle /*extends Interaction*/ {
     } else if (move instanceof HealthMove) {
       selfMove((HealthMove) move, attacker);
     } else if (move instanceof  StatChangeMove && move.getHitChance() == 2.0) {
-      selfStatMove((StatChangeMove)move, attacker) //To be added
+      selfStatMove((StatChangeMove)move, attacker); //To be added
     } else if (move instanceof StatChangeMove) {
       statChangeMove((StatChangeMove) move, attacker);
     } else if (move instanceof StatusMove) {
@@ -249,38 +249,50 @@ class Battle /*extends Interaction*/ {
   public void selfMove(StatChangeMove move, int attacker) {
     //Because the move is used on the user, the move never misses and does not need to check for hit chance
     if (attacker == 0) {
-      if (move.getStatType().equals("Health")) {
-        if (playerCurrentHealth + ((HealthMove)move).getHeal() > playerHealth) {
-          player.resetCurrentHealth();
-          playerCurrentHealth = playerHealth;
-        } else {
-          player.changeCurrentHealth(((HealthMove)move).getHeal()); //Cast the move into the health subclass
-        }
-      } else if (move.getStatType().equals("Attack")) {
-        playerAttack = playerAttack/move.getMultiplier();
-      } else if (move.getStatType().equals("Intellgence")) {
-        playerIntelligence = playerIntelligence/move.getMultiplier();
-      } else if (move.getStatType().equals("Defence")) {
-        playerIntelligence = playerIntelligence/move.getMultiplier();
-      } else if (move.getStatType().equals("Speed")) {
-        playerSpeed = playerSpeed/move.getMultiplier();
+      switch (move.getStatType()) {
+        case "Health":
+          if (playerCurrentHealth + ((HealthMove) move).getHeal() > playerHealth) {
+            player.resetCurrentHealth();
+            playerCurrentHealth = playerHealth;
+          } else {
+            player.changeCurrentHealth(((HealthMove) move).getHeal()); //Cast the move into the health subclass
+          }
+          break;
+        case "Attack":
+          playerAttack = playerAttack / move.getMultiplier();
+          break;
+        case "Intellgence":
+          playerIntelligence = playerIntelligence / move.getMultiplier();
+          break;
+        case "Defence":
+          playerIntelligence = playerIntelligence / move.getMultiplier();
+          break;
+        case "Speed":
+          playerSpeed = playerSpeed / move.getMultiplier();
+          break;
       }
     } else if (attacker == 1) {
-      if (move.getStatType().equals("Health")) {
-        if (opponentCurrentHealth + ((HealthMove)move).getHeal() > opponentHealth) {
-          opponent.resetCurrentHealth();
-          opponentCurrentHealth = opponentHealth;
-        } else {
-          opponent.changeCurrentHealth(((HealthMove)move).getHeal()); //Cast the move into the health subclass
-        }
-      } else if (move.getStatType().equals("Attack")) {
-        opponentAttack = opponentAttack/move.getMultiplier();
-      } else if (move.getStatType().equals("Intellgence")) {
-        opponentIntelligence = opponentIntelligence/move.getMultiplier();
-      } else if (move.getStatType().equals("Defence")) {
-        opponentIntelligence = opponentIntelligence/move.getMultiplier();
-      } else if (move.getStatType().equals("Speed")) {
-        opponentSpeed = opponentSpeed/move.getMultiplier();
+      switch (move.getStatType()) {
+        case "Health":
+          if (opponentCurrentHealth + ((HealthMove) move).getHeal() > opponentHealth) {
+            opponent.resetCurrentHealth();
+            opponentCurrentHealth = opponentHealth;
+          } else {
+            opponent.changeCurrentHealth(((HealthMove) move).getHeal()); //Cast the move into the health subclass
+          }
+          break;
+        case "Attack":
+          opponentAttack = opponentAttack / move.getMultiplier();
+          break;
+        case "Intellgence":
+          opponentIntelligence = opponentIntelligence / move.getMultiplier();
+          break;
+        case "Defence":
+          opponentIntelligence = opponentIntelligence / move.getMultiplier();
+          break;
+        case "Speed":
+          opponentSpeed = opponentSpeed / move.getMultiplier();
+          break;
       }
     }
   }
@@ -310,60 +322,76 @@ class Battle /*extends Interaction*/ {
       if (playerType.equals(move.getType())) {
         multiplier = multiplier * 1.5; //Same Type Attack Bonus (STAB)
       }
-      if (opponentType.equals("Math")) {
-        if (move.getType().equals("Science")) {
-          multiplier = multiplier*2;
-        } else if (move.getType().equals("English")) {
-          multiplier = multiplier/2;
-        }
-      } else if (opponentType.equals("Science")) {
-        if (move.getType().equals("Technology")) {
-          multiplier = multiplier*2;
-        } else if (move.getType().equals("Math")) {
-          multiplier = multiplier/2;
-        }
-      } else if (opponentType.equals("Technology")) {
-        if (move.getType().equals("English")) {
-          multiplier = multiplier*2;
-        } else if (move.getType().equals("Science")) {
-          multiplier = multiplier/2;
-        }
-      } else if (opponentType.equals("English")) {
-        if (move.getType().equals("Math")) {
-          multiplier = multiplier*2;
-        } else if (move.getType().equals("Technology")) {
-          multiplier = multiplier/2;
-        }
+      if (playerStatus.equals("Burned")) {
+        multiplier = multiplier * 0.5; //Burned halves damage
+      }
+      switch (opponentType) {
+        case "Math":
+          if (move.getType().equals("Science")) {
+            multiplier = multiplier * 2;
+          } else if (move.getType().equals("English")) {
+            multiplier = multiplier / 2;
+          }
+          break;
+        case "Science":
+          if (move.getType().equals("Technology")) {
+            multiplier = multiplier * 2;
+          } else if (move.getType().equals("Math")) {
+            multiplier = multiplier / 2;
+          }
+          break;
+        case "Technology":
+          if (move.getType().equals("English")) {
+            multiplier = multiplier * 2;
+          } else if (move.getType().equals("Science")) {
+            multiplier = multiplier / 2;
+          }
+          break;
+        case "English":
+          if (move.getType().equals("Math")) {
+            multiplier = multiplier * 2;
+          } else if (move.getType().equals("Technology")) {
+            multiplier = multiplier / 2;
+          }
+          break;
       }
     }
     if (attacker == 1) {
       if (opponentType.equals(move.getType())) {
         multiplier = multiplier * 1.5; //Same Type Attack Bonus (STAB)
       }
-      if (playerType.equals("Math")) {
-        if (move.getType().equals("Science")) {
-          multiplier = multiplier*2;
-        } else if (move.getType().equals("English")) {
-          multiplier = multiplier/2;
-        }
-      } else if (playerType.equals("Science")) {
-        if (move.getType().equals("Technology")) {
-          multiplier = multiplier*2;
-        } else if (move.getType().equals("Math")) {
-          multiplier = multiplier/2;
-        }
-      } else if (playerType.equals("Technology")) {
-        if (move.getType().equals("English")) {
-          multiplier = multiplier*2;
-        } else if (move.getType().equals("Science")) {
-          multiplier = multiplier/2;
-        }
-      } else if (playerType.equals("English")) {
-        if (move.getType().equals("Math")) {
-          multiplier = multiplier*2;
-        } else if (move.getType().equals("Technology")) {
-          multiplier = multiplier/2;
-        }
+      if (opponentStatus.equals("Burned")) {
+        multiplier = multiplier * 0.5; //Burn does half damage
+      }
+      switch (playerType) {
+        case "Math":
+          if (move.getType().equals("Science")) {
+            multiplier = multiplier * 2;
+          } else if (move.getType().equals("English")) {
+            multiplier = multiplier / 2;
+          }
+          break;
+        case "Science":
+          if (move.getType().equals("Technology")) {
+            multiplier = multiplier * 2;
+          } else if (move.getType().equals("Math")) {
+            multiplier = multiplier / 2;
+          }
+          break;
+        case "Technology":
+          if (move.getType().equals("English")) {
+            multiplier = multiplier * 2;
+          } else if (move.getType().equals("Science")) {
+            multiplier = multiplier / 2;
+          }
+          break;
+        case "English":
+          if (move.getType().equals("Math")) {
+            multiplier = multiplier * 2;
+          } else if (move.getType().equals("Technology")) {
+            multiplier = multiplier / 2;
+          }
+          break;
       }
     }
     return multiplier;
@@ -371,5 +399,9 @@ class Battle /*extends Interaction*/ {
 
   public boolean isBattleEnd() {
     return battleEnd;
+  }
+
+  public void selfStatMove(StatChangeMove move, int attacker) {
+
   }
 }

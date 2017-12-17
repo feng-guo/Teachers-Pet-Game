@@ -18,7 +18,7 @@ public class BattleTester {
         movesetFeng[1] = new HealthMove("Snort Candy", "English", 1, "Health", 40);
         movesetFeng[2] = new AttackMove("Throw Chair", 80, 0.75, "Neutral", "Attack");
         movesetFeng[3] = new AttackMove("Stack Overflow", 50, 1.0, "Technology", "Intelligence");
-        Character MrShim = new NonPlayableCharacter(150, 160, 120, 10, 25, "Math", "Mr. Shim", "Let homework be your guide", movesetFeng);
+        Character MrShim = new NonPlayableCharacter(150, 160, 120, 10, 25, "Math", "Mr. Shim", "Let homework be your guide", movesetFeng, 200);
         Battle mrShimBattle = new Battle((PlayableCharacter)Feng, (NonPlayableCharacter)MrShim, 1, 0);
         int moveFeng, moveShim;
         Scanner input = new Scanner(System.in);

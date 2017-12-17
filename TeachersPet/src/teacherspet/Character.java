@@ -2,6 +2,7 @@
  *
  * @author Feng
  */
+
 abstract class Character {
     //Character states
     private int initialHealth;
