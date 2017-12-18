@@ -21,7 +21,7 @@ public class BattleTester {
         do {
             System.out.println("Enter the move you want to use");
             moveFeng = input.nextInt();
-            moveShim = (int)Math.random()*4;
+            moveShim = (int)Math.random()*3;
             System.out.println("Feng used " + movesetFeng[moveFeng].getName());
             System.out.println("Mr. Shim used " + movesetFeng[moveShim].getName());
             mrShimBattle.determineOrder(movesetFeng[moveFeng], movesetFeng[moveShim]);
