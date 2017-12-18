@@ -52,7 +52,7 @@ public class GameScreen extends AbstractScreen{
 		);
 			
 		
-		map = new TileMap(10, 10);
+		map = new TileMap(100, 100);
 		player = new Actor(map, 0, 0, animations);
 		camera = new Camera();
 		
@@ -100,11 +100,13 @@ public class GameScreen extends AbstractScreen{
 					render = grass2;
 				}
 		
-					batch.draw(render, worldStartX+i*Settings.SCALED_TILE_SIZE, worldStartY+j*Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE);
+				//batch.draw(render, player.getX()+i*Settings.SCALED_TILE_SIZE, player.getY()+j*Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE);
+				batch.draw(render, worldStartX+i*Settings.SCALED_TILE_SIZE, worldStartY+j*Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE);
 			}
 			
 		}
-		
+		//batch.draw(player.getSprite(), player.getWorldX()*Settings.SCALED_TILE_SIZE, player.getWorldY()*Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE*1.3f);
+
 		batch.draw(player.getSprite(), worldStartX+player.getWorldX()*Settings.SCALED_TILE_SIZE, worldStartY+player.getWorldY()*Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE*1.3f);
 		batch.end();
 	}

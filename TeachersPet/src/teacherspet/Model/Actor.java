@@ -118,7 +118,6 @@ public class Actor {
 
 	private void initializeMove(DIRECTION dir) {
 		
-		// CHANGING THIS FIXES THE ERROR FOR SOME REASON??
 		this.facing = dir;
 		
 		this.srcX = x;
@@ -126,7 +125,7 @@ public class Actor {
 		this.destX = x + dir.getXChange();
 		this.destY = y + dir.getYChange();
 		this.worldX = x;
-		this.worldY = x;
+		this.worldY = y;
 		animationTimer = 0f;
 		state = ACTOR_STATE.WALKING;
 		
