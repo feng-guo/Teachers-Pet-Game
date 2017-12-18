@@ -4,3 +4,6 @@
 *.xml
 *.mf
 /bin/
+\.idea
+\src\teacherspet\Battling\.idea
+\src\teacherspet\Battling\out
