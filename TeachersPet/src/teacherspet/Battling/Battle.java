@@ -20,6 +20,7 @@ class Battle /*extends Interaction*/ {
   private String playerName; //Names are for display purposes when GUI is implemented
   private String playerType;
   private String playerStatus; //Will be factored in later
+  private int playerStatBoost; //Sets a maximum as to how much all stats of a character can be boosted (up to 4 times)
 
   //NPC Stats. Same deal as above
   private int opponentHealth;
@@ -31,6 +32,7 @@ class Battle /*extends Interaction*/ {
   private String opponentName; //Names are for display purposes when GUI is implemented
   private String opponentType;
   private String opponentStatus;
+  private int opponentStatBoost;
 
   //Battling.Battle variables
   private int partySize; //Size of the player party
@@ -55,6 +57,7 @@ class Battle /*extends Interaction*/ {
     this.playerSpeed = player.getSpeed();
     this.playerName = player.getName();
     this.playerType = player.getType();
+    this.playerStatBoost = 0;
 
     this.opponentHealth = opponent.getInitialHealth();
     this.opponentCurrentHealth = opponent.getCurrentHealth();
@@ -64,6 +67,7 @@ class Battle /*extends Interaction*/ {
     this.opponentSpeed = opponent.getSpeed();
     this.opponentName = opponent.getName();
     this.opponentType = opponent.getType();
+    this.opponentStatBoost = 0;
 
     this.partySize = partySize;
     this.numberOfFaintedStudents = numberOfFaintedStudents;
@@ -83,6 +87,8 @@ class Battle /*extends Interaction*/ {
     this.playerSpeed = player.getSpeed();
     this.playerName = player.getName();
     this.playerType = player.getType();
+    this.playerStatus = player.getStatus();
+    this.playerStatBoost = 0;
 
     //Code for switch in animation goes here
     //Because the player is switched, the computer gets to attack the player

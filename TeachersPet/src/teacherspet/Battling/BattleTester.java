@@ -8,16 +8,12 @@ import java.util.Scanner;
 public class BattleTester {
     public static void main(String[] args) {
         Move[] movesetFeng = new Move[4];
-        movesetFeng[0] = new AttackMove("Steal Code", 40, 1.0, "Technology", "Intelligence");
-        movesetFeng[1] = new HealthMove("Snort Candy", "English", 1, "Health", 40);
-        movesetFeng[2] = new AttackMove("Throw Chair", 80, 0.75, "Neutral", "Attack");
-        movesetFeng[3] = new AttackMove("Stack Overflow", 50, 1.0, "Technology", "Intelligence");
+        movesetFeng[0] = new AttackMove("Steal Code", 40, 1.0, "Technology", "Intelligence", 15);
+        movesetFeng[1] = new HealthMove("Snort Candy", "English", 1, "Health", 40, 20);
+        movesetFeng[2] = new AttackMove("Throw Chair", 80, 0.75, "Neutral", "Attack", 10);
+        movesetFeng[3] = new AttackMove("Stack Overflow", 30, 1.0, "Technology", "Intelligence", 20);
         Character Feng = new PlayableCharacter(50, 60, 20, 50, 20, "Technology", "Feng", "FatAss", movesetFeng);
 
-        movesetFeng[0] = new AttackMove("Steal Code", 40, 1.0, "Technology", "Intelligence");
-        movesetFeng[1] = new HealthMove("Snort Candy", "English", 1, "Health", 40);
-        movesetFeng[2] = new AttackMove("Throw Chair", 80, 0.75, "Neutral", "Attack");
-        movesetFeng[3] = new AttackMove("Stack Overflow", 50, 1.0, "Technology", "Intelligence");
         Character MrShim = new NonPlayableCharacter(150, 160, 120, 10, 25, "Math", "Mr. Shim", "Let homework be your guide", movesetFeng, 0);
         Battle mrShimBattle = new Battle((PlayableCharacter)Feng, (NonPlayableCharacter)MrShim, 1, 0);
         int moveFeng, moveShim;
