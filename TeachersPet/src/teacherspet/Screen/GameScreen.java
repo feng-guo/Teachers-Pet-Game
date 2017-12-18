@@ -1,6 +1,6 @@
 package Screen;
 
-import com.badlogic.gdx.Gdx; 
+import com.badlogic.gdx.Gdx;  
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
@@ -27,7 +27,7 @@ public class GameScreen extends AbstractScreen{
 	private TileMap map;
 	
 	private SpriteBatch batch;
-	private Texture fengDown1;
+	//private Texture fengDown1;
 	private Texture grass1;
 	private Texture grass2;
 	
@@ -52,7 +52,7 @@ public class GameScreen extends AbstractScreen{
 		);
 			
 		
-		map = new TileMap(200, 200);
+		map = new TileMap(10, 10);
 		player = new Actor(map, 0, 0, animations);
 		camera = new Camera();
 		

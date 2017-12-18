@@ -1,6 +1,6 @@
 package Model;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.TextureRegion; 
 import com.badlogic.gdx.math.Interpolation;
 
 import Utility.AnimationSet;
@@ -87,12 +87,15 @@ public class Actor {
 	public boolean move(DIRECTION dir) {
 		
 		if (state == ACTOR_STATE.WALKING) {
+			
+			
 			if (facing == dir) {
 				moveRequestThisFrame = true;
 			}
 			return false;
 		}
 		
+		// If it is in bounds
 		if (x + dir.getXChange() >= map.getWidth() || x + dir.getXChange() < 0 || y + dir.getYChange() >= map.getHeight() || y + dir.getYChange() < 0) {
 			return false;
 		}
@@ -114,11 +117,14 @@ public class Actor {
 	}
 
 	private void initializeMove(DIRECTION dir) {
+		
+		// CHANGING THIS FIXES THE ERROR FOR SOME REASON??
 		this.facing = dir;
+		
 		this.srcX = x;
 		this.srcY = y;
 		this.destX = x + dir.getXChange();
-		this.destY = y +dir.getYChange();
+		this.destY = y + dir.getYChange();
 		this.worldX = x;
 		this.worldY = x;
 		animationTimer = 0f;
@@ -128,6 +134,7 @@ public class Actor {
 	
 	private void finishMove() {
 		state = ACTOR_STATE.STANDING;
+		
 		this.worldX = destX;
 		this.worldY = destY;
 		this.srcX = 0;

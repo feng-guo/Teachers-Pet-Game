@@ -1,6 +1,6 @@
 package Controller;
 
-import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.Input.Keys; 
 import com.badlogic.gdx.InputAdapter;
 import Model.Actor;
 import Model.DIRECTION;
