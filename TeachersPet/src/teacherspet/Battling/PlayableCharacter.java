@@ -1,4 +1,4 @@
-/*
+package Battling;/*
  * Frick netbeans
  */
 

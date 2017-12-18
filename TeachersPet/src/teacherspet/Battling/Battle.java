@@ -1,10 +1,11 @@
-//Author @Feng
-/* Battle classes are an object itself
+package Battling;//Author @Feng
+/* Battling.Battle classes are an object itself
  * Runs a loop in battle itself (To be added)
  * Need to add switching, inventory, fleeing, and move selection
  */
 
 class Battle /*extends Interaction*/ {
+  //Battling.Character objects
   private PlayableCharacter player; //Since it is an object, when the values of the objects are changed, they stay changed
   private NonPlayableCharacter opponent; //Same for this one
 
@@ -31,7 +32,7 @@ class Battle /*extends Interaction*/ {
   private String opponentType;
   private String opponentStatus;
 
-  //Battle variables
+  //Battling.Battle variables
   private int partySize; //Size of the player party
   private int numberOfFaintedStudents; //Once this number is equal to the party size, the game is over
   private boolean battleEnd; //Exits the game loop once over
@@ -86,6 +87,10 @@ class Battle /*extends Interaction*/ {
     //Code for switch in animation goes here
     //Because the player is switched, the computer gets to attack the player
     determineAttackType(opponentMove, opponent);
+  }
+
+  public void runBattle(int selection) {
+    //0 = choose move
   }
 
   public void determineOrder(Move playerMove, Move opponentMove) {

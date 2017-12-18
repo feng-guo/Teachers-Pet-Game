@@ -1,10 +1,12 @@
+package Battling;
+
 /**
  *
  * @author Feng
  */
 
 abstract class Character {
-    //Character states
+    //Battling.Character states
     private int initialHealth;
     private int currentHealth;
     private int attack;
@@ -12,11 +14,11 @@ abstract class Character {
     private int defence;
     private int speed;
 
-    //Character attributes
+    //Battling.Character attributes
     private String type;
     private String name;
 
-    //Character moveset
+    //Battling.Character moveset
     private Move[] moveset;
 
     Character(int health, int attack, int intelligence, int defence, int speed, String type, String name, Move[] moveset) {
