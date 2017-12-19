@@ -1,6 +1,4 @@
-package Battling;/*
- * Frick netbeans
- */
+package src;
 
 class PlayableCharacter extends Character {
     private String description; //description of the character

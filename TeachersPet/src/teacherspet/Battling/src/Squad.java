@@ -1,4 +1,4 @@
-package Battling;
+package src;
 
 import java.util.ArrayList;
 
@@ -35,4 +35,5 @@ public class Squad {
     public void displaySquad () {
         //Code to display a squad
     }
+
 }

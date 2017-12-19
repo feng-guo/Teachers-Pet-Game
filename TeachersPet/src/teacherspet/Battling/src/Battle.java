@@ -1,4 +1,4 @@
-package Battling;//Author @Feng
+package src;//Author @Feng
 /* Battling.Battle classes are an object itself
  * Runs a loop in battle itself (To be added)
  * Need to add switching, inventory, fleeing, and move selection
@@ -57,6 +57,7 @@ class Battle /*extends Interaction*/ {
     this.playerSpeed = player.getSpeed();
     this.playerName = player.getName();
     this.playerType = player.getType();
+    this.playerStatus = player.getStatus();
     this.playerStatBoost = 0;
 
     this.opponentHealth = opponent.getInitialHealth();
@@ -67,6 +68,7 @@ class Battle /*extends Interaction*/ {
     this.opponentSpeed = opponent.getSpeed();
     this.opponentName = opponent.getName();
     this.opponentType = opponent.getType();
+    this.opponentStatus = "";
     this.opponentStatBoost = 0;
 
     this.partySize = partySize;
@@ -408,11 +410,43 @@ class Battle /*extends Interaction*/ {
     return multiplier;
   }
 
+  public void selfStatMove(StatChangeMove move, int attacker) {
+
+  }
+
   public boolean isBattleEnd() {
     return battleEnd;
   }
 
-  public void selfStatMove(StatChangeMove move, int attacker) {
+  public boolean isPlayerLoses() {
+    return playerLoses;
+  }
 
+  public boolean isOpponentLoses() {
+    return opponentLoses;
+  }
+
+  public PlayableCharacter getPlayer() {
+    return player;
+  }
+
+  public NonPlayableCharacter getOpponent() {
+    return opponent;
+  }
+
+  public String getOpponentStatus() {
+    return opponentStatus;
+  }
+
+  public String getPlayerStatus() {
+    return playerStatus;
+  }
+
+  public String getOpponentName() {
+    return opponentName;
+  }
+
+  public String getPlayerName() {
+    return playerName;
   }
 }
