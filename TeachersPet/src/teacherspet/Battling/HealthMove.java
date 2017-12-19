@@ -1,5 +1,3 @@
-package src;
-
 class HealthMove extends StatChangeMove {
     //This move only allows a user to heal themselves
     private int heal;

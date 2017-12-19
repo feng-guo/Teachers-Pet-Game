@@ -1,4 +1,3 @@
-package src;
 /* Please ignore this file
  * Testing file for battles
  * So very cool wow

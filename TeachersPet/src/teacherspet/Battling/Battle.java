@@ -1,4 +1,4 @@
-package src;//Author @Feng
+//Author @Feng
 /* Battling.Battle classes are an object itself
  * Runs a loop in battle itself (To be added)
  * Need to add switching, inventory, fleeing, and move selection
