@@ -1,6 +1,6 @@
 package Screen;
 
-import com.badlogic.gdx.Gdx;  
+import com.badlogic.gdx.Gdx;   
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
@@ -33,7 +33,6 @@ public class GameScreen extends AbstractScreen{
 	
 	public GameScreen(FinalGame app) {
 		super(app);
-		//fengDown1 = new Texture("TeachersPet/images/sprites/unpacked/feng_down_1.png");
 		grass1 = new Texture("TeachersPet/images/sprites/grass_1.png");
 		grass2 = new Texture("TeachersPet/images/sprites/grass_2.png");
 		batch = new SpriteBatch();
@@ -41,10 +40,10 @@ public class GameScreen extends AbstractScreen{
 		TextureAtlas atlas = app.getAssetManager().get("TeachersPet/images/sprites/packed/feng_textures.atlas", TextureAtlas.class);
 		
 		AnimationSet animations = new AnimationSet(
-				new Animation(0.3f/2f, atlas.findRegions("feng_up"), PlayMode.LOOP_PINGPONG),
-				new Animation(0.3f/2f, atlas.findRegions("feng_down"), PlayMode.LOOP_PINGPONG),
-				new Animation(0.3f/2f, atlas.findRegions("feng_right"), PlayMode.LOOP_PINGPONG),
-				new Animation(0.3f/2f, atlas.findRegions("feng_left"), PlayMode.LOOP_PINGPONG),
+				new Animation(0.3f/2f, atlas.findRegions("feng_up"), PlayMode.LOOP),
+				new Animation(0.3f/2f, atlas.findRegions("feng_down"), PlayMode.LOOP),
+				new Animation(0.3f/2f, atlas.findRegions("feng_right"), PlayMode.LOOP),
+				new Animation(0.3f/2f, atlas.findRegions("feng_left"), PlayMode.LOOP),
 				atlas.findRegion("feng_up"),
 				atlas.findRegion("feng_down"),
 				atlas.findRegion("feng_right"),
@@ -53,7 +52,7 @@ public class GameScreen extends AbstractScreen{
 			
 		
 		map = new TileMap(100, 100);
-		player = new Actor(map, 0, 0, animations);
+		player = new Actor(map, 50, 50, animations);
 		camera = new Camera();
 		
 		controller = new PlayerController(player);
@@ -100,12 +99,10 @@ public class GameScreen extends AbstractScreen{
 					render = grass2;
 				}
 		
-				//batch.draw(render, player.getX()+i*Settings.SCALED_TILE_SIZE, player.getY()+j*Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE);
 				batch.draw(render, worldStartX+i*Settings.SCALED_TILE_SIZE, worldStartY+j*Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE);
 			}
 			
 		}
-		//batch.draw(player.getSprite(), player.getWorldX()*Settings.SCALED_TILE_SIZE, player.getWorldY()*Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE*1.3f);
 
 		batch.draw(player.getSprite(), worldStartX+player.getWorldX()*Settings.SCALED_TILE_SIZE, worldStartY+player.getWorldY()*Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE*1.3f);
 		batch.end();
