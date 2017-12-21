@@ -3,7 +3,7 @@ class HealthMove extends StatChangeMove {
     private int heal;
 
     HealthMove (String name, String type, int multiplier, String statType, int heal, int maxPowerPoints, int priority) {
-        super(name,1.0, type, multiplier, statType, maxPowerPoints, priority);
+        super(name,1.0, type, multiplier, statType, maxPowerPoints, priority, "self");
         this.heal = heal;
     }
 

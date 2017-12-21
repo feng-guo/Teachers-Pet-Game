@@ -5,11 +5,10 @@ abstract class Move {
     private int maxPowerPoints;
     private int priority;
 
-    //Battling.Move attributes
+    //Battling Move attributes
     private String name;
     private String type;
     private String attackType;
-
 
     Move(String name, int power, double hitChance, String type, String attackType, int maxPowerPoints, int priority) {
         this.name = name;

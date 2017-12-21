@@ -19,8 +19,12 @@ class Battle /*extends Interaction*/ {
   private int playerSpeed;
   private String playerName; //Names are for display purposes when GUI is implemented
   private String playerType;
-  private String playerStatus; //Will be factored in later
+  private String playerStatus; //Has one status to prevent too many statuses
+  private String playerAbility;
   private int playerStatBoost; //Sets a maximum as to how much all stats of a character can be boosted (up to 4 times)
+  private int playerStatusTurns; //The amount of turns that a pokemon has a set status
+  private boolean playerProtected; //Determines if the player has shielded a move
+  private boolean playerFainted;
 
   //NPC Stats. Same deal as above
   private int opponentHealth;
@@ -32,7 +36,11 @@ class Battle /*extends Interaction*/ {
   private String opponentName; //Names are for display purposes when GUI is implemented
   private String opponentType;
   private String opponentStatus;
+  private String opponentAbility;
   private int opponentStatBoost;
+  private int opponentStatusTurns;
+  private boolean opponentProtected;
+  private boolean opponentFainted;
 
   //Battling.Battle variables
   private int partySize; //Size of the player party
@@ -58,7 +66,10 @@ class Battle /*extends Interaction*/ {
     this.playerName = player.getName();
     this.playerType = player.getType();
     this.playerStatus = player.getStatus();
+    this.playerAbility = player.getAbility();
     this.playerStatBoost = 0;
+    this.playerProtected = false;
+    this.playerFainted = player.isFainted();
 
     this.opponentHealth = opponent.getInitialHealth();
     this.opponentCurrentHealth = opponent.getCurrentHealth();
@@ -69,7 +80,11 @@ class Battle /*extends Interaction*/ {
     this.opponentName = opponent.getName();
     this.opponentType = opponent.getType();
     this.opponentStatus = "";
+    this.opponentAbility = opponent.getAbility();
     this.opponentStatBoost = 0;
+    this.opponentStatusTurns = 0;
+    this.opponentProtected = false;
+    this.opponentFainted = false;
 
     this.partySize = partySize;
     this.numberOfFaintedStudents = numberOfFaintedStudents;
@@ -102,8 +117,34 @@ class Battle /*extends Interaction*/ {
   }
 
   public void determineOrder(Move playerMove, Move opponentMove) {
+    int tempPlayerSpeed = playerSpeed;
+    int tempOpponentSpeed = opponentSpeed;
+    if (playerStatus.equals("Slowed")) {
+      tempPlayerSpeed = playerSpeed/2;
+    } else if (opponentStatus.equals("Slowed")) {
+      tempOpponentSpeed = opponentSpeed/2;
+    }
     //This code decides who goes first based on their speed
-    if (playerSpeed > opponentSpeed) {
+    if (playerMove.getPriority() > opponentMove.getPriority()) {
+      //If the player has a higher priority move
+      determineAttackType(playerMove, player);
+      if (!battleEnd && !playerProtected) {
+        determineAttackType(opponentMove, opponent);
+      } else if (playerProtected && !battleEnd) {
+        //Player protected
+      } else {
+        //The opponent was defeated
+      }
+    } else if (playerMove.getPriority() < opponentMove.getPriority()) {
+      //If the opponent has a higher priority move
+      if (!battleEnd && !opponentProtected) {
+        determineAttackType(playerMove, player);
+      } else if (opponentProtected && !playerFainted) {
+        //Player protected
+      } else {
+        //The player fainted
+      }
+    } else if (tempPlayerSpeed > tempOpponentSpeed) {
       //Code to say what the player used
       determineAttackType(playerMove, player);
       //Code to say if it was successful
@@ -112,7 +153,7 @@ class Battle /*extends Interaction*/ {
       } else {
         //Code here for opponent being defeated
       }
-    } else if (playerSpeed < opponentSpeed) {
+    } else if (tempPlayerSpeed < tempOpponentSpeed) {
       determineAttackType(opponentMove, opponent);
       //Code to say if it was successful
       if (!battleEnd) {
@@ -152,11 +193,11 @@ class Battle /*extends Interaction*/ {
   }
 
   public void determineAttackType(Move move, Character user) {
-    int attacker = -1; //Needs to be initialized
+    int attacker = 0; //Needs to be initialized
     //This code determines who is attacking
-    //0 is the player, 1 is the opponent
+    //-1 is the player, 1 is the opponent
     if (user instanceof PlayableCharacter) {
-      attacker = 0;
+      attacker = -1;
     } else if (user instanceof NonPlayableCharacter) {
       attacker = 1;
     }
@@ -165,23 +206,30 @@ class Battle /*extends Interaction*/ {
     if (move instanceof AttackMove) {
       attackMove((AttackMove) move, attacker);
     } else if (move instanceof HealthMove) {
-      selfMove((HealthMove) move, attacker);
-    } else if (move instanceof  StatChangeMove && move.getHitChance() == 2.0) {
-      selfStatMove((StatChangeMove)move, attacker); //To be added
+      healthMove((HealthMove) move, attacker);
     } else if (move instanceof StatChangeMove) {
-      statChangeMove((StatChangeMove) move, attacker);
+      if (((StatChangeMove)move).getTarget().equals("Self")) {
+        //Whenever the target is the user, the attacker uses the move on themself and therefore the attacker would be "technically" the other person
+        statChangeMove((StatChangeMove)move, -attacker);
+      } else {
+        statChangeMove((StatChangeMove) move, attacker);
+      }
     } else if (move instanceof StatusMove) {
-      statusMove((StatusMove) move, attacker);
+      if (((StatusMove)move).getTarget().equals("Self")) {
+        statusMove((StatusMove) move, -attacker);
+      } else {
+        statusMove((StatusMove)move, attacker);
+      }
     }
   }
 
   public void attackMove (AttackMove move, int attacker) {
     int attackerStatUsed = 0; //Determines whether attack or intelligence is used
     int defence = 0; //Determines whose defence to use
-    double multiplier; //Multiplier for typing and STAB
+    double multiplier; //Multiplier for typing, status effects and STAB
     //This if statement determines whose stats to used to calculate damage
-    if (attacker == 0) {
-      //If attacker is 0, then the player is attacking. If it is 1, the opponent is attacking
+    if (attacker == -1) {
+      //If attacker is -1, then the player is attacking. If it is 1, the opponent is attacking
       if (move.getAttackType().equals("Attack")) {
         attackerStatUsed = playerAttack;
       } else {
@@ -201,17 +249,37 @@ class Battle /*extends Interaction*/ {
 
     int damageDealt;
     damageDealt = (int)(Math.ceil((move.getPower() * (attackerStatUsed/defence))/10) * multiplier);
+    if (player.getAbility().equals("Clown") && attacker == 1) {
+      if (Math.random() < 0.25) {
+        damageDealt = damageDealt/2;
+      }
+    } else if (opponent.getAbility().equals("Clown") && attacker == -1) {
+      if (Math.random() < 0.25) {
+        damageDealt = damageDealt/2;
+      }
+    }
 
     //Add code to have more stuff when a student faints
     if (Math.random() < move.getHitChance()) {
       //Determines whether the attack hits or not
-      if (attacker == 0) {
+      if (attacker == -1) {
         if (opponentCurrentHealth - damageDealt < 0) {
           opponent.faintCharacter();
+          opponentLoses = true;
           this.battleEnd = true;
         } else {
           opponent.changeCurrentHealth(-damageDealt);
           opponentCurrentHealth = opponent.getCurrentHealth();
+          if (opponentCurrentHealth < opponentHealth/4) {
+            switch (opponentAbility) {
+              case "Persistent":
+                opponentDefence = opponentDefence*2;
+                break;
+              case "Distressed":
+                opponentIntelligence = opponentIntelligence*2;
+                break;
+            }
+          }
         }
       } else if (attacker == 1){
         if (playerCurrentHealth - damageDealt < 0) {
@@ -223,89 +291,102 @@ class Battle /*extends Interaction*/ {
         } else {
           player.changeCurrentHealth(-damageDealt);
           playerCurrentHealth = player.getCurrentHealth();
+          if (playerCurrentHealth < playerHealth/4) {
+            switch (playerAbility) {
+              case "Persistent":
+                playerDefence = playerDefence*2;
+                break;
+              case "Distressed":
+                playerIntelligence = playerIntelligence*2;
+                break;
+            }
+          }
+        }
+      }
+    } else {
+      //The move missed
+    }
+
+    if (Math.random() < move.getHitChance()/10) {
+      //The additional effect is always 10 percent of the original hit chance
+      if (move.getAdditionalEffect() != null) {
+        Move additionalEffect = move.getAdditionalEffect();
+        if (additionalEffect instanceof HealthMove) {
+          healthMove((HealthMove) additionalEffect, attacker);
+        } else if (additionalEffect instanceof StatChangeMove) {
+          if (((StatChangeMove) additionalEffect).getTarget().equals("Self")) {
+            statChangeMove((StatChangeMove) additionalEffect, -attacker);
+          } else {
+            statChangeMove((StatChangeMove) additionalEffect, attacker);
+          }
+        } else if (additionalEffect instanceof StatusMove) {
+          if (((StatusMove) additionalEffect).getTarget().equals("Self")) {
+            statusMove((StatusMove) additionalEffect, -attacker);
+          } else {
+            statusMove((StatusMove) additionalEffect, attacker);
+          }
         }
       }
     }
-
-    //Additional effects to a move?
-    //Add more code here I guess
   }
 
   public void statChangeMove(StatChangeMove move, int attacker) {
     //This code is for moves that only change the stats of the opposing person
     if (Math.random() < move.getHitChance()) {
       //Determines whether or not the attack lands
-      if (attacker == 0) {
-        if (move.getStatType().equals("Attack")) {
-          opponentAttack = opponentAttack/move.getMultiplier();
-        } else if (move.getStatType().equals("Intellgence")) {
-          opponentIntelligence = opponentIntelligence/move.getMultiplier();
-        } else if (move.getStatType().equals("Defence")) {
-          opponentIntelligence = opponentIntelligence/move.getMultiplier();
-        } else if (move.getStatType().equals("Speed")) {
-          opponentSpeed = opponentSpeed/move.getMultiplier();
+      if (attacker == -1) {
+        if (opponentStatBoost>-5) {
+          if (move.getStatType().equals("Attack")) {
+            opponentAttack = opponentAttack / move.getMultiplier();
+          } else if (move.getStatType().equals("Intellgence")) {
+            opponentIntelligence = opponentIntelligence / move.getMultiplier();
+          } else if (move.getStatType().equals("Defence")) {
+            opponentIntelligence = opponentIntelligence / move.getMultiplier();
+          } else if (move.getStatType().equals("Speed")) {
+            opponentSpeed = opponentSpeed / move.getMultiplier();
+          }
+          opponentStatBoost--;
+        } else {
+          //Stat cannot be lowered
         }
       } else if (attacker == 1) {
-        if (move.getStatType().equals("Attack")) {
-          playerAttack = playerAttack/move.getMultiplier();
-        } else if (move.getStatType().equals("Intellgence")) {
-          playerIntelligence = playerIntelligence/move.getMultiplier();
-        } else if (move.getStatType().equals("Defence")) {
-          playerIntelligence = playerIntelligence/move.getMultiplier();
-        } else if (move.getStatType().equals("Speed")) {
-          playerSpeed = playerSpeed/move.getMultiplier();
+        if (playerStatBoost>-5) {
+          if (move.getStatType().equals("Attack")) {
+            playerAttack = playerAttack / move.getMultiplier();
+          } else if (move.getStatType().equals("Intellgence")) {
+            playerIntelligence = playerIntelligence / move.getMultiplier();
+          } else if (move.getStatType().equals("Defence")) {
+            playerIntelligence = playerIntelligence / move.getMultiplier();
+          } else if (move.getStatType().equals("Speed")) {
+            playerSpeed = playerSpeed / move.getMultiplier();
+          }
+          playerStatBoost--;
+        } else {
+          //Stat cannot be lowered
         }
       }
+    } else {
+      //The move missed
     }
   }
 
-  public void selfMove(StatChangeMove move, int attacker) {
-    //Because the move is used on the user, the move never misses and does not need to check for hit chance
-    if (attacker == 0) {
-      switch (move.getStatType()) {
-        case "Health":
-          if (playerCurrentHealth + ((HealthMove) move).getHeal() > playerHealth) {
-            player.resetCurrentHealth();
-            playerCurrentHealth = playerHealth;
-          } else {
-            player.changeCurrentHealth(((HealthMove) move).getHeal()); //Cast the move into the health subclass
-          }
-          break;
-        case "Attack":
-          playerAttack = playerAttack / move.getMultiplier();
-          break;
-        case "Intellgence":
-          playerIntelligence = playerIntelligence / move.getMultiplier();
-          break;
-        case "Defence":
-          playerIntelligence = playerIntelligence / move.getMultiplier();
-          break;
-        case "Speed":
-          playerSpeed = playerSpeed / move.getMultiplier();
-          break;
+  public void healthMove(HealthMove move, int attacker) {
+    //Doesn't check hit chance because self healing is 100% successful
+    if (attacker == -1) {
+      if (playerCurrentHealth + move.getHeal() > playerHealth) {
+        player.resetCurrentHealth();
+        playerCurrentHealth = player.getCurrentHealth();
+      } else {
+        player.changeCurrentHealth(move.getHeal());
+        playerCurrentHealth = player.getCurrentHealth();
       }
     } else if (attacker == 1) {
-      switch (move.getStatType()) {
-        case "Health":
-          if (opponentCurrentHealth + ((HealthMove) move).getHeal() > opponentHealth) {
-            opponent.resetCurrentHealth();
-            opponentCurrentHealth = opponentHealth;
-          } else {
-            opponent.changeCurrentHealth(((HealthMove) move).getHeal()); //Cast the move into the health subclass
-          }
-          break;
-        case "Attack":
-          opponentAttack = opponentAttack / move.getMultiplier();
-          break;
-        case "Intellgence":
-          opponentIntelligence = opponentIntelligence / move.getMultiplier();
-          break;
-        case "Defence":
-          opponentIntelligence = opponentIntelligence / move.getMultiplier();
-          break;
-        case "Speed":
-          opponentSpeed = opponentSpeed / move.getMultiplier();
-          break;
+      if (opponentCurrentHealth + move.getHeal() > opponentHealth) {
+        opponent.resetCurrentHealth();
+        opponentCurrentHealth = opponent.getCurrentHealth();
+      } else {
+        opponent.changeCurrentHealth(move.getHeal());
+        opponentCurrentHealth = opponent.getCurrentHealth();
       }
     }
   }
@@ -314,12 +395,14 @@ class Battle /*extends Interaction*/ {
     //A move that changes the status of the move.
     if (Math.random() < move.getHitChance()) {
       //Checks hit chance
-      if (attacker == 0) {
+      if (attacker == -1) {
         opponentStatus = move.getStatusEffect();
-      } else {
+      } else if (attacker == 1){
         player.setStatus(move.getStatusEffect());
         playerStatus = player.getStatus();
       }
+    } else {
+      //The move misses
     }
   }
 
@@ -331,7 +414,7 @@ class Battle /*extends Interaction*/ {
     //Technology is effective against science, ineffective against English
     //English is effective against technology, ineffective against math
     //To add: status multipliers
-    if (attacker == 0) {
+    if (attacker == -1) {
       if (playerType.equals(move.getType())) {
         multiplier = multiplier * 1.5; //Same Type Attack Bonus (STAB)
       }
@@ -410,10 +493,73 @@ class Battle /*extends Interaction*/ {
     return multiplier;
   }
 
-  public void selfStatMove(StatChangeMove move, int attacker) {
-
+  public void burnPlayer(Character person) {
+    double burn;
+    if (person instanceof PlayableCharacter) {
+      burn = playerHealth/12;
+      if (playerCurrentHealth - (int)burn < 0) {
+        player.faintCharacter();
+        playerFainted = true;
+        numberOfFaintedStudents++;
+        if (numberOfFaintedStudents == partySize) {
+          battleEnd = true;
+        }
+      } else {
+        person.changeCurrentHealth(-(int)burn);
+        playerCurrentHealth = player.getCurrentHealth();
+      }
+    } else if (person instanceof NonPlayableCharacter) {
+      burn = opponentHealth/12;
+      if (opponentCurrentHealth - (int)burn < 0) {
+        opponent.faintCharacter();
+        opponentLoses = true;
+        battleEnd = true;
+      } else {
+        person.changeCurrentHealth(-(int)burn);
+        opponentCurrentHealth = opponent.getCurrentHealth();
+      }
+    }
   }
 
+  public void poisonPlayer(Character person) {
+    double poison;
+    if (person instanceof PlayableCharacter) {
+      poison = playerHealth/15 * playerStatusTurns;
+      if (playerCurrentHealth - (int)poison < 0) {
+        player.faintCharacter();
+        playerFainted = true;
+        numberOfFaintedStudents++;
+        if (numberOfFaintedStudents == partySize) {
+          battleEnd = true;
+        }
+      } else {
+        person.changeCurrentHealth(-(int)poison);
+        playerCurrentHealth = player.getCurrentHealth();
+      }
+    } else if (person instanceof NonPlayableCharacter) {
+      poison = opponentHealth/15 * opponentStatusTurns;
+      if (opponentCurrentHealth - (int)poison < 0) {
+        opponent.faintCharacter();
+        opponentLoses = true;
+        battleEnd = true;
+      } else {
+        person.changeCurrentHealth(-(int)poison);
+        opponentCurrentHealth = opponent.getCurrentHealth();
+      }
+    }
+  }
+
+  public void wakeUp(Character person) {
+    if (person instanceof PlayableCharacter) {
+      playerStatus = "";
+      playerStatusTurns = 0;
+    } else if (person instanceof  NonPlayableCharacter) {
+      opponentStatus = "";
+      opponentStatusTurns = 0;
+    }
+  }
+
+  //Getters
   public boolean isBattleEnd() {
     return battleEnd;
   }
