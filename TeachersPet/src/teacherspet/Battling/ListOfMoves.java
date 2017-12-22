@@ -14,6 +14,7 @@ public class ListOfMoves {
         moveList.add(new AttackMove("Spam Calculator", 50, 1.0, "Math", "Attack", 15, 0, null));
         moveList.add(new HealthMove("Calculate Mark", "Math", 0, "Health", -2, 8, 0));
         moveList.add(new StatChangeMove("Mark Test", 1.0, "Math", 2, "Speed", 20, 0, "Self"));
+        moveList.add(new StatChangeMove("Math Angels", 1.0, "Math", 2, "Intelligence", 5, 0, "Self"));
         //moveList.add(new )
     }
 
