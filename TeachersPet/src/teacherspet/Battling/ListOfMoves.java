@@ -15,6 +15,13 @@ public class ListOfMoves {
         moveList.add(new HealthMove("Calculate Mark", "Math", 0, "Health", -2, 8, 0));
         moveList.add(new StatChangeMove("Mark Test", 1.0, "Math", 2, "Speed", 20, 0, "Self"));
         moveList.add(new StatChangeMove("Math Angels", 1.0, "Math", 2, "Intelligence", 5, 0, "Self"));
+        moveList.add(new AttackMove("Complete the Square", 40, 1.0, "Math", "Intelligence", 15, 0, null));
+        moveList.add(new AttackMove("Divisibility Test", 85, 1.0, "Math", "Intelligence", 8, 0, null));
+        moveList.add(new AttackMove("Olympiads Question", 60, 0.95, "Math", "Intelligence", 15, 0, null));
+        moveList.add(new AttackMove("Practice Set", 70, 1.0, "Math", "Intelligence", 10, 0, null));
+        moveList.add(new AttackMove("Quadratic Formula", 40, 0.99, "Math", "Intelligence", 20, 0, null));
+        moveList.add(new AttackMove("Quick Maths", 20, 0.95, "Math", "Intelligence", 15, 3, null));
+        moveList.add(new AttackMove("Trigonometry Test", 95, 0.95, "Math", "Intelligence", 10, 0, null));
         //moveList.add(new )
     }
 
