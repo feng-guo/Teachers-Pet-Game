@@ -1,8 +1,8 @@
 class PlayableCharacter extends Character {
     private String description; //description of the character
     private String status; //Status would be the status condition
-    private int experience; //EXP points
     private boolean fainted;
+    private int experience; //EXP points
     private int level;
     //Possibly dumb stats to display??
     PlayableCharacter(int health, int attack, int intelligence, int defence, int speed, String type, String name, String description, Move[] moveset, String ability) {
@@ -14,7 +14,6 @@ class PlayableCharacter extends Character {
     }
 
     public void levelUp(int healthIncrease, int attackIncrease, int intelligenceIncrease, int defenceIncrease, int speedIncrease) {
-        level++;
         changeInitialHealth(healthIncrease);
         changeAttack(attackIncrease);
         changeIntelligence(intelligenceIncrease);
@@ -47,6 +46,9 @@ class PlayableCharacter extends Character {
     }
     public void changeExperience(int change) {
       experience += change;
-      //Some code to handle leveling up
+      while (experience > 20*level) {
+          experience -= 20*level;
+          level++;
+      }
     }
 }

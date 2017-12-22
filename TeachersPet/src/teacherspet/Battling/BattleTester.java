@@ -21,7 +21,16 @@ public class BattleTester {
         Scanner input = new Scanner(System.in);
         do {
             System.out.println("Enter the move you want to use");
-            moveFeng = input.nextInt();
+            boolean fengChooseMove = false;
+            do {
+                do {
+                    moveFeng = input.nextInt();
+                } while(moveFeng > 3 || moveFeng < 0);
+                if (Feng.getPowerPoints(moveFeng) > 0) {
+                    Feng.setPowerPoints(moveFeng, -1);
+                    fengChooseMove = true;
+                }
+            } while (!fengChooseMove);
             moveShim = (int)Math.random()*3;
             System.out.println("Feng used " + movesetFeng[moveFeng].getName());
             System.out.println("Mr. Shim used " + movesetFeng[moveShim].getName());
