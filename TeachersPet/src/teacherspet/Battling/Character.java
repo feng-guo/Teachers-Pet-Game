@@ -115,7 +115,20 @@ abstract class Character {
     public Move[] getMoveset() {
         return moveset;
     }
+    public Move getMove(int index) {
+        return moveset[index];
+    }
     public void changeMoveset(int arrayNumber, Move move) {
         moveset[arrayNumber] = move;
+    }
+    public int[] getPowerPoints() {
+        return powerPoints;
+    }
+    public int getPowerPoints(int index) {
+        return powerPoints[index];
+    }
+
+    public void setPowerPoints(int index, int amount) {
+        this.powerPoints[index] += amount;
     }
 }
