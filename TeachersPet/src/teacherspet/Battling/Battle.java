@@ -205,6 +205,8 @@ class Battle /*extends Interaction*/ {
     //The move itself has to be casted into the appropriate subclass
     if (move instanceof AttackMove) {
       attackMove((AttackMove) move, attacker);
+    } else if (move instanceof ProtectMove) {
+      protectMove((ProtectMove)move, attacker);
     } else if (move instanceof HealthMove) {
       healthMove((HealthMove) move, attacker);
     } else if (move instanceof StatChangeMove) {
@@ -248,7 +250,7 @@ class Battle /*extends Interaction*/ {
 
 
     int damageDealt;
-    damageDealt = (int)(Math.ceil((move.getPower() * (attackerStatUsed/defence))/10) * multiplier);
+    damageDealt = (int)(Math.ceil((move.getPower() * (attackerStatUsed/defence+1))/10) * multiplier);
     if (player.getAbility().equals("Clown") && attacker == 1) {
       if (Math.random() < 0.25) {
         damageDealt = damageDealt/2;
@@ -326,6 +328,16 @@ class Battle /*extends Interaction*/ {
             statusMove((StatusMove) additionalEffect, attacker);
           }
         }
+      }
+    }
+  }
+
+  public void protectMove (ProtectMove move, int attacker) {
+    if (Math.random() < move.getHitChance()) {
+      if (attacker == -1) {
+        playerProtected = true;
+      } else if (attacker == 1) {
+        opponentProtected = true;
       }
     }
   }
