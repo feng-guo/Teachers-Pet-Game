@@ -29,7 +29,7 @@ public class ListOfMoves {
         moveList.add(new AttackMove("Argue", 70, 0.95, "English", "Intelligence", 10, 0, null));
         moveList.add(new AttackMove("Complain", 80, 1.0, "English", "Intelligence", 15, 0, null));
         moveList.add(new AttackMove("Debate", 85, 1.0, "English", "Intelligence", 10, 0, null));
-        moveList.add(new StatChangeMove("Life Lesson", 0.85, "English", 2, "Sleep", 15, 0, "Opponent")); //someone review the last two STRINGS
+        moveList.add(new StatusMove("Life Lesson", 0.85, "English", "Sleep", 15, 0, "Opponent")); //someone review the last two STRINGS
         //science
         moveList.add(new StatChangeMove("TLAP", 1.0, "Science", 2, "Intelligence", 10, 0, "Self"));
         moveList.add(new AttackMove("Chemistry Pun", 40, 1.0, "Science", "Intelligence", 15, 0, null));
