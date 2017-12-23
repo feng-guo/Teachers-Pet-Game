@@ -29,10 +29,15 @@ public class ListOfMoves {
         moveList.add(new AttackMove("Argue", 70, 0.95, "English", "Intelligence", 10, 0, null));
         moveList.add(new AttackMove("Complain", 80, 1.0, "English", "Intelligence", 15, 0, null));
         moveList.add(new AttackMove("Debate", 85, 1.0, "English", "Intelligence", 10, 0, null));
-        moveList.add(new StatChangeMove("Life Lesson", 0.85, "English", 2, "", 15, 0, "")); //not done
+        moveList.add(new StatChangeMove("Life Lesson", 0.85, "English", 2, "Sleep", 15, 0, "Opponent")); //someone review the last two STRINGS
         //science
+        moveList.add(new StatChangeMove("TLAP", 1.0, "Science", 2, "Intelligence", 10, 0, "Self"));
+        moveList.add(new AttackMove("Chemistry Pun", 40, 1.0, "Science", "Intelligence", 15, 0, null));
         //technology
-        //moveList.add(new )
+        moveList.add(new StatChangeMove("Implement APIs", 1.0, "Technology", 2, "Speed", 8, 0, "Self"));
+        moveList.add(new AttackMove("Deoptimize Code", 50, 1.0, "Technology", "Intelligence", 10, 0, null));
+        moveList.add(new AttackMove("Stack Overflow", 30, 1.0, "Techology", "Intelligence", 20, 0, null));
+        moveList.add(new AttackMove("Steal Code", 40, 0.95, "Technology", "Intelligence", 15, 0, null));
     }
 
     public Move retrieveMove(String name) {
