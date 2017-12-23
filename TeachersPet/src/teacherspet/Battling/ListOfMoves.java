@@ -4,7 +4,9 @@ public class ListOfMoves {
     private ArrayList<Move> moveList;
 
     ListOfMoves () {
+        moveList = new ArrayList<Move>();
         //neutral
+        moveList.add(new AttackMove("Meter Stick", 65, 0.9, "Neutral", "Attack", 12, 1, null));
         moveList.add(new AttackMove("Throw Basketball", 30, 0.95,"Neutral", "Attack", 20, 2, null));
         moveList.add(new AttackMove("Throw Chair", 80, 0.75, "Neutral", "Attack", 10, 0, null));
         moveList.add(new StatChangeMove("Call Uber", 1.0, "Neutral", 2, "Speed", 10, 0, "Self"));
@@ -12,6 +14,8 @@ public class ListOfMoves {
         moveList.add(new HealthMove("Cry", "Neutral", 0, "Health", -2, 5, 0));
         moveList.add(new HealthMove("Make Memes", "Neutral", 0, "Health", -2, 8, 0));
         moveList.add(new HealthMove("Snort Candy", "Neutral", 0, "Health", 40, 20, 0));
+        moveList.add(new ProtectMove("Ghost", 0.5, "Neutral", 10, 2));
+        moveList.add(new ProtectMove("Dodge Homework", 0.5, "Neutral", 15, 2));
         //math
         moveList.add(new AttackMove("Spam Calculator", 50, 1.0, "Math", "Attack", 15, 0, null));
         moveList.add(new HealthMove("Calculate Mark", "Math", 0, "Health", -2, 8, 0));
@@ -36,13 +40,13 @@ public class ListOfMoves {
         //technology
         moveList.add(new StatChangeMove("Implement APIs", 1.0, "Technology", 2, "Speed", 8, 0, "Self"));
         moveList.add(new AttackMove("Deoptimize Code", 50, 1.0, "Technology", "Intelligence", 10, 0, null));
-        moveList.add(new AttackMove("Stack Overflow", 30, 1.0, "Techology", "Intelligence", 20, 0, null));
+        moveList.add(new AttackMove("Stack Overflow", 30, 1.0, "Technology", "Intelligence", 20, 0, null));
         moveList.add(new AttackMove("Steal Code", 40, 0.95, "Technology", "Intelligence", 15, 0, null));
     }
 
     public Move retrieveMove(String name) {
         for (int i=0; i<moveList.size(); i++) {
-            if (moveList.get(i).getName().equals(name)) {
+            if (name.equals(moveList.get(i).getName())) {
                 return moveList.get(i);
             }
         }

@@ -433,6 +433,7 @@ class Battle /*extends Interaction*/ {
       if (playerStatus.equals("Burned")) {
         multiplier = multiplier * 0.5; //Burned halves damage
       }
+      //Switch statement can be probably converted to a compareTo method
       switch (opponentType) {
         case "Math":
           if (move.getType().equals("Science")) {

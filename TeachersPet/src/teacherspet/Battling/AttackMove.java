@@ -7,7 +7,9 @@ class AttackMove extends Move {
 
     AttackMove(String name, int power, double hitChance, String type, String attackType, int maxPowerPoints, int priority, Move move) {
         super(name, power, hitChance, type, attackType, maxPowerPoints, priority);
-        this.additionalEffect = move;
+        if (move != null) {
+            this.additionalEffect = move;
+        }
     }
 
     public Move getAdditionalEffect() {
