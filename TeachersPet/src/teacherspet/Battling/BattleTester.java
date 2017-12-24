@@ -1,7 +1,7 @@
 /* Please ignore this file
  * Testing file for battles
  * So very cool wow
- * And it works too ;)
+ * Basically a snadbox for Feng
  */
 
 import java.util.Scanner;
@@ -11,20 +11,23 @@ public class BattleTester {
         ListOfCharacters characterList = new ListOfCharacters();
         //ListOfInventoryItems inventoryItems = new ListOfInventoryItems();
         Inventory inventory = new Inventory(null);
-        PlayableCharacter Feng = (PlayableCharacter)characterList.returnCharacter("Feng");
-        PlayableCharacter Joyce = (PlayableCharacter)characterList.returnCharacter("Joyce");
-        PlayableCharacter Sihan = (PlayableCharacter)characterList.returnCharacter("Sihan");
-        PlayableCharacter Yash = (PlayableCharacter)characterList.returnCharacter("Yash");
+        PlayableCharacter[] newSquad = new PlayableCharacter[4];
+        newSquad[0] = (PlayableCharacter)characterList.returnCharacter("Feng");
+        newSquad[1] = (PlayableCharacter)characterList.returnCharacter("Joyce");
+        newSquad[2] = (PlayableCharacter)characterList.returnCharacter("Sihan");
+        newSquad[3] = (PlayableCharacter)characterList.returnCharacter("Yash");
+
         NonPlayableCharacter MrChoi = (NonPlayableCharacter)characterList.returnCharacter("Mr. Choi");
         NonPlayableCharacter MrShim = (NonPlayableCharacter)characterList.returnCharacter("Mr. Shim");
         NonPlayableCharacter MrTimmerman = (NonPlayableCharacter)characterList.returnCharacter("Mr. Timmerman");
+        Squad squad = new Squad(newSquad);
 
         Scanner input = new Scanner(System.in);
-        double random = Math.random();
+        //double random = Math.random();
         double random2 = Math.random();
-        PlayableCharacter player;
+        //PlayableCharacter player;
         NonPlayableCharacter opponent;
-        if (random < 0.25) {
+        /*if (random < 0.25) {
             player = Feng;
         } else if (random < 0.5) {
             player = Joyce;
@@ -33,6 +36,7 @@ public class BattleTester {
         } else {
             player = Yash;
         }
+        */
         if (random2 < 0.33) {
             opponent = MrChoi;
         } else if (random2 < 0.66) {
@@ -40,9 +44,16 @@ public class BattleTester {
         } else {
             opponent = MrTimmerman;
         }
+        Battle battle = new Battle(squad.getCharacter(0), opponent, squad, inventory);
+        do {
+            battle.runBattle();
+        } while (!battle.isBattleEnd());
+
+        /*
         System.out.println("A battle began between " + player.getName() + " and " + opponent.getName());
         System.out.println(opponent.getName() + " says " + opponent.getSpeech());
-        Battle battle = new Battle(player, opponent, 1, 0, inventory);
+        Battle battle = new Battle(player, opponent, , 0, inventory);
+        */
         /*do {
             System.out.println("What move would you like to use");
             System.out.println(player.getCurrentHealth() + "/" + player.getInitialHealth());

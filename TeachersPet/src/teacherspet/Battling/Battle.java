@@ -13,6 +13,7 @@ class Battle /*extends Interaction*/ {
   private PlayableCharacter player; //Since it is an object, when the values of the objects are changed, they stay changed
   private NonPlayableCharacter opponent; //Same for this one
   private Inventory playerInventory;
+  private Squad squad;
 
   //Player Stats. This only exist in the battle. This is for changes during a battle that do not affect future battles.
   //Also, it is easier to save the variables here because it is easier to retrieve them
@@ -53,12 +54,14 @@ class Battle /*extends Interaction*/ {
   private boolean battleEnd; //Exits the game loop once over
   private boolean playerLoses;
   private boolean opponentLoses;
+  private boolean playerFled;
 
-  Battle (PlayableCharacter player, NonPlayableCharacter opponent, int partySize, int numberOfFaintedStudents, Inventory inventory) {
+  Battle (PlayableCharacter player, NonPlayableCharacter opponent, Squad squad, Inventory inventory) {
     //Constructor that requires some math
     this.player = player; //Saves the player
     this.opponent = opponent; //Saves the opponent
     this.playerInventory = inventory;
+    this.squad = squad;
     /*
     The reason why I save the variables here is because the stats in battles are reset once the battle ends
     Therefore, it would be better to just keep them in the class itself
@@ -92,14 +95,15 @@ class Battle /*extends Interaction*/ {
     this.opponentProtected = false;
     this.opponentFainted = false;
 
-    this.partySize = partySize;
-    this.numberOfFaintedStudents = numberOfFaintedStudents;
+    this.partySize = squad.getSize();
+    this.numberOfFaintedStudents = squad.getNumberOfFaintedStudents();
     battleEnd = false;
     playerLoses = false;
     opponentLoses = false;
+    playerFled = false;
   }
 
-  public void changeCharacter(PlayableCharacter player, Move opponentMove) {
+  public void changeCharacter(PlayableCharacter player/*, Move opponentMove*/) {
     this.player = player; //Updates the player
     //For switching out students
     this.playerHealth = player.getInitialHealth();
@@ -115,11 +119,13 @@ class Battle /*extends Interaction*/ {
 
     //Code for switch in animation goes here
     //Because the player is switched, the computer gets to attack the player
-    determineAttackType(opponentMove, opponent);
+    //Might move the code below outside of this method
+    //determineAttackType(opponentMove, opponent);
   }
 
   public void runBattle() {
     Scanner input = new Scanner(System.in);
+    //KeyBoardListener keyBoardListener = new KeyBoardListener();
     int answer = 0;
     System.out.println("What would you like to do");
     System.out.println("Fight (1)");
@@ -134,15 +140,45 @@ class Battle /*extends Interaction*/ {
     } while (answer<1 || answer>4);
     if (answer == 1) {
       System.out.println("What move would you like to use");
-      //Diplay the moves
+      //Display the moves
+      for (int i=0; i<4; i++) {
+        System.out.println(player.getMove(i).getName() + " " + player.getPowerPoints(i) + "/" + player.getMove(i).getMaxPowerPoints() + "(" + i+1 + ")");
+      }
+      do {
+        try {
+          answer = input.nextInt();
+        } catch (InputMismatchException e){
+        }
+      } while (answer<1 || answer>4);
+      determineOrder(player.getMove(answer-1), opponent.getMove((int)Math.random()*4));
     } else if (answer == 2) {
       System.out.println("Inventory items");
       //Inventory interactions
     } else if (answer == 3) {
       //Check out the squad
+      squad.displaySquad();
+      System.out.println();
+      System.out.println("Would you like to switch in a squad member (1/2)");
+      do {
+        try {
+          answer = input.nextInt();
+        } catch (InputMismatchException e){
+        }
+      } while (answer<1 || answer>2);
+      if (answer == 1) {
+        do {
+          try {
+            answer = input.nextInt();
+          } catch (InputMismatchException e){
+          }
+        } while (answer<1 || answer>6);
+        changeCharacter(squad.getCharacter(answer-1));
+        determineAttackType(opponent.getMove((int)Math.random()*4), opponent);
+      }
     } else if (answer == 4) {
       if (Math.random() < 0.25) {
-        //Code for running
+        battleEnd = true;
+        playerFled = true;
       }
     }
   }
