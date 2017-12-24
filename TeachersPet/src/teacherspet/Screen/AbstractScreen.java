@@ -10,6 +10,10 @@ public abstract class AbstractScreen implements Screen{
 		this.app = app;
 	}
 	
+	public FinalGame getApp() {
+		return app;
+	}
+	
 	@Override
 	public abstract void dispose();
 

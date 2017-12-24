@@ -4,6 +4,7 @@ public class Tile {
 
 	private Actor actor;
 	private TERRAIN terrain;
+	private WorldObject object;
 	
 	public Actor getActor() {
 		return actor;
@@ -19,6 +20,14 @@ public class Tile {
 	
 	public TERRAIN getTerrain() {
 		return terrain;
-	}	
+	}
+	
+	public WorldObject getObject() {
+		return object;
+	}
+	
+	public void setObject (WorldObject object) {
+		this.object = object;
+	}
 	
 }

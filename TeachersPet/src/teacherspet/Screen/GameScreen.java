@@ -7,13 +7,23 @@ import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
+
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
+
 import Controller.PlayerController;
 
 import Model.Actor;
 import Model.Camera;
 import Model.TERRAIN;
 import Model.TileMap;
-
+import Model.World;
 import Run.FinalGame;
 import Run.Settings;
 import Utility.AnimationSet;
@@ -25,6 +35,8 @@ public class GameScreen extends AbstractScreen{
 	private Camera camera;
 	private Actor player;
 	private TileMap map;
+	private World world;
+	private WorldRenderer worldRenderer;
 	
 	private SpriteBatch batch;
 	//private Texture fengDown1;
@@ -33,8 +45,8 @@ public class GameScreen extends AbstractScreen{
 	
 	public GameScreen(FinalGame app) {
 		super(app);
-		grass1 = new Texture("TeachersPet/images/sprites/grass_1.png");
-		grass2 = new Texture("TeachersPet/images/sprites/grass_2.png");
+		//grass1 = new Texture("TeachersPet/images/sprites/grass_1.png");
+		//grass2 = new Texture("TeachersPet/images/sprites/grass_2.png");
 		batch = new SpriteBatch();
 		
 		TextureAtlas atlas = app.getAssetManager().get("TeachersPet/images/sprites/packed/feng_textures.atlas", TextureAtlas.class);
@@ -50,12 +62,14 @@ public class GameScreen extends AbstractScreen{
 				atlas.findRegion("feng_left")
 		);
 			
-		
-		map = new TileMap(100, 100);
-		player = new Actor(map, 50, 50, animations);
 		camera = new Camera();
+		world = new World(100, 100);
+		//map = new TileMap(100, 100);
+		player = new Actor(world.getMap(), 50, 50, animations);
+		world.addActor(player);
 		
 		controller = new PlayerController(player);
+		worldRenderer = new WorldRenderer(getApp().getAssetManager(), world);
 	}
 
 	@Override
@@ -83,7 +97,8 @@ public class GameScreen extends AbstractScreen{
 
 		
 		batch.begin();
-		
+		worldRenderer.render(batch, camera);
+		/*
 		float worldStartX = Gdx.graphics.getWidth()/2 - camera.getCameraX()*Settings.SCALED_TILE_SIZE;
 		float worldStartY = Gdx.graphics.getHeight()/2 - camera.getCameraY()*Settings.SCALED_TILE_SIZE;
 		
@@ -105,6 +120,7 @@ public class GameScreen extends AbstractScreen{
 		}
 
 		batch.draw(player.getSprite(), worldStartX+player.getWorldX()*Settings.SCALED_TILE_SIZE, worldStartY+player.getWorldY()*Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE, Settings.SCALED_TILE_SIZE*1.3f);
+		*/
 		batch.end();
 	}
 
