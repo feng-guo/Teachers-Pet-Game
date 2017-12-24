@@ -1,13 +1,18 @@
 //Author @Feng
-/* Battling.Battle classes are an object itself
+/* Battle classes are an object itself
  * Runs a loop in battle itself (To be added)
  * Need to add switching, inventory, fleeing, and move selection
  */
+
+import javax.sound.midi.SysexMessage;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 class Battle /*extends Interaction*/ {
   //Battling.Character objects
   private PlayableCharacter player; //Since it is an object, when the values of the objects are changed, they stay changed
   private NonPlayableCharacter opponent; //Same for this one
+  private Inventory playerInventory;
 
   //Player Stats. This only exist in the battle. This is for changes during a battle that do not affect future battles.
   //Also, it is easier to save the variables here because it is easier to retrieve them
@@ -42,17 +47,18 @@ class Battle /*extends Interaction*/ {
   private boolean opponentProtected;
   private boolean opponentFainted;
 
-  //Battling.Battle variables
+  //Battling variables
   private int partySize; //Size of the player party
   private int numberOfFaintedStudents; //Once this number is equal to the party size, the game is over
   private boolean battleEnd; //Exits the game loop once over
   private boolean playerLoses;
   private boolean opponentLoses;
 
-  Battle (PlayableCharacter player, NonPlayableCharacter opponent, int partySize, int numberOfFaintedStudents) {
+  Battle (PlayableCharacter player, NonPlayableCharacter opponent, int partySize, int numberOfFaintedStudents, Inventory inventory) {
     //Constructor that requires some math
     this.player = player; //Saves the player
     this.opponent = opponent; //Saves the opponent
+    this.playerInventory = inventory;
     /*
     The reason why I save the variables here is because the stats in battles are reset once the battle ends
     Therefore, it would be better to just keep them in the class itself
@@ -112,8 +118,33 @@ class Battle /*extends Interaction*/ {
     determineAttackType(opponentMove, opponent);
   }
 
-  public void runBattle(int selection) {
-    //0 = choose move
+  public void runBattle() {
+    Scanner input = new Scanner(System.in);
+    int answer = 0;
+    System.out.println("What would you like to do");
+    System.out.println("Fight (1)");
+    System.out.println("Inventory (2)");
+    System.out.println("Squad (3)");
+    System.out.println("Run (4)");
+    do {
+      try {
+        answer = input.nextInt();
+      } catch (InputMismatchException e){
+      }
+    } while (answer<1 || answer>4);
+    if (answer == 1) {
+      System.out.println("What move would you like to use");
+      //Diplay the moves
+    } else if (answer == 2) {
+      System.out.println("Inventory items");
+      //Inventory interactions
+    } else if (answer == 3) {
+      //Check out the squad
+    } else if (answer == 4) {
+      if (Math.random() < 0.25) {
+        //Code for running
+      }
+    }
   }
 
   public void determineOrder(Move playerMove, Move opponentMove) {

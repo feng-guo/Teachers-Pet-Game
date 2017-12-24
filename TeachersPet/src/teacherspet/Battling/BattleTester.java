@@ -10,7 +10,7 @@ public class BattleTester {
     public static void main(String[] args)  {
         ListOfCharacters characterList = new ListOfCharacters();
         //ListOfInventoryItems inventoryItems = new ListOfInventoryItems();
-        //Inventory inventory = new Inventory(null);
+        Inventory inventory = new Inventory(null);
         PlayableCharacter Feng = (PlayableCharacter)characterList.returnCharacter("Feng");
         PlayableCharacter Joyce = (PlayableCharacter)characterList.returnCharacter("Joyce");
         PlayableCharacter Sihan = (PlayableCharacter)characterList.returnCharacter("Sihan");
@@ -19,7 +19,7 @@ public class BattleTester {
         NonPlayableCharacter MrShim = (NonPlayableCharacter)characterList.returnCharacter("Mr. Shim");
         NonPlayableCharacter MrTimmerman = (NonPlayableCharacter)characterList.returnCharacter("Mr. Timmerman");
 
-
+        Scanner input = new Scanner(System.in);
         double random = Math.random();
         double random2 = Math.random();
         PlayableCharacter player;
@@ -42,14 +42,24 @@ public class BattleTester {
         }
         System.out.println("A battle began between " + player.getName() + " and " + opponent.getName());
         System.out.println(opponent.getName() + " says " + opponent.getSpeech());
-        Battle battle = new Battle(player, opponent, 1, 0);
-        //do {
+        Battle battle = new Battle(player, opponent, 1, 0, inventory);
+        /*do {
             System.out.println("What move would you like to use");
+            System.out.println(player.getCurrentHealth() + "/" + player.getInitialHealth());
+            System.out.println(opponent.getCurrentHealth() + "/" + opponent.getInitialHealth());
             for (int i=0; i<4; i++) {
                 System.out.println(player.getMove(i).getName() + " " + player.getPowerPoints(i) + "/" + player.getMove(i).getMaxPowerPoints());
             }
-        //} while(!battle.isBattleEnd());
-
+            int playerMove;
+            do {
+                playerMove = input.nextInt();
+            } while (playerMove < 0 || playerMove > 4);
+            int opponentMove = (int) Math.random()*4;
+            battle.determineOrder(player.getMove(playerMove), opponent.getMove(opponentMove));
+            player.setPowerPoints(playerMove, -1);
+            opponent.setPowerPoints(opponentMove, -1);
+        } while(!battle.isBattleEnd());*/
+        System.out.println("The battle ended");
 
 
         /*
