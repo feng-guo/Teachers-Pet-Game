@@ -4,7 +4,6 @@
  * Need to add switching, inventory, fleeing, and move selection
  */
 
-import javax.sound.midi.SysexMessage;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -31,6 +30,7 @@ class Battle /*extends Interaction*/ {
   private int playerStatusTurns; //The amount of turns that a pokemon has a set status
   private boolean playerProtected; //Determines if the player has shielded a move
   private boolean playerFainted;
+  private boolean playerFleeChance;
   private double playerProtectChance;
 
   //NPC Stats. Same deal as above
@@ -49,6 +49,7 @@ class Battle /*extends Interaction*/ {
   private boolean opponentProtected;
   private boolean opponentFainted;
   private double opponentProtectChance;
+  private double opponentFleeChance;
 
   //Battling variables
   private int partySize; //Size of the player party
@@ -57,6 +58,7 @@ class Battle /*extends Interaction*/ {
   private boolean playerLoses;
   private boolean opponentLoses;
   private boolean playerFled;
+  private boolean opponenetFled;
 
   Battle (PlayableCharacter player, NonPlayableCharacter opponent, Squad squad, Inventory inventory) {
     //Constructor that requires some math
@@ -128,78 +130,140 @@ class Battle /*extends Interaction*/ {
   }
 
   public void runBattle() {
+    if (playerProtected) {
+      playerProtectChance = playerProtectChance / 2;
+      playerProtected = false;
+    }
+    if (opponentProtected) {
+      opponentProtectChance = opponentProtectChance / 2;
+      opponentProtected = false;
+    }
     Scanner input = new Scanner(System.in);
     //KeyBoardListener keyBoardListener = new KeyBoardListener();
+    //Code below would probably have to be put in another method or loops
     int answer = 0;
-    System.out.println("What would you like to do");
-    System.out.println("Fight (1)");
-    System.out.println("Inventory (2)");
-    System.out.println("Squad (3)");
-    System.out.println("Run (4)");
+    boolean exitLoop = false;
     do {
-      try {
-        answer = input.nextInt();
-      } catch (InputMismatchException e){
-      }
-    } while (answer<1 || answer>4);
-    if (answer == 1) {
-      System.out.println("What move would you like to use");
-      //Display the moves
-      for (int i=0; i<4; i++) {
-        System.out.println(player.getMove(i).getName() + " " + player.getPowerPoints(i) + "/" + player.getMove(i).getMaxPowerPoints() + "(" + i+1 + ")");
-      }
+      System.out.println(playerName + " " + playerCurrentHealth + "/" + playerHealth);
+      System.out.println(opponentName + " " + opponentCurrentHealth + "/" + opponentHealth);
+      System.out.println("What would you like to do");
+      System.out.println("Fight (1)");
+      System.out.println("Inventory (2)");
+      System.out.println("Squad (3)");
+      System.out.println("Run (4)");
       do {
         try {
           answer = input.nextInt();
-        } catch (InputMismatchException e){
+        } catch (InputMismatchException e) {
         }
-      } while (answer<1 || answer>4);
-      int opponentMove = determineOpponentMove();
-      int moveFirst = determineOrder(player.getMove(answer-1), opponent.getMove(opponentMove));
-      if (moveFirst == -1) {
-        determineAttackType(player.getMove(answer-1), player);
-        //Protecting will be handled in the move methods
-        if (!opponentLoses) {
-          //Can't go if the opponent is dead
-          if (opponentStatus.equals("Stunned")) {
-            //Decides if the opponent can go if they're stunned
-            if (Math.random() < 0.75) {
-              determineAttackType(opponent.getMove(opponentMove), opponent);
-            } else {
-              System.out.println("Opponent is stunned!");
-            }
-          }
-        }
-      }
-    } else if (answer == 2) {
-      System.out.println("Inventory items");
-      //Inventory interactions
-    } else if (answer == 3) {
-      //Check out the squad
-      squad.displaySquad();
-      System.out.println();
-      System.out.println("Would you like to switch in a squad member (1/2)");
-      do {
-        try {
-          answer = input.nextInt();
-        } catch (InputMismatchException e){
-        }
-      } while (answer<1 || answer>2);
+      } while (answer < 1 || answer > 4);
       if (answer == 1) {
+        System.out.println("What move would you like to use");
+        //Display the moves
+        for (int i = 0; i < 4; i++) {
+          System.out.println(player.getMove(i).getName() + " " + player.getPowerPoints(i) + "/" + player.getMove(i).getMaxPowerPoints() + " (" + (i + 1) + ")");
+        }
         do {
           try {
             answer = input.nextInt();
-          } catch (InputMismatchException e){
+          } catch (InputMismatchException e) {
           }
-        } while (answer<1 || answer>6);
-        changeCharacter(squad.getCharacter(answer-1));
-        determineAttackType(opponent.getMove((int)Math.random()*4), opponent);
+        } while (answer < 1 || answer > 4);
+        int opponentMove = determineOpponentMove();
+        int moveFirst = determineOrder(player.getMove(answer - 1), opponent.getMove(opponentMove));
+        player.setPowerPoints(answer - 1, -1);
+        if (moveFirst == -1) {
+          determineAttackType(player.getMove(answer - 1), player);
+          System.out.println(playerName + " used " + player.getMove(answer-1).getName());
+          //Protecting will be handled in the move methods
+          if (!opponentLoses) {
+            //Can't go if the opponent is dead
+            if (opponentStatus.equals("Stunned")) {
+              //Decides if the opponent can go if they're stunned
+              if (Math.random() < 0.75) {
+                determineAttackType(opponent.getMove(opponentMove), opponent);
+                System.out.println(opponentName + " used " + opponent.getMove(opponentMove).getName());
+              } else {
+                System.out.println("Opponent is stunned!");
+              }
+            } else {
+              determineAttackType(opponent.getMove(opponentMove), opponent);
+              System.out.println(opponentName + " used " + opponent.getMove(opponentMove).getName());
+            }
+          }
+        } else if (moveFirst == 1) {
+          determineAttackType(opponent.getMove(opponentMove), opponent);
+          System.out.println(opponentName + " used " + opponent.getMove(opponentMove).getName());
+          //Protecting will be handled in the move methods
+          if (!playerFainted) {
+            //Can't go if the opponent is dead
+            if (playerStatus.equals("Stunned")) {
+              //Decides if the opponent can go if they're stunned
+              if (Math.random() < 0.75) {
+                determineAttackType(player.getMove(answer-1), player);
+                System.out.println(playerName + " used " + player.getMove(answer-1).getName());
+              } else {
+                System.out.println("Player is stunned!");
+              }
+            } else {
+              determineAttackType(player.getMove(answer-1), player);
+              System.out.println(playerName + " used " + player.getMove(answer-1).getName());
+            }
+          }
+        }
+        exitLoop = true;
+      } else if (answer == 2) {
+        System.out.println("Inventory items");
+        //Inventory interactions
+      } else if (answer == 3) {
+        //Check out the squad
+        squad.displaySquad();
+        System.out.println();
+        System.out.println("Would you like to switch in a squad member (1/2)");
+        do {
+          try {
+            answer = input.nextInt();
+          } catch (InputMismatchException e) {
+          }
+        } while (answer < 1 || answer > 2);
+        if (answer == 1) {
+          System.out.println("Who would you like to switch in");
+          for (int i = 0; i < squad.getSize(); i++) {
+            System.out.println(squad.getCharacter(i).getName());
+          }
+          do {
+            try {
+              answer = input.nextInt();
+            } catch (InputMismatchException e) {
+            }
+          } while (answer < 1 || answer > squad.getSize());
+          changeCharacter(squad.getCharacter(answer - 1));
+          determineAttackType(opponent.getMove((int) Math.random() * 4), opponent);
+          exitLoop = true;
+        }
+      } else if (answer == 4) {
+        if (Math.random() < 0.25) {
+          battleEnd = true;
+          playerFled = true;
+          exitLoop = true;
+        }
       }
-    } else if (answer == 4) {
-      if (Math.random() < 0.25) {
-        battleEnd = true;
-        playerFled = true;
+    } while (!exitLoop);
+    if (playerCurrentHealth == 0) {
+      System.out.println("Your student broke down");
+      System.out.println("Who would you like to switch in");
+      squad.displaySquad();
+      System.out.println("Who would you like to switch in");
+      for (int i = 0; i < squad.getSize(); i++) {
+        System.out.println(squad.getCharacter(i).getName());
       }
+      do {
+        try {
+          answer = input.nextInt();
+        } catch (InputMismatchException e) {
+        }
+      } while (answer < 1 || answer > squad.getSize());
+      changeCharacter(squad.getCharacter(answer - 1));
     }
   }
 
@@ -627,6 +691,14 @@ class Battle /*extends Interaction*/ {
 
   public boolean isOpponentLoses() {
     return opponentLoses;
+  }
+
+  public boolean isPlayerFled() {
+    return playerFled;
+  }
+
+  public boolean isOpponenetFled() {
+    return opponenetFled;
   }
 
   public PlayableCharacter getPlayer() {

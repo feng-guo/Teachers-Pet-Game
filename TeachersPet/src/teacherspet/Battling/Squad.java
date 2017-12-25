@@ -51,6 +51,12 @@ public class Squad {
     }
 
     public int getNumberOfFaintedStudents() {
+        int numberOfFaintedStudents = 0;
+        for (int i=0; i<squad.size(); i++) {
+            if (squad.get(i).getCurrentHealth() == 0) {
+                numberOfFaintedStudents++;
+            }
+        }
         return numberOfFaintedStudents;
     }
 
