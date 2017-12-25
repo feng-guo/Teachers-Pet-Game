@@ -31,6 +31,7 @@ class Battle /*extends Interaction*/ {
   private int playerStatusTurns; //The amount of turns that a pokemon has a set status
   private boolean playerProtected; //Determines if the player has shielded a move
   private boolean playerFainted;
+  private double playerProtectChance;
 
   //NPC Stats. Same deal as above
   private int opponentHealth;
@@ -47,6 +48,7 @@ class Battle /*extends Interaction*/ {
   private int opponentStatusTurns;
   private boolean opponentProtected;
   private boolean opponentFainted;
+  private double opponentProtectChance;
 
   //Battling variables
   private int partySize; //Size of the player party
@@ -79,6 +81,7 @@ class Battle /*extends Interaction*/ {
     this.playerStatBoost = 0;
     this.playerProtected = false;
     this.playerFainted = player.isFainted();
+    this.playerProtectChance = 1.00;
 
     this.opponentHealth = opponent.getInitialHealth();
     this.opponentCurrentHealth = opponent.getCurrentHealth();
@@ -94,6 +97,7 @@ class Battle /*extends Interaction*/ {
     this.opponentStatusTurns = 0;
     this.opponentProtected = false;
     this.opponentFainted = false;
+    this.opponentProtectChance = 1.00;
 
     this.partySize = squad.getSize();
     this.numberOfFaintedStudents = squad.getNumberOfFaintedStudents();
@@ -150,7 +154,23 @@ class Battle /*extends Interaction*/ {
         } catch (InputMismatchException e){
         }
       } while (answer<1 || answer>4);
-      determineOrder(player.getMove(answer-1), opponent.getMove((int)Math.random()*4));
+      int opponentMove = determineOpponentMove();
+      int moveFirst = determineOrder(player.getMove(answer-1), opponent.getMove(opponentMove));
+      if (moveFirst == -1) {
+        determineAttackType(player.getMove(answer-1), player);
+        //Protecting will be handled in the move methods
+        if (!opponentLoses) {
+          //Can't go if the opponent is dead
+          if (opponentStatus.equals("Stunned")) {
+            //Decides if the opponent can go if they're stunned
+            if (Math.random() < 0.75) {
+              determineAttackType(opponent.getMove(opponentMove), opponent);
+            } else {
+              System.out.println("Opponent is stunned!");
+            }
+          }
+        }
+      }
     } else if (answer == 2) {
       System.out.println("Inventory items");
       //Inventory interactions
@@ -183,7 +203,7 @@ class Battle /*extends Interaction*/ {
     }
   }
 
-  public void determineOrder(Move playerMove, Move opponentMove) {
+  public int determineOrder(Move playerMove, Move opponentMove) {
     int tempPlayerSpeed = playerSpeed;
     int tempOpponentSpeed = opponentSpeed;
     if (playerStatus.equals("Slowed")) {
@@ -192,69 +212,22 @@ class Battle /*extends Interaction*/ {
       tempOpponentSpeed = opponentSpeed/2;
     }
     //This code decides who goes first based on their speed
+    //Returns an int to see who goes first.
     if (playerMove.getPriority() > opponentMove.getPriority()) {
-      //If the player has a higher priority move
-      determineAttackType(playerMove, player);
-      if (!battleEnd && !playerProtected) {
-        determineAttackType(opponentMove, opponent);
-      } else if (playerProtected && !battleEnd) {
-        //Player protected
-      } else {
-        //The opponent was defeated
-      }
+      return -1;
     } else if (playerMove.getPriority() < opponentMove.getPriority()) {
-      //If the opponent has a higher priority move
-      if (!battleEnd && !opponentProtected) {
-        determineAttackType(playerMove, player);
-      } else if (opponentProtected && !playerFainted) {
-        //Player protected
-      } else {
-        //The player fainted
-      }
+      return 1;
     } else if (tempPlayerSpeed > tempOpponentSpeed) {
-      //Code to say what the player used
-      determineAttackType(playerMove, player);
-      //Code to say if it was successful
-      if (!battleEnd) {
-        determineAttackType(opponentMove, opponent);
-      } else {
-        //Code here for opponent being defeated
-      }
+      return -1;
     } else if (tempPlayerSpeed < tempOpponentSpeed) {
-      determineAttackType(opponentMove, opponent);
-      //Code to say if it was successful
-      if (!battleEnd) {
-        //Code to say what the player used
-        determineAttackType(playerMove, player);
-        //Code to say if it was successful
-      } else {
-        //Code for when the players lose
-        //Spawn them in the guidance office ??
-      }
+      return 1;
     } else {
       //In case of a tie breaker
       int decision = (int)Math.floor(Math.random()*2);
       if (decision == 0) {
-        //Code to say what the player uses
-        determineAttackType(playerMove, player);
-        //Code to say if it was successful
-        if (!battleEnd) {
-          //Code to say what the opponent uses
-          determineAttackType(opponentMove, opponent);
-          //Code to say if it was successful
-        }
+        return -1;
       } else {
-        //Code to say what the opponent uses
-        determineAttackType(opponentMove, opponent);
-        //Code to say if it was successful
-        if (!battleEnd) {
-          //Code to say what the player uses
-          determineAttackType(playerMove, player);
-          //Code to say if it was successful
-        } else {
-          //Code for when the players lose
-          //Spawn them in the guidance office ??
-        }
+        return 1;
       }
     }
   }
@@ -637,6 +610,10 @@ class Battle /*extends Interaction*/ {
       opponentStatus = "";
       opponentStatusTurns = 0;
     }
+  }
+
+  public int determineOpponentMove() {
+    return (int)Math.random()*4;
   }
 
   //Getters
