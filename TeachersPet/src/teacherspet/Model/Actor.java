@@ -1,15 +1,19 @@
 package Model;
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion; 
+import com.badlogic.gdx.graphics.g2d.TextureRegion;  
 import com.badlogic.gdx.math.Interpolation;
 
 import Utility.AnimationSet;
 
-public class Actor {
+public class Actor implements YSortable {
 	
 	private TileMap map;
 	private int x;
 	private int y;
+	
+	private float sizeX;
+	private float sizeY;
+	
 	private DIRECTION facing;
 	
 	private float worldX, worldY;
@@ -148,6 +152,14 @@ public class Actor {
 
 	public int getY() {
 		return y;
+	}
+	
+	public float getSizeX() {
+		return sizeX;
+	}
+	
+	public float getSizeY() {
+		return sizeY;
 	}
 	
 }

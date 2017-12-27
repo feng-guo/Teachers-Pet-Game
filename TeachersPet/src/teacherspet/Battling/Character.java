@@ -1,5 +1,3 @@
-package Battling;
-
 /**
  *
  * @author Feng
@@ -17,11 +15,13 @@ abstract class Character {
     //Battling.Character attributes
     private String type;
     private String name;
+    private String ability;
 
     //Battling.Character moveset
     private Move[] moveset;
+    private int[] powerPoints;
 
-    Character(int health, int attack, int intelligence, int defence, int speed, String type, String name, Move[] moveset) {
+    Character(int health, int attack, int intelligence, int defence, int speed, String type, String name, Move[] moveset, String ability) {
         //Integer variables
         this.initialHealth = health;
         this.currentHealth = health;
@@ -32,7 +32,13 @@ abstract class Character {
         //String variables
         this.type = type;
         this.name = name;
+        this.ability = ability;
         this.moveset = moveset;
+        int[] powerPointCounter = new int[4];
+        for (int i=0; i<4; i++) {
+            powerPointCounter[i] = moveset[i].getMaxPowerPoints();
+        }
+        this.powerPoints = powerPointCounter;
     }
 
     //Changing health
@@ -100,11 +106,29 @@ abstract class Character {
         return type;
     }
 
+    //Ability
+    public String getAbility() {
+        return ability;
+    }
+
     //Moveset
     public Move[] getMoveset() {
         return moveset;
     }
+    public Move getMove(int index) {
+        return moveset[index];
+    }
     public void changeMoveset(int arrayNumber, Move move) {
         moveset[arrayNumber] = move;
+    }
+    public int[] getPowerPoints() {
+        return powerPoints;
+    }
+    public int getPowerPoints(int index) {
+        return powerPoints[index];
+    }
+
+    public void setPowerPoints(int index, int amount) {
+        this.powerPoints[index] += amount;
     }
 }
