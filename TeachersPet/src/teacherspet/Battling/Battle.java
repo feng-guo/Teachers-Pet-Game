@@ -4,52 +4,69 @@
  * Need to add switching, inventory, fleeing, and move selection
  */
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.InputMismatchException; //Prevents people like Samyar from intentionally throwing in bad inputs. Will be replaced.
+import java.util.Scanner; //Will be replaced
 
 class Battle /*extends Interaction*/ {
-  //Battling.Character objects
+  //Objects that need to be saved here
   private PlayableCharacter player; //Since it is an object, when the values of the objects are changed, they stay changed
   private NonPlayableCharacter opponent; //Same for this one
-  private Inventory playerInventory;
-  private Squad squad;
+  private Inventory playerInventory; //Interactions in the inventory during the battle are used here
+  private Squad squad; //Used for switching out characters
 
   //Player Stats. This only exist in the battle. This is for changes during a battle that do not affect future battles.
   //Also, it is easier to save the variables here because it is easier to retrieve them
+
+  //Player variables
+  //Player integer stats
   private int playerHealth;
   private int playerCurrentHealth;
   private int playerAttack;
   private int playerIntelligence;
   private int playerDefence;
   private int playerSpeed;
+
+  //Player String variables
   private String playerName; //Names are for display purposes when GUI is implemented
-  private String playerType;
-  private String playerStatus; //Has one status to prevent too many statuses
-  private String playerAbility;
+  private String playerType; //For multiplier + stab calculations
+  private String playerStatus; //Has one status to prevent handling too many statuses
+  private String playerAbility; //Affects the battle through different ways
+
+  //Battle dependent number values
   private int playerStatBoost; //Sets a maximum as to how much all stats of a character can be boosted (up to 4 times)
   private int playerStatusTurns; //The amount of turns that a pokemon has a set status
+  private double playerProtectChance; //Protect chance goes down every consecutive use
+  private double playerFleeChance;
+
+  //Battle dependent player boolean variables
   private boolean playerProtected; //Determines if the player has shielded a move
   private boolean playerFainted;
-  private boolean playerFleeChance;
-  private double playerProtectChance;
+  private boolean playerAbilityTriggered; //boolean for abilities that can only be triggered once
 
   //NPC Stats. Same deal as above
+  //NPC integer stats
   private int opponentHealth;
   private int opponentCurrentHealth;
   private int opponentAttack;
   private int opponentIntelligence;
   private int opponentDefence;
   private int opponentSpeed;
+
+  //NPC String variables
   private String opponentName; //Names are for display purposes when GUI is implemented
   private String opponentType;
   private String opponentStatus;
   private String opponentAbility;
+
+  //NPC battle dependent number variables
   private int opponentStatBoost;
   private int opponentStatusTurns;
-  private boolean opponentProtected;
-  private boolean opponentFainted;
   private double opponentProtectChance;
   private double opponentFleeChance;
+
+  //NPC battle dependent boolean variables
+  private boolean opponentProtected;
+  private boolean opponentFainted;
 
   //Battling variables
   private int partySize; //Size of the player party
@@ -70,37 +87,49 @@ class Battle /*extends Interaction*/ {
     The reason why I save the variables here is because the stats in battles are reset once the battle ends
     Therefore, it would be better to just keep them in the class itself
     */
+    //Integer stats
     this.playerHealth = player.getInitialHealth();
     this.playerCurrentHealth = player.getCurrentHealth();
     this.playerAttack = player.getAttack();
     this.playerIntelligence = player.getIntelligence();
     this.playerDefence = player.getDefence();
     this.playerSpeed = player.getSpeed();
+    //Strings
     this.playerName = player.getName();
     this.playerType = player.getType();
     this.playerStatus = player.getStatus();
     this.playerAbility = player.getAbility();
+    //Battle number variables
     this.playerStatBoost = 0;
+    this.playerStatusTurns = 0;
+    this.playerProtectChance = 1.00;
+    this.playerFleeChance = 0.25;
+    //Battle boolean variables
     this.playerProtected = false;
     this.playerFainted = player.isFainted();
-    this.playerProtectChance = 1.00;
 
+    //Ints
     this.opponentHealth = opponent.getInitialHealth();
     this.opponentCurrentHealth = opponent.getCurrentHealth();
     this.opponentAttack = opponent.getAttack();
     this.opponentIntelligence = opponent.getIntelligence();
     this.opponentDefence = opponent.getDefence();
     this.opponentSpeed = opponent.getSpeed();
+    //Strings
     this.opponentName = opponent.getName();
     this.opponentType = opponent.getType();
     this.opponentStatus = "";
     this.opponentAbility = opponent.getAbility();
+    //Battle number variables
     this.opponentStatBoost = 0;
     this.opponentStatusTurns = 0;
+    //this.opponentFleeChance = opponent.getFleeChance();
+    this.opponentProtectChance = 1.00;
+    //Battle boolean variables
     this.opponentProtected = false;
     this.opponentFainted = false;
-    this.opponentProtectChance = 1.00;
 
+    //Battle variables
     this.partySize = squad.getSize();
     this.numberOfFaintedStudents = squad.getNumberOfFaintedStudents();
     battleEnd = false;
@@ -112,23 +141,30 @@ class Battle /*extends Interaction*/ {
   public void changeCharacter(PlayableCharacter player/*, Move opponentMove*/) {
     this.player = player; //Updates the player
     //For switching out students
+    //Integer stats
     this.playerHealth = player.getInitialHealth();
     this.playerCurrentHealth = player.getCurrentHealth();
     this.playerAttack = player.getAttack();
     this.playerIntelligence = player.getIntelligence();
     this.playerDefence = player.getDefence();
     this.playerSpeed = player.getSpeed();
+    //Strings
     this.playerName = player.getName();
     this.playerType = player.getType();
     this.playerStatus = player.getStatus();
+    this.playerAbility = player.getAbility();
+    //Battle number variables
     this.playerStatBoost = 0;
-
+    this.playerStatusTurns = 0;
+    this.playerProtectChance = 1.00;
+    this.playerFleeChance = 0.25;
+    //Battle boolean variables
+    this.playerProtected = false;
+    this.playerFainted = player.isFainted();
     //Code for switch in animation goes here
-    //Because the player is switched, the computer gets to attack the player
-    //Might move the code below outside of this method
-    //determineAttackType(opponentMove, opponent);
   }
 
+  //Fix this method
   public void runBattle() {
     if (playerProtected) {
       playerProtectChance = playerProtectChance / 2;
@@ -238,7 +274,7 @@ class Battle /*extends Interaction*/ {
             }
           } while (answer < 1 || answer > squad.getSize());
           changeCharacter(squad.getCharacter(answer - 1));
-          determineAttackType(opponent.getMove((int) Math.random() * 4), opponent);
+          determineAttackType(opponent.getMove((int) (Math.random() * 4)), opponent);
           exitLoop = true;
         }
       } else if (answer == 4) {
@@ -276,7 +312,7 @@ class Battle /*extends Interaction*/ {
       tempOpponentSpeed = opponentSpeed/2;
     }
     //This code decides who goes first based on their speed
-    //Returns an int to see who goes first.
+    //Returns an int to see who goes first. -1 is the player, 1 is the opponent
     if (playerMove.getPriority() > opponentMove.getPriority()) {
       return -1;
     } else if (playerMove.getPriority() < opponentMove.getPriority()) {
@@ -315,13 +351,17 @@ class Battle /*extends Interaction*/ {
       healthMove((HealthMove) move, attacker);
     } else if (move instanceof StatChangeMove) {
       if (((StatChangeMove)move).getTarget().equals("Self")) {
-        //Whenever the target is the user, the attacker uses the move on themself and therefore the attacker would be "technically" the other person
+        //Whenever the target is the user, the attacker uses the move on itself and therefore the attacker would be "technically" the other person
+        //Because the move itself does not affect the attacker, this is okay
         statChangeMove((StatChangeMove)move, -attacker);
       } else {
+        //The target is other person
         statChangeMove((StatChangeMove) move, attacker);
       }
     } else if (move instanceof StatusMove) {
       if (((StatusMove)move).getTarget().equals("Self")) {
+        //Whenever the target is the user, the attacker uses the move on itself and therefore the attacker would be "technically" the other person
+        //Because the move itself does not affect the attacker, this is okay
         statusMove((StatusMove) move, -attacker);
       } else {
         statusMove((StatusMove)move, attacker);
@@ -338,28 +378,32 @@ class Battle /*extends Interaction*/ {
       //If attacker is -1, then the player is attacking. If it is 1, the opponent is attacking
       if (move.getAttackType().equals("Attack")) {
         attackerStatUsed = playerAttack;
-      } else {
+      } else if (move.getAttackType().equals("Intelligence")) {
         attackerStatUsed = playerIntelligence;
       }
       defence = opponentDefence;
     } else if (attacker == 1) {
       if (move.getAttackType().equals("Attack")) {
         attackerStatUsed = opponentAttack;
-      } else {
+      } else if (move.getAttackType().equals("Intelligence")) {
         attackerStatUsed = opponentIntelligence;
       }
       defence = playerDefence;
     }
+    //This multiplier method determines the multiplier from STAB, statuses, and type advantages
     multiplier = determineMultiplier(attacker, move);
 
-
+    //Calculating the damage of the attack move
     int damageDealt;
     damageDealt = (int)(Math.ceil((move.getPower() * (attackerStatUsed/defence+1))/10) * multiplier);
-    if (player.getAbility().equals("Clown") && attacker == 1) {
+
+    //Factors in the clown ability
+    //I should probably throw this into another method after we add a lot of abilities
+    if (playerAbility.equals("Clown") && attacker == 1) {
       if (Math.random() < 0.25) {
         damageDealt = damageDealt/2;
       }
-    } else if (opponent.getAbility().equals("Clown") && attacker == -1) {
+    } else if (opponentAbility.equals("Clown") && attacker == -1) {
       if (Math.random() < 0.25) {
         damageDealt = damageDealt/2;
       }
