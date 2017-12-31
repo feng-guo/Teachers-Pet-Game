@@ -1,9 +1,6 @@
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 //import javax.swing.GridBagLayout;
-import java.awt.GridBagLayout;
-import java.awt.Toolkit;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class BattleGraphics {
     private JFrame battleScreen;
@@ -11,7 +8,7 @@ public class BattleGraphics {
     private int screenY;
 
     BattleGraphics() {
-        battleScreen = new JFrame();
+        battleScreen = new JFrame("Battle");
         screenX = Toolkit.getDefaultToolkit().getScreenSize().width;
         screenY = Toolkit.getDefaultToolkit().getScreenSize().height;
         battleScreen.setVisible(true);
@@ -29,8 +26,24 @@ public class BattleGraphics {
     }
 
     private class BattleInteractionsPanel extends JPanel {
-        public void paintComponent(Graphics g) {
+        BattleInteractionsPanel() {
+            setLayout(new GridLayout(2,2));
+            add(new FightPanel());
+        }
 
+        private class FightPanel extends BattleInteractionsPanel {
+            String[] moveList;
+            JLabel[] moveListLabel;
+
+            FightPanel() {
+                moveList = new String[4];
+                for (int i = 0; i < 4; i++) {
+                    moveList[i] = "dick" + i;
+                    moveListLabel[i] = new JLabel(moveList[i]);
+                    add(moveListLabel[i]);
+                }
+                super.setLayout(new GridLayout(2, 2));
+            }
         }
     }
 }
