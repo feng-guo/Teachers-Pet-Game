@@ -1,18 +1,24 @@
 class StatItem extends Item {
-    private String type;
+    private String type; //held item or clothing item
     private String statAffected;
-    private int change;
+    private double multiplier;
 
-    StatItem(String name, String type, String statAffected, int change) {
+    StatItem(String name, String type, String statAffected, double multiplier) {
         super(name);
         this.type = type;
         this.statAffected = statAffected;
-        this.change = change;
+        this.multiplier = multiplier;
     }
 
-    public String getType(){return type;}
+    public String getType(){
+        return type;
+    }
 
-    public String getStatAffected(){return statAffected;}
+    public String getStatAffected(){
+        return statAffected;
+    }
 
-    public int getChange(){return change;}
+    public double getMultiplier(){
+        return multiplier;
+    }
 }

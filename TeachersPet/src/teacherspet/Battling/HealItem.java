@@ -6,5 +6,7 @@ class HealItem extends Item {
         this.change = change;
     }
 
-    public int getChange(){return change;}
+    public int getChange(){
+        return change;
+    }
 }
