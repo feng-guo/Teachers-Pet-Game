@@ -1,4 +1,7 @@
 abstract class Item {
-    Item() {
+    private String name;
+
+    Item(String name) {
+        this.name = name;
     }
 }
