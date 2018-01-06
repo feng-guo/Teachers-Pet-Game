@@ -1,4 +1,4 @@
-package battleFiles;
+package battling;
 
 class StatChangeMove extends Move {
     private int multiplier; //Changes how much a stat changes by

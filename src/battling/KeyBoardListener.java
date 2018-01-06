@@ -1,4 +1,4 @@
-package battleFiles;//import java.awt.event.KeyAdapter;
+package battling;//import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 

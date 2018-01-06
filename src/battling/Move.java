@@ -1,4 +1,4 @@
-package battleFiles;
+package battling;
 
 abstract class Move {
     //Base stats for a move

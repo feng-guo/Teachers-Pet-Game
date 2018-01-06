@@ -1,4 +1,4 @@
-package battleFiles;/* Please ignore this file
+package battling;/* Please ignore this file
  * Testing file for battles
  * So very cool wow
  * Basically a snadbox for Feng

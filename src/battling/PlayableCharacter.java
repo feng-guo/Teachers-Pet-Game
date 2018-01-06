@@ -1,4 +1,4 @@
-package battleFiles;
+package battling;
 
 class PlayableCharacter extends Character {
     private String description; //description of the character

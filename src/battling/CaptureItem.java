@@ -1,4 +1,4 @@
-package battleFiles;
+package battling;
 
 public class CaptureItem extends Item{
     private double success;

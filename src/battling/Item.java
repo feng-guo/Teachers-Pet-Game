@@ -1,4 +1,4 @@
-package battleFiles;
+package battling;
 
 abstract class Item {
     private String name;

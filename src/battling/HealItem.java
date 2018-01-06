@@ -1,4 +1,4 @@
-package battleFiles;
+package battling;
 
 class HealItem extends Item {
     private String type;

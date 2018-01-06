@@ -1,4 +1,4 @@
-package battleFiles;
+package battling;
 
 class StatItem extends Item {
     private String type; //held item or clothing item

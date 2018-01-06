@@ -1,4 +1,4 @@
-package battleFiles;
+package battling;
 
 class NonPlayableCharacter extends Character {
   private String speech; //Something they say when they start a battle

@@ -1,4 +1,4 @@
-package battleFiles;
+package battling;
 
 import java.util.ArrayList;
 
