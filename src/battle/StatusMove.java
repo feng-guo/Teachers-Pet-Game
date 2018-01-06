@@ -1,4 +1,4 @@
-package battleFiles;
+package battle;
 
 class StatusMove extends Move {
     String statusEffect; //Sets the status of the person affected

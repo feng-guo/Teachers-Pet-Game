@@ -1,4 +1,4 @@
-package battleFiles;
+package battle;
 
 class NonPlayableCharacter extends Character {
   private String speech; //Something they say when they start a battle
@@ -15,7 +15,6 @@ class NonPlayableCharacter extends Character {
   public String getSpeech() {
     return speech;
   }
-
 
   public boolean getDefeated() {
     return defeated;

@@ -1,10 +1,10 @@
-package battleFiles;
+package battle;
 
 import java.util.ArrayList;
 
 public class Squad {
     ArrayList<PlayableCharacter> squad;
-    int numberOfFaintedStudents;
+    private int numberOfFaintedStudents;
 
     Squad (PlayableCharacter[] squadMembers) {
         this.numberOfFaintedStudents = 0;

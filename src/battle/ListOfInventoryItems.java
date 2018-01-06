@@ -1,4 +1,4 @@
-package battleFiles;
+package battle;
 
 import java.util.ArrayList;
 
@@ -37,5 +37,14 @@ public class ListOfInventoryItems {
         itemList.add(new CaptureItem("Aced test", "80% chance of attracting a playable character onto your team",0.8));
         itemList.add(new CaptureItem("Aced quiz", "50% chance of attracting a playable character onto your team",0.5));
         itemList.add(new CaptureItem("\"Carry\" on project", "75% chance of attracting a playable character onto your team",0.75));
+    }
+
+    public Item retrieveItem(String name) {
+        for (int i=0; i<itemList.size(); i++) {
+            if (name.equals(itemList.get(i).getName())) {
+                return itemList.get(i);
+            }
+        }
+        return null;
     }
 }

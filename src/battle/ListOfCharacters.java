@@ -1,15 +1,13 @@
-package battleFiles;
+package battle;
 
 import java.util.ArrayList;
 
 class ListOfCharacters{
     private ArrayList<Character> characterList;
     private ListOfMoves startMoves;
-    private ListOfInventoryItems inventoryItems;
 
     ListOfCharacters() {
         startMoves = new ListOfMoves();
-        inventoryItems = new ListOfInventoryItems();
         characterList = new ArrayList<Character>();
         //Movesets for playable characters
         String[] fengMoveNames = {"Steal Code", "Throw Chair", "Stack Overflow", "Snort Candy"};

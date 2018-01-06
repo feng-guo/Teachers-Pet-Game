@@ -1,4 +1,4 @@
-package battleFiles;
+package battle;
 
 /**
  *
@@ -6,7 +6,7 @@ package battleFiles;
  */
 
 abstract class Character {
-    //Battling.battleFiles.Character states
+    //Character states
     private int initialHealth;
     private int currentHealth;
     private int attack;
@@ -14,12 +14,12 @@ abstract class Character {
     private int defence;
     private int speed;
 
-    //Battling.battleFiles.Character attributes
+    //Battling.Character attributes
     private String type;
     private String name;
     private String ability;
 
-    //Battling.battleFiles.Character moveset
+    //Battling.Character moveset
     private Move[] moveset;
     private int[] powerPoints;
 

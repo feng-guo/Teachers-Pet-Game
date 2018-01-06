@@ -1,6 +1,6 @@
-package battleFiles;
+package battle;
 
-public class CaptureItem extends Item{
+public class CaptureItem extends Item {
     private double success;
 
     CaptureItem(String name, String description, double success) {

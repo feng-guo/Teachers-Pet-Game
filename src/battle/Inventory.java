@@ -1,4 +1,4 @@
-package battleFiles;
+package battle;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,6 @@ class Inventory {
 
     Inventory() {
         inventory = new ArrayList<Item>();
-        inventory.add(null);
         numItems = new ArrayList<Integer>();
     }
 
@@ -79,13 +78,11 @@ class Inventory {
     }
 
     public void displayItems(){
-        if (inventory.get(0) == null) {
-            System.out.println("You have an empty inventory");
-        } else if (inventory == null) {
+        if (inventory.size() == 0) {
             System.out.println("You have an empty inventory");
         } else {
             for (int i = 0; i < inventory.size(); i++) {
-                System.out.println(inventory.get(i) + " x" + numItems.get(i));
+                System.out.println(inventory.get(i).getName() + " x" + numItems.get(i));
             }
         }
     }

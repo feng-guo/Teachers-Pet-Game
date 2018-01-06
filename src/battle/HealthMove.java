@@ -1,4 +1,4 @@
-package battleFiles;
+package battle;
 
 class HealthMove extends StatChangeMove {
     //This move only allows a user to heal themselves

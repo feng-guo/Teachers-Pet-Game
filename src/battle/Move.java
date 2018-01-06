@@ -1,4 +1,4 @@
-package battleFiles;
+package battle;
 
 abstract class Move {
     //Base stats for a move
@@ -7,7 +7,7 @@ abstract class Move {
     private int maxPowerPoints;
     private int priority;
 
-    //Battling battleFiles.Move attributes
+    //Battling Move attributes
     private String name;
     private String type;
     private String attackType;

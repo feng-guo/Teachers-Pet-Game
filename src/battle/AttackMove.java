@@ -1,13 +1,9 @@
-<<<<<<< HEAD:TeachersPet/src/teacherspet/Battling/AttackMove.java
-package Battling;
-=======
-package battleFiles;
->>>>>>> 8a59da7531493e8d36c42b5ceaaf5dcb3db6531a:TeachersPet/src/teacherspet/Battling/battleFiles/AttackMove.java
+package battle;
 
 class AttackMove extends Move {
     //This class of moves are for attacks that do damage
     //Additional effects??
-    //battleFiles.StatChangeMove against the other player?
+    //StatChangeMove against the other player?
     Move additionalEffect;
 
 
