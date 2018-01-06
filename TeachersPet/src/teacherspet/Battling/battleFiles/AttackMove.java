@@ -1,7 +1,9 @@
+package battleFiles;
+
 class AttackMove extends Move {
     //This class of moves are for attacks that do damage
     //Additional effects??
-    //StatChangeMove against the other player?
+    //battleFiles.StatChangeMove against the other player?
     Move additionalEffect;
 
 

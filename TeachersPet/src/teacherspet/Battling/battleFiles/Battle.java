@@ -1,5 +1,5 @@
-//Author @Feng
-/* Battle classes are an object itself
+package battleFiles;//Author @Feng
+/* battleFiles.Battle classes are an object itself
  * Runs a loop in battle itself (To be added)
  * Need to add switching, inventory, fleeing, and move selection
  */
@@ -32,18 +32,18 @@ class Battle /*extends Interaction*/ {
   private String playerStatus; //Has one status to prevent handling too many statuses
   private String playerAbility; //Affects the battle through different ways
 
-  //Battle dependent number values
+  //battleFiles.Battle dependent number values
   private int playerStatBoost; //Sets a maximum as to how much all stats of a character can be boosted (up to 4 times)
   private int playerStatusTurns; //The amount of turns that a pokemon has a set status
   private double playerProtectChance; //Protect chance goes down every consecutive use
   private double playerFleeChance;
 
-  //Battle dependent player boolean variables
+  //battleFiles.Battle dependent player boolean variables
   private boolean playerProtected; //Determines if the player has shielded a move
   private boolean playerFainted;
   private boolean playerAbilityTriggered; //boolean for abilities that can only be triggered once
 
-  //Player Item variables
+  //Player battleFiles.Item variables
   private StatItem playerHeldItem;
   private StatItem playerHatItem;
   private StatItem playerShirtItem;
@@ -76,7 +76,7 @@ class Battle /*extends Interaction*/ {
   private boolean opponentFainted;
   private boolean opponentAbilityTriggered;
 
-  //NPC Item variable
+  //NPC battleFiles.Item variable
   private StatItem opponentHeldItem;
 
   //Battling variables
@@ -112,12 +112,12 @@ class Battle /*extends Interaction*/ {
     this.playerType = player.getType();
     this.playerStatus = player.getStatus();
     this.playerAbility = player.getAbility();
-    //Battle number variables
+    //battleFiles.Battle number variables
     this.playerStatBoost = 0;
     this.playerStatusTurns = 0;
     this.playerProtectChance = 1.00;
     this.playerFleeChance = 0.25;
-    //Battle boolean variables
+    //battleFiles.Battle boolean variables
     this.playerProtected = false;
     this.playerFainted = player.isFainted();
     this.playerAbilityTriggered = false;
@@ -140,19 +140,19 @@ class Battle /*extends Interaction*/ {
     this.opponentType = opponent.getType();
     this.opponentStatus = null;
     this.opponentAbility = opponent.getAbility();
-    //Battle number variables
+    //battleFiles.Battle number variables
     this.opponentStatBoost = 0;
     this.opponentStatusTurns = 0;
     //this.opponentFleeChance = opponent.getFleeChance();
     this.opponentProtectChance = 1.00;
-    //Battle boolean variables
+    //battleFiles.Battle boolean variables
     this.opponentProtected = false;
     this.opponentFainted = false;
     this.opponentAbilityTriggered = false;
-    //Item
+    //battleFiles.Item
     this.opponentHeldItem = opponent.getHeldItem();
 
-    //Battle variables
+    //battleFiles.Battle variables
     this.partySize = squad.getSize();
     this.numberOfFaintedStudents = squad.getNumberOfFaintedStudents();
     battleEnd = false;
@@ -176,12 +176,12 @@ class Battle /*extends Interaction*/ {
     this.playerType = player.getType();
     this.playerStatus = player.getStatus();
     this.playerAbility = player.getAbility();
-    //Battle number variables
+    //battleFiles.Battle number variables
     this.playerStatBoost = 0;
     this.playerStatusTurns = 0;
     this.playerProtectChance = 1.00;
     this.playerFleeChance = 0.25;
-    //Battle boolean variables
+    //battleFiles.Battle boolean variables
     this.playerProtected = false;
     this.playerFainted = player.isFainted();
     this.playerAbilityTriggered = false;
@@ -216,7 +216,7 @@ class Battle /*extends Interaction*/ {
       }
     }
     Scanner input = new Scanner(System.in);
-    //KeyBoardListener keyBoardListener = new KeyBoardListener();
+    //battleFiles.KeyBoardListener keyBoardListener = new battleFiles.KeyBoardListener();
     //Code below would probably have to be put in another method or loops
     int answer = 0;
     boolean exitLoop = false;
@@ -225,8 +225,8 @@ class Battle /*extends Interaction*/ {
       System.out.println(opponentName + " " + opponentCurrentHealth + "/" + opponentHealth);
       System.out.println("What would you like to do");
       System.out.println("Fight (1)");
-      System.out.println("Inventory (2)");
-      System.out.println("Squad (3)");
+      System.out.println("battleFiles.Inventory (2)");
+      System.out.println("battleFiles.Squad (3)");
       System.out.println("Run (4)");
       do {
         try {
@@ -317,7 +317,7 @@ class Battle /*extends Interaction*/ {
         }
         exitLoop = true;
       } else if (answer == 2) {
-        System.out.println("Inventory items");
+        System.out.println("battleFiles.Inventory items");
         playerInventory.displayItems();
         System.out.println("Would you like to use an item (1/2)");
         do {

@@ -1,3 +1,5 @@
+package battleFiles;
+
 public class CaptureItem extends Item{
     private double success;
 

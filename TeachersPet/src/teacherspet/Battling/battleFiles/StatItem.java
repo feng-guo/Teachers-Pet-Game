@@ -1,3 +1,5 @@
+package battleFiles;
+
 class StatItem extends Item {
     private String type; //held item or clothing item
     private String statAffected;

@@ -1,3 +1,5 @@
+package battleFiles;
+
 import java.util.ArrayList;
 
 public class ListOfInventoryItems {

@@ -1,3 +1,5 @@
+package battleFiles;
+
 abstract class Item {
     private String name;
     private String description;
