@@ -58,9 +58,30 @@ class Inventory {
         return result;
     }
 
+    public String getItemName(int index) {
+        return inventory.get(index).getName();
+    }
+
+    public Item getItem(int index) {
+        return inventory.get(index);
+    }
+
+    public Item getItem(String name) {
+        for (int i=0; i<inventory.size(); i++) {
+            if (inventory.get(i).getName().equals(name)) {
+                return inventory.get(i);
+            }
+        }
+        return null;
+    }
+
     public void displayItems(){
         for(int i = 0; i < inventory.size(); i++){
             System.out.println(inventory.get(i)+" x"+numItems.get(i));
         }
+    }
+
+    public int getInventorySize() {
+        return inventory.size();
     }
 }

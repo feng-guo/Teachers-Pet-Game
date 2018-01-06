@@ -14,8 +14,8 @@ public class ListOfMoves {
         moveList.add(new HealthMove("Cry", "Neutral", 0, "Health", -2, 5, 0));
         moveList.add(new HealthMove("Make Memes", "Neutral", 0, "Health", -2, 8, 0));
         moveList.add(new HealthMove("Snort Candy", "Neutral", 0, "Health", 40, 20, 0));
-        moveList.add(new ProtectMove("Ghost", 1.0, "Neutral", 10, 2));
-        moveList.add(new ProtectMove("Dodge Homework", 1.0, "Neutral", 15, 2));
+        moveList.add(new ProtectMove("Ghost", 1.0, "Neutral", 10, 5));
+        moveList.add(new ProtectMove("Dodge Homework", 1.0, "Neutral", 15, 5));
         //math
         moveList.add(new AttackMove("Spam Calculator", 50, 1.0, "Math", "Attack", 15, 0, null));
         moveList.add(new HealthMove("Calculate Mark", "Math", 0, "Health", -2, 8, 0));

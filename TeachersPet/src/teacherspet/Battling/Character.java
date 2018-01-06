@@ -21,7 +21,9 @@ abstract class Character {
     private Move[] moveset;
     private int[] powerPoints;
 
-    Character(int health, int attack, int intelligence, int defence, int speed, String type, String name, Move[] moveset, String ability) {
+    private StatItem heldItem;
+
+    Character(int health, int attack, int intelligence, int defence, int speed, String type, String name, Move[] moveset, String ability, StatItem heldItem) {
         //Integer variables
         this.initialHealth = health;
         this.currentHealth = health;
@@ -39,6 +41,7 @@ abstract class Character {
             powerPointCounter[i] = moveset[i].getMaxPowerPoints();
         }
         this.powerPoints = powerPointCounter;
+        this.heldItem = heldItem;
     }
 
     //Changing health
@@ -131,4 +134,28 @@ abstract class Character {
     public void setPowerPoints(int index, int amount) {
         this.powerPoints[index] += amount;
     }
+
+    //Held Items
+    public Item setHeldItem(StatItem heldItem) {
+        if (this.heldItem == null) {
+            this.heldItem = heldItem;
+            return null;
+        } else {
+            Item returnItem = this.heldItem;
+            this.heldItem = heldItem;
+            return returnItem;
+        }
+    }
+
+    public Item removeHeldItem() {
+        Item returnItem = heldItem;
+        heldItem = null;
+        return returnItem;
+    }
+
+    public StatItem getHeldItem() {
+        return heldItem;
+    }
+
+
 }
