@@ -225,15 +225,15 @@ class Battle /*extends Interaction*/ {
       System.out.println(opponentName + " " + opponentCurrentHealth + "/" + opponentHealth);
       System.out.println("What would you like to do");
       System.out.println("Fight (1)");
-      System.out.println("battleFiles.Inventory (2)");
-      System.out.println("battleFiles.Squad (3)");
+      System.out.println("Inventory (2)");
+      System.out.println("Squad (3)");
       System.out.println("Run (4)");
       do {
         try {
           answer = input.nextInt();
         } catch (InputMismatchException e) {
           //Forces the loop to run again
-          answer = 7;
+          answer = -1;
         }
       } while (answer < 1 || answer > 4);
       if (answer == 1) {
@@ -246,7 +246,7 @@ class Battle /*extends Interaction*/ {
           try {
             answer = input.nextInt();
           } catch (InputMismatchException e) {
-            answer = 7;
+            answer = -1;
           }
         } while (answer < 1 || answer > 4);
         int opponentMove = determineOpponentMove();
@@ -317,7 +317,7 @@ class Battle /*extends Interaction*/ {
         }
         exitLoop = true;
       } else if (answer == 2) {
-        System.out.println("battleFiles.Inventory items");
+        System.out.println("Inventory items");
         playerInventory.displayItems();
         System.out.println("Would you like to use an item (1/2)");
         do {

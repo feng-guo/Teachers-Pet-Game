@@ -10,7 +10,7 @@ public class BattleTester {
     public static void main(String[] args)  {
         ListOfCharacters characterList = new ListOfCharacters();
         ListOfInventoryItems inventoryItems = new ListOfInventoryItems();
-        Inventory inventory = new Inventory(null);
+        Inventory inventory = new Inventory();
         PlayableCharacter[] newSquad = new PlayableCharacter[4];
         newSquad[0] = (PlayableCharacter)characterList.returnCharacter("Feng");
         newSquad[1] = (PlayableCharacter)characterList.returnCharacter("Joyce");
@@ -21,6 +21,7 @@ public class BattleTester {
         NonPlayableCharacter MrShim = (NonPlayableCharacter)characterList.returnCharacter("Mr. Shim");
         NonPlayableCharacter MrTimmerman = (NonPlayableCharacter)characterList.returnCharacter("Mr. Timmerman");
         Squad squad = new Squad(newSquad);
+        Item addDumbItem = inventoryItems.get
 
         Scanner input = new Scanner(System.in);
         //double random = Math.random();

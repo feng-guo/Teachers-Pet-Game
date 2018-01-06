@@ -8,6 +8,7 @@ class Inventory {
 
     Inventory() {
         inventory = new ArrayList<Item>();
+        inventory.add(null);
         numItems = new ArrayList<Integer>();
     }
 
@@ -79,6 +80,8 @@ class Inventory {
 
     public void displayItems(){
         if (inventory.get(0) == null) {
+            System.out.println("You have an empty inventory");
+        } else if (inventory == null) {
             System.out.println("You have an empty inventory");
         } else {
             for (int i = 0; i < inventory.size(); i++) {
