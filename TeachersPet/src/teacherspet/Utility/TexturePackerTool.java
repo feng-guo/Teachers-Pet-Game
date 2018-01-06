@@ -5,7 +5,7 @@ public class TexturePackerTool {
 
 	public static void main(String[] args) {
 		
-		TexturePacker.process("TeachersPet/images/sprites/unpacked/", "TeachersPet/images/sprites/packed/", "feng_textures");
+		TexturePacker.process("TeachersPet/images/sprites/characters/Feng/unpacked/", "TeachersPet/images/sprites/characters/Feng/packed/", "feng_textures");
 		
 	}
 	

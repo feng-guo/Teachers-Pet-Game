@@ -18,7 +18,7 @@ public class FinalGame extends Game {
 	public void create() {
 		
 		assetManager = new AssetManager();
-		assetManager.load("TeachersPet/images/sprites/packed/feng_textures.atlas", TextureAtlas.class);
+		assetManager.load("TeachersPet/images/sprites/characters/Feng/packed/feng_textures.atlas", TextureAtlas.class);
 		assetManager.finishLoading();
 		
 		screen = new GameScreen(this);

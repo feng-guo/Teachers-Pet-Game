@@ -1,6 +1,7 @@
 package Screen;
 
-import java.util.ArrayList; 
+import java.util.ArrayList;  
+
 import java.util.Collections;
 import java.util.List;
 
@@ -32,11 +33,14 @@ public class WorldRenderer {
 	public WorldRenderer(AssetManager assetManager, World world) {
 		this.assetManager = assetManager;
 		this.world = world;;
-		grass1 = new Texture("TeachersPet/images/sprites/grass_1.png");
-		grass2 = new Texture("TeachersPet/images/sprites/grass_2.png");
-		//grass1 = assetManager.get("TeachersPet/images/sprites/grass_1.png", Texture.class);
-		//grass2 = assetManager.get("TeachersPet/images/sprites/grass_2.png", Texture.class);
-
+		grass1 = new Texture("TeachersPet/images/sprites/terrain/grass_1.png");
+		grass2 = new Texture("TeachersPet/images/sprites/terrain/grass_2.png");
+		
+		//grass1 = assetManager.get("TeachersPet/images/sprites/terrain/grass_1.png", Texture.class);
+		//grass2 = assetManager.get("TeachersPet/images/sprites/terrain/grass_2.png", Texture.class);
+		
+		//grass1 = assetManager.get("TeachersPet/images/sprites/terrain/grass_1.png");
+		//grass2 = assetManager.get("TeachersPet/images/sprites/terrain/grass_2.png");
 	}
 	
 	public void render(SpriteBatch batch, Camera camera) {
@@ -68,10 +72,12 @@ public class WorldRenderer {
 		/* collect objects and actors */
 		for (int x = 0; x < world.getMap().getWidth(); x++) {
 			for (int y = 0; y < world.getMap().getHeight(); y++) {
+				
 				if (world.getMap().getTile(x, y).getActor() != null) {
 					Actor actor = world.getMap().getTile(x, y).getActor();
 					forRendering.add(actor);
 				}
+				
 				if (world.getMap().getTile(x, y).getObject() != null) {
 					WorldObject object = world.getMap().getTile(x, y).getObject();
 					if (renderedObjects.contains(object.hashCode())) { // test if it's already drawn
@@ -96,12 +102,12 @@ public class WorldRenderer {
 		Collections.reverse(forRendering);
 		
 		for (YSortable loc : forRendering) {
-			/*if (loc instanceof Actor) {
+			if (loc instanceof Actor) {
 				Actor a = (Actor)loc;
 				if (!a.isVisible()) {
 					continue;
 				}
-			}*/
+			}
 			batch.draw(loc.getSprite(), 
 					worldStartX+loc.getWorldX()*Settings.SCALED_TILE_SIZE,
 					worldStartY+loc.getWorldY()*Settings.SCALED_TILE_SIZE,

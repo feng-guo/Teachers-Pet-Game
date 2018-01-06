@@ -25,94 +25,66 @@ feng_down
   orig: 14, 19
   offset: 0, 0
   index: 2
-feng_down
+feng_left
   rotate: false
   xy: 34, 2
   size: 14, 19
   orig: 14, 19
   offset: 0, 0
-  index: 4
-feng_left
-  rotate: false
-  xy: 50, 2
-  size: 14, 19
-  orig: 14, 19
-  offset: 0, 0
   index: 1
 feng_left
   rotate: false
-  xy: 50, 2
+  xy: 34, 2
   size: 14, 19
   orig: 14, 19
   offset: 0, 0
   index: 3
 feng_left
+  rotate: false
+  xy: 50, 2
+  size: 14, 19
+  orig: 14, 19
+  offset: 0, 0
+  index: 2
+feng_right
   rotate: false
   xy: 66, 2
   size: 14, 19
   orig: 14, 19
   offset: 0, 0
-  index: 2
-feng_left
+  index: 1
+feng_right
+  rotate: false
+  xy: 66, 2
+  size: 14, 19
+  orig: 14, 19
+  offset: 0, 0
+  index: 3
+feng_right
   rotate: false
   xy: 82, 2
   size: 14, 19
   orig: 14, 19
   offset: 0, 0
-  index: 4
-feng_right
+  index: 2
+feng_up
   rotate: false
   xy: 98, 2
   size: 14, 19
   orig: 14, 19
   offset: 0, 0
   index: 1
-feng_right
+feng_up
   rotate: false
   xy: 98, 2
   size: 14, 19
   orig: 14, 19
   offset: 0, 0
   index: 3
-feng_right
+feng_up
   rotate: false
   xy: 114, 2
   size: 14, 19
   orig: 14, 19
   offset: 0, 0
   index: 2
-feng_right
-  rotate: false
-  xy: 130, 2
-  size: 14, 19
-  orig: 14, 19
-  offset: 0, 0
-  index: 4
-feng_up
-  rotate: false
-  xy: 146, 2
-  size: 14, 19
-  orig: 14, 19
-  offset: 0, 0
-  index: 1
-feng_up
-  rotate: false
-  xy: 146, 2
-  size: 14, 19
-  orig: 14, 19
-  offset: 0, 0
-  index: 3
-feng_up
-  rotate: false
-  xy: 162, 2
-  size: 14, 19
-  orig: 14, 19
-  offset: 0, 0
-  index: 2
-feng_up
-  rotate: false
-  xy: 178, 2
-  size: 14, 19
-  orig: 14, 19
-  offset: 0, 0
-  index: 4

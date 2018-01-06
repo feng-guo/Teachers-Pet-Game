@@ -1,4 +1,4 @@
-import javax.swing.*;
+mport javax.swing.*; 
 //import javax.swing.GridBagLayout;
 import java.awt.*;
 

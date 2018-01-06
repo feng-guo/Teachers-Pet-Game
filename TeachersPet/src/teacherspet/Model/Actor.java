@@ -29,6 +29,8 @@ public class Actor implements YSortable {
 	private ACTOR_STATE state;
 	private AnimationSet animations;
 	
+	private boolean visible = true;
+	
 	public Actor(TileMap map, int x, int y, AnimationSet animations) {
 		this.map = map;
 		this.x = x;
@@ -160,6 +162,10 @@ public class Actor implements YSortable {
 	
 	public float getSizeY() {
 		return sizeY;
+	}
+
+	public boolean isVisible() {
+		return visible;
 	}
 	
 }

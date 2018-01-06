@@ -1,3 +1,5 @@
+package Battling;
+
 class AttackMove extends Move {
     //This class of moves are for attacks that do damage
     //Additional effects??

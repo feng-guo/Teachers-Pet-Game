@@ -49,7 +49,7 @@ public class GameScreen extends AbstractScreen{
 		//grass2 = new Texture("TeachersPet/images/sprites/grass_2.png");
 		batch = new SpriteBatch();
 		
-		TextureAtlas atlas = app.getAssetManager().get("TeachersPet/images/sprites/packed/feng_textures.atlas", TextureAtlas.class);
+		TextureAtlas atlas = app.getAssetManager().get("TeachersPet/images/sprites/characters/Feng/packed/feng_textures.atlas", TextureAtlas.class);
 		
 		AnimationSet animations = new AnimationSet(
 				new Animation(0.3f/2f, atlas.findRegions("feng_up"), PlayMode.LOOP),

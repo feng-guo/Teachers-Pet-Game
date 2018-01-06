@@ -1,4 +1,4 @@
-import javax.swing.JFrame;
+mport javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
