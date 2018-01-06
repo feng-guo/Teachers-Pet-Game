@@ -237,7 +237,7 @@ class Battle /*extends Interaction*/ {
           if (!opponentLoses || !(opponentStatus.equals("Sleep"))) {
             //Can't go if the opponent is dead
             try {
-              if (opponentStatus.equals("Stunned")) {
+              if (opponentStatus.equals("Stun")) {
                 //Decides if the opponent can go if they're stunned
                 if (Math.random() < 0.75) {
                   System.out.println(opponentName + " used " + opponent.getMove(opponentMove).getName());determineAttackType(opponent.getMove(opponentMove), opponent);
