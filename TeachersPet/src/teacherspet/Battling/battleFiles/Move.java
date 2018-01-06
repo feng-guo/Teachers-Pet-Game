@@ -1,3 +1,5 @@
+package battleFiles;
+
 abstract class Move {
     //Base stats for a move
     private int power; //Base power of a move
@@ -5,7 +7,7 @@ abstract class Move {
     private int maxPowerPoints;
     private int priority;
 
-    //Battling Move attributes
+    //Battling battleFiles.Move attributes
     private String name;
     private String type;
     private String attackType;

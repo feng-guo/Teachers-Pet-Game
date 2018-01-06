@@ -1,4 +1,0 @@
-abstract class Item {
-    Item() {
-    }
-}
