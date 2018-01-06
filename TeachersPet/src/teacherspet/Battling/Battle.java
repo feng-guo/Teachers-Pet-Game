@@ -142,7 +142,7 @@ class Battle /*extends Interaction*/ {
     playerFled = false;
   }
 
-  public void changeCharacter(PlayableCharacter player/*, Move opponentMove*/) {
+  public void changeCharacter(PlayableCharacter player) {
     this.player = player; //Updates the player
     //For switching out students
     //Integer stats
@@ -171,6 +171,7 @@ class Battle /*extends Interaction*/ {
 
   //Fix this method
   public void runBattle() {
+    System.out.println();
     if (playerProtected) {
       playerProtectChance = playerProtectChance / 2;
       playerProtected = false;
@@ -178,6 +179,16 @@ class Battle /*extends Interaction*/ {
     if (opponentProtected) {
       opponentProtectChance = opponentProtectChance / 2;
       opponentProtected = false;
+    }
+    if (playerStatus != null) {
+      if (playerStatus.equals("Sleep")) {
+        attemptWakeUp(player);
+      }
+    }
+    if (opponentStatus != null) {
+      if (opponentStatus.equals("Sleep")) {
+        attemptWakeUp(opponent);
+      }
     }
     Scanner input = new Scanner(System.in);
     //KeyBoardListener keyBoardListener = new KeyBoardListener();
@@ -214,13 +225,19 @@ class Battle /*extends Interaction*/ {
         int moveFirst = determineOrder(player.getMove(answer - 1), opponent.getMove(opponentMove));
         player.setPowerPoints(answer - 1, -1);
         if (moveFirst == -1) {
-          System.out.println(playerName + " used " + player.getMove(answer-1).getName());
-          determineAttackType(player.getMove(answer - 1), player);
-          //Protecting will be handled in the move methods
-          if (!opponentLoses) {
+          if (playerStatus != null) {
+            if (playerStatus.equals("Sleep")) {
+              System.out.println(playerName + " is asleep");
+            }
+          } else {
+            System.out.println(playerName + " used " + player.getMove(answer - 1).getName());
+            determineAttackType(player.getMove(answer - 1), player);
+            //Protecting will be handled in the move methods
+          }
+          if (!opponentLoses || !(opponentStatus.equals("Sleep"))) {
             //Can't go if the opponent is dead
             try {
-              if (opponentStatus.equals("Stunned")) {
+              if (opponentStatus.equals("Stun")) {
                 //Decides if the opponent can go if they're stunned
                 if (Math.random() < 0.75) {
                   System.out.println(opponentName + " used " + opponent.getMove(opponentMove).getName());determineAttackType(opponent.getMove(opponentMove), opponent);
@@ -236,12 +253,22 @@ class Battle /*extends Interaction*/ {
               System.out.println(opponentName + " used " + opponent.getMove(opponentMove).getName());
               determineAttackType(opponent.getMove(opponentMove), opponent);
             }
+          } else if (opponentStatus != null) {
+            if (opponentStatus.equals("Sleep")) {
+              System.out.println(opponentName + " is asleep!");
+            }
           }
         } else if (moveFirst == 1) {
-          System.out.println(opponentName + " used " + opponent.getMove(opponentMove).getName());
-          determineAttackType(opponent.getMove(opponentMove), opponent);
-          //Protecting will be handled in the move methods
-          if (playerCurrentHealth > 0 || !playerFainted) {
+          if (opponentStatus != null) {
+            if (opponentStatus.equals("Sleep")) {
+              System.out.println(opponentName + " is asleep.");
+            }
+          } else {
+            System.out.println(opponentName + " used " + opponent.getMove(opponentMove).getName());
+            determineAttackType(opponent.getMove(opponentMove), opponent);
+            //Protecting will be handled in the move methods
+          }
+          if (playerCurrentHealth > 0 || !playerFainted || !(playerStatus.equals("Sleep"))) {
             //Can't go if the opponent is dead
             try {
               if (playerStatus.equals("Stun")) {
@@ -260,6 +287,10 @@ class Battle /*extends Interaction*/ {
               //Catches a null player status. Better than checking null in an if statement to prevent duplicate attacks
               System.out.println(playerName + " used " + player.getMove(answer - 1).getName());
               determineAttackType(player.getMove(answer - 1), player);
+            }
+          } else if (playerStatus != null) {
+            if (playerStatus.equals("Sleep")) {
+              System.out.println("Your character is sleeping!");
             }
           }
         }
@@ -310,6 +341,20 @@ class Battle /*extends Interaction*/ {
       }
     } while (!exitLoop);
     exitLoop = false;
+    if (playerStatus != null) {
+      if (playerStatus.equals("Burned")) {
+        burnPerson(player);
+      } else if (playerStatus.equals("Poisoned")) {
+        poisonPerson(player);
+      }
+    }
+    if (opponentStatus != null) {
+      if (opponentStatus.equals("Burned")) {
+        burnPerson(opponent);
+      } else if (opponentStatus.equals("Poisoned")) {
+        poisonPerson(opponent);
+      }
+    }
     if (playerCurrentHealth == 0) {
       numberOfFaintedStudents++;
     }
@@ -324,6 +369,12 @@ class Battle /*extends Interaction*/ {
       System.out.println("Good job you passed");
       battleEnd = true;
       opponentLoses = true;
+    }
+    if (playerCurrentHealth != 0 && playerStatus != null) {
+      playerStatusTurns++;
+    }
+    if (opponentCurrentHealth != 0 && opponentStatus != null) {
+      opponentStatusTurns++;
     }
     if (!battleEnd) {
       do {
@@ -815,7 +866,7 @@ class Battle /*extends Interaction*/ {
     return multiplier;
   }
 
-  public void burnPlayer(Character person) {
+  public void burnPerson(Character person) {
     double burn;
     if (person instanceof PlayableCharacter) {
       burn = playerHealth/12;
@@ -837,7 +888,7 @@ class Battle /*extends Interaction*/ {
     }
   }
 
-  public void poisonPlayer(Character person) {
+  public void poisonPerson(Character person) {
     double poison;
     if (person instanceof PlayableCharacter) {
       poison = playerHealth/15 * playerStatusTurns;
@@ -859,13 +910,20 @@ class Battle /*extends Interaction*/ {
     }
   }
 
-  public void wakeUp(Character person) {
+  public void attemptWakeUp(Character person) {
     if (person instanceof PlayableCharacter) {
-      playerStatus = null;
-      playerStatusTurns = 0;
+      if (Math.random() < 0.1 || playerStatusTurns > 5) {
+        playerStatus = null;
+        playerStatusTurns = 0;
+        player.setStatus(null);
+        System.out.println(playerName + " woke up.");
+      }
     } else if (person instanceof NonPlayableCharacter) {
-      opponentStatus = null;
-      opponentStatusTurns = 0;
+      if (Math.random() < 0.1 || opponentStatusTurns > 5) {
+        opponentStatus = null;
+        opponentStatusTurns = 0;
+        System.out.println(opponentName + " woke up.");
+      }
     }
   }
 
