@@ -1,8 +1,8 @@
 public class CaptureItem extends Item{
     private double success;
 
-    CaptureItem(String name, double success) {
-        super(name);
+    CaptureItem(String name, String description, double success) {
+        super(name,description);
         this.success = success;
     }
 

@@ -2,8 +2,8 @@ class HealItem extends Item {
     private String type;
     private int change;
 
-    HealItem(String name, String type, int change) {
-        super(name);
+    HealItem(String name, String description, String type, int change) {
+        super(name,description);
         this.type = type;
         this.change = change;
     }

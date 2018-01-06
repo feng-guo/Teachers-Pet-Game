@@ -3,8 +3,8 @@ class StatItem extends Item {
     private String statAffected;
     private double multiplier;
 
-    StatItem(String name, String type, String statAffected, double multiplier) {
-        super(name);
+    StatItem(String name, String description, String type, String statAffected, double multiplier) {
+        super(name, description);
         this.type = type;
         this.statAffected = statAffected;
         this.multiplier = multiplier;
