@@ -1,6 +1,6 @@
 package battle;
 
-public class NonPlayableCharacter extends Character {
+class NonPlayableCharacter extends Character {
   private String speech; //Something they say when they start a battle
   private boolean defeated; //Tells whether or not the character has been defeated
   private int experience; //Experience the user gains

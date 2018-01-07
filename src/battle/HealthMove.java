@@ -1,6 +1,6 @@
 package battle;
 
-public class HealthMove extends StatChangeMove {
+class HealthMove extends StatChangeMove {
     //This move only allows a user to heal themselves
     private int heal;
     private Move additionalEffect;

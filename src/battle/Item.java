@@ -1,6 +1,6 @@
 package battle;
 
-public abstract class Item {
+abstract class Item {
     private String name;
     private String description;
 

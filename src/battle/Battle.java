@@ -9,7 +9,7 @@ package battle;
 import java.util.InputMismatchException; //Prevents people like Samyar from intentionally throwing in bad inputs. Will be replaced.
 import java.util.Scanner; //Will be replaced
 
-public class Battle /*extends Interaction*/ {
+class Battle /*extends Interaction*/ {
   //Objects that need to be saved here
   private PlayableCharacter player; //Since it is an object, when the values of the objects are changed, they stay changed
   private NonPlayableCharacter opponent; //Same for this one
@@ -628,11 +628,9 @@ public class Battle /*extends Interaction*/ {
       }
     }
 
-    boolean attackTriggered = false;
     //Add code to have more stuff when a student faints
     if (Math.random() < move.getHitChance()) {
       //Determines whether the attack hits or not
-      attackTriggered = true;
       if (attacker == -1) {
         if (!opponentProtected) {
           if (effectivenessText != null) {
@@ -703,7 +701,7 @@ public class Battle /*extends Interaction*/ {
     //Additional effect of moves
     if (move.getAdditionalEffect() != null) {
       Move additionalEffect = move.getAdditionalEffect();
-      if (Math.random() < additionalEffect.getHitChance() && attackTriggered) {
+      if (Math.random() < additionalEffect.getHitChance()) {
         if (additionalEffect instanceof HealthMove) {
           healthMove((HealthMove) additionalEffect, attacker);
         } else if (additionalEffect instanceof StatChangeMove) {
@@ -737,10 +735,8 @@ public class Battle /*extends Interaction*/ {
 
   public void statChangeMove(StatChangeMove move, int attacker) {
     //This code is for moves that only change the stats of the opposing person
-    boolean attackTriggered = false;
     if (Math.random() < move.getHitChance()) {
       //Determines whether or not the attack lands
-      attackTriggered = true;
       if (attacker < 0 && !opponentProtected) {
         if (opponentStatBoost>-5 && move.getTarget().equals("Opponent")) {
           if (move.getStatType().equals("Attack")) {
@@ -796,28 +792,11 @@ public class Battle /*extends Interaction*/ {
           System.out.println("The stat cannot be changed anymore?");
         }
       }
+    } else if (attacker%2 == 0){
+      //Empty else if
+      //This else if is for an attack with a secondary effect.
     } else {
       System.out.println("The move missed!");
-    }
-    if (move.getAdditionalEffect() != null) {
-      Move additionalEffect = move.getAdditionalEffect();
-      if (Math.random() < additionalEffect.getHitChance() && attackTriggered) {
-        if (additionalEffect instanceof HealthMove) {
-          healthMove((HealthMove) additionalEffect, attacker);
-        } else if (additionalEffect instanceof StatChangeMove) {
-          if (((StatChangeMove) additionalEffect).getTarget().equals("Self")) {
-            statChangeMove((StatChangeMove) additionalEffect, -attacker * 2);
-          } else {
-            statChangeMove((StatChangeMove) additionalEffect, attacker * 2);
-          }
-        } else if (additionalEffect instanceof StatusMove) {
-          if (((StatusMove) additionalEffect).getTarget().equals("Self")) {
-            statusMove((StatusMove) additionalEffect, -attacker * 2);
-          } else {
-            statusMove((StatusMove) additionalEffect, attacker * 2);
-          }
-        }
-      }
     }
   }
 
@@ -891,9 +870,7 @@ public class Battle /*extends Interaction*/ {
 
   public void statusMove(StatusMove move, int attacker) {
     //A move that changes the status of the move.
-    boolean attackTriggered = false;
     if (Math.random() < move.getHitChance()) {
-      attackTriggered = true;
       //Checks hit chance
       if (attacker < 0) {
         if (!opponentProtected) {

@@ -3,7 +3,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 //Nothing here works
-public class KeyBoardListener implements KeyListener{
+class KeyBoardListener implements KeyListener{
 
     public void keyTyped(KeyEvent e) {
     }

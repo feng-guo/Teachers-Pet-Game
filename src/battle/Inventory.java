@@ -2,7 +2,7 @@ package battle;
 
 import java.util.ArrayList;
 
-public class Inventory {
+class Inventory {
     private ArrayList<Item> inventory;
     private ArrayList<Integer> numItems;
 
