@@ -713,10 +713,14 @@ class Battle /*extends Interaction*/ {
         if (additionalEffect instanceof HealthMove) {
           healthMove((HealthMove) additionalEffect, attacker);
         } else if (additionalEffect instanceof StatChangeMove) {
-          statChangeMove((StatChangeMove) additionalEffect, attacker * 2);
+          if (((StatChangeMove) additionalEffect).getTarget().equals("Self")) {
+            statChangeMove((StatChangeMove) additionalEffect, -attacker * 2);
+          } else {
+            statChangeMove((StatChangeMove) additionalEffect, attacker * 2);
+          }
         } else if (additionalEffect instanceof StatusMove) {
           if (((StatusMove) additionalEffect).getTarget().equals("Self")) {
-            statusMove((StatusMove) additionalEffect, attacker * 2);
+            statusMove((StatusMove) additionalEffect, -attacker * 2);
           } else {
             statusMove((StatusMove) additionalEffect, attacker * 2);
           }
@@ -832,10 +836,14 @@ class Battle /*extends Interaction*/ {
         if (additionalEffect instanceof HealthMove) {
           healthMove((HealthMove) additionalEffect, attacker);
         } else if (additionalEffect instanceof StatChangeMove) {
-          statChangeMove((StatChangeMove) additionalEffect, attacker * 2);
+          if (((StatChangeMove) additionalEffect).getTarget().equals("Self")) {
+            statChangeMove((StatChangeMove) additionalEffect, -attacker * 2);
+          } else {
+            statChangeMove((StatChangeMove) additionalEffect, attacker * 2);
+          }
         } else if (additionalEffect instanceof StatusMove) {
           if (((StatusMove) additionalEffect).getTarget().equals("Self")) {
-            statusMove((StatusMove) additionalEffect, attacker * 2);
+            statusMove((StatusMove) additionalEffect, -attacker * 2);
           } else {
             statusMove((StatusMove) additionalEffect, attacker * 2);
           }
@@ -896,9 +904,17 @@ class Battle /*extends Interaction*/ {
         if (additionalEffect instanceof HealthMove) {
           healthMove((HealthMove) additionalEffect, attacker);
         } else if (additionalEffect instanceof StatChangeMove) {
-          statChangeMove((StatChangeMove) additionalEffect, attacker * 2);
+          if (((StatChangeMove) additionalEffect).getTarget().equals("Self")) {
+            statChangeMove((StatChangeMove) additionalEffect, -attacker * 2);
+          } else {
+            statChangeMove((StatChangeMove) additionalEffect, attacker * 2);
+          }
         } else if (additionalEffect instanceof StatusMove) {
-          statusMove((StatusMove) additionalEffect, attacker * 2);
+          if (((StatusMove) additionalEffect).getTarget().equals("Self")) {
+            statusMove((StatusMove) additionalEffect, -attacker * 2);
+          } else {
+            statusMove((StatusMove) additionalEffect, attacker * 2);
+          }
         }
       }
     }
@@ -906,10 +922,12 @@ class Battle /*extends Interaction*/ {
 
   public void statusMove(StatusMove move, int attacker) {
     //A move that changes the status of the move.
+    boolean attackTriggered = false;
     if (Math.random() < move.getHitChance()) {
       //Checks hit chance
       if (attacker < 0) {
         if (!opponentProtected) {
+           attackTriggered = true;
           opponentStatus = move.getStatusEffect();
           if (move.getStatusEffect().equals("Sleep")) {
             System.out.println("The opponent fell asleep.");
@@ -921,6 +939,7 @@ class Battle /*extends Interaction*/ {
         }
       } else if (attacker > 0){
         if (!playerProtected) {
+          attackTriggered = true;
           player.setStatus(move.getStatusEffect());
           playerStatus = player.getStatus();
           if (move.getStatusEffect().equals("Sleep")) {
