@@ -202,11 +202,11 @@ class Battle /*extends Interaction*/ {
   public void runBattle() {
     System.out.println("Turn number " + battleTurns);
     if (playerProtected) {
-      playerProtectChance = playerProtectChance / 2;
+      playerProtectChance /= 2;
       playerProtected = false;
     }
     if (opponentProtected) {
-      opponentProtectChance = opponentProtectChance / 2;
+      opponentProtectChance /= 2;
       opponentProtected = false;
     }
     if (playerStatus != null) {
@@ -221,7 +221,7 @@ class Battle /*extends Interaction*/ {
     }
     if (!playerAbilityTriggered && opponentStatBoost > -5) {
       if (playerAbility.equals("Demoralize")) {
-        opponentIntelligence = opponentIntelligence/2;
+        opponentIntelligence /= 2;
         opponentStatBoost--;
         System.out.println(opponentName + " is demoralized. Their intelligence fell!");
         playerAbilityTriggered = true;
@@ -229,19 +229,19 @@ class Battle /*extends Interaction*/ {
     }
     if (!opponentAbilityTriggered && playerStatBoost > -5) {
       if (opponentAbility.equals("Demoralize")) {
-        playerIntelligence = playerIntelligence/2;
+        playerIntelligence /= 2;
         playerStatBoost--;
         System.out.println(playerName + " is demoralized. Their intelligence fell!");
         opponentAbilityTriggered = true;
       }
     }
     if (playerAbility.equals("Speed Boost") && playerStatBoost < 5) {
-      playerSpeed = playerSpeed*2;
+      playerSpeed *= 2;
       playerStatBoost++;
       System.out.println(playerName + "'s Speed Boost! Their speed increased!");
     }
     if (opponentAbility.equals("Speed Boost") && opponentStatBoost < 5) {
-      opponentSpeed = opponentSpeed*2;
+      opponentSpeed *= 2;
       opponentStatBoost++;
       System.out.println(opponentName + "'s Speed Boost! Their speed increased!");
     }
