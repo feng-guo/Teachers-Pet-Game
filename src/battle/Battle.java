@@ -1,6 +1,6 @@
 package battle;
 
-//Author @Feng
+//Author @Feng 
 /* Battle classes are an object itself
  * Runs a loop in battle itself (To be added)
  * Need to add switching, inventory, fleeing, and move selection
@@ -91,6 +91,9 @@ class Battle /*extends Interaction*/ {
   private boolean opponenetFled;
   private String effectivenessText;
   private int battleTurns;
+  
+  // BIGGO STRING
+  private String outputText;
 
 
   Battle (PlayableCharacter player, NonPlayableCharacter opponent, Squad squad, Inventory inventory) {
@@ -574,6 +577,7 @@ class Battle /*extends Interaction*/ {
     int defence = 0; //Determines whose defence to use
     double multiplier; //Multiplier for typing, status effects and STAB
     //This if statement determines whose stats to used to calculate damage
+    boolean attackTriggered = false;
     if (attacker == -1) {
       //If attacker is -1, then the player is attacking. If it is 1, the opponent is attacking
       if (move.getAttackType().equals("Attack")) {
@@ -621,10 +625,12 @@ class Battle /*extends Interaction*/ {
     if (playerAbility.equals("Clown") && attacker == 1) {
       if (Math.random() < 0.25) {
         damageDealt = damageDealt/2;
+        System.out.println(playerName + " is clowning around.");
       }
     } else if (opponentAbility.equals("Clown") && attacker == -1) {
       if (Math.random() < 0.25) {
         damageDealt = damageDealt/2;
+        System.out.println(opponentName + " is clowning around.");
       }
     }
 
@@ -633,6 +639,7 @@ class Battle /*extends Interaction*/ {
       //Determines whether the attack hits or not
       if (attacker == -1) {
         if (!opponentProtected) {
+          attackTriggered = true;
           if (effectivenessText != null) {
             System.out.println(effectivenessText);
           }
@@ -664,6 +671,7 @@ class Battle /*extends Interaction*/ {
         }
       } else if (attacker == 1) {
         if (!playerProtected) {
+          attackTriggered = true;
           if (effectivenessText != null) {
             System.out.println(effectivenessText);
           }
@@ -699,13 +707,17 @@ class Battle /*extends Interaction*/ {
     }
 
     //Additional effect of moves
-    if (move.getAdditionalEffect() != null) {
+    if (move.getAdditionalEffect() != null && attackTriggered) {
       Move additionalEffect = move.getAdditionalEffect();
       if (Math.random() < additionalEffect.getHitChance()) {
         if (additionalEffect instanceof HealthMove) {
           healthMove((HealthMove) additionalEffect, attacker);
         } else if (additionalEffect instanceof StatChangeMove) {
-          statChangeMove((StatChangeMove) additionalEffect, attacker * 2);
+          if (((StatChangeMove) additionalEffect).getTarget().equals("Self")) {
+            statChangeMove((StatChangeMove) additionalEffect, -attacker * 2);
+          } else {
+            statChangeMove((StatChangeMove) additionalEffect, attacker * 2);
+          }
         } else if (additionalEffect instanceof StatusMove) {
           if (((StatusMove) additionalEffect).getTarget().equals("Self")) {
             statusMove((StatusMove) additionalEffect, -attacker * 2);
@@ -735,61 +747,80 @@ class Battle /*extends Interaction*/ {
 
   public void statChangeMove(StatChangeMove move, int attacker) {
     //This code is for moves that only change the stats of the opposing person
+    boolean attackTriggered = false;
     if (Math.random() < move.getHitChance()) {
       //Determines whether or not the attack lands
       if (attacker < 0 && !opponentProtected) {
+        attackTriggered = true;
         if (opponentStatBoost>-5 && move.getTarget().equals("Opponent")) {
           if (move.getStatType().equals("Attack")) {
             opponentAttack = opponentAttack / move.getMultiplier();
+            System.out.println(opponentName + "'s attack fell!");
           } else if (move.getStatType().equals("Intelligence")) {
             opponentIntelligence = opponentIntelligence / move.getMultiplier();
+            System.out.println(opponentName + "'s intelligence fell!");
           } else if (move.getStatType().equals("Defence")) {
-            opponentIntelligence = opponentIntelligence / move.getMultiplier();
+            opponentDefence = opponentDefence / move.getMultiplier();
+            System.out.println(opponentName + "'s defence fell!");
           } else if (move.getStatType().equals("Speed")) {
             opponentSpeed = opponentSpeed / move.getMultiplier();
+            System.out.println(opponentName + "'s speed fell!");
           }
           opponentStatBoost--;
         } else if (opponentStatBoost<5 && move.getTarget().equals("Self")) {
           if (move.getStatType().equals("Attack")) {
             opponentAttack = opponentAttack * move.getMultiplier();
+            System.out.println(opponentName + "'s attack increased!");
           } else if (move.getStatType().equals("Intelligence")) {
             opponentIntelligence = opponentIntelligence * move.getMultiplier();
+            System.out.println(opponentName + "'s intelligence increased!");
           } else if (move.getStatType().equals("Defence")) {
-            opponentIntelligence = opponentIntelligence * move.getMultiplier();
+            opponentDefence = opponentDefence * move.getMultiplier();
+            System.out.println(opponentName + "'s defence increased!");
           } else if (move.getStatType().equals("Speed")) {
             opponentSpeed = opponentSpeed * move.getMultiplier();
+            System.out.println(opponentName + "'s speed increased!");
           }
           opponentStatBoost++;
         } else if (opponentProtected) {
           System.out.println(opponentName + "protected from the attack.");
         } else {
-          System.out.println("The stat cannot be changed anymore?");
+          System.out.println("The stat cannot be changed anymore!");
         }
       } else if (attacker > 0 && !playerProtected) {
+        attackTriggered = true;
         if (playerStatBoost>-5 && move.getTarget().equals("Opponent")) {
           if (move.getStatType().equals("Attack")) {
             playerAttack = playerAttack / move.getMultiplier();
+            System.out.println(playerName + "'s attack fell!");
           } else if (move.getStatType().equals("Intelligence")) {
             playerIntelligence = playerIntelligence / move.getMultiplier();
+            System.out.println(playerName + "'s intelligence fell!");
           } else if (move.getStatType().equals("Defence")) {
-            playerIntelligence = playerIntelligence / move.getMultiplier();
+            playerDefence = playerDefence / move.getMultiplier();
+            System.out.println(playerName + "'s defence fell!");
           } else if (move.getStatType().equals("Speed")) {
             playerSpeed = playerSpeed / move.getMultiplier();
+            System.out.println(playerName + "'s speed fell!");
           }
           playerStatBoost--;
         } else if (playerStatBoost<5 && move.getTarget().equals("Self")) {
           if (move.getStatType().equals("Attack")) {
             playerAttack = playerAttack * move.getMultiplier();
+            System.out.println(playerName + "'s attack increased!");
           } else if (move.getStatType().equals("Intelligence")) {
             playerIntelligence = playerIntelligence * move.getMultiplier();
+            System.out.println(playerName + "'s intelligence increased!");
           } else if (move.getStatType().equals("Defence")) {
-            playerIntelligence = playerIntelligence * move.getMultiplier();
+            playerDefence = playerDefence * move.getMultiplier();
+            System.out.println(playerName + "'s defence increased!");
           } else if (move.getStatType().equals("Speed")) {
             playerSpeed = playerSpeed * move.getMultiplier();
+            System.out.println(playerName + "'s speed increased!");
           }
           playerStatBoost++;
         } else {
-          System.out.println("The stat cannot be changed anymore?");
+          System.out.println("The stat cannot be changed anymore!");
         }
       }
     } else if (attacker%2 == 0){
@@ -797,6 +828,27 @@ class Battle /*extends Interaction*/ {
       //This else if is for an attack with a secondary effect.
     } else {
       System.out.println("The move missed!");
+    }
+
+    if (move.getAdditionalEffect() != null && attackTriggered) {
+      Move additionalEffect = move.getAdditionalEffect();
+      if (Math.random() < additionalEffect.getHitChance()) {
+        if (additionalEffect instanceof HealthMove) {
+          healthMove((HealthMove) additionalEffect, attacker);
+        } else if (additionalEffect instanceof StatChangeMove) {
+          if (((StatChangeMove) additionalEffect).getTarget().equals("Self")) {
+            statChangeMove((StatChangeMove) additionalEffect, -attacker * 2);
+          } else {
+            statChangeMove((StatChangeMove) additionalEffect, attacker * 2);
+          }
+        } else if (additionalEffect instanceof StatusMove) {
+          if (((StatusMove) additionalEffect).getTarget().equals("Self")) {
+            statusMove((StatusMove) additionalEffect, -attacker * 2);
+          } else {
+            statusMove((StatusMove) additionalEffect, attacker * 2);
+          }
+        }
+      }
     }
   }
 
@@ -870,10 +922,12 @@ class Battle /*extends Interaction*/ {
 
   public void statusMove(StatusMove move, int attacker) {
     //A move that changes the status of the move.
+    boolean attackTriggered = false;
     if (Math.random() < move.getHitChance()) {
       //Checks hit chance
       if (attacker < 0) {
         if (!opponentProtected) {
+           attackTriggered = true;
           opponentStatus = move.getStatusEffect();
           if (move.getStatusEffect().equals("Sleep")) {
             System.out.println("The opponent fell asleep.");
@@ -885,6 +939,7 @@ class Battle /*extends Interaction*/ {
         }
       } else if (attacker > 0){
         if (!playerProtected) {
+          attackTriggered = true;
           player.setStatus(move.getStatusEffect());
           playerStatus = player.getStatus();
           if (move.getStatusEffect().equals("Sleep")) {
@@ -1111,5 +1166,9 @@ class Battle /*extends Interaction*/ {
 
   public String getPlayerName() {
     return playerName;
+  }
+  
+  public void setOutputText(String text) {
+	  this.outputText = text;
   }
 }

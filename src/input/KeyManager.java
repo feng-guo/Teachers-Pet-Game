@@ -22,9 +22,9 @@ public class KeyManager implements KeyListener{
 		
 		battle = keys[KeyEvent.VK_X];
 		first = keys[KeyEvent.VK_1];
-		second = keys[KeyEvent.VK_1];
-		third = keys[KeyEvent.VK_1];
-		fourth = keys[KeyEvent.VK_1];
+		second = keys[KeyEvent.VK_2];
+		third = keys[KeyEvent.VK_3];
+		fourth = keys[KeyEvent.VK_4];
 
 	}
 	

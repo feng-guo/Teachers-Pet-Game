@@ -15,8 +15,9 @@ class PlayableCharacter extends Character {
     PlayableCharacter(int health, int attack, int intelligence, int defence, int speed, String type, String name, String description, Move[] moveset, String ability, StatItem heldItem, StatItem hatItem, StatItem shirtItem, StatItem pantsItem, StatItem shoesItem) {
       super(health, attack, intelligence, defence, speed, type, name, moveset, ability, heldItem);
       this.description = description;
-      this.status = "";
+      this.status = null;
       this.fainted = false;
+      this.experience = 0;
       this.level = 1;
       this.hatItem = hatItem;
       this.shirtItem = shirtItem;
@@ -40,7 +41,7 @@ class PlayableCharacter extends Character {
       this.status = status;
     }
     public void resetStatus() {
-      status = "";
+      status = null;
     }
     public void faintCharacter() {
         fainted = true;
@@ -49,6 +50,10 @@ class PlayableCharacter extends Character {
 
     public boolean isFainted() {
         return fainted;
+    }
+
+    public void reviveCharacter() {
+        this.fainted = false;
     }
 
     //Experience methods

@@ -27,7 +27,7 @@ public class BattleTester {
         Item addDumbItem = inventoryItems.retrieveItem("Yeezys");
         //inventory.addItem(addDumbItem);
 
-        Scanner input = new Scanner(System.in);
+        //Scanner input = new Scanner(System.in);
         //double random = Math.random();
         double random2 = Math.random();
         //PlayableCharacter player;
