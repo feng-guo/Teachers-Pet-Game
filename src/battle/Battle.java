@@ -91,6 +91,9 @@ class Battle /*extends Interaction*/ {
   private boolean opponenetFled;
   private String effectivenessText;
   private int battleTurns;
+  
+  // BIGGO STRING
+  private String outputText;
 
 
   Battle (PlayableCharacter player, NonPlayableCharacter opponent, Squad squad, Inventory inventory) {
@@ -1111,5 +1114,9 @@ class Battle /*extends Interaction*/ {
 
   public String getPlayerName() {
     return playerName;
+  }
+  
+  public void setOutputText(String text) {
+	  this.outputText = text;
   }
 }
