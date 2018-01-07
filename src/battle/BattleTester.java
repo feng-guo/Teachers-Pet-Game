@@ -12,11 +12,13 @@ public class BattleTester {
         ListOfCharacters characterList = new ListOfCharacters();
         ListOfInventoryItems inventoryItems = new ListOfInventoryItems();
         Inventory inventory = new Inventory();
-        PlayableCharacter[] newSquad = new PlayableCharacter[4];
+        PlayableCharacter[] newSquad = new PlayableCharacter[6];
         newSquad[0] = (PlayableCharacter)characterList.returnCharacter("Feng");
         newSquad[1] = (PlayableCharacter)characterList.returnCharacter("Joyce");
         newSquad[2] = (PlayableCharacter)characterList.returnCharacter("Sihan");
         newSquad[3] = (PlayableCharacter)characterList.returnCharacter("Yash");
+        newSquad[4] = (PlayableCharacter)characterList.returnCharacter("Johann");
+        newSquad[5] = (PlayableCharacter)characterList.returnCharacter("Misha");
 
         NonPlayableCharacter MrChoi = (NonPlayableCharacter)characterList.returnCharacter("Mr. Choi");
         NonPlayableCharacter MrShim = (NonPlayableCharacter)characterList.returnCharacter("Mr. Shim");
@@ -47,7 +49,7 @@ public class BattleTester {
         } else {
             opponent = MrTimmerman;
         }
-        Battle battle = new Battle(squad.getCharacter(0), MrShim, squad, inventory);
+        Battle battle = new Battle(squad.getCharacter(0), opponent, squad, inventory);
         do {
             battle.runBattle();
         } while (!battle.isBattleEnd());
