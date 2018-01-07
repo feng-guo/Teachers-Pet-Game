@@ -705,11 +705,7 @@ class Battle /*extends Interaction*/ {
         if (additionalEffect instanceof HealthMove) {
           healthMove((HealthMove) additionalEffect, attacker);
         } else if (additionalEffect instanceof StatChangeMove) {
-          if (((StatChangeMove) additionalEffect).getTarget().equals("Self")) {
-            statChangeMove((StatChangeMove) additionalEffect, -attacker * 2);
-          } else {
-            statChangeMove((StatChangeMove) additionalEffect, attacker * 2);
-          }
+          statChangeMove((StatChangeMove) additionalEffect, attacker * 2);
         } else if (additionalEffect instanceof StatusMove) {
           if (((StatusMove) additionalEffect).getTarget().equals("Self")) {
             statusMove((StatusMove) additionalEffect, -attacker * 2);
