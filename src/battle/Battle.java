@@ -1171,4 +1171,22 @@ class Battle /*extends Interaction*/ {
   public void setOutputText(String text) {
 	  this.outputText = text;
   }
+
+  public void cureStatus(PlayableCharacter player){
+    player.resetStatus();
+    playerStatus = player.getStatus();
+  }
+
+  public void revive(PlayableCharacter character, HealItem item){
+    if(player.isFainted()){
+      if(item.getType().equals("Half revive")){
+        player.setCurrentHealth(playerHealth/2);
+      }else if(item.getType().equals("Full revive")){
+              player.resetCurrentHealth();
+      }
+      playerCurrentHealth = player.getCurrentHealth();
+      numberOfFaintedStudents--;
+      player.reviveCharacter();
+    }
+  }
 }
