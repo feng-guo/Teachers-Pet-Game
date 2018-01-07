@@ -1,6 +1,6 @@
 package battle;
 
-class StatusMove extends Move {
+public class StatusMove extends Move {
     String statusEffect; //Sets the status of the person affected
     String target;
     StatusMove (String name, double hitChance, String type, String statusEffect, int maxPowerPoints, int priority, String target) {

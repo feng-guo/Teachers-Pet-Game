@@ -1,6 +1,6 @@
 package battle;
 
-class PlayableCharacter extends Character {
+public class PlayableCharacter extends Character {
     private String description; //description of the character
     private String status; //Status would be the status condition
     private boolean fainted;

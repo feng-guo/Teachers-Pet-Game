@@ -1,6 +1,6 @@
 package battle;
 
-class StatChangeMove extends Move {
+public class StatChangeMove extends Move {
     private int multiplier; //Changes how much a stat changes by
     private String statType;
     private String target;

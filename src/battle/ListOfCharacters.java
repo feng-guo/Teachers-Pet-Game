@@ -2,7 +2,7 @@ package battle;
 
 import java.util.ArrayList;
 
-class ListOfCharacters{
+public class ListOfCharacters{
     private ArrayList<Character> characterList;
     private ListOfMoves startMoves;
 
