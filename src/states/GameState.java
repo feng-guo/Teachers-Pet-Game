@@ -19,7 +19,7 @@ public class GameState extends State{
 		world = new World(handler, "res/worlds/world1.txt");
 		handler.setWorld(world);
 				
-		}
+	}
 	
 	
 	@Override
@@ -30,13 +30,7 @@ public class GameState extends State{
 	@Override
 	public void render(Graphics g) {
 		// Stuff to render
-		world.render(g);
-		
-		
-		// CHANGE TO BATTLE STATE
-		if(handler.getKeyManager().battle) {
-			State.setState(handler.getGame().battleState);
-		}
+		world.render(g);		
 		
 	}
 

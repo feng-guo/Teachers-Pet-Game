@@ -21,10 +21,10 @@ public class KeyManager implements KeyListener{
 		right = keys[KeyEvent.VK_D];
 		
 		battle = keys[KeyEvent.VK_X];
-		first = keys[KeyEvent.VK_1];
-		second = keys[KeyEvent.VK_2];
-		third = keys[KeyEvent.VK_3];
-		fourth = keys[KeyEvent.VK_4];
+		first = keys[KeyEvent.VK_C];
+		second = keys[KeyEvent.VK_V];
+		third = keys[KeyEvent.VK_B];
+		fourth = keys[KeyEvent.VK_N];
 
 	}
 	
