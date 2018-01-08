@@ -754,31 +754,31 @@ class Battle /*extends Interaction*/ {
         attackTriggered = true;
         if (opponentStatBoost>-5 && move.getTarget().equals("Opponent")) {
           if (move.getStatType().equals("Attack")) {
-            opponentAttack = opponentAttack / move.getMultiplier();
+            opponentAttack /= move.getMultiplier();
             System.out.println(opponentName + "'s attack fell!");
           } else if (move.getStatType().equals("Intelligence")) {
-            opponentIntelligence = opponentIntelligence / move.getMultiplier();
+            opponentIntelligence /= move.getMultiplier();
             System.out.println(opponentName + "'s intelligence fell!");
           } else if (move.getStatType().equals("Defence")) {
-            opponentDefence = opponentDefence / move.getMultiplier();
+            opponentDefence /= move.getMultiplier();
             System.out.println(opponentName + "'s defence fell!");
           } else if (move.getStatType().equals("Speed")) {
-            opponentSpeed = opponentSpeed / move.getMultiplier();
+            opponentSpeed /= move.getMultiplier();
             System.out.println(opponentName + "'s speed fell!");
           }
           opponentStatBoost--;
         } else if (opponentStatBoost<5 && move.getTarget().equals("Self")) {
           if (move.getStatType().equals("Attack")) {
-            opponentAttack = opponentAttack * move.getMultiplier();
+            opponentAttack *= move.getMultiplier();
             System.out.println(opponentName + "'s attack increased!");
           } else if (move.getStatType().equals("Intelligence")) {
-            opponentIntelligence = opponentIntelligence * move.getMultiplier();
+            opponentIntelligence *= move.getMultiplier();
             System.out.println(opponentName + "'s intelligence increased!");
           } else if (move.getStatType().equals("Defence")) {
-            opponentDefence = opponentDefence * move.getMultiplier();
+            opponentDefence *= move.getMultiplier();
             System.out.println(opponentName + "'s defence increased!");
           } else if (move.getStatType().equals("Speed")) {
-            opponentSpeed = opponentSpeed * move.getMultiplier();
+            opponentSpeed *= move.getMultiplier();
             System.out.println(opponentName + "'s speed increased!");
           }
           opponentStatBoost++;
@@ -791,31 +791,31 @@ class Battle /*extends Interaction*/ {
         attackTriggered = true;
         if (playerStatBoost>-5 && move.getTarget().equals("Opponent")) {
           if (move.getStatType().equals("Attack")) {
-            playerAttack = playerAttack / move.getMultiplier();
+            playerAttack /= move.getMultiplier();
             System.out.println(playerName + "'s attack fell!");
           } else if (move.getStatType().equals("Intelligence")) {
-            playerIntelligence = playerIntelligence / move.getMultiplier();
+            playerIntelligence /= move.getMultiplier();
             System.out.println(playerName + "'s intelligence fell!");
           } else if (move.getStatType().equals("Defence")) {
-            playerDefence = playerDefence / move.getMultiplier();
+            playerDefence /= move.getMultiplier();
             System.out.println(playerName + "'s defence fell!");
           } else if (move.getStatType().equals("Speed")) {
-            playerSpeed = playerSpeed / move.getMultiplier();
+            playerSpeed /= move.getMultiplier();
             System.out.println(playerName + "'s speed fell!");
           }
           playerStatBoost--;
         } else if (playerStatBoost<5 && move.getTarget().equals("Self")) {
           if (move.getStatType().equals("Attack")) {
-            playerAttack = playerAttack * move.getMultiplier();
+            playerAttack *= move.getMultiplier();
             System.out.println(playerName + "'s attack increased!");
           } else if (move.getStatType().equals("Intelligence")) {
-            playerIntelligence = playerIntelligence * move.getMultiplier();
+            playerIntelligence *= move.getMultiplier();
             System.out.println(playerName + "'s intelligence increased!");
           } else if (move.getStatType().equals("Defence")) {
-            playerDefence = playerDefence * move.getMultiplier();
+            playerDefence *= move.getMultiplier();
             System.out.println(playerName + "'s defence increased!");
           } else if (move.getStatType().equals("Speed")) {
-            playerSpeed = playerSpeed * move.getMultiplier();
+            playerSpeed *= move.getMultiplier();
             System.out.println(playerName + "'s speed increased!");
           }
           playerStatBoost++;
