@@ -92,10 +92,10 @@ class Battle /*extends Interaction*/ {
   private boolean opponenetFled;
   private String effectivenessText;
   private int battleTurns;
-  
+
   // BIGGO STRING
   private String outputText;
-  
+
   private Handler handler;
 
 
@@ -168,7 +168,7 @@ class Battle /*extends Interaction*/ {
     opponentLoses = false;
     playerFled = false;
     this.battleTurns = 1;
-    
+
     this.handler = handler;
   }
 
@@ -384,7 +384,15 @@ class Battle /*extends Interaction*/ {
               //Code to capture the opponent (another method please)
             } else if (item instanceof HealItem) {
               itemUsed = true;
-              //if statement to see what method should run (increase pp/hp, revive, cure status)
+              if(((HealItem) item).getType().equals("HP")){
+                  HP(player, (HealItem) item);
+              }else if(((HealItem) item).getType().equals("PP")){
+                  //yet to create method for this
+              } else if(((HealItem) item).getType().equals("Sleep") || ((HealItem) item).getType().equals("Burn") || ((HealItem) item).getType().equals("Poison") || ((HealItem) item).getType().equals("Stun")){
+                cureStatus(player);
+              }else if(((HealItem) item).getType().equals("Half revive") || ((HealItem) item).getType().equals("Full Revive")){
+                revive(player, (HealItem)item);
+              }
               //ALL IN DIFFERENT METHODS (pp and hp can be same method)
             } else if (item instanceof StatItem) {
               System.out.println("You can use that here!");
@@ -1290,16 +1298,16 @@ class Battle /*extends Interaction*/ {
   public String getPlayerName() {
     return playerName;
   }
-  
+
   public void setOutputText(String text) {
 	  //System.out.println(outputText);
 	  this.outputText = outputText + "\n" + text;
   }
-  
+
   public String getOutputText() {
 	  return outputText;
   }
-  
+
   public int determineAnswer(Handler handler) {
 	if (handler.getKeyManager().first) {
 		System.out.println("true");
@@ -1313,7 +1321,12 @@ class Battle /*extends Interaction*/ {
 	} else {
 		return -1;
 	}
-	  
+
+  }
+
+  public void HP(PlayableCharacter character, HealItem item){
+      player.changeCurrentHealth(item.getChange());
+      playerCurrentHealth = player.getCurrentHealth();
   }
 
   public void cureStatus(PlayableCharacter player){

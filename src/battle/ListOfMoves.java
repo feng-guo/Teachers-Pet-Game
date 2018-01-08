@@ -16,6 +16,8 @@ public class ListOfMoves {
         Move doubleUserSpeed = new StatChangeMove("doubleUserSpeed", 4.0, "Neutral", 2, "Speed", 100, 0, "Self");
         Move halveOpponentDefence10 = new StatChangeMove("halveOpponentDefence10", 0.1, "Neutral", 2, "Defence", 100, 0, "Opponent");
         Move halveOpponentIntelligence10 = new StatChangeMove("halveOpponentIntelligence10", 0.1, "Neutral", 2, "Intelligence", 100, 0, "Opponent");
+        Move opponentPoison10 = new StatusMove("opponentPoison10", 0.1, "Science", "Poison", 100, 0, "Opponent");
+        Move doubleUserHealth = new StatChangeMove("doubleUserHealth", 1.0, "Neutral", 2, "Health", 100, 0, "Self");
         //neutral
         moveList.add(new AttackMove("Burn Piano Book", 60, 1.0, "Neutral", "Attack", 12, 0, randomBurn50));
         moveList.add(new AttackMove("Explode Phone", 120, 0.8, "Neutral", "Attack", 10, 0, opponentBurn75));
@@ -33,6 +35,7 @@ public class ListOfMoves {
         moveList.add(new HealthMove("Snort Candy", "Neutral", 0, "Health", 40, 20, 0, null));
         moveList.add(new ProtectMove("Ghost", 1.0, "Neutral", 10, 5));
         moveList.add(new ProtectMove("Dodge Homework", 1.0, "Neutral", 15, 5));
+        moveList.add(new StatChangeMove("Drink Bubble Tea", 1.0, "Neutral", 2, "Health", 10, 0, "Self", doubleUserHealth));
         //math
         moveList.add(new AttackMove("Spam Calculator", 50, 1.0, "Math", "Attack", 15, 0, null));
         moveList.add(new HealthMove("Calculate Mark", "Math", 0, "Health", -2, 8, 0, null));
@@ -59,6 +62,8 @@ public class ListOfMoves {
         //science
         moveList.add(new StatChangeMove("TLAP", 1.0, "Science", 2, "Intelligence", 10, 0, "Self"));
         moveList.add(new AttackMove("Chemistry Pun", 40, 1.0, "Science", "Intelligence", 15, 0, null));
+        moveList.add(new AttackMove("Splash Acid", 80, 1.0, "Science", "Attack", 10, 0, opponentPoison10));
+        moveList.add(new StatusMove("Dissect Frog", 0.9, "Science","Poison", 15, 0, "Opponent"));
         //technology
         moveList.add(new StatChangeMove("Implement APIs", 1.0, "Technology", 2, "Speed", 8, 0, "Self"));
         moveList.add(new AttackMove("Deoptimize Code", 50, 1.0, "Technology", "Intelligence", 10, 0, null));
