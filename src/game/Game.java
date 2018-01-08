@@ -71,7 +71,9 @@ public class Game implements Runnable{
 		gameState = new GameState(handler);
 		menuState = new MenuState(handler);
 		battleState = new BattleState(handler);
+
 		State.setState(menuState);
+
 	}
 	
 	
