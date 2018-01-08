@@ -398,14 +398,15 @@ class Battle /*extends Interaction*/ {
               }else if(((HealItem) item).getType().equals("PP")){
                   //yet to create method for this
               } else if(((HealItem) item).getType().equals("Sleep") || ((HealItem) item).getType().equals("Burn") || ((HealItem) item).getType().equals("Poison") || ((HealItem) item).getType().equals("Stun")){
-                cureStatus(player);
-              }else if(((HealItem) item).getType().equals("Half revive") || ((HealItem) item).getType().equals("Full Revive")){
+                cureStatus(player, (HealItem)item);
+              } else if(((HealItem) item).getType().equals("Half revive") || ((HealItem) item).getType().equals("Full revive")){
                 revive(player, (HealItem)item);
               }
               //ALL IN DIFFERENT METHODS (pp and hp can be same method)
             } else if (item instanceof StatItem) {
               System.out.println("You can use that here!");
-            }
+              useStatItem(player, (StatItem)item);
+              }
             if (itemUsed) {
               playerInventory.useItem(playerInventory.getItemName(answer));
             }
@@ -1393,17 +1394,24 @@ class Battle /*extends Interaction*/ {
 
   }
 
-  public void HP(PlayableCharacter character, HealItem item){
+  public void HP(PlayableCharacter player, HealItem item){
+    if(playerHealth - player.getCurrentHealth() >= item.getChange()) {
       player.changeCurrentHealth(item.getChange());
-      playerCurrentHealth = player.getCurrentHealth();
+    }else{
+      player.setCurrentHealth(playerHealth);
+    }
+    playerCurrentHealth = player.getCurrentHealth();
   }
 
-  public void cureStatus(PlayableCharacter player){
-    player.resetStatus();
-    playerStatus = player.getStatus();
+
+  public void cureStatus(PlayableCharacter player, HealItem item){
+      if(item.getType().equals(playerStatus)){
+          player.resetStatus();
+          playerStatus = player.getStatus();
+      }
   }
 
-  public void revive(PlayableCharacter character, HealItem item){
+  public void revive(PlayableCharacter player, HealItem item){
     if (player.isFainted()) {
       if(item.getType().equals("Half revive")) {
         player.setCurrentHealth(playerHealth/2);
@@ -1414,5 +1422,19 @@ class Battle /*extends Interaction*/ {
       numberOfFaintedStudents--;
       player.reviveCharacter();
     }
+  }
+
+  public void useStatItem(PlayableCharacter player, StatItem item){
+      if(item.getStatAffected().equals("Speed")){
+          playerSpeed *= item.getMultiplier();
+      }else if(item.getStatAffected().equals("Attack")){
+          playerAttack *= item.getMultiplier();
+      }else if(item.getStatAffected().equals("Defense")){
+          playerDefence *= item.getMultiplier();
+      }else if(item.getStatAffected().equals("Intelligence")){
+          playerIntelligence *= item.getMultiplier();
+      }else if(item.getStatAffected().equals("Health")){
+          playerCurrentHealth += playerHealth * item.getMultiplier();
+      }
   }
 }
