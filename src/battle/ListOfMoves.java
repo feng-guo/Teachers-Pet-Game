@@ -57,7 +57,7 @@ public class ListOfMoves {
         moveList.add(new AttackMove("Swear", 30, 0.95, "English", "Intelligence", 20, 0, null));
         moveList.add(new AttackMove("Write Reflection", 90, 1.0, "English", "Intelligence", 10, 0, halveOpponentIntelligence10));
         moveList.add(new StatusMove("Life Lesson", 0.85, "English", "Sleep", 15, 0, "Opponent")); //someone review the last two STRINGS
-        //ADD SLEEP Talk
+        moveList.add(new SleepTalkMove("Sleep Talk", "English", 15, 0));
         moveList.add(new StatChangeMove("Self Loathe", 1, "English", 2, "Attack", 10, 0, "Self", doubleUserDefence));
         //science
         moveList.add(new StatChangeMove("TLAP", 1.0, "Science", 2, "Intelligence", 10, 0, "Self"));

@@ -207,7 +207,10 @@ class Battle /*extends Interaction*/ {
 
   //Fix this method
   public void runBattle() {
+    //Turn number output should be its own string
     System.out.println("Turn number " + battleTurns);
+
+    //Protect, status and ability handling
     if (playerProtected) {
       playerProtectChance /= 2;
       playerProtected = false;
@@ -252,19 +255,25 @@ class Battle /*extends Interaction*/ {
       opponentStatBoost++;
       System.out.println(opponentName + "'s Speed Boost! Their speed increased!");
     }
+
+
     //Scanner input = new Scanner(System.in);
     //KeyBoardListener keyBoardListener = new KeyBoardListener();
     //Code below would probably have to be put in another method or loops
     int answer;
     boolean exitLoop = false;
     do {
+      //Displays the health of both opponents. This could be a string output too
       System.out.println(playerName + " " + playerCurrentHealth + "/" + playerHealth);
       System.out.println(opponentName + " " + opponentCurrentHealth + "/" + opponentHealth);
+      //Separate method for menu selection
       System.out.println("What would you like to do");
       System.out.println("Fight (1)");
       System.out.println("Inventory (2)");
       System.out.println("Squad (3)");
       System.out.println("Run (4)");
+
+      //Takes user input
       do {
         try {
           answer = determineAnswer(handler);
@@ -583,6 +592,44 @@ class Battle /*extends Interaction*/ {
         statusMove((StatusMove) move, -attacker);
       } else {
         statusMove((StatusMove)move, attacker);
+      }
+    } else if (move instanceof  SleepTalkMove) {
+      if (attacker == -1) {
+        if (playerStatus != null) {
+          if (playerStatus.equals("Sleep")) {
+            boolean attackTrue = false;
+            do {
+              int randomMove = (int) Math.random()*4;
+              if (!(player.getMove(randomMove) instanceof SleepTalkMove)) {
+                Move moveUsed = player.getMove(randomMove);
+                attackTrue = true;
+                determineAttackType(moveUsed, player);
+              }
+            } while (!attackTrue);
+          } else {
+            System.out.println("The move failed!");
+          }
+        } else {
+          System.out.println("The move failed!");
+        }
+      } else if (attacker == 1) {
+        if (opponentStatus != null) {
+          if (opponentStatus.equals("Sleep")) {
+            boolean attackTrue = false;
+            do {
+              int randomMove = (int) Math.random()*4;
+              if (!(opponent.getMove(randomMove) instanceof SleepTalkMove)) {
+                Move moveUsed = opponent.getMove(randomMove);
+                attackTrue = true;
+                determineAttackType(moveUsed, opponent);
+              }
+            } while (!attackTrue);
+          } else {
+            System.out.println("The move failed!");
+          }
+        } else {
+          System.out.println("The move failed!");
+        }
       }
     }
   }
