@@ -1,14 +1,26 @@
 package battle;
+
+import game.Handler;
+
 /* Please ignore this file
  * Testing file for battles
  * So very cool wow
  * Basically a sandbox for Feng
  */
 
-import java.util.Scanner;
+//import java.util.Scanner;
 
 public class BattleTester {
-    public static void main(String[] args)  {
+	
+	String finalText;
+	private Handler handler;
+	
+	public BattleTester(Handler handler) {
+		this.handler = handler;
+	}
+    
+	public void simulateBattle(){
+    	
         ListOfCharacters characterList = new ListOfCharacters();
         ListOfInventoryItems inventoryItems = new ListOfInventoryItems();
         Inventory inventory = new Inventory();
@@ -49,9 +61,10 @@ public class BattleTester {
         } else {
             opponent = MrTimmerman;
         }
-        Battle battle = new Battle(squad.getCharacter(0), opponent, squad, inventory);
+        Battle battle = new Battle(squad.getCharacter(0), opponent, squad, inventory, handler);
         do {
             battle.runBattle();
+            finalText = battle.getOutputText();
         } while (!battle.isBattleEnd());
 
         /*
@@ -112,4 +125,8 @@ public class BattleTester {
         } while (!mrShimBattle.isBattleEnd());
         */
     }
+	
+	public String getFinalText() {
+		return finalText;
+	}
 }

@@ -7,7 +7,9 @@ package battle;
  */
 
 import java.util.InputMismatchException; //Prevents people like Samyar from intentionally throwing in bad inputs. Will be replaced.
-import java.util.Scanner; //Will be replaced
+
+import game.Handler;
+//import java.util.Scanner; //Will be replaced
 
 class Battle /*extends Interaction*/ {
   //Objects that need to be saved here
@@ -94,9 +96,11 @@ class Battle /*extends Interaction*/ {
   
   // BIGGO STRING
   private String outputText;
+  
+  private Handler handler;
 
 
-  Battle (PlayableCharacter player, NonPlayableCharacter opponent, Squad squad, Inventory inventory) {
+  Battle (PlayableCharacter player, NonPlayableCharacter opponent, Squad squad, Inventory inventory, Handler handler) {
     //Constructor that requires some math
     this.player = player; //Saves the player
     this.opponent = opponent; //Saves the opponent
@@ -166,6 +170,8 @@ class Battle /*extends Interaction*/ {
     opponentLoses = false;
     playerFled = false;
     this.battleTurns = 1;
+    
+    this.handler = handler;
   }
 
   public void changeCharacter(PlayableCharacter player) {
@@ -248,7 +254,7 @@ class Battle /*extends Interaction*/ {
       opponentStatBoost++;
       System.out.println(opponentName + "'s Speed Boost! Their speed increased!");
     }
-    Scanner input = new Scanner(System.in);
+    //Scanner input = new Scanner(System.in);
     //KeyBoardListener keyBoardListener = new KeyBoardListener();
     //Code below would probably have to be put in another method or loops
     int answer = 0;
@@ -263,9 +269,13 @@ class Battle /*extends Interaction*/ {
       System.out.println("Run (4)");
       do {
         try {
-          answer = input.nextInt();
+          answer = determineAnswer(handler);
+          if (answer != -1) {
+        	  	System.out.println(answer);
+          }
         } catch (InputMismatchException e) {
           //Forces the loop to run again
+        		System.out.println("false");
           answer = -1;
         }
       } while (answer < 1 || answer > 4);
@@ -277,7 +287,7 @@ class Battle /*extends Interaction*/ {
         }
         do {
           try {
-            answer = input.nextInt();
+            answer = determineAnswer(handler);
           } catch (InputMismatchException e) {
             answer = -1;
           }
@@ -355,7 +365,7 @@ class Battle /*extends Interaction*/ {
         System.out.println("Would you like to use an item (1/2)");
         do {
           try {
-            answer = input.nextInt();
+            answer = determineAnswer(handler);
           } catch (InputMismatchException e) {
             answer = -1;
           }
@@ -365,7 +375,7 @@ class Battle /*extends Interaction*/ {
           do {
             do {
               try {
-                answer = input.nextInt();
+                answer = determineAnswer(handler);
               } catch (InputMismatchException e) {
                 answer = -1;
               }
@@ -389,11 +399,11 @@ class Battle /*extends Interaction*/ {
       } else if (answer == 3) {
         //Check out the squad
         squad.displaySquad();
-        System.out.println();
+        System.out.println("");
         System.out.println("Would you like to switch in a squad member (1/2)");
         do {
           try {
-            answer = input.nextInt();
+            answer = determineAnswer(handler);
           } catch (InputMismatchException e) {
             answer = 20;
           }
@@ -404,7 +414,7 @@ class Battle /*extends Interaction*/ {
           do {
             do {
               try {
-                answer = input.nextInt();
+                answer = determineAnswer(handler);
               } catch (InputMismatchException e) {
                 answer = -1;
               }
@@ -474,7 +484,7 @@ class Battle /*extends Interaction*/ {
           squad.displaySquad();
           do {
             try {
-              answer = input.nextInt();
+              answer = determineAnswer(handler);
             } catch (InputMismatchException e) {
               answer = -1;
             }
@@ -491,7 +501,7 @@ class Battle /*extends Interaction*/ {
       } while (!exitLoop);
     }
     battleTurns++;
-    System.out.println();
+    System.out.println("");
   }
 
   public int determineOrder(Move playerMove, Move opponentMove) {
@@ -1150,6 +1160,27 @@ class Battle /*extends Interaction*/ {
   }
   
   public void setOutputText(String text) {
-	  this.outputText = text;
+	  //System.out.println(outputText);
+	  this.outputText = outputText + "\n" + text;
+  }
+  
+  public String getOutputText() {
+	  return outputText;
+  }
+  
+  public int determineAnswer(Handler handler) {
+	if (handler.getKeyManager().first) {
+		System.out.println("true");
+		return 1;
+	} else if (handler.getKeyManager().second) {
+		return 2;
+	} else if (handler.getKeyManager().third) {
+		return 3;
+	} else if (handler.getKeyManager().fourth) {
+		return 4;
+	} else {
+		return -1;
+	}
+	  
   }
 }
