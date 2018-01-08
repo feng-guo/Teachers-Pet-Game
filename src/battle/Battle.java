@@ -456,14 +456,36 @@ class Battle /*extends Interaction*/ {
       }
     } while (!exitLoop);
     exitLoop = false;
-    if (playerStatus != null) {
+    if (playerCurrentHealth > 0) {
+      if (playerHeldItem.equals("Starbucks Card") && playerCurrentHealth != playerHealth) {
+        if (playerCurrentHealth + playerHealth*0.06 > playerHealth) {
+          player.resetCurrentHealth();
+          playerHealth = player.getCurrentHealth();
+        } else {
+          player.changeCurrentHealth((int)(playerHealth*0.06));
+          playerCurrentHealth = player.getCurrentHealth();
+        }
+        System.out.println(playerName + " bought a Starbucks drink and recovered some health!");
+      }
+    }
+    if (opponentCurrentHealth > 0) {
+      if (opponentHeldItem.equals("Starbucks Card") && opponentCurrentHealth != opponentHealth) {
+        if (opponentCurrentHealth + opponentHealth*0.06 > opponentHealth) {
+          opponentCurrentHealth = opponentHealth;
+        } else {
+          opponentCurrentHealth += (int)(opponentHealth*0.06);
+        }
+        System.out.println(opponentName + " bought a Starbucks drink and recovered some health!");
+      }
+    }
+    if (playerStatus != null && playerCurrentHealth > 0) {
       if (playerStatus.equals("Burned")) {
         burnPerson(player);
       } else if (playerStatus.equals("Poisoned")) {
         poisonPerson(player);
       }
     }
-    if (opponentStatus != null) {
+    if (opponentStatus != null && opponentCurrentHealth > 0) {
       if (opponentStatus.equals("Burned")) {
         burnPerson(opponent);
       } else if (opponentStatus.equals("Poisoned")) {
