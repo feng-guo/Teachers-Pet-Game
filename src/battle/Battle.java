@@ -211,11 +211,11 @@ class Battle /*extends Interaction*/ {
   public void runBattle() {
     System.out.println("Turn number " + battleTurns);
     if (playerProtected) {
-      playerProtectChance = playerProtectChance / 2;
+      playerProtectChance /= 2;
       playerProtected = false;
     }
     if (opponentProtected) {
-      opponentProtectChance = opponentProtectChance / 2;
+      opponentProtectChance /= 2;
       opponentProtected = false;
     }
     if (playerStatus != null) {
@@ -230,7 +230,7 @@ class Battle /*extends Interaction*/ {
     }
     if (!playerAbilityTriggered && opponentStatBoost > -5) {
       if (playerAbility.equals("Demoralize")) {
-        opponentIntelligence = opponentIntelligence/2;
+        opponentIntelligence /= 2;
         opponentStatBoost--;
         System.out.println(opponentName + " is demoralized. Their intelligence fell!");
         playerAbilityTriggered = true;
@@ -238,19 +238,19 @@ class Battle /*extends Interaction*/ {
     }
     if (!opponentAbilityTriggered && playerStatBoost > -5) {
       if (opponentAbility.equals("Demoralize")) {
-        playerIntelligence = playerIntelligence/2;
+        playerIntelligence /= 2;
         playerStatBoost--;
         System.out.println(playerName + " is demoralized. Their intelligence fell!");
         opponentAbilityTriggered = true;
       }
     }
     if (playerAbility.equals("Speed Boost") && playerStatBoost < 5) {
-      playerSpeed = playerSpeed*2;
+      playerSpeed *= 2;
       playerStatBoost++;
       System.out.println(playerName + "'s Speed Boost! Their speed increased!");
     }
     if (opponentAbility.equals("Speed Boost") && opponentStatBoost < 5) {
-      opponentSpeed = opponentSpeed*2;
+      opponentSpeed *= 2;
       opponentStatBoost++;
       System.out.println(opponentName + "'s Speed Boost! Their speed increased!");
     }
@@ -723,10 +723,14 @@ class Battle /*extends Interaction*/ {
         if (additionalEffect instanceof HealthMove) {
           healthMove((HealthMove) additionalEffect, attacker);
         } else if (additionalEffect instanceof StatChangeMove) {
-          statChangeMove((StatChangeMove) additionalEffect, attacker * 2);
+          if (((StatChangeMove) additionalEffect).getTarget().equals("Self")) {
+            statChangeMove((StatChangeMove) additionalEffect, -attacker * 2);
+          } else {
+            statChangeMove((StatChangeMove) additionalEffect, attacker * 2);
+          }
         } else if (additionalEffect instanceof StatusMove) {
           if (((StatusMove) additionalEffect).getTarget().equals("Self")) {
-            statusMove((StatusMove) additionalEffect, attacker * 2);
+            statusMove((StatusMove) additionalEffect, -attacker * 2);
           } else {
             statusMove((StatusMove) additionalEffect, attacker * 2);
           }
@@ -842,10 +846,14 @@ class Battle /*extends Interaction*/ {
         if (additionalEffect instanceof HealthMove) {
           healthMove((HealthMove) additionalEffect, attacker);
         } else if (additionalEffect instanceof StatChangeMove) {
-          statChangeMove((StatChangeMove) additionalEffect, attacker * 2);
+          if (((StatChangeMove) additionalEffect).getTarget().equals("Self")) {
+            statChangeMove((StatChangeMove) additionalEffect, -attacker * 2);
+          } else {
+            statChangeMove((StatChangeMove) additionalEffect, attacker * 2);
+          }
         } else if (additionalEffect instanceof StatusMove) {
           if (((StatusMove) additionalEffect).getTarget().equals("Self")) {
-            statusMove((StatusMove) additionalEffect, attacker * 2);
+            statusMove((StatusMove) additionalEffect, -attacker * 2);
           } else {
             statusMove((StatusMove) additionalEffect, attacker * 2);
           }
@@ -906,9 +914,17 @@ class Battle /*extends Interaction*/ {
         if (additionalEffect instanceof HealthMove) {
           healthMove((HealthMove) additionalEffect, attacker);
         } else if (additionalEffect instanceof StatChangeMove) {
-          statChangeMove((StatChangeMove) additionalEffect, attacker * 2);
+          if (((StatChangeMove) additionalEffect).getTarget().equals("Self")) {
+            statChangeMove((StatChangeMove) additionalEffect, -attacker * 2);
+          } else {
+            statChangeMove((StatChangeMove) additionalEffect, attacker * 2);
+          }
         } else if (additionalEffect instanceof StatusMove) {
-          statusMove((StatusMove) additionalEffect, attacker * 2);
+          if (((StatusMove) additionalEffect).getTarget().equals("Self")) {
+            statusMove((StatusMove) additionalEffect, -attacker * 2);
+          } else {
+            statusMove((StatusMove) additionalEffect, attacker * 2);
+          }
         }
       }
     }
@@ -916,10 +932,12 @@ class Battle /*extends Interaction*/ {
 
   public void statusMove(StatusMove move, int attacker) {
     //A move that changes the status of the move.
+    boolean attackTriggered = false;
     if (Math.random() < move.getHitChance()) {
       //Checks hit chance
       if (attacker < 0) {
         if (!opponentProtected) {
+           attackTriggered = true;
           opponentStatus = move.getStatusEffect();
           if (move.getStatusEffect().equals("Sleep")) {
             System.out.println("The opponent fell asleep.");
@@ -931,6 +949,7 @@ class Battle /*extends Interaction*/ {
         }
       } else if (attacker > 0){
         if (!playerProtected) {
+          attackTriggered = true;
           player.setStatus(move.getStatusEffect());
           playerStatus = player.getStatus();
           if (move.getStatusEffect().equals("Sleep")) {
@@ -1182,5 +1201,23 @@ class Battle /*extends Interaction*/ {
 		return -1;
 	}
 	  
+  }
+
+  public void cureStatus(PlayableCharacter player){
+    player.resetStatus();
+    playerStatus = player.getStatus();
+  }
+
+  public void revive(PlayableCharacter character, HealItem item){
+    if(player.isFainted()){
+      if(item.getType().equals("Half revive")){
+        player.setCurrentHealth(playerHealth/2);
+      }else if(item.getType().equals("Full revive")){
+              player.resetCurrentHealth();
+      }
+      playerCurrentHealth = player.getCurrentHealth();
+      numberOfFaintedStudents--;
+      player.reviveCharacter();
+    }
   }
 }

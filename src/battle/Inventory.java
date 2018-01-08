@@ -69,7 +69,7 @@ class Inventory {
     }
 
     public Item getItem(String name) {
-        for (int i=0; i<inventory.size(); i++) {
+        for (int i = 0; i<inventory.size(); i++) {
             if (inventory.get(i).getName().equals(name)) {
                 return inventory.get(i);
             }
