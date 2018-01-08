@@ -16,12 +16,14 @@ class ListOfCharacters{
         String[] yashMoveNames = {"Quadratic Formula", "Chemistry Pun", "Dodge Homework", "TLAP"};
         String[] mishaMoveNames = {"Stack Overflow", "Argue", "Cry", "Write Garbage Code"};
         String[] johannMoveNames = {"Spam Calculator", "Quick Maths", "Work Out", "Not Study"};
+        String[] angelaMoveNames = {"Dissect Frog", "Drink Bubble Tea", "Splash Acid", "Chemistry Pun"};
         Move[] fengMoves = returnMoveArray(fengMoveNames);
         Move[] joyceMoves = returnMoveArray(joyceMoveNames);
         Move[] sihanMoves = returnMoveArray(sihanMoveNames);
         Move[] yashMoves = returnMoveArray(yashMoveNames);
         Move[] mishaMoves = returnMoveArray(mishaMoveNames);
         Move[] johannMoves = returnMoveArray(johannMoveNames);
+        Move[] angelaMoves = returnMoveArray(angelaMoveNames);
 
         //Movesets for nonplayable characters
         String[] mrChoiMoveNames = {"Trigonometry Test", "Olympiads Question", "Mark Test", "Quadratic Formula"};
@@ -38,7 +40,7 @@ class ListOfCharacters{
         characterList.add(new PlayableCharacter(30, 40, 30, 70, 30, "Science", "Yash", "[description]", yashMoves, "Relieve", null, null, null, null, null));
         characterList.add(new PlayableCharacter(80, 60, 80, 10, 70, "Math", "Johann", "[description]", johannMoves, "Extreme Luck", null, null, null, null, null));
         characterList.add(new PlayableCharacter(30, 40, 50, 40, 40, "Technology", "Misha", "[description]", mishaMoves, "Avoidant", null, null, null, null, null));
-
+        characterList.add(new PlayableCharacter(35, 40, 65, 75, 35, "Science", "Angela", "[description]", angelaMoves, "Protective", null, null, null, null, null));
         //List of nonplayable characters
         characterList.add(new NonPlayableCharacter(60, 30, 110, 70, 230, "Math", "Mr. Choi", "perabler", mrChoiMoves, 100, "Speed Boost", null));
         characterList.add(new NonPlayableCharacter(300, 50, 100, 30, 20, "Math", "Mr. Shim", "Let homework be your guide", mrShimMoves, 100, "Demoralize", null));

@@ -1,9 +1,13 @@
 package battle;
 
+<<<<<<< HEAD
 import java.awt.Color;
 import java.awt.Graphics;
 
 //Author @Feng
+=======
+//Author @Feng and now Yash + Sihan
+>>>>>>> 6203f8672d3400e8fbf5a69bbc1e8b64e3152137
 /* Battle classes are an object itself
  * Runs a loop in battle itself (To be added)
  * Need to add switching, inventory, fleeing, and move selection
@@ -57,7 +61,6 @@ class Battle /*extends Interaction*/ {
   private StatItem playerPantsItem;
   private StatItem playerShoesItem;
 
-  //NPC Stats. Same deal as above
   //NPC integer stats
   private int opponentHealth;
   private int opponentCurrentHealth;
@@ -96,18 +99,23 @@ class Battle /*extends Interaction*/ {
   private boolean opponenetFled;
   private String effectivenessText;
   private int battleTurns;
-  
+
   // BIGGO STRING
   private String outputText;
-  
+
   private Handler handler;
 
 
   Battle (PlayableCharacter player, NonPlayableCharacter opponent, Squad squad, Inventory inventory, Handler handler) {
+<<<<<<< HEAD
 	  
     //Constructor that requires some math
     this.player = player; //Saves the player
     this.opponent = opponent; //Saves the opponent
+=======
+    this.player = player;
+    this.opponent = opponent;
+>>>>>>> 6203f8672d3400e8fbf5a69bbc1e8b64e3152137
     this.playerInventory = inventory;
     this.squad = squad;
     this.handler = handler;
@@ -185,11 +193,11 @@ class Battle /*extends Interaction*/ {
     opponentLoses = false;
     playerFled = false;
     this.battleTurns = 1;
-    
+
     this.handler = handler;
   }
 
-  public void changeCharacter(PlayableCharacter player) {
+  private void changeCharacter(PlayableCharacter player) {
     this.player = player; //Updates the player
     //For switching out students
     //Integer stats
@@ -223,12 +231,20 @@ class Battle /*extends Interaction*/ {
   }
 
   //Fix this method
+<<<<<<< HEAD
   private int drawX, drawY;
   
   public void runBattle(Graphics g) {
 	  drawX = 20; 
 	  drawY = 20;
     g.drawString("Turn number " + battleTurns, drawX, drawY);
+=======
+  public void runBattle() {
+    //Turn number output should be its own string
+    System.out.println("Turn number " + battleTurns);
+
+    //Protect, status and ability handling
+>>>>>>> 6203f8672d3400e8fbf5a69bbc1e8b64e3152137
     if (playerProtected) {
       playerProtectChance /= 2;
       playerProtected = false;
@@ -273,12 +289,19 @@ class Battle /*extends Interaction*/ {
       opponentStatBoost++;
       g.drawString(opponentName + "'s Speed Boost! Their speed increased!", drawX, drawY);
     }
+<<<<<<< HEAD
     Scanner input = new Scanner(System.in);
+=======
+
+
+    //Scanner input = new Scanner(System.in);
+>>>>>>> 6203f8672d3400e8fbf5a69bbc1e8b64e3152137
     //KeyBoardListener keyBoardListener = new KeyBoardListener();
     //Code below would probably have to be put in another method or loops
-    int answer = 0;
+    int answer;
     boolean exitLoop = false;
     do {
+<<<<<<< HEAD
     	g.setColor(Color.black);
     	g.fillRect(0, 0, 200, 200);
       g.drawString(playerName + " " + playerCurrentHealth + "/" + playerHealth, drawX, drawY);
@@ -289,6 +312,19 @@ class Battle /*extends Interaction*/ {
       g.drawString("Squad (3)", drawX, drawY);
       g.drawString("Run (4)", drawX, drawY);
       System.out.println("boi");
+=======
+      //Displays the health of both opponents. This could be a string output too
+      System.out.println(playerName + " " + playerCurrentHealth + "/" + playerHealth);
+      System.out.println(opponentName + " " + opponentCurrentHealth + "/" + opponentHealth);
+      //Separate method for menu selection
+      System.out.println("What would you like to do");
+      System.out.println("Fight (1)");
+      System.out.println("Inventory (2)");
+      System.out.println("Squad (3)");
+      System.out.println("Run (4)");
+
+      //Takes user input
+>>>>>>> 6203f8672d3400e8fbf5a69bbc1e8b64e3152137
       do {
         try {
           answer = input.nextInt();
@@ -407,11 +443,25 @@ class Battle /*extends Interaction*/ {
               //Code to capture the opponent (another method please)
             } else if (item instanceof HealItem) {
               itemUsed = true;
-              //if statement to see what method should run (increase pp/hp, revive, cure status)
+              if(((HealItem) item).getType().equals("HP")){
+                  HP(player, (HealItem) item);
+              }else if(((HealItem) item).getType().equals("PP")){
+                  //yet to create method for this
+              } else if(((HealItem) item).getType().equals("Sleep") || ((HealItem) item).getType().equals("Burn") || ((HealItem) item).getType().equals("Poison") || ((HealItem) item).getType().equals("Stun")){
+                cureStatus(player, (HealItem)item);
+              } else if(((HealItem) item).getType().equals("Half revive") || ((HealItem) item).getType().equals("Full revive")){
+                revive(player, (HealItem)item);
+              }
               //ALL IN DIFFERENT METHODS (pp and hp can be same method)
             } else if (item instanceof StatItem) {
+<<<<<<< HEAD
               g.drawString("You can use that here!", drawX, drawY);
             }
+=======
+              System.out.println("You can use that here!");
+              useStatItem(player, (StatItem)item);
+              }
+>>>>>>> 6203f8672d3400e8fbf5a69bbc1e8b64e3152137
             if (itemUsed) {
               playerInventory.useItem(playerInventory.getItemName(answer));
             }
@@ -462,14 +512,36 @@ class Battle /*extends Interaction*/ {
       }
     } while (!exitLoop);
     exitLoop = false;
-    if (playerStatus != null) {
+    if (playerCurrentHealth > 0) {
+      if (playerHeldItem.equals("Starbucks Card") && playerCurrentHealth != playerHealth) {
+        if (playerCurrentHealth + playerHealth*0.06 > playerHealth) {
+          player.resetCurrentHealth();
+          playerHealth = player.getCurrentHealth();
+        } else {
+          player.changeCurrentHealth((int)(playerHealth*0.06));
+          playerCurrentHealth = player.getCurrentHealth();
+        }
+        System.out.println(playerName + " bought a Starbucks drink and recovered some health!");
+      }
+    }
+    if (opponentCurrentHealth > 0) {
+      if (opponentHeldItem.equals("Starbucks Card") && opponentCurrentHealth != opponentHealth) {
+        if (opponentCurrentHealth + opponentHealth*0.06 > opponentHealth) {
+          opponentCurrentHealth = opponentHealth;
+        } else {
+          opponentCurrentHealth += (int)(opponentHealth*0.06);
+        }
+        System.out.println(opponentName + " bought a Starbucks drink and recovered some health!");
+      }
+    }
+    if (playerStatus != null && playerCurrentHealth > 0) {
       if (playerStatus.equals("Burned")) {
         burnPerson(player);
       } else if (playerStatus.equals("Poisoned")) {
         poisonPerson(player);
       }
     }
-    if (opponentStatus != null) {
+    if (opponentStatus != null && opponentCurrentHealth > 0) {
       if (opponentStatus.equals("Burned")) {
         burnPerson(opponent);
       } else if (opponentStatus.equals("Poisoned")) {
@@ -525,7 +597,7 @@ class Battle /*extends Interaction*/ {
     g.drawString("", drawX, drawY);
   }
 
-  public int determineOrder(Move playerMove, Move opponentMove) {
+  private int determineOrder(Move playerMove, Move opponentMove) {
     int tempPlayerSpeed = playerSpeed;
     if (opponentAbility.equals("Unaware")) {
       tempPlayerSpeed = player.getSpeed();
@@ -565,7 +637,11 @@ class Battle /*extends Interaction*/ {
     }
   }
 
+<<<<<<< HEAD
   public void determineAttackType(Move move, Character user, Graphics g) {
+=======
+  private void determineAttackType(Move move, Character user) {
+>>>>>>> 6203f8672d3400e8fbf5a69bbc1e8b64e3152137
     int attacker = 0; //Needs to be initialized
     //This code determines who is attacking
     //-1 is the player, 1 is the opponent
@@ -579,7 +655,11 @@ class Battle /*extends Interaction*/ {
     if (move instanceof AttackMove) {
       attackMove((AttackMove) move, attacker, g);
     } else if (move instanceof ProtectMove) {
+<<<<<<< HEAD
       protectMove((ProtectMove)move, attacker, g);
+=======
+      protectMove(attacker);
+>>>>>>> 6203f8672d3400e8fbf5a69bbc1e8b64e3152137
     } else if (move instanceof HealthMove) {
       healthMove((HealthMove) move, attacker, g);
     } else if (move instanceof StatChangeMove) {
@@ -599,11 +679,53 @@ class Battle /*extends Interaction*/ {
       } else {
         statusMove((StatusMove)move, attacker, g);
       }
+    } else if (move instanceof  SleepTalkMove) {
+      if (attacker == -1) {
+        if (playerStatus != null) {
+          if (playerStatus.equals("Sleep")) {
+            boolean attackTrue = false;
+            do {
+              int randomMove = (int) Math.random()*4;
+              if (!(player.getMove(randomMove) instanceof SleepTalkMove)) {
+                Move moveUsed = player.getMove(randomMove);
+                attackTrue = true;
+                determineAttackType(moveUsed, player);
+              }
+            } while (!attackTrue);
+          } else {
+            System.out.println("The move failed!");
+          }
+        } else {
+          System.out.println("The move failed!");
+        }
+      } else if (attacker == 1) {
+        if (opponentStatus != null) {
+          if (opponentStatus.equals("Sleep")) {
+            boolean attackTrue = false;
+            do {
+              int randomMove = (int) Math.random()*4;
+              if (!(opponent.getMove(randomMove) instanceof SleepTalkMove)) {
+                Move moveUsed = opponent.getMove(randomMove);
+                attackTrue = true;
+                determineAttackType(moveUsed, opponent);
+              }
+            } while (!attackTrue);
+          } else {
+            System.out.println("The move failed!");
+          }
+        } else {
+          System.out.println("The move failed!");
+        }
+      }
     }
   }
 
+<<<<<<< HEAD
   //Finish this method
   public void attackMove (AttackMove move, int attacker, Graphics g) {
+=======
+  private void attackMove(AttackMove move, int attacker) {
+>>>>>>> 6203f8672d3400e8fbf5a69bbc1e8b64e3152137
     int attackerStatUsed = 0; //Determines whether attack or intelligence is used
     int defence = 0; //Determines whose defence to use
     double multiplier; //Multiplier for typing, status effects and STAB
@@ -651,8 +773,10 @@ class Battle /*extends Interaction*/ {
     int damageDealt;
     damageDealt = (int)(Math.ceil((move.getPower() * (attackerStatUsed/defence+1))/10) * multiplier);
 
+    double determineHit = Math.random();
     //Factors in the clown ability
     //I should probably throw this into another method after we add a lot of abilities
+<<<<<<< HEAD
     if (playerAbility.equals("Clown") && attacker == 1) {
       if (Math.random() < 0.25) {
         damageDealt = damageDealt/2;
@@ -662,11 +786,36 @@ class Battle /*extends Interaction*/ {
       if (Math.random() < 0.25) {
         damageDealt = damageDealt/2;
         g.drawString(opponentName + " is clowning around.", drawX, drawY);
+=======
+    if (attacker == 1) {
+      if (playerAbility.equals("Clown")) {
+        if (Math.random() < 0.25) {
+          damageDealt = damageDealt / 2;
+          System.out.println(playerName + " is clowning around.");
+        }
+      } else if (playerAbility.equals("Avoidant")) {
+        determineHit *= 4;
+      }
+      if (opponentAbility.equals("Extreme Luck")) {
+        determineHit /= 2;
+      }
+    } else if (attacker == -1) {
+      if (opponentAbility.equals("Clown")) {
+        if (Math.random() < 0.25) {
+          damageDealt = damageDealt / 2;
+          System.out.println(opponentName + " is clowning around.");
+        }
+      } else if (opponentAbility.equals("Avoidant")) {
+        determineHit *= 4;
+      }
+      if (opponentAbility.equals("Extreme Luck")) {
+        determineHit /= 2;
+>>>>>>> 6203f8672d3400e8fbf5a69bbc1e8b64e3152137
       }
     }
 
     //Add code to have more stuff when a student faints
-    if (Math.random() < move.getHitChance()) {
+    if (determineHit < move.getHitChance()) {
       //Determines whether the attack hits or not
       if (attacker == -1) {
         if (!opponentProtected) {
@@ -683,6 +832,7 @@ class Battle /*extends Interaction*/ {
             if (opponentCurrentHealth < opponentHealth / 4 && !opponentAbilityTriggered) {
               switch (opponentAbility) {
                 case "Persistent":
+<<<<<<< HEAD
                   opponentDefence = opponentDefence * 2;
                   g.drawString("The opponent is persistent!", drawX, drawY);
                   g.drawString("Opponent defence rose sharply!", drawX, drawY);
@@ -692,6 +842,25 @@ class Battle /*extends Interaction*/ {
                   opponentIntelligence = opponentIntelligence * 2;
                   g.drawString("The opponent is distressed!", drawX, drawY);
                   g.drawString("Player intelligence rose sharply!", drawX, drawY);
+=======
+                  opponentDefence *= 2;
+                  System.out.println(opponentName + " is persistent!");
+                  System.out.println(opponentName + "'s defence rose sharply!");
+                  opponentAbilityTriggered = true;
+                  break;
+                case "Distressed":
+                  opponentIntelligence *= 2;
+                  System.out.println(opponentName + " is distressed!");
+                  System.out.println(opponentName + "'s intelligence rose sharply!");
+                  opponentAbilityTriggered = true;
+                  break;
+                case "Protective":
+                  opponentSpeed *= 2;
+                  opponentAttack *= 2;
+                  System.out.println(opponentName + " is protective!");
+                  System.out.println(opponentName + "'s speed rose sharply!");
+                  System.out.println(opponentName + "'s attack rose sharply!");
+>>>>>>> 6203f8672d3400e8fbf5a69bbc1e8b64e3152137
                   opponentAbilityTriggered = true;
                   break;
               }
@@ -715,6 +884,7 @@ class Battle /*extends Interaction*/ {
             if (playerCurrentHealth < playerHealth / 4 && !playerAbilityTriggered) {
               switch (playerAbility) {
                 case "Persistent":
+<<<<<<< HEAD
                   playerDefence = playerDefence * 2;
                   g.drawString("The player is persistent!", drawX, drawY);
                   g.drawString("Player defence rose sharply!", drawX, drawY);
@@ -724,6 +894,25 @@ class Battle /*extends Interaction*/ {
                   playerIntelligence = playerIntelligence * 2;
                   g.drawString("The player is distressed!", drawX, drawY);
                   g.drawString("Player intelligence rose sharply!", drawX, drawY);
+=======
+                  playerDefence *= 2;
+                  System.out.println(playerName + " is persistent!");
+                  System.out.println(playerName + "'s defence rose sharply!");
+                  playerAbilityTriggered = true;
+                  break;
+                case "Distressed":
+                  playerIntelligence *= 2;
+                  System.out.println(playerName + " is distressed!");
+                  System.out.println(playerName + "'s intelligence rose sharply!");
+                  playerAbilityTriggered = true;
+                  break;
+                case "Protective":
+                  playerSpeed *= 2;
+                  playerAttack *= 2;
+                  System.out.println(playerName + " is protective!");
+                  System.out.println(playerName + "'s speed rose sharply!");
+                  System.out.println(playerName + "'s attack rose sharply!");
+>>>>>>> 6203f8672d3400e8fbf5a69bbc1e8b64e3152137
                   playerAbilityTriggered = true;
                   break;
               }
@@ -737,10 +926,26 @@ class Battle /*extends Interaction*/ {
       g.drawString("The move missed!", drawX, drawY);
     }
 
+    double determineAdditionalHit = Math.random();
+    if (attacker == 1) {
+      if (playerAbility.equals("Avoidant")) {
+        determineAdditionalHit *= 4;
+      }
+      if (opponentAbility.equals("Extreme Luck")) {
+        determineAdditionalHit /= 2;
+      }
+    } else if (attacker == -1) {
+      if (opponentAbility.equals("Avoidant")) {
+        determineAdditionalHit *= 4;
+      }
+      if (opponentAbility.equals("Extreme Luck")) {
+        determineAdditionalHit /= 2;
+      }
+    }
     //Additional effect of moves
     if (move.getAdditionalEffect() != null && attackTriggered) {
       Move additionalEffect = move.getAdditionalEffect();
-      if (Math.random() < additionalEffect.getHitChance()) {
+      if (determineAdditionalHit < additionalEffect.getHitChance()) {
         if (additionalEffect instanceof HealthMove) {
           healthMove((HealthMove) additionalEffect, attacker, g);
         } else if (additionalEffect instanceof StatChangeMove) {
@@ -760,7 +965,11 @@ class Battle /*extends Interaction*/ {
     }
   }
 
+<<<<<<< HEAD
   public void protectMove (ProtectMove move, int attacker, Graphics g) {
+=======
+  private void protectMove(int attacker) {
+>>>>>>> 6203f8672d3400e8fbf5a69bbc1e8b64e3152137
     if (attacker == -1) {
       if (Math.random() < playerProtectChance) {
         playerProtected = true;
@@ -776,15 +985,40 @@ class Battle /*extends Interaction*/ {
     }
   }
 
+<<<<<<< HEAD
   public void statChangeMove(StatChangeMove move, int attacker, Graphics g) {
+=======
+  private void statChangeMove(StatChangeMove move, int attacker) {
+>>>>>>> 6203f8672d3400e8fbf5a69bbc1e8b64e3152137
     //This code is for moves that only change the stats of the opposing person
     boolean attackTriggered = false;
-    if (Math.random() < move.getHitChance()) {
+    double determineHit = Math.random();
+    if (attacker == 1) {
+      if (playerAbility.equals("Avoidant")) {
+        determineHit *= 4;
+      }
+      if (opponentAbility.equals("Extreme Luck")) {
+        determineHit /= 2;
+      }
+    } else if (attacker == -1) {
+      if (opponentAbility.equals("Avoidant")) {
+        determineHit *= 4;
+      }
+      if (opponentAbility.equals("Extreme Luck")) {
+        determineHit /= 2;
+      }
+    }
+    if (move.getTarget().equals("Self")) {
+      determineHit = -1;
+    }
+
+    if (determineHit < move.getHitChance()) {
       //Determines whether or not the attack lands
       if (attacker < 0 && !opponentProtected) {
         attackTriggered = true;
         if (opponentStatBoost>-5 && move.getTarget().equals("Opponent")) {
           if (move.getStatType().equals("Attack")) {
+<<<<<<< HEAD
             opponentAttack = opponentAttack / move.getMultiplier();
             g.drawString(opponentName + "'s attack fell!", drawX, drawY);
           } else if (move.getStatType().equals("Intelligence")) {
@@ -796,10 +1030,24 @@ class Battle /*extends Interaction*/ {
           } else if (move.getStatType().equals("Speed")) {
             opponentSpeed = opponentSpeed / move.getMultiplier();
             g.drawString(opponentName + "'s speed fell!", drawX, drawY);
+=======
+            opponentAttack /= move.getMultiplier();
+            System.out.println(opponentName + "'s attack fell!");
+          } else if (move.getStatType().equals("Intelligence")) {
+            opponentIntelligence /= move.getMultiplier();
+            System.out.println(opponentName + "'s intelligence fell!");
+          } else if (move.getStatType().equals("Defence")) {
+            opponentDefence /= move.getMultiplier();
+            System.out.println(opponentName + "'s defence fell!");
+          } else if (move.getStatType().equals("Speed")) {
+            opponentSpeed /= move.getMultiplier();
+            System.out.println(opponentName + "'s speed fell!");
+>>>>>>> 6203f8672d3400e8fbf5a69bbc1e8b64e3152137
           }
           opponentStatBoost--;
         } else if (opponentStatBoost<5 && move.getTarget().equals("Self")) {
           if (move.getStatType().equals("Attack")) {
+<<<<<<< HEAD
             opponentAttack = opponentAttack * move.getMultiplier();
             g.drawString(opponentName + "'s attack increased!", drawX, drawY);
           } else if (move.getStatType().equals("Intelligence")) {
@@ -811,6 +1059,19 @@ class Battle /*extends Interaction*/ {
           } else if (move.getStatType().equals("Speed")) {
             opponentSpeed = opponentSpeed * move.getMultiplier();
             g.drawString(opponentName + "'s speed increased!", drawX, drawY);
+=======
+            opponentAttack *= move.getMultiplier();
+            System.out.println(opponentName + "'s attack increased!");
+          } else if (move.getStatType().equals("Intelligence")) {
+            opponentIntelligence *= move.getMultiplier();
+            System.out.println(opponentName + "'s intelligence increased!");
+          } else if (move.getStatType().equals("Defence")) {
+            opponentDefence *= move.getMultiplier();
+            System.out.println(opponentName + "'s defence increased!");
+          } else if (move.getStatType().equals("Speed")) {
+            opponentSpeed *= move.getMultiplier();
+            System.out.println(opponentName + "'s speed increased!");
+>>>>>>> 6203f8672d3400e8fbf5a69bbc1e8b64e3152137
           }
           opponentStatBoost++;
         } else if (opponentProtected) {
@@ -822,6 +1083,7 @@ class Battle /*extends Interaction*/ {
         attackTriggered = true;
         if (playerStatBoost>-5 && move.getTarget().equals("Opponent")) {
           if (move.getStatType().equals("Attack")) {
+<<<<<<< HEAD
             playerAttack = playerAttack / move.getMultiplier();
             g.drawString(playerName + "'s attack fell!", drawX, drawY);
           } else if (move.getStatType().equals("Intelligence")) {
@@ -833,10 +1095,24 @@ class Battle /*extends Interaction*/ {
           } else if (move.getStatType().equals("Speed")) {
             playerSpeed = playerSpeed / move.getMultiplier();
             g.drawString(playerName + "'s speed fell!", drawX, drawY);
+=======
+            playerAttack /= move.getMultiplier();
+            System.out.println(playerName + "'s attack fell!");
+          } else if (move.getStatType().equals("Intelligence")) {
+            playerIntelligence /= move.getMultiplier();
+            System.out.println(playerName + "'s intelligence fell!");
+          } else if (move.getStatType().equals("Defence")) {
+            playerDefence /= move.getMultiplier();
+            System.out.println(playerName + "'s defence fell!");
+          } else if (move.getStatType().equals("Speed")) {
+            playerSpeed /= move.getMultiplier();
+            System.out.println(playerName + "'s speed fell!");
+>>>>>>> 6203f8672d3400e8fbf5a69bbc1e8b64e3152137
           }
           playerStatBoost--;
         } else if (playerStatBoost<5 && move.getTarget().equals("Self")) {
           if (move.getStatType().equals("Attack")) {
+<<<<<<< HEAD
             playerAttack = playerAttack * move.getMultiplier();
             g.drawString(playerName + "'s attack increased!", drawX, drawY);
           } else if (move.getStatType().equals("Intelligence")) {
@@ -848,22 +1124,49 @@ class Battle /*extends Interaction*/ {
           } else if (move.getStatType().equals("Speed")) {
             playerSpeed = playerSpeed * move.getMultiplier();
             g.drawString(playerName + "'s speed increased!", drawX, drawY);
+=======
+            playerAttack *= move.getMultiplier();
+            System.out.println(playerName + "'s attack increased!");
+          } else if (move.getStatType().equals("Intelligence")) {
+            playerIntelligence *= move.getMultiplier();
+            System.out.println(playerName + "'s intelligence increased!");
+          } else if (move.getStatType().equals("Defence")) {
+            playerDefence *= move.getMultiplier();
+            System.out.println(playerName + "'s defence increased!");
+          } else if (move.getStatType().equals("Speed")) {
+            playerSpeed *= move.getMultiplier();
+            System.out.println(playerName + "'s speed increased!");
+>>>>>>> 6203f8672d3400e8fbf5a69bbc1e8b64e3152137
           }
           playerStatBoost++;
         } else {
           g.drawString("The stat cannot be changed anymore!", drawX, drawY);
         }
       }
-    } else if (attacker%2 == 0){
-      //Empty else if
-      //This else if is for an attack with a secondary effect.
     } else {
       g.drawString("The move missed!", drawX, drawY);
     }
 
+    double determineAdditionalHit = Math.random();
+    if (attacker == 1) {
+      if (playerAbility.equals("Avoidant")) {
+        determineAdditionalHit *= 4;
+      }
+      if (opponentAbility.equals("Extreme Luck")) {
+        determineAdditionalHit /= 2;
+      }
+    } else if (attacker == -1) {
+      if (opponentAbility.equals("Avoidant")) {
+        determineAdditionalHit *= 4;
+      }
+      if (opponentAbility.equals("Extreme Luck")) {
+        determineAdditionalHit /= 2;
+      }
+    }
+
     if (move.getAdditionalEffect() != null && attackTriggered) {
       Move additionalEffect = move.getAdditionalEffect();
-      if (Math.random() < additionalEffect.getHitChance()) {
+      if (determineAdditionalHit < additionalEffect.getHitChance()) {
         if (additionalEffect instanceof HealthMove) {
           healthMove((HealthMove) additionalEffect, attacker, g);
         } else if (additionalEffect instanceof StatChangeMove) {
@@ -883,10 +1186,14 @@ class Battle /*extends Interaction*/ {
     }
   }
 
+<<<<<<< HEAD
   public void healthMove(HealthMove move, int attacker, Graphics g) {
+=======
+  private void healthMove(HealthMove move, int attacker) {
+>>>>>>> 6203f8672d3400e8fbf5a69bbc1e8b64e3152137
     //Doesn't check hit chance because self healing is 100% successful
     if (attacker == -1) {
-      if (move.getHeal() != -2) {
+      if (move.getHeal() > 0) {
         if (playerCurrentHealth + move.getHeal() > playerHealth) {
           player.resetCurrentHealth();
           playerCurrentHealth = player.getCurrentHealth();
@@ -907,7 +1214,7 @@ class Battle /*extends Interaction*/ {
         playerCurrentHealth = player.getCurrentHealth();
       }
     } else if (attacker == 1) {
-      if (move.getHeal() != -2) {
+      if (move.getHeal() > 0) {
         if (opponentCurrentHealth + move.getHeal() > opponentHealth) {
           opponent.resetCurrentHealth();
           opponentCurrentHealth = opponent.getCurrentHealth();
@@ -929,9 +1236,20 @@ class Battle /*extends Interaction*/ {
       }
     }
 
+    double determineAddtionalHit = Math.random();
+    if (attacker == 1) {
+      if (opponentAbility.equals("Extreme Luck")) {
+        determineAddtionalHit /= 2;
+      }
+    } else if (attacker == -1) {
+      if (opponentAbility.equals("Extreme Luck")) {
+        determineAddtionalHit /= 2;
+      }
+    }
+
     if (move.getAdditionalEffect() != null) {
       Move additionalEffect = move.getAdditionalEffect();
-      if (Math.random() < additionalEffect.getHitChance()) {
+      if (determineAddtionalHit < additionalEffect.getHitChance()) {
         if (additionalEffect instanceof HealthMove) {
           healthMove((HealthMove) additionalEffect, attacker, g);
         } else if (additionalEffect instanceof StatChangeMove) {
@@ -951,14 +1269,39 @@ class Battle /*extends Interaction*/ {
     }
   }
 
+<<<<<<< HEAD
   public void statusMove(StatusMove move, int attacker, Graphics g) {
+=======
+  private void statusMove(StatusMove move, int attacker) {
+>>>>>>> 6203f8672d3400e8fbf5a69bbc1e8b64e3152137
     //A move that changes the status of the move.
-    boolean attackTriggered = false;
-    if (Math.random() < move.getHitChance()) {
+    //In a move, the status will always come last. Status moves will not have an additional effect.
+    double determineHit = Math.random();
+    if (attacker == 1) {
+      if (playerAbility.equals("Avoidant")) {
+        determineHit *= 4;
+      }
+      if (opponentAbility.equals("Extreme Luck")) {
+        determineHit /= 2;
+      }
+    } else if (attacker == -1) {
+      if (opponentAbility.equals("Avoidant")) {
+        determineHit *= 4;
+      }
+      if (opponentAbility.equals("Extreme Luck")) {
+        determineHit /= 2;
+      }
+    }
+
+    if (move.getTarget().equals("Self")) {
+      //A move against themselves will never miss.
+      determineHit = -1;
+    }
+
+    if (determineHit < move.getHitChance()) {
       //Checks hit chance
       if (attacker < 0) {
         if (!opponentProtected) {
-           attackTriggered = true;
           opponentStatus = move.getStatusEffect();
           if (move.getStatusEffect().equals("Sleep")) {
             g.drawString("The opponent fell asleep.", drawX, drawY);
@@ -970,7 +1313,6 @@ class Battle /*extends Interaction*/ {
         }
       } else if (attacker > 0){
         if (!playerProtected) {
-          attackTriggered = true;
           player.setStatus(move.getStatusEffect());
           playerStatus = player.getStatus();
           if (move.getStatusEffect().equals("Sleep")) {
@@ -987,7 +1329,7 @@ class Battle /*extends Interaction*/ {
     }
   }
 
-  public double determineMultiplier(int attacker, AttackMove move) {
+  private double determineMultiplier(int attacker, AttackMove move) {
     double multiplier = 1; //Initially starts off at 1
     //This following code determines type effectiveness
     //Math is effective against english, ineffective against science
@@ -1089,7 +1431,7 @@ class Battle /*extends Interaction*/ {
     return multiplier;
   }
 
-  public void burnPerson(Character person) {
+  private void burnPerson(Character person) {
     double burn;
     if (person instanceof PlayableCharacter) {
       burn = playerHealth/12;
@@ -1111,7 +1453,7 @@ class Battle /*extends Interaction*/ {
     }
   }
 
-  public void poisonPerson(Character person) {
+  private void poisonPerson(Character person) {
     double poison;
     if (person instanceof PlayableCharacter) {
       poison = playerHealth/15 * playerStatusTurns;
@@ -1133,16 +1475,24 @@ class Battle /*extends Interaction*/ {
     }
   }
 
+<<<<<<< HEAD
   public void attemptWakeUp(Character person, Graphics g) {
+=======
+  private void attemptWakeUp(Character person) {
+    double wakeUpChance = Math.random();
+    if (person.getAbility().equals("Extreme Luck")) {
+      wakeUpChance/= 2;
+    }
+>>>>>>> 6203f8672d3400e8fbf5a69bbc1e8b64e3152137
     if (person instanceof PlayableCharacter) {
-      if (Math.random() < 0.1 || playerStatusTurns > 5) {
+      if (wakeUpChance < 0.1 || playerStatusTurns > 5) {
         playerStatus = null;
         playerStatusTurns = 0;
         player.setStatus(null);
         g.drawString(playerName + " woke up.", drawX, drawY);
       }
     } else if (person instanceof NonPlayableCharacter) {
-      if (Math.random() < 0.1 || opponentStatusTurns > 5) {
+      if (wakeUpChance < 0.1 || opponentStatusTurns > 5) {
         opponentStatus = null;
         opponentStatusTurns = 0;
         g.drawString(opponentName + " woke up.", drawX, drawY);
@@ -1150,7 +1500,7 @@ class Battle /*extends Interaction*/ {
     }
   }
 
-  public int determineOpponentMove() {
+  private int determineOpponentMove() {
     return (int)(Math.random()*4);
   }
 
@@ -1198,16 +1548,16 @@ class Battle /*extends Interaction*/ {
   public String getPlayerName() {
     return playerName;
   }
-  
+
   public void setOutputText(String text) {
 	  //g.drawString(outputText);
 	  this.outputText = outputText + "\n" + text;
   }
-  
+
   public String getOutputText() {
 	  return outputText;
   }
-  
+
   public int determineAnswer(Handler handler) {
 	if (handler.getKeyManager().first) {
 		return 1;
@@ -1220,23 +1570,62 @@ class Battle /*extends Interaction*/ {
 	} else {
 		return -1;
 	}
+<<<<<<< HEAD
+=======
+
   }
 
-  public void cureStatus(PlayableCharacter player){
-    player.resetStatus();
-    playerStatus = player.getStatus();
+  public void HP(PlayableCharacter player, HealItem item){
+    if(playerHealth - player.getCurrentHealth() >= item.getChange()) {
+      player.changeCurrentHealth(item.getChange());
+    }else{
+      player.setCurrentHealth(playerHealth);
+    }
+    playerCurrentHealth = player.getCurrentHealth();
+>>>>>>> 6203f8672d3400e8fbf5a69bbc1e8b64e3152137
   }
 
+
+  public void cureStatus(PlayableCharacter player, HealItem item){
+      if(item.getType().equals(playerStatus)){
+          player.resetStatus();
+          playerStatus = player.getStatus();
+      }
+  }
+
+<<<<<<< HEAD
   public void revive(PlayableCharacter character, HealItem item){
     if(player.isFainted()){
       if(item.getType().equals("Half revive")){
         player.setCurrentHealth(playerHealth / 2);
       }else if(item.getType().equals("Full revive")){
               player.resetCurrentHealth();
+=======
+  public void revive(PlayableCharacter player, HealItem item){
+    if (player.isFainted()) {
+      if(item.getType().equals("Half revive")) {
+        player.setCurrentHealth(playerHealth/2);
+      } else if(item.getType().equals("Full revive")) {
+        player.resetCurrentHealth();
+>>>>>>> 6203f8672d3400e8fbf5a69bbc1e8b64e3152137
       }
       playerCurrentHealth = player.getCurrentHealth();
       numberOfFaintedStudents--;
       player.reviveCharacter();
     }
+  }
+
+  public void useStatItem(PlayableCharacter player, StatItem item){
+      if(item.getStatAffected().equals("Speed")){
+          playerSpeed *= item.getMultiplier();
+      }else if(item.getStatAffected().equals("Attack")){
+          playerAttack *= item.getMultiplier();
+      }else if(item.getStatAffected().equals("Defense")){
+          playerDefence *= item.getMultiplier();
+      }else if(item.getStatAffected().equals("Intelligence")){
+          playerIntelligence *= item.getMultiplier();
+      }else if(item.getStatAffected().equals("Health")){
+          playerCurrentHealth += playerHealth * item.getMultiplier();
+      }
   }
 }
