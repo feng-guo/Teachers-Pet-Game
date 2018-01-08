@@ -1,5 +1,7 @@
 package battle;
 
+import java.awt.Graphics;
+
 import game.Handler;
 
 /* Please ignore this file
@@ -19,7 +21,8 @@ public class BattleTester {
 		this.handler = handler;
 	}
     
-	public void simulateBattle(){
+	public void simulateBattle(Graphics g){
+		System.out.println("here");
     	
         ListOfCharacters characterList = new ListOfCharacters();
         ListOfInventoryItems inventoryItems = new ListOfInventoryItems();
@@ -63,8 +66,8 @@ public class BattleTester {
         }
         Battle battle = new Battle(squad.getCharacter(0), opponent, squad, inventory, handler);
         do {
-            battle.runBattle();
-            finalText = battle.getOutputText();
+            battle.runBattle(g);
+            //finalText = battle.getOutputText();
         } while (!battle.isBattleEnd());
 
         /*
