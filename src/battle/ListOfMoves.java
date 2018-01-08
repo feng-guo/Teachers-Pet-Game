@@ -8,12 +8,12 @@ public class ListOfMoves {
     ListOfMoves () {
         moveList = new ArrayList<Move>();
         //Basic moves
-        Move selfSleep = new StatusMove("SelfSleep", 1.0, "Neutral", "Sleep", 100, 0, "Self");
+        Move selfSleep = new StatusMove("SelfSleep", 4.0, "Neutral", "Sleep", 100, 0, "Self");
         Move randomBurn50 = new StatusMove("randomBurn50", 0.5, "Neutral", "Burn", 100, 0, "Random");
         Move opponentBurn75 = new StatusMove("opponentBurn75", 0.75, "Neutral", "Burn", 100, 0, "Opponent");
-        Move doubleUserDefence = new StatChangeMove("doubleUserDefence", 1.0, "Neutral", 2, "Defence", 100, 0, "Self");
-        Move doubleUserIntelligence = new StatChangeMove("doubleUserIntelligence", 1.0, "Neutral", 2, "Intelligence", 100, 0, "Self");
-        Move doubleUserSpeed = new StatChangeMove("doubleUserSpeed", 1.0, "Neutral", 2, "Speed", 100, 0, "Self");
+        Move doubleUserDefence = new StatChangeMove("doubleUserDefence", 4.0, "Neutral", 2, "Defence", 100, 0, "Self");
+        Move doubleUserIntelligence = new StatChangeMove("doubleUserIntelligence", 4.0, "Neutral", 2, "Intelligence", 100, 0, "Self");
+        Move doubleUserSpeed = new StatChangeMove("doubleUserSpeed", 4.0, "Neutral", 2, "Speed", 100, 0, "Self");
         Move halveOpponentDefence10 = new StatChangeMove("halveOpponentDefence10", 0.1, "Neutral", 2, "Defence", 100, 0, "Opponent");
         Move halveOpponentIntelligence10 = new StatChangeMove("halveOpponentIntelligence10", 0.1, "Neutral", 2, "Intelligence", 100, 0, "Opponent");
         //neutral
