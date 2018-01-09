@@ -101,16 +101,17 @@ class Battle /*extends Interaction*/ {
   private String outputText;
 
   private Handler handler;
-  private Graphics g;
+  private states.UpdateBattleText textUpdater;
 
 
-  Battle (PlayableCharacter player, NonPlayableCharacter opponent, Squad squad, Inventory inventory, Handler handler, Graphics g) {
+  Battle (PlayableCharacter player, NonPlayableCharacter opponent, Squad squad, Inventory inventory, Handler handler, states.UpdateBattleText textUpdater) {
     //Constructor that requires some math
     this.player = player; //Saves the player
     this.opponent = opponent; //Saves the opponent
     this.playerInventory = inventory;
     this.squad = squad;
     this.handler = handler;
+    this.textUpdater = textUpdater;
     
     /*
     The reason why I save the variables here is because the stats in battles are reset once the battle ends
@@ -197,9 +198,6 @@ class Battle /*extends Interaction*/ {
     opponentLoses = false;
     playerFled = false;
     this.battleTurns = 1;
-
-    this.handler = handler;
-    this.g = g;
   }
 
   private void changeCharacter(PlayableCharacter player) {
@@ -253,8 +251,8 @@ class Battle /*extends Interaction*/ {
       drawX = 20;
 	  drawY = 20;
       //Turn number output should be its own string
-      g.drawString("Turn number " + battleTurns, drawX, drawY);
-
+      textUpdater.updateString("Turn number " + battleTurns, drawX, drawY);
+      textUpdater.tick();
 
     //Protect, status and ability handling
     if (playerProtected) {
@@ -279,7 +277,7 @@ class Battle /*extends Interaction*/ {
       if (playerAbility.equals("Demoralize")) {
         opponentIntelligence /= 2;
         opponentStatBoost--;
-        g.drawString(opponentName + " is demoralized. Their intelligence fell!", drawX, drawY);
+        textUpdater.updateString(opponentName + " is demoralized. Their intelligence fell!", drawX, drawY);
         playerAbilityTriggered = true;
       }
     }
@@ -287,35 +285,35 @@ class Battle /*extends Interaction*/ {
       if (opponentAbility.equals("Demoralize")) {
         playerIntelligence /= 2;
         playerStatBoost--;
-        g.drawString(playerName + " is demoralized. Their intelligence fell!", drawX, drawY);
+        textUpdater.updateString(playerName + " is demoralized. Their intelligence fell!", drawX, drawY);
         opponentAbilityTriggered = true;
       }
     }
     if (playerAbility.equals("Speed Boost") && playerStatBoost < 5) {
       playerSpeed *= 2;
       playerStatBoost++;
-      g.drawString(playerName + "'s Speed Boost! Their speed increased!", drawX, drawY);
+      textUpdater.updateString(playerName + "'s Speed Boost! Their speed increased!", drawX, drawY);
     }
     if (opponentAbility.equals("Speed Boost") && opponentStatBoost < 5) {
       opponentSpeed *= 2;
       opponentStatBoost++;
-      g.drawString(opponentName + "'s Speed Boost! Their speed increased!", drawX, drawY);
+      textUpdater.updateString(opponentName + "'s Speed Boost! Their speed increased!", drawX, drawY);
     }
 
     //Code below would probably have to be put in another method or loops
     int answer;
     boolean exitLoop = false;
     do {
-        g.setColor(Color.black);
-    	g.fillRect(0, 0, 200, 200);
+        /*g.setColor(Color.black);
+    	g.fillRect(0, 0, 200, 200);*/
         //Displays the health of both opponents. This could be a string output too
-        g.drawString(playerName + " " + playerCurrentHealth + "/" + playerHealth, drawX, drawY);
-        g.drawString(opponentName + " " + opponentCurrentHealth + "/" + opponentHealth, drawX, drawY);
-        g.drawString("What would you like to do", drawX, drawY);
-        g.drawString("Fight (1)", drawX, drawY);
-        g.drawString("Inventory (2)", drawX, drawY);
-        g.drawString("Squad (3)", drawX, drawY);
-        g.drawString("Run (4)", drawX, drawY);
+        textUpdater.updateString(playerName + " " + playerCurrentHealth + "/" + playerHealth, drawX, drawY);
+        textUpdater.updateString(opponentName + " " + opponentCurrentHealth + "/" + opponentHealth, drawX, drawY);
+        textUpdater.updateString("What would you like to do", drawX, drawY);
+        textUpdater.updateString("Fight (1)", drawX, drawY);
+        textUpdater.updateString("Inventory (2)", drawX, drawY);
+        textUpdater.updateString("Squad (3)", drawX, drawY);
+        textUpdater.updateString("Run (4)", drawX, drawY);
 
 
       //Takes user input
@@ -330,10 +328,10 @@ class Battle /*extends Interaction*/ {
       } while (answer < 1 || answer > 4);
       if (answer == 1) {
     	  System.out.println("detected");
-        g.drawString("What move would you like to use", drawX, drawY);
+        textUpdater.updateString("What move would you like to use", drawX, drawY);
         //Display the moves
         for (int i = 0; i < 4; i++) {
-          g.drawString(player.getMove(i).getName() + " " + player.getPowerPoints(i) + "/" + player.getMove(i).getMaxPowerPoints() + " (" + (i + 1) + ")", drawX, drawY);
+          textUpdater.updateString(player.getMove(i).getName() + " " + player.getPowerPoints(i) + "/" + player.getMove(i).getMaxPowerPoints() + " (" + (i + 1) + ")", drawX, drawY);
         }
         do {
           try {
@@ -349,16 +347,16 @@ class Battle /*extends Interaction*/ {
         if (moveFirst == -1) {
           if (playerStatus != null) {
             if (playerStatus.equals("Sleep")) {
-              g.drawString(playerName + " is asleep!", drawX, drawY);
+              textUpdater.updateString(playerName + " is asleep!", drawX, drawY);
             } else if (Math.random() < 0.25 && playerStatus.equals("Stun")){
-              g.drawString(playerName + " is stunned!", drawX, drawY);
+              textUpdater.updateString(playerName + " is stunned!", drawX, drawY);
             } else {
               //Player moves if it is not stunned or asleep
-              g.drawString(playerName + " used " + player.getMove(answer - 1).getName(), drawX, drawY);
+              textUpdater.updateString(playerName + " used " + player.getMove(answer - 1).getName(), drawX, drawY);
               determineAttackType(player.getMove(answer - 1), player);
             }
           } else {
-            g.drawString(playerName + " used " + player.getMove(answer - 1).getName(), drawX, drawY);
+            textUpdater.updateString(playerName + " used " + player.getMove(answer - 1).getName(), drawX, drawY);
             determineAttackType(player.getMove(answer - 1), player);
             //Protecting will be handled in the move methods
           }
@@ -366,53 +364,53 @@ class Battle /*extends Interaction*/ {
             //Can't go if the opponent is dead
             if (opponentStatus != null) {
               if (opponentStatus.equals("Sleep")) {
-                g.drawString(opponentName + " is asleep!", drawX, drawY);
+                textUpdater.updateString(opponentName + " is asleep!", drawX, drawY);
               } else if (Math.random() < 0.25 && opponentStatus.equals("Stun")) {
-                g.drawString(opponentName + " is stunned!", drawX, drawY);
+                textUpdater.updateString(opponentName + " is stunned!", drawX, drawY);
               } else {
-                g.drawString(opponentName + " used " + opponent.getMove(opponentMove).getName(), drawX, drawY);
+                textUpdater.updateString(opponentName + " used " + opponent.getMove(opponentMove).getName(), drawX, drawY);
                 determineAttackType(opponent.getMove(opponentMove), opponent);
               }
             } else {
-              g.drawString(opponentName + " used " + opponent.getMove(opponentMove).getName(), drawX, drawY);
+              textUpdater.updateString(opponentName + " used " + opponent.getMove(opponentMove).getName(), drawX, drawY);
               determineAttackType(opponent.getMove(opponentMove), opponent);
             }
           }
         } else if (moveFirst == 1) {
           if (opponentStatus != null) {
             if (opponentStatus.equals("Sleep")) {
-              g.drawString(opponentName + " is asleep!", drawX, drawY);
+              textUpdater.updateString(opponentName + " is asleep!", drawX, drawY);
             } else if (Math.random() < 0.25 && opponentStatus.equals("Stun")) {
-              g.drawString(opponentName + " is stunned!", drawX, drawY);
+              textUpdater.updateString(opponentName + " is stunned!", drawX, drawY);
             } else {
-              g.drawString(opponentName + " used " + opponent.getMove(opponentMove).getName(), drawX, drawY);
+              textUpdater.updateString(opponentName + " used " + opponent.getMove(opponentMove).getName(), drawX, drawY);
               determineAttackType(opponent.getMove(opponentMove), opponent);
             }
           } else {
-            g.drawString(opponentName + " used " + opponent.getMove(opponentMove).getName(), drawX, drawY);
+            textUpdater.updateString(opponentName + " used " + opponent.getMove(opponentMove).getName(), drawX, drawY);
             determineAttackType(opponent.getMove(opponentMove), opponent);
           }
           if (playerStatus != null) {
             if (playerStatus.equals("Sleep")) {
-              g.drawString(playerName + " is asleep!", drawX, drawY);
+              textUpdater.updateString(playerName + " is asleep!", drawX, drawY);
             } else if (Math.random() < 0.25 && playerStatus.equals("Stun")){
-              g.drawString(playerName + " is stunned!", drawX, drawY);
+              textUpdater.updateString(playerName + " is stunned!", drawX, drawY);
             } else {
               //Player moves if it is not stunned or asleep
-              g.drawString(playerName + " used " + player.getMove(answer - 1).getName(), drawX, drawY);
+              textUpdater.updateString(playerName + " used " + player.getMove(answer - 1).getName(), drawX, drawY);
               determineAttackType(player.getMove(answer - 1), player);
             }
           } else {
-            g.drawString(playerName + " used " + player.getMove(answer - 1).getName(), drawX, drawY);
+            textUpdater.updateString(playerName + " used " + player.getMove(answer - 1).getName(), drawX, drawY);
             determineAttackType(player.getMove(answer - 1), player);
             //Protecting will be handled in the move methods
           }
         }
         exitLoop = true;
       } else if (answer == 2) {
-        g.drawString("Inventory items", drawX, drawY);
+        textUpdater.updateString("Inventory items", drawX, drawY);
         playerInventory.displayItems();
-        g.drawString("Would you like to use an item (1/2)", drawX, drawY);
+        textUpdater.updateString("Would you like to use an item (1/2)", drawX, drawY);
         do {
           try {
             answer = determineAnswer(handler);
@@ -454,7 +452,7 @@ class Battle /*extends Interaction*/ {
               }
               //ALL IN DIFFERENT METHODS (pp and hp can be same method)
             } else if (item instanceof StatItem) {
-              g.drawString("You can use that here!", drawX, drawY);
+              textUpdater.updateString("You can use that here!", drawX, drawY);
               useStatItem(player, (StatItem)item);
               }
             if (itemUsed) {
@@ -465,8 +463,8 @@ class Battle /*extends Interaction*/ {
       } else if (answer == 3) {
         //Check out the squad
         squad.displaySquad();
-        g.drawString("", drawX, drawY);
-        g.drawString("Would you like to switch in a squad member (1/2)", drawX, drawY);
+        textUpdater.updateString("", drawX, drawY);
+        textUpdater.updateString("Would you like to switch in a squad member (1/2)", drawX, drawY);
         do {
           try {
             answer = determineAnswer(handler);
@@ -475,7 +473,7 @@ class Battle /*extends Interaction*/ {
           }
         } while (answer < 1 || answer > 2);
         if (answer == 1) {
-          g.drawString("Who would you like to switch in", drawX, drawY);
+          textUpdater.updateString("Who would you like to switch in", drawX, drawY);
           boolean pickLoop = false;
           do {
             do {
@@ -490,11 +488,11 @@ class Battle /*extends Interaction*/ {
               changeCharacter(squad.getCharacter(answer - 1));
               pickLoop = true;
             } else {
-              g.drawString("That person is dead", drawX, drawY);
+              textUpdater.updateString("That person is dead", drawX, drawY);
             }
           } while (!pickLoop);
           int opponentMove = determineOpponentMove();
-          g.drawString(opponentName + " used " + opponent.getMove(opponentMove).getName(), drawX, drawY);
+          textUpdater.updateString(opponentName + " used " + opponent.getMove(opponentMove).getName(), drawX, drawY);
           determineAttackType(opponent.getMove(opponentMove), opponent);
           exitLoop = true;
         }
@@ -547,14 +545,14 @@ class Battle /*extends Interaction*/ {
       numberOfFaintedStudents++;
     }
     if (numberOfFaintedStudents == partySize && opponentCurrentHealth == 0) {
-      g.drawString("Everyone died", drawX, drawY);
+      textUpdater.updateString("Everyone died", drawX, drawY);
       battleEnd = true;
     } else if (numberOfFaintedStudents == partySize) {
-      g.drawString("Your party died", drawX, drawY);
+      textUpdater.updateString("Your party died", drawX, drawY);
       battleEnd = true;
       playerLoses = true;
     } else if (opponentCurrentHealth == 0) {
-      g.drawString("Good job you passed", drawX, drawY);
+      textUpdater.updateString("Good job you passed", drawX, drawY);
       battleEnd = true;
       opponentLoses = true;
     }
@@ -568,7 +566,7 @@ class Battle /*extends Interaction*/ {
       do {
         //Might throw this into another method
         if (playerCurrentHealth == 0) {
-          g.drawString("Your student broke down", drawX, drawY);
+          textUpdater.updateString("Your student broke down", drawX, drawY);
           squad.displaySquad();
           do {
             try {
@@ -581,7 +579,7 @@ class Battle /*extends Interaction*/ {
             changeCharacter(squad.getCharacter(answer - 1));
             exitLoop = true;
           } else {
-            g.drawString("That student is dead.", drawX, drawY);
+            textUpdater.updateString("That student is dead.", drawX, drawY);
           }
         } else {
           exitLoop = true;
@@ -589,7 +587,7 @@ class Battle /*extends Interaction*/ {
       } while (!exitLoop);
     }
     battleTurns++;
-    g.drawString("", drawX, drawY);
+    textUpdater.updateString("", drawX, drawY);
   }
 
   private int determineOrder(Move playerMove, Move opponentMove) {
@@ -764,7 +762,7 @@ class Battle /*extends Interaction*/ {
       if (playerAbility.equals("Clown")) {
         if (Math.random() < 0.25) {
           damageDealt = damageDealt / 2;
-          g.drawString(playerName + " is clowning around.", drawX, drawY);
+          textUpdater.updateString(playerName + " is clowning around.", drawX, drawY);
         }
       } else if (playerAbility.equals("Avoidant")) {
         determineHit *= 4;
@@ -776,7 +774,7 @@ class Battle /*extends Interaction*/ {
       if (opponentAbility.equals("Clown")) {
         if (Math.random() < 0.25) {
           damageDealt = damageDealt / 2;
-            g.drawString(opponentName + " is clowning around.", drawX, drawY);
+            textUpdater.updateString(opponentName + " is clowning around.", drawX, drawY);
         }
       } else if (opponentAbility.equals("Avoidant")) {
         determineHit *= 4;
@@ -793,7 +791,7 @@ class Battle /*extends Interaction*/ {
         if (!opponentProtected) {
           attackTriggered = true;
           if (effectivenessText != null) {
-            g.drawString(effectivenessText, drawX, drawY);
+            textUpdater.updateString(effectivenessText, drawX, drawY);
           }
           if (opponentCurrentHealth - damageDealt < 0) {
             opponent.faintCharacter();
@@ -805,34 +803,34 @@ class Battle /*extends Interaction*/ {
               switch (opponentAbility) {
                 case "Persistent":
                   opponentDefence = opponentDefence * 2;
-                  g.drawString("The opponent is persistent!", drawX, drawY);
-                  g.drawString("Opponent defence rose sharply!", drawX, drawY);
+                  textUpdater.updateString("The opponent is persistent!", drawX, drawY);
+                  textUpdater.updateString("Opponent defence rose sharply!", drawX, drawY);
                   opponentAbilityTriggered = true;
                   break;
                 case "Distressed":
                   opponentIntelligence = opponentIntelligence * 2;
-                  g.drawString("The opponent is distressed!", drawX, drawY);
-                  g.drawString("Player intelligence rose sharply!", drawX, drawY);
+                  textUpdater.updateString("The opponent is distressed!", drawX, drawY);
+                  textUpdater.updateString("Player intelligence rose sharply!", drawX, drawY);
                     opponentAbilityTriggered = true;
                 case "Protective":
                   opponentSpeed *= 2;
                   opponentAttack *= 2;
-                  g.drawString(opponentName + " is protective!", drawX, drawY);
-                  g.drawString(opponentName + "'s speed rose sharply!", drawX, drawY);
-                  g.drawString(opponentName + "'s attack rose sharply!", drawX, drawY);
+                  textUpdater.updateString(opponentName + " is protective!", drawX, drawY);
+                  textUpdater.updateString(opponentName + "'s speed rose sharply!", drawX, drawY);
+                  textUpdater.updateString(opponentName + "'s attack rose sharply!", drawX, drawY);
                   opponentAbilityTriggered = true;
                   break;
               }
             }
           }
         } else {
-          g.drawString("The opponent protected!", drawX, drawY);
+          textUpdater.updateString("The opponent protected!", drawX, drawY);
         }
       } else if (attacker == 1) {
         if (!playerProtected) {
           attackTriggered = true;
           if (effectivenessText != null) {
-            g.drawString(effectivenessText, drawX, drawY);
+            textUpdater.updateString(effectivenessText, drawX, drawY);
           }
           if (playerCurrentHealth - damageDealt < 0) {
             player.faintCharacter();
@@ -844,22 +842,22 @@ class Battle /*extends Interaction*/ {
               switch (playerAbility) {
                 case "Persistent":
                   playerDefence = playerDefence * 2;
-                  g.drawString("The player is persistent!", drawX, drawY);
-                  g.drawString("Player defence rose sharply!", drawX, drawY);
+                  textUpdater.updateString("The player is persistent!", drawX, drawY);
+                  textUpdater.updateString("Player defence rose sharply!", drawX, drawY);
                   playerAbilityTriggered = true;
                   break;
                 case "Distressed":
                   playerIntelligence = playerIntelligence * 2;
-                  g.drawString("The player is distressed!", drawX, drawY);
-                  g.drawString("Player intelligence rose sharply!", drawX, drawY);
+                  textUpdater.updateString("The player is distressed!", drawX, drawY);
+                  textUpdater.updateString("Player intelligence rose sharply!", drawX, drawY);
                   playerAbilityTriggered = true;
                   break;
                 case "Protective":
                   playerSpeed *= 2;
                   playerAttack *= 2;
-                    g.drawString(playerName + " is protective!", drawX, drawY);
-                    g.drawString(playerName + "'s speed rose sharply!", drawX, drawY);
-                    g.drawString(playerName + "'s attack rose sharply!", drawX, drawY);
+                    textUpdater.updateString(playerName + " is protective!", drawX, drawY);
+                    textUpdater.updateString(playerName + "'s speed rose sharply!", drawX, drawY);
+                    textUpdater.updateString(playerName + "'s attack rose sharply!", drawX, drawY);
                   playerAbilityTriggered = true;
                   break;
               }
@@ -867,10 +865,10 @@ class Battle /*extends Interaction*/ {
           }
         }
       } else {
-        g.drawString("The player protected!", drawX, drawY);
+        textUpdater.updateString("The player protected!", drawX, drawY);
       }
     } else {
-      g.drawString("The move missed!", drawX, drawY);
+      textUpdater.updateString("The move missed!", drawX, drawY);
     }
 
     double determineAdditionalHit = Math.random();
@@ -909,13 +907,13 @@ class Battle /*extends Interaction*/ {
       if (Math.random() < playerProtectChance) {
         playerProtected = true;
       } else {
-        g.drawString("The protect failed", drawX, drawY);
+        textUpdater.updateString("The protect failed", drawX, drawY);
       }
     } else if (attacker == 1) {
       if (Math.random() < opponentProtectChance) {
         opponentProtected = true;
       } else {
-        g.drawString("The protect failed", drawX, drawY);
+        textUpdater.updateString("The protect failed", drawX, drawY);
       }
     }
   }
@@ -953,27 +951,27 @@ class Battle /*extends Interaction*/ {
                         switch (move.getStatType()) {
                             case "Attack":
                                 opponentAttack /= move.getMultiplier();
-                                g.drawString(opponentName + "'s attack fell!", drawX, drawY);
+                                textUpdater.updateString(opponentName + "'s attack fell!", drawX, drawY);
                                 break;
                             case "Intelligence":
                                 opponentIntelligence /= move.getMultiplier();
-                                g.drawString(opponentName + "'s intelligence fell!", drawX, drawY);
+                                textUpdater.updateString(opponentName + "'s intelligence fell!", drawX, drawY);
                                 break;
                             case "Defence":
                                 opponentDefence /= move.getMultiplier();
-                                g.drawString(opponentName + "'s defence fell!", drawX, drawY);
+                                textUpdater.updateString(opponentName + "'s defence fell!", drawX, drawY);
                                 break;
                             case "Speed":
                                 opponentSpeed /= move.getMultiplier();
-                                g.drawString(opponentName + "'s speed fell!", drawX, drawY);
+                                textUpdater.updateString(opponentName + "'s speed fell!", drawX, drawY);
                                 break;
                         }
                         opponentStatBoost--;
                     } else {
-                        g.drawString("That stat cannot be lowered anymore!", drawX, drawY);
+                        textUpdater.updateString("That stat cannot be lowered anymore!", drawX, drawY);
                     }
                 } else {
-                    g.drawString(opponentName + " protected from the attack!", drawX, drawY);
+                    textUpdater.updateString(opponentName + " protected from the attack!", drawX, drawY);
                 }
             } else if (move.getTarget().equals("Self")) {
                 if (playerStatBoost < 5) {
@@ -981,24 +979,24 @@ class Battle /*extends Interaction*/ {
                     switch (move.getStatType()) {
                         case "Attack":
                             playerAttack *= move.getMultiplier();
-                            g.drawString(opponentName + "'s attack increased!", drawX, drawY);
+                            textUpdater.updateString(opponentName + "'s attack increased!", drawX, drawY);
                             break;
                         case "Intelligence":
                             opponentIntelligence *= move.getMultiplier();
-                            g.drawString(opponentName + "'s intelligence increased!", drawX, drawY);
+                            textUpdater.updateString(opponentName + "'s intelligence increased!", drawX, drawY);
                             break;
                         case "Defence":
                             opponentDefence *= move.getMultiplier();
-                            g.drawString(opponentName + "'s defence increased!", drawX, drawY);
+                            textUpdater.updateString(opponentName + "'s defence increased!", drawX, drawY);
                             break;
                         case "Speed":
                             opponentSpeed *= move.getMultiplier();
-                            g.drawString(opponentName + "'s speed increased!", drawX, drawY);
+                            textUpdater.updateString(opponentName + "'s speed increased!", drawX, drawY);
                             break;
                     }
                     playerStatBoost++;
                 } else {
-                    g.drawString("That stat cannot be raised anymore!", drawX, drawY);
+                    textUpdater.updateString("That stat cannot be raised anymore!", drawX, drawY);
                 }
             }
         } else if (attacker > 0) {
@@ -1009,26 +1007,26 @@ class Battle /*extends Interaction*/ {
                         switch (move.getStatType()) {
                             case "Attack":
                                 playerAttack /= move.getMultiplier();
-                                g.drawString(playerName + "'s attack fell!", drawX, drawY);
+                                textUpdater.updateString(playerName + "'s attack fell!", drawX, drawY);
                                 break;
                             case "Intelligence":
                                 playerIntelligence /= move.getMultiplier();
-                                g.drawString(playerName + "'s intelligence fell!", drawX, drawY);
+                                textUpdater.updateString(playerName + "'s intelligence fell!", drawX, drawY);
                                 break;
                             case "Defence":
                                 playerDefence /= move.getMultiplier();
-                                g.drawString(playerName + "'s defence fell!", drawX, drawY);
+                                textUpdater.updateString(playerName + "'s defence fell!", drawX, drawY);
                                 break;
                             case "Speed":
                                 playerSpeed /= move.getMultiplier();
-                                g.drawString(playerName + "'s speed fell!", drawX, drawY);
+                                textUpdater.updateString(playerName + "'s speed fell!", drawX, drawY);
                                 break;
                         }
                     } else {
-                        g.drawString("That stat cannot be lowered anymore", drawX, drawY);
+                        textUpdater.updateString("That stat cannot be lowered anymore", drawX, drawY);
                     }
                 } else {
-                    g.drawString(playerName + " protected!", drawX, drawY);
+                    textUpdater.updateString(playerName + " protected!", drawX, drawY);
                 }
             } else if (move.getTarget().equals("Self")) {
                 if (opponentStatBoost < 5) {
@@ -1036,19 +1034,19 @@ class Battle /*extends Interaction*/ {
                     switch (move.getStatType()) {
                         case "Attack":
                             opponentAttack *= move.getMultiplier();
-                            g.drawString(opponentName + "'s attack increased!", drawX, drawY);
+                            textUpdater.updateString(opponentName + "'s attack increased!", drawX, drawY);
                             break;
                         case "Intelligence":
                             opponentIntelligence *= move.getMultiplier();
-                            g.drawString(opponentName + "'s intelligence increased!", drawX, drawY);
+                            textUpdater.updateString(opponentName + "'s intelligence increased!", drawX, drawY);
                             break;
                         case "Defence":
                             opponentDefence *= move.getMultiplier();
-                            g.drawString(opponentName + "'s defence increased!", drawX, drawY);
+                            textUpdater.updateString(opponentName + "'s defence increased!", drawX, drawY);
                             break;
                         case "Speed":
                             opponentSpeed *= move.getMultiplier();
-                            g.drawString(opponentName + "'s speed increased!", drawX, drawY);
+                            textUpdater.updateString(opponentName + "'s speed increased!", drawX, drawY);
                             break;
                     }
                 }
@@ -1191,24 +1189,24 @@ class Battle /*extends Interaction*/ {
         if (!opponentProtected) {
           opponentStatus = move.getStatusEffect();
           if (move.getStatusEffect().equals("Sleep")) {
-            g.drawString("The opponent fell asleep.", drawX, drawY);
+            textUpdater.updateString("The opponent fell asleep.", drawX, drawY);
           } else {
-            g.drawString("The opponent was " + move.getStatusEffect() + "ed.", drawX, drawY);
+            textUpdater.updateString("The opponent was " + move.getStatusEffect() + "ed.", drawX, drawY);
           }
         } else {
-          g.drawString("The opponent protected", drawX, drawY);
+          textUpdater.updateString("The opponent protected", drawX, drawY);
         }
       } else if (attacker > 0){
         if (!playerProtected) {
           player.setStatus(move.getStatusEffect());
           playerStatus = player.getStatus();
           if (move.getStatusEffect().equals("Sleep")) {
-            g.drawString("The player fell asleep.", drawX, drawY);
+            textUpdater.updateString("The player fell asleep.", drawX, drawY);
           } else {
-            g.drawString("The player was " + move.getStatusEffect() + "ed.", drawX, drawY);
+            textUpdater.updateString("The player was " + move.getStatusEffect() + "ed.", drawX, drawY);
           }
         } else {
-          g.drawString("The player protected", drawX, drawY);
+          textUpdater.updateString("The player protected", drawX, drawY);
         }
       }
     } else {
@@ -1372,13 +1370,13 @@ class Battle /*extends Interaction*/ {
         playerStatus = null;
         playerStatusTurns = 0;
         player.setStatus(null);
-        g.drawString(playerName + " woke up.", drawX, drawY);
+        textUpdater.updateString(playerName + " woke up.", drawX, drawY);
       }
     } else if (person instanceof NonPlayableCharacter) {
       if (wakeUpChance < 0.1 || opponentStatusTurns > 5) {
         opponentStatus = null;
         opponentStatusTurns = 0;
-        g.drawString(opponentName + " woke up.", drawX, drawY);
+        textUpdater.updateString(opponentName + " woke up.", drawX, drawY);
       }
     }
   }
@@ -1433,7 +1431,7 @@ class Battle /*extends Interaction*/ {
   }
 
   public void setOutputText(String text) {
-	  //g.drawString(outputText);
+	  //textUpdater.updateString(outputText);
 	  this.outputText = outputText + "\n" + text;
   }
 

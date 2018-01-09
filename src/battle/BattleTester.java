@@ -3,6 +3,7 @@ package battle;
 import java.awt.Graphics;
 
 import game.Handler;
+import states.BattleState;
 
 /* Please ignore this file
  * Testing file for battles
@@ -16,9 +17,11 @@ public class BattleTester {
 	
 	String finalText;
 	private Handler handler;
+	private states.UpdateBattleText textUpdater;
 	
-	public BattleTester(Handler handler) {
+	public BattleTester(Handler handler, states.UpdateBattleText textUpdater) {
 		this.handler = handler;
+		this.textUpdater = textUpdater;
 	}
     
 	public void simulateBattle(Graphics g){
@@ -64,7 +67,7 @@ public class BattleTester {
         } else {
             opponent = MrTimmerman;
         }
-        Battle battle = new Battle(squad.getCharacter(0), opponent, squad, inventory, handler, g);
+        Battle battle = new Battle(squad.getCharacter(0), opponent, squad, inventory, handler, textUpdater);
         do {
             battle.runBattle();
             //finalText = battle.getOutputText();
