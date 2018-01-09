@@ -34,7 +34,7 @@ public class Game implements Runnable{
 	public State gameState;
 	public State menuState;
 	public State settingsState;
-	public BattleState battleState;
+	public State battleState;
 	
 	// Input
 	private KeyManager keyManager;
@@ -84,19 +84,8 @@ public class Game implements Runnable{
 		// CHANGE TO BATTLE STATE
 		if(handler.getKeyManager().battle) {
 			State.setState(battleState);
-			render();
-			battleState.startBattle(g);
-			//display.getCanvas().repaint();
 		}
-		/*
-		bs = display.getCanvas().getBufferStrategy();
-		if(bs == null) {
-			display.getCanvas().createBufferStrategy(3);
-			return;
-		}
-		g = bs.getDrawGraphics();
-		battleState.render(g);
-		*/
+		
 		
 		if(State.getState() != null) {
 			State.getState().tick();

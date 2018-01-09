@@ -11,10 +11,6 @@ public class Display {
 	
 	private String title;
 	private int width, height;
-
-	public void updateScreen() {
-		frame.repaint();
-	}
 	
 	public Display(String title, int width, int height){
 		this.title = title;
