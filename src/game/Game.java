@@ -86,6 +86,7 @@ public class Game implements Runnable{
 			State.setState(battleState);
 		}
 		
+		
 		if(State.getState() != null) {
 			State.getState().tick();
 		}

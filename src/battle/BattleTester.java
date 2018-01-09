@@ -64,9 +64,9 @@ public class BattleTester {
         } else {
             opponent = MrTimmerman;
         }
-        Battle battle = new Battle(squad.getCharacter(0), opponent, squad, inventory, handler);
+        Battle battle = new Battle(squad.getCharacter(0), opponent, squad, inventory, handler, g);
         do {
-            battle.runBattle(g);
+            battle.runBattle();
             //finalText = battle.getOutputText();
         } while (!battle.isBattleEnd());
 
