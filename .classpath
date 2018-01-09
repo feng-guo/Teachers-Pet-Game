@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="src" path="TeachersPet/src/teacherspet"/>
-	<classpathentry kind="lib" path="TeachersPet/lib/gdx-backend-lwjgl-natives.jar"/>
-	<classpathentry kind="lib" path="TeachersPet/lib/gdx-backend-lwjgl.jar"/>
-	<classpathentry kind="lib" path="TeachersPet/lib/gdx-natives.jar"/>
-	<classpathentry kind="lib" path="TeachersPet/lib/gdx.jar"/>
-	<classpathentry kind="lib" path="TeachersPet/lib/gdx-freetype-natives.jar"/>
-	<classpathentry kind="lib" path="TeachersPet/lib/gdx-freetype.jar"/>
-	<classpathentry kind="lib" path="TeachersPet/lib/gdx-sources.jar"/>
-	<classpathentry kind="lib" path="TeachersPet/lib/gdx-tools.jar"/>
-	<classpathentry kind="lib" path="TeachersPet/lib/tween-engine-api-sources.jar"/>
-	<classpathentry kind="lib" path="TeachersPet/lib/tween-engine-api.jar"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="/TP_LOCAL/res"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
