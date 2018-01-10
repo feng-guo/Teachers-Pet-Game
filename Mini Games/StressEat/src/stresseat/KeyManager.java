@@ -1,6 +1,4 @@
-package input;
-
-import java.awt.event.KeyEvent;
+import java.awt.event.KeyEvent; 
 import java.awt.event.KeyListener;
 
 public class KeyManager implements KeyListener{
@@ -15,17 +13,8 @@ public class KeyManager implements KeyListener{
 	}
 	
 	public void tick() {
-		up = keys[KeyEvent.VK_W];
-		down = keys[KeyEvent.VK_S];
 		left = keys[KeyEvent.VK_A];
 		right = keys[KeyEvent.VK_D];
-		
-		battle = keys[KeyEvent.VK_X];
-		first = keys[KeyEvent.VK_C];
-		second = keys[KeyEvent.VK_V];
-		third = keys[KeyEvent.VK_B];
-		fourth = keys[KeyEvent.VK_N];
-
 	}
 	
 	@Override

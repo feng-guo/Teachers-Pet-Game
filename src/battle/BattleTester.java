@@ -22,8 +22,6 @@ public class BattleTester {
 	}
     
 	public void simulateBattle(Graphics g){
-		System.out.println("here");
-    	
         ListOfCharacters characterList = new ListOfCharacters();
         ListOfInventoryItems inventoryItems = new ListOfInventoryItems();
         Inventory inventory = new Inventory();
