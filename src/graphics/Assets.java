@@ -11,7 +11,7 @@ public class Assets {
 
 	
 	//public static BufferedImage feng_down_1, feng_down_2, feng_down_3;
-	public static BufferedImage grass_1, grass_2, rock;
+	public static BufferedImage grass_1, grass_2, rock, path;
 	public static BufferedImage[] feng_down, feng_up, feng_left, feng_right, logo;
 	
 	
@@ -47,6 +47,7 @@ public class Assets {
 		
 		grass_1 = grassSheet.crop(0, 0, tileWidth, tileHeight);
 		grass_2 = grassSheet.crop(tileWidth, 0, tileWidth, tileHeight);
+		path = grassSheet.crop(0, tileWidth, tileWidth, tileHeight);
 		
 		rock = tileSheet.crop(17, 17*26, tileWidth, tileHeight);
 

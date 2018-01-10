@@ -27,13 +27,18 @@ public abstract class Creature extends Entity{
 	}
 	
 	public void move() {
-		if(!checkEntityCollisions(xMove,0f)) {
-			moveX();
-
-		}
-		if(!checkEntityCollisions(0f,yMove)) {
-			moveY();
-
+		System.out.println(x + ", " + y);
+		//System.out.println(handler.getGame().getWidth());
+		if(x <= handler.getGame().getWidth() && x >= 0 && y <= handler.getGame().getHeight() && y >= 0) {
+			
+			if(!checkEntityCollisions(xMove,0f)) {
+				moveX();
+	
+			}
+			if(!checkEntityCollisions(0f,yMove)) {
+				moveY();
+	
+			}
 		}
 	}
 	
@@ -85,7 +90,11 @@ public abstract class Creature extends Entity{
 	}
 	
 	protected boolean collisionWithTile(int x, int y) {
-		return handler.getWorld().getTile(x, y).isSolid();
+		//if (x <= handler.getWorld().getWidth() && x >= 0 && y <= handler.getWorld().getHeight() && y >= 0) {
+			return handler.getWorld().getTile(x, y).isSolid();
+//		} else {
+//			return true;
+//		}
 	}
 	
 	//Getters and setters

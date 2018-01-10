@@ -47,6 +47,7 @@ public class Player extends Creature{
 	}
 	
 	private void getInput() {
+		
 		xMove = 0;
 		yMove = 0;
 		

@@ -66,14 +66,14 @@ public class World {
 	}
 	
 	public Tile getTile(int x, int y) {
-		
+		//System.out.println(x + "," + y);
 		if(x < 0 || y < 0 || x >= width || y >= height) {
 			return Tile.grassTile;
 		}
 		
 		Tile t = Tile.tiles[tiles[x][y]];
 		if(t == null) {
-			return Tile.grassTile;
+			return Tile.nullTile;
 		}
 		return t;
 		
