@@ -85,8 +85,6 @@ public class Game implements Runnable{
 		if(handler.getKeyManager().battle) {
 			State.setState(battleState);
 		}
-		
-		
 		if(State.getState() != null) {
 			State.getState().tick();
 		}
