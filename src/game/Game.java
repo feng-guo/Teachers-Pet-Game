@@ -84,6 +84,9 @@ public class Game implements Runnable{
 		// CHANGE TO BATTLE STATE
 		if(handler.getKeyManager().battle) {
 			State.setState(battleState);
+			((BattleState)battleState).getBattleTest().initializeBattleAssets();
+			((BattleState)battleState).getBattleTest().startRandomBattle();
+			((BattleState)battleState).getBattleTest().simulateBattle(-1);
 		}
 		if(State.getState() != null) {
 			State.getState().tick();
