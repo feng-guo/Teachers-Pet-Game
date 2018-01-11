@@ -8,6 +8,7 @@ import game.Game;
 import game.Handler;
 import graphics.Animation;
 import graphics.Assets;
+import tiles.Tile;
 
 public class Player extends Creature{
 	
@@ -51,7 +52,7 @@ public class Player extends Creature{
 		xMove = 0;
 		yMove = 0;
 		
-		if(x <= handler.getGame().getWidth() && x >= 0 && y <= handler.getGame().getHeight() && y >= 0) {
+		//if(x <= handler.getWorld().getWidth() && x >= 0 && y <= handler.getWorld().getHeight() && y >= 0) {
 			if(handler.getKeyManager().up) {
 				yMove = -speed;
 			}
@@ -64,13 +65,21 @@ public class Player extends Creature{
 			else if(handler.getKeyManager().right) {
 				xMove = speed;
 			}
-		} 
+		//} 
 		if (x == -3) {
 			x = 0;
 		}
 		if (y == -3) {
 			y = 0;
 		}
+		//System.out.println(handler.getWorld().getWidth() * Tile.TILE_WIDTH);
+		if (x > (handler.getWorld().getWidth() - 1) * Tile.TILE_WIDTH) {
+			x = (handler.getWorld().getWidth() - 1) * Tile.TILE_WIDTH; 
+		}
+		if (y == handler.getWorld().getHeight() * Tile.TILE_HEIGHT + 3) {
+			y = handler.getWorld().getHeight() * Tile.TILE_HEIGHT; 
+		}
+
 		
 	}
 
