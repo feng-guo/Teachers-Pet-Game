@@ -88,11 +88,12 @@ public abstract class Creature extends Entity{
 	}
 	
 	protected boolean collisionWithTile(int x, int y) {
-		//if (x <= handler.getWorld().getWidth() && x >= 0 && y <= handler.getWorld().getHeight() && y >= 0) {
+		if (x <= handler.getWorld().getWidth() * Tile.TILE_WIDTH && x >= 0 && y <= handler.getWorld().getHeight() * Tile.TILE_HEIGHT && y >= 0) {
+			//System.out.println(handler.getWorld().getHeight());
 			return handler.getWorld().getTile(x, y).isSolid();
-//		} else {
-//			return true;
-//		}
+		} else {
+			return true;
+		}
 	}
 	
 	//Getters and setters
