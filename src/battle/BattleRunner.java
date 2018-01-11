@@ -22,6 +22,7 @@ public class BattleRunner {
     private boolean battleStart;
     private Battle battle;
     private Graphics g;
+    private boolean battleStarted;
 	
 	public BattleRunner(Handler handler, Graphics g) {
 		this.handler = handler;
@@ -53,18 +54,46 @@ public class BattleRunner {
             opponent = MrTimmerman;
         }
         battle = new Battle(squad.getCharacter(0), opponent, squad, inventory, handler, g);
+        battleStart = true;
     }
 
     public void startBattle (NonPlayableCharacter opponent) {
 	    battle = new Battle(squad.getCharacter(0), opponent, squad, inventory, handler, g);
+	    battleStart = true;
     }
 
 	public void simulateBattle(int choice){
 	    battle.runBattleTurn(choice);
     }
 
+    public void runPhase(int choice) {
+	    if (battle.isPlayerChoicePhase()) {
+	        battle.runBattleTurn(choice);
+        } else if (battle.isPlayerAttackChoicePhase()) {
+	        battle.playerPickAttack(choice);
+        } else if (battle.isPlayerInventoryPhase()) {
+	        if (choice != 1) {
+	            battle.playerPickInventory();
+            } else {
+	            battle.useInventoryItem(choice);
+            }
+        } else if (battle.isPlayerSwitchPhase()) {
+	        if (!battle.isPlayerInputPhase()) {
+	            battle.playerSwitchCharacter();
+            } else {
+	            battle.playerPickCharacter(choice);
+            }
+        } else if (battle.isPlayerRunPhase()) {
+	        battle.playerRun();
+        }
+    }
+
     //Getters
     public Battle getBattle() {
 	    return battle;
+    }
+
+    public boolean isBattleStart() {
+	    return battleStart;
     }
 }

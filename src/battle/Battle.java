@@ -106,7 +106,7 @@ class Battle /*extends Interaction*/ {
   private String turnNumberString;
   private String[] selectionStrings;
 
-  private boolean playerChoicePhase, playerAttackChoicePhase, playerSwitchPhase, playerInventoryPhase, playerInventoryChoicePhase, playerRunPhase, playerInputPhase;
+  private boolean playerChoicePhase, playerAttackChoicePhase, playerSwitchPhase, playerInventoryPhase, playerInventoryChoicePhase, playerRunPhase, playerInputPhase, playerEndPhase;
   private boolean turnCalculationsEnd;
 
 
@@ -215,6 +215,7 @@ class Battle /*extends Interaction*/ {
     this.playerSwitchPhase = false;
     this.playerInventoryPhase = false;
     this.playerInventoryChoicePhase = false;
+    this.playerEndPhase = false;
     this.turnCalculationsEnd = false;
   }
 
@@ -328,16 +329,16 @@ class Battle /*extends Interaction*/ {
         selectionStrings[3] = "Run";
 
 
-    if (phase == 0) {
+    if (phase-1 == 0) {
       playerAttackChoicePhase = true;
       for (int i=0; i<4; i++) {
         selectionStrings = null;
       }
-    } else if (phase == 1) {
+    } else if (phase-1 == 1) {
       playerInventoryPhase = true;
-    } else if (phase == 2) {
+    } else if (phase-1 == 2) {
       playerSwitchPhase = true;
-    } else if (phase == 3) {
+    } else if (phase-1 == 3) {
       playerRunPhase = true;
     }
     //Everything else
@@ -377,8 +378,20 @@ class Battle /*extends Interaction*/ {
     System.out.println("");
   }
 
+  public void goBackInMenu() {
+    this.playerChoicePhase = true;
+    this.playerInputPhase = true;
+    this.playerAttackChoicePhase = false;
+    this.playerSwitchPhase = false;
+    this.playerInventoryPhase = false;
+    this.playerInventoryChoicePhase = false;
+    this.playerEndPhase = false;
+    this.turnCalculationsEnd = false;
+  }
+
   public void playerPickAttack(int choice) {
     //Move displays should be handled differently
+    playerAttackChoicePhase = true;
     for (int i = 0; i < 4; i++) {
       selectionStrings[i] = player.getMove(i).getName() + " " + player.getPowerPoints(i) + "/" + player.getMove(i).getMaxPowerPoints() + " (" + (i + 1) + ")";
     }
@@ -448,10 +461,13 @@ class Battle /*extends Interaction*/ {
         //Protecting will be handled in the move methods
       }
     }
+    playerAttackChoicePhase = false;
     turnCalculationsEnd = true;
+    playerEndPhase = true;
   }
 
-  public void playerPickInventory(int answer) {
+  public void playerPickInventory() {
+    playerInventoryChoicePhase = true;
     System.out.println("Inventory items");
     playerInventory.displayItems();
   }
@@ -486,22 +502,26 @@ class Battle /*extends Interaction*/ {
     }
     if (itemUsed) {
       playerInventory.useItem(playerInventory.getItemName(answer));
+      playerInventoryChoicePhase = false;
     }
   }
 
   public void playerSwitchCharacter() {
     squad.displaySquad();
+    playerSwitchPhase = true;
   }
 
   public void playerPickCharacter(int choice) {
     if (squad.getCharacter(choice - 1).getCurrentHealth() > 0) {
       changeCharacter(squad.getCharacter(choice - 1));
+      playerSwitchPhase = false;
     } else {
       System.out.println("That person is dead");
     }
   }
 
   public void playerRun() {
+    playerRunPhase = true;
     if (Math.random() < playerFleeChance) {
       playerFled = true;
       playerLoses = true;
@@ -509,6 +529,7 @@ class Battle /*extends Interaction*/ {
       System.out.println("Ran successfully!");
     } else {
       System.out.println("Could not run!");
+      playerRunPhase = false;
     }
   }
 
@@ -1479,6 +1500,10 @@ class Battle /*extends Interaction*/ {
     return playerChoicePhase;
   }
 
+  public boolean isPlayerAttackChoicePhase() {
+    return playerAttackChoicePhase;
+  }
+
   public boolean isPlayerInventoryPhase() {
     return playerInventoryPhase;
   }
@@ -1497,5 +1522,9 @@ class Battle /*extends Interaction*/ {
 
   public boolean isPlayerInventoryChoicePhase() {
     return playerInventoryChoicePhase;
+  }
+
+  public boolean isPlayerEndPhase() {
+    return playerEndPhase;
   }
 }

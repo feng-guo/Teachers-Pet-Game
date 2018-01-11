@@ -41,6 +41,15 @@ public class BattleState extends State{
 		if(handler.getKeyManager().fourth){
 			answer = 4;
 		}
+		if (handler.getKeyManager().backspace) {
+			answer = 10;
+		}
+		if (handler.getKeyManager().enter) {
+			answer = 1;
+		}
+		if (answer != -1 ) {
+			battleTest.runPhase(answer);
+		}
 	}
 
 	@Override
@@ -72,4 +81,8 @@ public class BattleState extends State{
 
 	}
 
+
+	public BattleRunner getBattleTest() {
+		return battleTest;
+	}
 }
