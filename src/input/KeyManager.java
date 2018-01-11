@@ -9,6 +9,7 @@ public class KeyManager implements KeyListener{
 	
 	public boolean up, down, left, right;
 	public boolean battle, first, second, third, fourth;
+	public boolean enter, backspace;
 	
 	public KeyManager() {
 		keys = new boolean[256];
@@ -25,7 +26,8 @@ public class KeyManager implements KeyListener{
 		second = keys[KeyEvent.VK_V];
 		third = keys[KeyEvent.VK_B];
 		fourth = keys[KeyEvent.VK_N];
-
+		enter = keys[KeyEvent.VK_ENTER];
+		backspace = keys[KeyEvent.VK_BACK_SPACE];
 	}
 	
 	@Override
@@ -40,6 +42,7 @@ public class KeyManager implements KeyListener{
 	
 	@Override
 	public void keyTyped(KeyEvent e) {
+
 	}
 
 }

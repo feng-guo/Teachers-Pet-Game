@@ -103,6 +103,12 @@ class Battle /*extends Interaction*/ {
   private Handler handler;
   private Graphics g;
 
+  private String turnNumberString;
+  private String[] selectionStrings;
+
+  private boolean playerChoicePhase, playerAttackChoicePhase, playerSwitchPhase, playerInventoryPhase, playerInventoryChoicePhase, playerRunPhase, playerInputPhase;
+  private boolean turnCalculationsEnd;
+
 
   Battle (PlayableCharacter player, NonPlayableCharacter opponent, Squad squad, Inventory inventory, Handler handler, Graphics g) {
     //Constructor that requires some math
@@ -200,6 +206,16 @@ class Battle /*extends Interaction*/ {
 
     this.handler = handler;
     this.g = g;
+    this.turnNumberString = null;
+    this.selectionStrings = new String[4];
+
+    this.playerChoicePhase = true;
+    this.playerInputPhase = true;
+    this.playerAttackChoicePhase = false;
+    this.playerSwitchPhase = false;
+    this.playerInventoryPhase = false;
+    this.playerInventoryChoicePhase = false;
+    this.turnCalculationsEnd = false;
   }
 
   private void changeCharacter(PlayableCharacter player) {
@@ -249,14 +265,14 @@ class Battle /*extends Interaction*/ {
 
   private int drawX, drawY;
   
-  public void runBattle() {
-      drawX = 20;
-	  drawY = 20;
-      //Turn number output should be its own string
-      System.out.println("Turn number " + battleTurns);
-
+  public void runBattleTurn(int phase) {
+    drawX = 20;
+    drawY = 20;
+    //Turn number output should be its own string
+    turnNumberString = "Turn number " + battleTurns;
 
     //Protect, status and ability handling
+    //Maybe move to outside of this method?
     if (playerProtected) {
       playerProtectChance /= 2;
       playerProtected = false;
@@ -275,6 +291,7 @@ class Battle /*extends Interaction*/ {
         attemptWakeUp(opponent);
       }
     }
+    //Whenever a string needs to be drawn, it should call for a repaint
     if (!playerAbilityTriggered && opponentStatBoost > -5) {
       if (playerAbility.equals("Demoralize")) {
         opponentIntelligence /= 2;
@@ -301,209 +318,201 @@ class Battle /*extends Interaction*/ {
       opponentStatBoost++;
       System.out.println(opponentName + "'s Speed Boost! Their speed increased!");
     }
-
-    //Code below would probably have to be put in another method or loops
-    int answer;
-    boolean exitLoop = false;
-    do {
-        g.setColor(Color.black);
-    	g.fillRect(0, 0, 200, 200);
         //Displays the health of both opponents. This could be a string output too
         System.out.println(playerName + " " + playerCurrentHealth + "/" + playerHealth);
         System.out.println(opponentName + " " + opponentCurrentHealth + "/" + opponentHealth);
         System.out.println("What would you like to do");
-        System.out.println("Fight (1)");
-        System.out.println("Inventory (2)");
-        System.out.println("Squad (3)");
-        System.out.println("Run (4)");
+        selectionStrings[0] = "Fight";
+        selectionStrings[1] = "Inventory";
+        selectionStrings[2] = "Squad";
+        selectionStrings[3] = "Run";
 
 
-      //Takes user input
+    if (phase == 0) {
+      playerAttackChoicePhase = true;
+      for (int i=0; i<4; i++) {
+        selectionStrings = null;
+      }
+    } else if (phase == 1) {
+      playerInventoryPhase = true;
+    } else if (phase == 2) {
+      playerSwitchPhase = true;
+    } else if (phase == 3) {
+      playerRunPhase = true;
+    }
+    //Everything else
+    handler.getKeyManager().tick();
+    int answer = determineAnswer(handler);
+    if (true) {
+    } else if (answer == 2) {
+    } else if (answer == 3) {
+    } else if (answer == 4) {
+    }
 
+    /*if (!battleEnd) {
       do {
-        handler.getKeyManager().tick();
-        answer = determineAnswer(handler);
-        handler.getKeyManager().tick();
-      } while (answer < 1 || answer > 4);
-      if (answer == 1) {
-    	  System.out.println("detected");
-        System.out.println("What move would you like to use");
-        //Display the moves
-        for (int i = 0; i < 4; i++) {
-          System.out.println(player.getMove(i).getName() + " " + player.getPowerPoints(i) + "/" + player.getMove(i).getMaxPowerPoints() + " (" + (i + 1) + ")");
-        }
-        do {
-          try {
-            answer = determineAnswer(handler);
-          } catch (InputMismatchException e) {
-            answer = -1;
-          }
-        } while (answer < 1 || answer > 4);
-        int opponentMove = determineOpponentMove();
-        int moveFirst = determineOrder(player.getMove(answer - 1), opponent.getMove(opponentMove));
-        player.setPowerPoints(answer - 1, -1);
-
-        if (moveFirst == -1) {
-          if (playerStatus != null) {
-            if (playerStatus.equals("Sleep")) {
-              System.out.println(playerName + " is asleep!");
-            } else if (Math.random() < 0.25 && playerStatus.equals("Stun")){
-              System.out.println(playerName + " is stunned!");
-            } else {
-              //Player moves if it is not stunned or asleep
-              System.out.println(playerName + " used " + player.getMove(answer - 1).getName());
-              determineAttackType(player.getMove(answer - 1), player);
+        //Might throw this into another method
+        if (playerCurrentHealth == 0) {
+          System.out.println("Your student broke down");
+          squad.displaySquad();
+          do {
+            try {
+              answer = determineAnswer(handler);
+            } catch (InputMismatchException e) {
+              answer = -1;
             }
+          } while (answer < 1 || answer > squad.getSize());
+          if (squad.getCharacter(answer - 1).getCurrentHealth() > 0) {
+            changeCharacter(squad.getCharacter(answer - 1));
+            exitLoop = true;
           } else {
-            System.out.println(playerName + " used " + player.getMove(answer - 1).getName());
-            determineAttackType(player.getMove(answer - 1), player);
-            //Protecting will be handled in the move methods
+            System.out.println("That student is dead.");
           }
-          if (opponentCurrentHealth > 0) {
-            //Can't go if the opponent is dead
-            if (opponentStatus != null) {
-              if (opponentStatus.equals("Sleep")) {
-                System.out.println(opponentName + " is asleep!");
-              } else if (Math.random() < 0.25 && opponentStatus.equals("Stun")) {
-                System.out.println(opponentName + " is stunned!");
-              } else {
-                System.out.println(opponentName + " used " + opponent.getMove(opponentMove).getName());
-                determineAttackType(opponent.getMove(opponentMove), opponent);
-              }
-            } else {
-              System.out.println(opponentName + " used " + opponent.getMove(opponentMove).getName());
-              determineAttackType(opponent.getMove(opponentMove), opponent);
-            }
-          }
-        } else if (moveFirst == 1) {
-          if (opponentStatus != null) {
-            if (opponentStatus.equals("Sleep")) {
-              System.out.println(opponentName + " is asleep!");
-            } else if (Math.random() < 0.25 && opponentStatus.equals("Stun")) {
-              System.out.println(opponentName + " is stunned!");
-            } else {
-              System.out.println(opponentName + " used " + opponent.getMove(opponentMove).getName());
-              determineAttackType(opponent.getMove(opponentMove), opponent);
-            }
+        } else {
+          exitLoop = true;
+        }
+      } while (!exitLoop);
+    }*/
+    battleTurns++;
+    System.out.println("");
+  }
+
+  public void playerPickAttack(int choice) {
+    //Move displays should be handled differently
+    for (int i = 0; i < 4; i++) {
+      selectionStrings[i] = player.getMove(i).getName() + " " + player.getPowerPoints(i) + "/" + player.getMove(i).getMaxPowerPoints() + " (" + (i + 1) + ")";
+    }
+
+    int opponentMove = determineOpponentMove();
+    int moveFirst = determineOrder(player.getMove(choice - 1), opponent.getMove(opponentMove));
+    player.setPowerPoints(choice - 1, -1);
+    if (moveFirst == -1) {
+      if (playerStatus != null) {
+        if (playerStatus.equals("Sleep")) {
+          System.out.println(playerName + " is asleep!");
+        } else if (Math.random() < 0.25 && playerStatus.equals("Stun")){
+          System.out.println(playerName + " is stunned!");
+        } else {
+          //Player moves if it is not stunned or asleep
+          System.out.println(playerName + " used " + player.getMove(choice - 1).getName());
+          determineAttackType(player.getMove(choice - 1), player);
+        }
+      } else {
+        System.out.println(playerName + " used " + player.getMove(choice - 1).getName());
+        determineAttackType(player.getMove(choice - 1), player);
+        //Protecting will be handled in the move methods
+      }
+      if (opponentCurrentHealth > 0) {
+        //Can't go if the opponent is dead
+        if (opponentStatus != null) {
+          if (opponentStatus.equals("Sleep")) {
+            System.out.println(opponentName + " is asleep!");
+          } else if (Math.random() < 0.25 && opponentStatus.equals("Stun")) {
+            System.out.println(opponentName + " is stunned!");
           } else {
             System.out.println(opponentName + " used " + opponent.getMove(opponentMove).getName());
             determineAttackType(opponent.getMove(opponentMove), opponent);
           }
-          if (playerStatus != null) {
-            if (playerStatus.equals("Sleep")) {
-              System.out.println(playerName + " is asleep!");
-            } else if (Math.random() < 0.25 && playerStatus.equals("Stun")){
-              System.out.println(playerName + " is stunned!");
-            } else {
-              //Player moves if it is not stunned or asleep
-              System.out.println(playerName + " used " + player.getMove(answer - 1).getName());
-              determineAttackType(player.getMove(answer - 1), player);
-            }
-          } else {
-            System.out.println(playerName + " used " + player.getMove(answer - 1).getName());
-            determineAttackType(player.getMove(answer - 1), player);
-            //Protecting will be handled in the move methods
-          }
-        }
-        exitLoop = true;
-      } else if (answer == 2) {
-        System.out.println("Inventory items");
-        playerInventory.displayItems();
-        System.out.println("Would you like to use an item (1/2)");
-        do {
-          try {
-            answer = determineAnswer(handler);
-          } catch (InputMismatchException e) {
-            answer = -1;
-          }
-        } while (answer < 1 || answer > 2);
-        if (answer == 1) {
-          boolean itemUsed = false;
-          do {
-            do {
-              try {
-                answer = determineAnswer(handler);
-              } catch (InputMismatchException e) {
-                answer = -1;
-              }
-            } while (answer < 1 || answer > playerInventory.getInventorySize());
-            Item item = playerInventory.getItem(answer);
-            if (item instanceof CaptureItem) {
-              itemUsed = true;
-              //Code to capture the opponent (another method please)
-            } else if (item instanceof HealItem) {
-              itemUsed = true;
-              HealItem itemToUse = (HealItem) item;
-              switch (itemToUse.getType()) {
-                case "HP":
-                  HP(player, itemToUse);
-                  break;
-                case "PP":
-                  //yet to create method for this
-                  break;
-                case "Half revive":
-                case "Full revive":
-                  revive(player, itemToUse);
-                  break;
-                default:
-                  cureStatus(player, itemToUse);
-                  break;
-              }
-              //ALL IN DIFFERENT METHODS (pp and hp can be same method)
-            } else if (item instanceof StatItem) {
-              System.out.println("You can use that here!");
-              useStatItem(player, (StatItem)item);
-              }
-            if (itemUsed) {
-              playerInventory.useItem(playerInventory.getItemName(answer));
-            }
-          } while (!itemUsed);
-        }
-      } else if (answer == 3) {
-        //Check out the squad
-        squad.displaySquad();
-        System.out.println("");
-        System.out.println("Would you like to switch in a squad member (1/2)");
-        do {
-          try {
-            answer = determineAnswer(handler);
-          } catch (InputMismatchException e) {
-            answer = 20;
-          }
-        } while (answer < 1 || answer > 2);
-        if (answer == 1) {
-          System.out.println("Who would you like to switch in");
-          boolean pickLoop = false;
-          do {
-            do {
-              try {
-                answer = determineAnswer(handler);
-              } catch (InputMismatchException e) {
-                answer = -1;
-              }
-            } while (answer < 1 || answer > squad.getSize());
-
-            if (squad.getCharacter(answer - 1).getCurrentHealth() > 0) {
-              changeCharacter(squad.getCharacter(answer - 1));
-              pickLoop = true;
-            } else {
-              System.out.println("That person is dead");
-            }
-          } while (!pickLoop);
-          int opponentMove = determineOpponentMove();
+        } else {
           System.out.println(opponentName + " used " + opponent.getMove(opponentMove).getName());
           determineAttackType(opponent.getMove(opponentMove), opponent);
-          exitLoop = true;
-        }
-      } else if (answer == 4) {
-        if (Math.random() < 0.25) {
-          battleEnd = true;
-          playerFled = true;
-          exitLoop = true;
         }
       }
-    } while (!exitLoop);
-    exitLoop = false;
+    } else if (moveFirst == 1) {
+      if (opponentStatus != null) {
+        if (opponentStatus.equals("Sleep")) {
+          System.out.println(opponentName + " is asleep!");
+        } else if (Math.random() < 0.25 && opponentStatus.equals("Stun")) {
+          System.out.println(opponentName + " is stunned!");
+        } else {
+          System.out.println(opponentName + " used " + opponent.getMove(opponentMove).getName());
+          determineAttackType(opponent.getMove(opponentMove), opponent);
+        }
+      } else {
+        System.out.println(opponentName + " used " + opponent.getMove(opponentMove).getName());
+        determineAttackType(opponent.getMove(opponentMove), opponent);
+      }
+      if (playerStatus != null) {
+        if (playerStatus.equals("Sleep")) {
+          System.out.println(playerName + " is asleep!");
+        } else if (Math.random() < 0.25 && playerStatus.equals("Stun")){
+          System.out.println(playerName + " is stunned!");
+        } else {
+          //Player moves if it is not stunned or asleep
+          System.out.println(playerName + " used " + player.getMove(choice - 1).getName());
+          determineAttackType(player.getMove(choice - 1), player);
+        }
+      } else {
+        System.out.println(playerName + " used " + player.getMove(choice - 1).getName());
+        determineAttackType(player.getMove(choice - 1), player);
+        //Protecting will be handled in the move methods
+      }
+    }
+    turnCalculationsEnd = true;
+  }
+
+  public void playerPickInventory(int answer) {
+    System.out.println("Inventory items");
+    playerInventory.displayItems();
+  }
+
+  public void useInventoryItem(int answer) {
+    boolean itemUsed = false;
+    Item item = playerInventory.getItem(answer);
+    if (item instanceof CaptureItem) {
+      itemUsed = true;
+      //Code to capture the opponent (another method please)
+    } else if (item instanceof HealItem) {
+      itemUsed = true;
+      HealItem itemToUse = (HealItem) item;
+      switch (itemToUse.getType()) {
+        case "HP":
+          HP(player, itemToUse);
+          break;
+        case "PP":
+          //yet to create method for this
+          break;
+        case "Half revive":
+        case "Full revive":
+          revive(player, itemToUse);
+          break;
+        default:
+          cureStatus(player, itemToUse);
+          break;
+      }
+      //ALL IN DIFFERENT METHODS (pp and hp can be same method)
+    } else if (item instanceof StatItem) {
+      System.out.println("You can't use that here!");
+    }
+    if (itemUsed) {
+      playerInventory.useItem(playerInventory.getItemName(answer));
+    }
+  }
+
+  public void playerSwitchCharacter() {
+    squad.displaySquad();
+  }
+
+  public void playerPickCharacter(int choice) {
+    if (squad.getCharacter(choice - 1).getCurrentHealth() > 0) {
+      changeCharacter(squad.getCharacter(choice - 1));
+    } else {
+      System.out.println("That person is dead");
+    }
+  }
+
+  public void playerRun() {
+    if (Math.random() < playerFleeChance) {
+      playerFled = true;
+      playerLoses = true;
+      battleEnd = true;
+      System.out.println("Ran successfully!");
+    } else {
+      System.out.println("Could not run!");
+    }
+  }
+
+  public void endTurn() {
     if (playerCurrentHealth > 0 && playerHeldItem != null) {
       if (playerHeldItem.getName().equals("Starbucks Card") && playerCurrentHealth != playerHealth) {
         if (playerCurrentHealth + playerHealth*0.06 > playerHealth) {
@@ -561,34 +570,9 @@ class Battle /*extends Interaction*/ {
     if (opponentCurrentHealth != 0 && opponentStatus != null) {
       opponentStatusTurns++;
     }
-    if (!battleEnd) {
-      do {
-        //Might throw this into another method
-        if (playerCurrentHealth == 0) {
-          System.out.println("Your student broke down");
-          squad.displaySquad();
-          do {
-            try {
-              answer = determineAnswer(handler);
-            } catch (InputMismatchException e) {
-              answer = -1;
-            }
-          } while (answer < 1 || answer > squad.getSize());
-          if (squad.getCharacter(answer - 1).getCurrentHealth() > 0) {
-            changeCharacter(squad.getCharacter(answer - 1));
-            exitLoop = true;
-          } else {
-            System.out.println("That student is dead.");
-          }
-        } else {
-          exitLoop = true;
-        }
-      } while (!exitLoop);
-    }
-    battleTurns++;
-    System.out.println("");
   }
 
+  //Calculations
   private int determineOrder(Move playerMove, Move opponentMove) {
     int tempPlayerSpeed = playerSpeed;
     if (opponentAbility.equals("Unaware")) {
@@ -628,7 +612,6 @@ class Battle /*extends Interaction*/ {
       }
     }
   }
-
 
   private void determineAttackType(Move move, Character user) {
     int attacker = 0; //Needs to be initialized
@@ -704,7 +687,6 @@ class Battle /*extends Interaction*/ {
       }
     }
   }
-
 
   private void attackMove(AttackMove move, int attacker) {
     int attackerStatUsed = 0; //Determines whether attack or intelligence is used
@@ -1430,7 +1412,6 @@ class Battle /*extends Interaction*/ {
   }
 
   public void setOutputText(String text) {
-	  //System.out.println(outputText);
 	  this.outputText = outputText + "\n" + text;
   }
 
@@ -1459,7 +1440,6 @@ class Battle /*extends Interaction*/ {
     }
     playerCurrentHealth = player.getCurrentHealth();
   }
-
 
   public void cureStatus(PlayableCharacter player, HealItem item){
       if(item.getType().equals(playerStatus)){
@@ -1493,5 +1473,29 @@ class Battle /*extends Interaction*/ {
       }else if(item.getStatAffected().equals("Health")){
           playerCurrentHealth += playerHealth * item.getMultiplier();
       }
+  }
+
+  public boolean isPlayerChoicePhase() {
+    return playerChoicePhase;
+  }
+
+  public boolean isPlayerInventoryPhase() {
+    return playerInventoryPhase;
+  }
+
+  public boolean isPlayerSwitchPhase() {
+    return playerSwitchPhase;
+  }
+
+  public boolean isPlayerRunPhase() {
+    return playerRunPhase;
+  }
+
+  public boolean isPlayerInputPhase() {
+    return playerInputPhase;
+  }
+
+  public boolean isPlayerInventoryChoicePhase() {
+    return playerInventoryChoicePhase;
   }
 }
