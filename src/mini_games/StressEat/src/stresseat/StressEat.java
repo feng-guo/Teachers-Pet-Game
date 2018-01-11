@@ -1,3 +1,4 @@
+/*
 package mini_games.StressEat.src.stresseat;
 
 import java.util.concurrent.TimeUnit;
@@ -31,4 +32,4 @@ public class StressEat implements Clock, Points{ //implements clock, points
     // Drop food
     public static void movement() {
     }
-}
+}*/
