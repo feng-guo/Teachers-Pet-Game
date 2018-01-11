@@ -29,7 +29,6 @@ public abstract class Creature extends Entity{
 	public void move() {
 		System.out.println(x + ", " + y);
 		//System.out.println(handler.getGame().getWidth());
-		if(x <= handler.getGame().getWidth() && x >= 0 && y <= handler.getGame().getHeight() && y >= 0) {
 			
 			if(!checkEntityCollisions(xMove,0f)) {
 				moveX();
@@ -39,7 +38,6 @@ public abstract class Creature extends Entity{
 				moveY();
 	
 			}
-		}
 	}
 	
 	public void moveX() {
