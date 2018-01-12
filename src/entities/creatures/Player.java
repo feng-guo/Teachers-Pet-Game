@@ -13,6 +13,7 @@ import tiles.Tile;
 public class Player extends Creature{
 	
 	private Animation animDown, animUp, animLeft, animRight;
+	private int direction;
 	
 	
 	public Player(Handler handler, float x, float y) {
@@ -87,26 +88,40 @@ public class Player extends Creature{
 	public void render(Graphics g) {
 		g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 		
-		/*
-		g.setColor(Color.RED);
-		g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
-					(int) (y + bounds.y - handler.getGameCamera().getyOffset()),
-					bounds.width, bounds.height);
-					*/
+		
+//		g.setColor(Color.RED);
+//		g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
+//					(int) (y + bounds.y - handler.getGameCamera().getyOffset()),
+//					bounds.width, bounds.height);
+//					
 	}
 	
 	private BufferedImage getCurrentAnimationFrame() {
-		if (xMove < 0){
+		if (xMove < 0){ // going left
+			direction = 1;
 			return animLeft.getCurrentFrame();
-		} else if (xMove > 0){
+		} else if (xMove > 0){ // going right
+			direction = 2;
 			return animRight.getCurrentFrame();
-		} else if (yMove < 0) {
+		} else if (yMove < 0) { // going up
+			direction = 3;
 			return animUp.getCurrentFrame();
-		} else if (yMove > 0) {
+		} else if (yMove > 0) { // going down
+			direction = 4;
 			return animDown.getCurrentFrame();
-		} else {
-			return Assets.feng_down[0];
+		} else if (xMove == 0 && yMove == 0){
+			
+			// Keeps them facing the current direction
+			if(direction == 1) {
+				return Assets.feng_left[0];
+			} else if (direction == 2) {
+				return Assets.feng_right[0];
+			} else if (direction == 3) {
+				return Assets.feng_up[0];
+			}
 		}
+		
+		return Assets.feng_down[0];
 		
 		
 		

@@ -11,7 +11,7 @@ public class Assets {
 
 	
 	//public static BufferedImage feng_down_1, feng_down_2, feng_down_3;
-	public static BufferedImage grass_1, grass_2, rock, path;
+	public static BufferedImage grass_1, grass_2, rock, path, tree;
 	public static BufferedImage[] feng_down, feng_up, feng_left, feng_right, logo;
 	
 	
@@ -19,6 +19,8 @@ public class Assets {
 		SpriteSheet fengSheet = new SpriteSheet(ImageLoader.loadImage("/textures/feng_textures.png"));
 		SpriteSheet tileSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile_sheet.png"));
 		SpriteSheet grassSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile_textures.png"));
+		
+		tree = ImageLoader.loadImage("/textures/Tree.png");
 		
 		logo = new BufferedImage[2];
 		logo[0] = ImageLoader.loadImage("/textures/RHHSLogo.png");
