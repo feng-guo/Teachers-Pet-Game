@@ -94,6 +94,14 @@ public abstract class Creature extends Entity{
 		}
 	}
 	
+	protected boolean collisionWithEntity(Entity e1, Entity e2) {
+		if (e1.getCollisionBounds(0, 0).intersects(e2.getCollisionBounds(0, 0))) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	//Getters and setters
 
 	public float getxMove() {
