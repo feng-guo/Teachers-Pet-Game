@@ -1,4 +1,6 @@
-import java.awt.Rectangle; 
+package mini_games.StressEat.src.stresseat;
+
+import java.awt.Rectangle;
 
 public class User {
     private double X, Y;

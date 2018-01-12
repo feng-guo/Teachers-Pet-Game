@@ -70,7 +70,7 @@ public class Game implements Runnable{
 		settingsState = new SettingsState(handler);
 		gameState = new GameState(handler);
 		menuState = new MenuState(handler);
-		battleState = new BattleState(handler);
+		battleState = new BattleState(handler, g);
 
 		State.setState(menuState);
 
@@ -84,6 +84,10 @@ public class Game implements Runnable{
 		// CHANGE TO BATTLE STATE
 		if(handler.getKeyManager().battle) {
 			State.setState(battleState);
+			if (!((BattleState)battleState).getBattleTest().isBattleStart()) {
+				((BattleState) battleState).getBattleTest().initializeBattleAssets();
+				((BattleState) battleState).getBattleTest().startRandomBattle();
+			}
 		}
 		if(State.getState() != null) {
 			State.getState().tick();

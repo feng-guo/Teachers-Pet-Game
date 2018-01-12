@@ -11,8 +11,6 @@ public abstract class Creature extends Entity{
 	public static final float DEFAULT_SPEED = 3.0f;
 	public static final int DEFAULT_CREATURE_WIDTH = 32;
 	public static final int DEFAULT_CREATURE_HEIGHT = 42;
-
-
 	
 	protected int health;
 	protected float speed;
@@ -27,14 +25,17 @@ public abstract class Creature extends Entity{
 	}
 	
 	public void move() {
-		if(!checkEntityCollisions(xMove,0f)) {
-			moveX();
-
-		}
-		if(!checkEntityCollisions(0f,yMove)) {
-			moveY();
-
-		}
+		//System.out.println(x + ", " + y);
+		//System.out.println(handler.getGame().getWidth());
+			
+			if(!checkEntityCollisions(xMove,0f)) {
+				moveX();
+	
+			}
+			if(!checkEntityCollisions(0f,yMove)) {
+				moveY();
+	
+			}
 	}
 	
 	public void moveX() {
@@ -85,7 +86,12 @@ public abstract class Creature extends Entity{
 	}
 	
 	protected boolean collisionWithTile(int x, int y) {
-		return handler.getWorld().getTile(x, y).isSolid();
+		if (x <= handler.getWorld().getWidth() * Tile.TILE_WIDTH && x >= 0 && y <= handler.getWorld().getHeight() * Tile.TILE_HEIGHT && y >= 0) {
+			//System.out.println(handler.getWorld().getHeight());
+			return handler.getWorld().getTile(x, y).isSolid();
+		} else {
+			return true;
+		}
 	}
 	
 	//Getters and setters

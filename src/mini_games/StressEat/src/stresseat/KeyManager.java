@@ -1,4 +1,6 @@
-import java.awt.event.KeyEvent; 
+package mini_games.StressEat.src.stresseat;
+
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class KeyManager implements KeyListener{

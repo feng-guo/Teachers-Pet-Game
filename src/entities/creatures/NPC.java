@@ -8,46 +8,73 @@ import game.Game;
 import game.Handler;
 import graphics.Animation;
 import graphics.Assets;
+import states.State;
 import tiles.Tile;
 
-public class Player extends Creature{
+public class NPC extends Creature{
 	
 	private Animation animDown, animUp, animLeft, animRight;
 	private int direction;
+	private int secondTimer;
+	private float speed = 1.5f;
+	private String name;
+	private float startX, startY;
+	private int boxSize;
 	
-	
-	public Player(Handler handler, float x, float y) {
-		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
+	public NPC(Handler handler, String name, int boxSize,float x, float y) {
+
 		
-		// SPECIFIC TO A STANDARD PLAYER
-		bounds.x = 10;
-		bounds.y = 20;
-		bounds.width = 16;
-		bounds.height = 22;
+		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
+		startX = x;
+		startY = y;
+		this.name = name;
+		this.boxSize = boxSize;
+		
+		// SPECIFIC TO A STANDARD NPC
+		bounds.x = 5;
+		bounds.y = 10;
+		bounds.width = 28;
+		bounds.height = 32;
 		
 		// Animations
 		animDown = new Animation(100, Assets.feng_down);
 		animUp = new Animation(100, Assets.feng_up);
 		animLeft = new Animation(100, Assets.feng_left);
 		animRight = new Animation(100, Assets.feng_right);
-
-		
-		
 	}
 
 	@Override
 	public void tick() {
-		
 		// Animations
 		animDown.tick();
 		animUp.tick();
 		animLeft.tick();
 		animRight.tick();
 		
+		if (bounds.intersects(handler.getWorld().getEntityManager().getPlayer().getCollisionBounds(handler.getGameCamera().getxOffset(), handler.getGameCamera().getyOffset()))) {
+			State.setState(handler.getGame().battleState);
+		}
+		
+		if (x < startX){
+			x = startX;
+		} else if (x > startX + boxSize) {
+			x = startX + boxSize;
+		}
+		
+		if (y < startY){
+			y = startY;
+		} else if (y > startY + boxSize) {
+			y = startY + boxSize;
+		}
+		
 		// Movement
-		getInput();
+		secondTimer++;
+		if (secondTimer > 20) {
+			getInput();
+			secondTimer = 0;
+		}
 		move();
-		handler.getGameCamera().centerOnEntity(this);
+		//handler.getGameCamera().centerOnEntity(this);
 	}
 	
 	private void getInput() {
@@ -55,20 +82,33 @@ public class Player extends Creature{
 		xMove = 0;
 		yMove = 0;
 		
-		//if(x <= handler.getWorld().getWidth() && x >= 0 && y <= handler.getWorld().getHeight() && y >= 0) {
-			if(handler.getKeyManager().up) {
-				yMove = -speed;
-			}
-			else if(handler.getKeyManager().down) {
-				yMove = speed;
-			}
-			else if(handler.getKeyManager().left) {
-				xMove = -speed;
-			}
-			else if(handler.getKeyManager().right) {
-				xMove = speed;
-			}
-		//} 
+		if(x >= startX && x <= startX + boxSize && y >= startY && y <= startY + boxSize) {
+		
+			int rand = (int) Math.ceil(Math.random() * 8);
+			System.out.println(x + ", " + y);
+			
+				if(rand == 1) {
+					yMove = -speed;
+				}
+				else if(rand == 2) {
+					yMove = speed;
+				}
+				else if(rand == 3) {
+					xMove = -speed;
+				}
+				else if(rand == 4) {
+					xMove = speed;
+				} else {
+					xMove = 0;
+					yMove = 0;
+				}
+		}
+		
+		
+		
+		
+		
+		
 		if (x == -3) {
 			x = 0;
 		}
@@ -79,8 +119,8 @@ public class Player extends Creature{
 		if (x > (handler.getWorld().getWidth() - 1) * Tile.TILE_WIDTH) {
 			x = (handler.getWorld().getWidth() - 1) * Tile.TILE_WIDTH; 
 		}
-		if (y > (handler.getWorld().getHeight() - 1.5f) * Tile.TILE_HEIGHT) {
-			y = (handler.getWorld().getHeight() - 1.5f) * Tile.TILE_HEIGHT;
+		if (y == handler.getWorld().getHeight() * Tile.TILE_HEIGHT + 3) {
+			y = handler.getWorld().getHeight() * Tile.TILE_HEIGHT; 
 		}
 
 		

@@ -11,14 +11,19 @@ public class Assets {
 
 	
 	//public static BufferedImage feng_down_1, feng_down_2, feng_down_3;
-	public static BufferedImage grass_1, grass_2, rock;
+	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, floor;
 	public static BufferedImage[] feng_down, feng_up, feng_left, feng_right, logo;
+	public static BufferedImage[][] tileArray;
 	
 	
 	public static void init() {
 		SpriteSheet fengSheet = new SpriteSheet(ImageLoader.loadImage("/textures/feng_textures.png"));
 		SpriteSheet tileSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile_sheet.png"));
 		SpriteSheet grassSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile_textures.png"));
+		SpriteSheet floorSheet = new SpriteSheet(ImageLoader.loadImage("/textures/sample4.png"));
+		
+		tree = ImageLoader.loadImage("/textures/Tree.png");
+		floor = floorSheet.crop(32 * 8 - 9, 32 * 28 - 3, 32, 32);
 		
 		logo = new BufferedImage[2];
 		logo[0] = ImageLoader.loadImage("/textures/RHHSLogo.png");
@@ -45,10 +50,17 @@ public class Assets {
 		feng_up[1] = fengSheet.crop(charWidth*10, 0, charWidth, charHeight);
 		feng_up[2] = fengSheet.crop(charWidth*11, 0, charWidth, charHeight);
 		
-		grass_1 = grassSheet.crop(0, 0, tileWidth, tileHeight);
-		grass_2 = grassSheet.crop(tileWidth, 0, tileWidth, tileHeight);
+		//grass_1 = grassSheet.crop(0, 0, tileWidth, tileHeight);
+		//grass_2 = grassSheet.crop(tileWidth, 0, tileWidth, tileHeight);
+		path = grassSheet.crop(0, tileWidth, tileWidth, tileHeight);
 		
-		rock = tileSheet.crop(17, 17*26, tileWidth, tileHeight);
+		tileArray = new BufferedImage[10][10];
+		for (int i = 0; i < 10; i ++) {
+			for (int j = 0; j < 10; j++) {
+				tileArray[i][j] = tileSheet.crop(i *(tileWidth + 1), j *(tileHeight + 1), tileWidth, tileHeight);
+			}
+		}
+		rock = tileArray[7][7];
 
 	}
 }

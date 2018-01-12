@@ -1,5 +1,6 @@
 package entities.statics;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import game.Handler;
@@ -9,13 +10,13 @@ import tiles.Tile;
 public class Tree extends StaticEntity{
 
 	public Tree(Handler handler, float x, float y) {
-		super(handler, x, y, Tile.TILE_WIDTH, Tile.TILE_HEIGHT * 2);
+		super(handler, x, y, (int) (Tile.TILE_WIDTH * 1.5), Tile.TILE_HEIGHT * 2);
 		
 		// SPECIFIC TO TREE
 		bounds.x = 10;
 		bounds.y = 20;
-		bounds.width = 16;
-		bounds.height = 22;
+		bounds.width = 28;
+		bounds.height = 32;
 	}
 
 	@Override
@@ -25,7 +26,9 @@ public class Tree extends StaticEntity{
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Assets.rock, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+		g.drawImage(Assets.tree, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+		//g.setColor(Color.RED);
+		//g.fillRect((int) (x - handler.getGameCamera().getxOffset() + bounds.x), (int) (y - handler.getGameCamera().getyOffset() + bounds.y), bounds.width, bounds.height);
 	}
 
 }
