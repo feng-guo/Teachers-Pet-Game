@@ -27,14 +27,13 @@ public class World {
 		entityManager = new EntityManager(handler, new Player(handler, spawnX * Tile.TILE_WIDTH, spawnY * Tile.TILE_WIDTH));
 		
 		
-		entityManager.addEntity(new NPC(handler, 250, 250));
+		entityManager.addEntity(new NPC(handler, "Feng2", 100, 250, 250));
 		entityManager.addEntity(new Tree(handler, 100, 250));
 		
 		loadWorld(path);
 		
 		entityManager.getPlayer().setX(spawnX);
 		entityManager.getPlayer().setY(spawnY);
-		
 
 		
 	}

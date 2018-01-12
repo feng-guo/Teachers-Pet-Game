@@ -8,6 +8,7 @@ import game.Game;
 import game.Handler;
 import graphics.Animation;
 import graphics.Assets;
+import states.State;
 import tiles.Tile;
 
 public class NPC extends Creature{
@@ -16,15 +17,24 @@ public class NPC extends Creature{
 	private int direction;
 	private int secondTimer;
 	private float speed = 1.5f;
+	private String name;
+	private float startX, startY;
+	private int boxSize;
 	
-	public NPC(Handler handler, float x, float y) {
+	public NPC(Handler handler, String name, int boxSize,float x, float y) {
+
+		
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
+		startX = x;
+		startY = y;
+		this.name = name;
+		this.boxSize = boxSize;
 		
 		// SPECIFIC TO A STANDARD NPC
-		bounds.x = 10;
-		bounds.y = 20;
-		bounds.width = 16;
-		bounds.height = 22;
+		bounds.x = 5;
+		bounds.y = 10;
+		bounds.width = 28;
+		bounds.height = 32;
 		
 		// Animations
 		animDown = new Animation(100, Assets.feng_down);
@@ -41,6 +51,22 @@ public class NPC extends Creature{
 		animLeft.tick();
 		animRight.tick();
 		
+		if (bounds.intersects(handler.getWorld().getEntityManager().getPlayer().getCollisionBounds(handler.getGameCamera().getxOffset(), handler.getGameCamera().getyOffset()))) {
+			State.setState(handler.getGame().battleState);
+		}
+		
+		if (x < startX){
+			x = startX;
+		} else if (x > startX + boxSize) {
+			x = startX + boxSize;
+		}
+		
+		if (y < startY){
+			y = startY;
+		} else if (y > startY + boxSize) {
+			y = startY + boxSize;
+		}
+		
 		// Movement
 		secondTimer++;
 		if (secondTimer > 20) {
@@ -56,27 +82,33 @@ public class NPC extends Creature{
 		xMove = 0;
 		yMove = 0;
 		
-		//if(x <= handler.getWorld().getWidth() && x >= 0 && y <= handler.getWorld().getHeight() && y >= 0) {
+		if(x >= startX && x <= startX + boxSize && y >= startY && y <= startY + boxSize) {
 		
-		int rand = (int) Math.ceil(Math.random() * 8);
+			int rand = (int) Math.ceil(Math.random() * 8);
+			System.out.println(x + ", " + y);
+			
+				if(rand == 1) {
+					yMove = -speed;
+				}
+				else if(rand == 2) {
+					yMove = speed;
+				}
+				else if(rand == 3) {
+					xMove = -speed;
+				}
+				else if(rand == 4) {
+					xMove = speed;
+				} else {
+					xMove = 0;
+					yMove = 0;
+				}
+		}
 		
 		
-			if(rand == 1) {
-				yMove = -speed;
-			}
-			else if(rand == 2) {
-				yMove = speed;
-			}
-			else if(rand == 3) {
-				xMove = -speed;
-			}
-			else if(rand == 4) {
-				xMove = speed;
-			} else {
-				xMove = 0;
-				yMove = 0;
-			}
-		//} 
+		
+		
+		
+		
 		if (x == -3) {
 			x = 0;
 		}
