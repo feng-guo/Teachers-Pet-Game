@@ -11,8 +11,6 @@ public abstract class Creature extends Entity{
 	public static final float DEFAULT_SPEED = 3.0f;
 	public static final int DEFAULT_CREATURE_WIDTH = 32;
 	public static final int DEFAULT_CREATURE_HEIGHT = 42;
-
-
 	
 	protected int health;
 	protected float speed;
@@ -27,7 +25,7 @@ public abstract class Creature extends Entity{
 	}
 	
 	public void move() {
-		System.out.println(x + ", " + y);
+		//System.out.println(x + ", " + y);
 		//System.out.println(handler.getGame().getWidth());
 			
 			if(!checkEntityCollisions(xMove,0f)) {

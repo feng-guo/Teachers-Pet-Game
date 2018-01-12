@@ -3,6 +3,7 @@ package worlds;
 import java.awt.Graphics;
 
 import entities.EntityManager;
+import entities.creatures.NPC;
 import entities.creatures.Player;
 import entities.statics.Tree;
 import game.Game;
@@ -23,8 +24,10 @@ public class World {
 	
 	public World(Handler handler, String path) {
 		this.handler = handler;
-		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
+		entityManager = new EntityManager(handler, new Player(handler, spawnX * Tile.TILE_WIDTH, spawnY * Tile.TILE_WIDTH));
 		
+		
+		entityManager.addEntity(new NPC(handler, 250, 250));
 		entityManager.addEntity(new Tree(handler, 100, 250));
 		
 		loadWorld(path);
