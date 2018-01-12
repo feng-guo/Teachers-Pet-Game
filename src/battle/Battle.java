@@ -106,7 +106,8 @@ class Battle /*extends Interaction*/ {
   private String turnNumberString;
   private String[] selectionStrings;
 
-  private boolean playerChoicePhase, playerPickAttackPhase, playerAttackChoicePhase, playerSwitchPhase, playerInventoryPhase, playerInventoryChoicePhase, playerRunPhase, playerInputPhase, playerEndPhase;
+  private boolean playerChoicePhase, playerPickAttackPhase, playerAttackChoicePhase, playerSwitchPhase, playerPickCharacterPhase, playerInventoryPhase, playerInventoryChoicePhase, playerRunPhase, playerInputPhase, playerEndPhase;
+  private boolean forceSwitchCharacterPhase;
 
 
   Battle (PlayableCharacter player, NonPlayableCharacter opponent, Squad squad, Inventory inventory, Handler handler, Graphics g) {
@@ -213,9 +214,11 @@ class Battle /*extends Interaction*/ {
     this.playerPickAttackPhase = false;
     this.playerAttackChoicePhase = false;
     this.playerSwitchPhase = false;
+    this.playerPickCharacterPhase = false;
     this.playerInventoryPhase = false;
     this.playerInventoryChoicePhase = false;
     this.playerEndPhase = false;
+    this.forceSwitchCharacterPhase = false;
   }
 
   private void changeCharacter(PlayableCharacter player) {
@@ -266,6 +269,25 @@ class Battle /*extends Interaction*/ {
   private int drawX, drawY;
   
   public void runBattleTurn(int phase) {
+    if (phase > 0) {
+      if (phase - 1 == 0) {
+        playerPickAttackPhase = true;
+        playerPickAttack();
+        playerChoicePhase = false;
+      } else if (phase - 1 == 1) {
+        playerInventoryPhase = true;
+        playerPickInventory();
+        playerChoicePhase = false;
+      } else if (phase - 1 == 2) {
+        playerSwitchPhase = true;
+        playerSwitchCharacter();
+        playerChoicePhase = false;
+      } else if (phase - 1 == 3) {
+        playerRunPhase = true;
+        playerChoicePhase = false;
+      }
+      return;
+    }
     drawX = 20;
     drawY = 20;
     //Turn number output should be its own string
@@ -330,20 +352,6 @@ class Battle /*extends Interaction*/ {
       System.out.println(selectionStrings[i]);
     }
 
-
-    if (phase-1 == 0) {
-      playerPickAttackPhase = true;
-      playerChoicePhase = false;
-    } else if (phase-1 == 1) {
-      playerInventoryPhase = true;
-      playerChoicePhase = false;
-    } else if (phase-1 == 2) {
-      playerSwitchPhase = true;
-      playerChoicePhase = false;
-    } else if (phase-1 == 3) {
-      playerRunPhase = true;
-      playerChoicePhase = false;
-    }
     //Everything else
     /*handler.getKeyManager().tick();
     int answer = determineAnswer(handler);
@@ -468,7 +476,7 @@ class Battle /*extends Interaction*/ {
         //Protecting will be handled in the move methods
       }
     }
-    playerEndPhase = true;
+    endTurn();
   }
 
   public void playerPickInventory() {
@@ -509,13 +517,16 @@ class Battle /*extends Interaction*/ {
       playerInventory.useItem(playerInventory.getItemName(answer));
       playerInventoryChoicePhase = false;
       opponentTurn();
-      playerEndPhase = true;
     }
   }
 
   public void playerSwitchCharacter() {
     squad.displaySquad();
-    playerSwitchPhase = true;
+    if (forceSwitchCharacterPhase) {
+      return;
+    } else {
+      playerPickCharacterPhase = true;
+    }
   }
 
   public void playerPickCharacter(int choice) {
@@ -543,7 +554,7 @@ class Battle /*extends Interaction*/ {
 
   public void opponentTurn() {
     determineAttackType(opponent.getMove(determineOpponentMove()), opponent);
-    playerEndPhase = true;
+    endTurn();
   }
 
   public void endTurn() {
@@ -606,8 +617,22 @@ class Battle /*extends Interaction*/ {
     }
     battleTurns++;
     System.out.println("");
+    if (!battleEnd && playerCurrentHealth == 0) {
+      forceSwitchCharacterPhase = true;
+      playerSwitchCharacter();
+    }
     if (!battleEnd) {
       goBackInMenu();
+      runBattleTurn(-1);
+    }
+  }
+
+  public void forceSwitchCharacter(int choice) {
+    if (squad.getCharacter(choice - 1).getCurrentHealth() > 0) {
+      changeCharacter(squad.getCharacter(choice - 1));
+      forceSwitchCharacterPhase = false;
+    } else {
+      System.out.println("That person is dead");
     }
   }
 
@@ -1548,5 +1573,13 @@ class Battle /*extends Interaction*/ {
 
   public boolean isPlayerPickAttackPhase() {
     return playerPickAttackPhase;
+  }
+
+  public boolean isPlayerPickCharacterPhase() {
+    return playerPickCharacterPhase;
+  }
+
+  public boolean isForceSwitchCharacterPhase() {
+    return forceSwitchCharacterPhase;
   }
 }

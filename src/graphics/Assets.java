@@ -61,7 +61,7 @@ public class Assets {
 			}
 		}
 		rock = tileArray[7][7];
-		hallFloor = tileArray[58][14];
+		//hallFloor = tileArray[58][14];
 
 
 	}

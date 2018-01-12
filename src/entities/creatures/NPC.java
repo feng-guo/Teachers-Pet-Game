@@ -59,7 +59,8 @@ public class NPC extends Creature{
 		
 		if(x + bounds.x < handler.getWorld().getEntityManager().getPlayer().getX() + 20 && x + bounds.x  + 20 > handler.getWorld().getEntityManager().getPlayer().getX()) {
 			if(y + bounds.y < handler.getWorld().getEntityManager().getPlayer().getY() + 20 && y + bounds.y  + 20 > handler.getWorld().getEntityManager().getPlayer().getY()) {
-				//State.setState(handler.getGame().battleState);
+				State.setState(handler.getGame().battleState);
+
 				System.out.println("NPC: " + x + ", " + y);
 				System.out.println("PLAYER " + handler.getWorld().getEntityManager().getPlayer().getX() + ", " + handler.getWorld().getEntityManager().getPlayer().getY());
 			}

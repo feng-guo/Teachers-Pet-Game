@@ -29,7 +29,7 @@ public class BattleState extends State{
 	@Override
 	public void tick() {
 		count++;
-		if (count > 10) {
+		if (count > 5) {
 			answer = -1;
 			if (handler.getKeyManager().first) {
 				answer = 1;
