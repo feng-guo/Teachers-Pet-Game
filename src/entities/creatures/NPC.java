@@ -2,6 +2,7 @@ package entities.creatures;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import game.Game;
@@ -20,6 +21,7 @@ public class NPC extends Creature{
 	private String name;
 	private float startX, startY;
 	private int boxSize;
+	private boolean hasStopped = false;
 	
 	public NPC(Handler handler, String name, int boxSize,float x, float y) {
 
@@ -51,9 +53,25 @@ public class NPC extends Creature{
 		animLeft.tick();
 		animRight.tick();
 		
-		if (bounds.intersects(handler.getWorld().getEntityManager().getPlayer().getCollisionBounds(handler.getGameCamera().getxOffset(), handler.getGameCamera().getyOffset()))) {
-			State.setState(handler.getGame().battleState);
+		
+		
+		
+		
+		if(x + bounds.x < handler.getWorld().getEntityManager().getPlayer().getX() + 20 && x + bounds.x  + 20 > handler.getWorld().getEntityManager().getPlayer().getX()) {
+			if(y + bounds.y < handler.getWorld().getEntityManager().getPlayer().getY() + 20 && y + bounds.y  + 20 > handler.getWorld().getEntityManager().getPlayer().getY()) {
+				//State.setState(handler.getGame().battleState);
+				System.out.println("NPC: " + x + ", " + y);
+				System.out.println("PLAYER " + handler.getWorld().getEntityManager().getPlayer().getX() + ", " + handler.getWorld().getEntityManager().getPlayer().getY());
+			}
 		}
+			
+//			if ((handler.getWorld().getEntityManager().getPlayer().getX()) {
+//				System.out.println("COLLIDED");
+//			}
+		
+		
+			
+		//System.out.println(bounds.x);
 		
 		if (x < startX){
 			x = startX;
@@ -73,7 +91,9 @@ public class NPC extends Creature{
 			getInput();
 			secondTimer = 0;
 		}
-		move();
+		if(!hasStopped) {
+			move();
+		}
 		//handler.getGameCamera().centerOnEntity(this);
 	}
 	
@@ -85,7 +105,7 @@ public class NPC extends Creature{
 		if(x >= startX && x <= startX + boxSize && y >= startY && y <= startY + boxSize) {
 		
 			int rand = (int) Math.ceil(Math.random() * 8);
-			System.out.println(x + ", " + y);
+			//System.out.println(x + ", " + y);
 			
 				if(rand == 1) {
 					yMove = -speed;
@@ -135,7 +155,7 @@ public class NPC extends Creature{
 //		g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
 //					(int) (y + bounds.y - handler.getGameCamera().getyOffset()),
 //					bounds.width, bounds.height);
-//					
+//				
 	}
 	
 	private BufferedImage getCurrentAnimationFrame() {
@@ -167,6 +187,10 @@ public class NPC extends Creature{
 		
 		
 		
+	}
+	
+	public void stopNPC() {
+		hasStopped = true;
 	}
 
 }
