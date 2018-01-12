@@ -12,7 +12,7 @@ import game.Handler;
 public class BattleState extends State{
 
 
-	private int count = 0;
+	private int count = 60;
 
 	private String battleText;
 	private BattleRunner battleTest;
@@ -28,28 +28,33 @@ public class BattleState extends State{
 
 	@Override
 	public void tick() {
-		answer = -1;
-		if(handler.getKeyManager().first){
-			answer = 1;
-		}
-		if(handler.getKeyManager().second){
-			answer = 2;
-		}
-		if(handler.getKeyManager().third){
-			answer = 3;
-		}
-		if(handler.getKeyManager().fourth){
-			answer = 4;
-		}
-		if (handler.getKeyManager().backspace) {
-			answer = 10;
-		}
-		if (handler.getKeyManager().enter) {
-			answer = 1;
-		}
-		if (answer != -1 ) {
-			battleTest.runPhase(answer);
+		count++;
+		if (count > 10) {
 			answer = -1;
+			if (handler.getKeyManager().first) {
+				answer = 1;
+			}
+			if (handler.getKeyManager().second) {
+				answer = 2;
+			}
+			if (handler.getKeyManager().third) {
+				answer = 3;
+			}
+			if (handler.getKeyManager().fourth) {
+				answer = 4;
+			}
+			if (handler.getKeyManager().backspace) {
+				answer = 10;
+			}
+			if (handler.getKeyManager().enter) {
+				answer = 1;
+			}
+			if (answer != -1) {
+				//Eventually, this should be moved outside of this if statement because it's graphics
+				battleTest.runPhase(answer);
+				answer = -1;
+			}
+			count = 0;
 		}
 	}
 
