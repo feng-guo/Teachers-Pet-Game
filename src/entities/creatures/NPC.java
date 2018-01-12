@@ -3,8 +3,12 @@ package entities.creatures;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 
+import javax.swing.JFrame;
+
+import display.Display;
 import game.Game;
 import game.Handler;
 import graphics.Animation;
@@ -22,6 +26,7 @@ public class NPC extends Creature{
 	private float startX, startY;
 	private int boxSize;
 	private boolean hasStopped = false;
+	private int battlesStarted = 0;
 	
 	public NPC(Handler handler, String name, int boxSize,float x, float y) {
 
@@ -63,6 +68,19 @@ public class NPC extends Creature{
 		
 		
 		if(npcRect.intersects(playerRect)) {
+			
+			battlesStarted++;
+			if (battlesStarted <= 1) {
+				System.out.println("true");
+				Display battleDisplay = new Display("Battle", 200, 200);
+				
+				battleDisplay.getFrame().setLocation(Toolkit.getDefaultToolkit().getScreenSize().width/4, Toolkit.getDefaultToolkit().getScreenSize().height/4);
+
+//				JFrame frame = new JFrame();
+//				frame.setSize(300, 300);
+//				frame.setVisible(true);
+			}
+			
 			stopNPC();
 			
 			if (handler.getWorld().getEntityManager().getPlayer().getDirection() == 1) {
@@ -74,6 +92,7 @@ public class NPC extends Creature{
 			} else if (handler.getWorld().getEntityManager().getPlayer().getDirection() == 4) {
 				ultimateDir = 3;
 			}
+			
 		} else {
 			hasStopped = false;
 			ultimateDir = 0;
