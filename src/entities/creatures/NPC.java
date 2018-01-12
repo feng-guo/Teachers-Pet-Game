@@ -8,6 +8,7 @@ import game.Game;
 import game.Handler;
 import graphics.Animation;
 import graphics.Assets;
+import states.State;
 import tiles.Tile;
 
 public class NPC extends Creature{
@@ -49,6 +50,10 @@ public class NPC extends Creature{
 		animUp.tick();
 		animLeft.tick();
 		animRight.tick();
+		
+		if (bounds.intersects(handler.getWorld().getEntityManager().getPlayer().getCollisionBounds(handler.getGameCamera().getxOffset(), handler.getGameCamera().getyOffset()))) {
+			State.setState(handler.getGame().battleState);
+		}
 		
 		if (x < startX){
 			x = startX;

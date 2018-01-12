@@ -37,11 +37,13 @@ public class Player extends Creature{
 
 	@Override
 	public void tick() {
+		
 		// Animations
 		animDown.tick();
 		animUp.tick();
 		animLeft.tick();
 		animRight.tick();
+		
 		// Movement
 		getInput();
 		move();
