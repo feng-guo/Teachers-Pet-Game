@@ -49,6 +49,7 @@ public class BattleState extends State{
 		}
 		if (answer != -1 ) {
 			battleTest.runPhase(answer);
+			answer = -1;
 		}
 	}
 

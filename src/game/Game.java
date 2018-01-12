@@ -87,7 +87,6 @@ public class Game implements Runnable{
 			if (!((BattleState)battleState).getBattleTest().isBattleStart()) {
 				((BattleState) battleState).getBattleTest().initializeBattleAssets();
 				((BattleState) battleState).getBattleTest().startRandomBattle();
-				((BattleState) battleState).getBattleTest().simulateBattle(-1);
 			}
 		}
 		if(State.getState() != null) {

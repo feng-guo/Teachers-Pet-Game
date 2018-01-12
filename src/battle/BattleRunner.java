@@ -62,21 +62,21 @@ public class BattleRunner {
 	    battleStart = true;
     }
 
-	public void simulateBattle(int choice){
-	    battle.runBattleTurn(choice);
-    }
-
     public void runPhase(int choice) {
-	    if (battle.isPlayerChoicePhase()) {
+        if (choice == 10) {
+            battle.goBackInMenu();
+        } else if (battle.isPlayerEndPhase()) {
+	        battle.endTurn();
+        } else if (battle.isPlayerChoicePhase()) {
 	        battle.runBattleTurn(choice);
         } else if (battle.isPlayerAttackChoicePhase()) {
-	        battle.playerPickAttack(choice);
+            battle.playerUseAttack(choice);
+        } else if (battle.isPlayerPickAttackPhase()) {
+            battle.playerPickAttack();
+        } else if (battle.isPlayerInventoryChoicePhase()) {
+            battle.useInventoryItem(choice);
         } else if (battle.isPlayerInventoryPhase()) {
-	        if (choice != 1) {
-	            battle.playerPickInventory();
-            } else {
-	            battle.useInventoryItem(choice);
-            }
+            battle.playerPickInventory();
         } else if (battle.isPlayerSwitchPhase()) {
 	        if (!battle.isPlayerInputPhase()) {
 	            battle.playerSwitchCharacter();

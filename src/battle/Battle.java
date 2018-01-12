@@ -106,8 +106,7 @@ class Battle /*extends Interaction*/ {
   private String turnNumberString;
   private String[] selectionStrings;
 
-  private boolean playerChoicePhase, playerAttackChoicePhase, playerSwitchPhase, playerInventoryPhase, playerInventoryChoicePhase, playerRunPhase, playerInputPhase, playerEndPhase;
-  private boolean turnCalculationsEnd;
+  private boolean playerChoicePhase, playerPickAttackPhase, playerAttackChoicePhase, playerSwitchPhase, playerInventoryPhase, playerInventoryChoicePhase, playerRunPhase, playerInputPhase, playerEndPhase;
 
 
   Battle (PlayableCharacter player, NonPlayableCharacter opponent, Squad squad, Inventory inventory, Handler handler, Graphics g) {
@@ -211,12 +210,12 @@ class Battle /*extends Interaction*/ {
 
     this.playerChoicePhase = true;
     this.playerInputPhase = true;
+    this.playerPickAttackPhase = false;
     this.playerAttackChoicePhase = false;
     this.playerSwitchPhase = false;
     this.playerInventoryPhase = false;
     this.playerInventoryChoicePhase = false;
     this.playerEndPhase = false;
-    this.turnCalculationsEnd = false;
   }
 
   private void changeCharacter(PlayableCharacter player) {
@@ -319,21 +318,21 @@ class Battle /*extends Interaction*/ {
       opponentStatBoost++;
       System.out.println(opponentName + "'s Speed Boost! Their speed increased!");
     }
-        //Displays the health of both opponents. This could be a string output too
-        System.out.println(playerName + " " + playerCurrentHealth + "/" + playerHealth);
-        System.out.println(opponentName + " " + opponentCurrentHealth + "/" + opponentHealth);
-        System.out.println("What would you like to do");
-        selectionStrings[0] = "Fight";
-        selectionStrings[1] = "Inventory";
-        selectionStrings[2] = "Squad";
-        selectionStrings[3] = "Run";
+    //Displays the health of both opponents. This could be a string output too
+    System.out.println(playerName + " " + playerCurrentHealth + "/" + playerHealth);
+    System.out.println(opponentName + " " + opponentCurrentHealth + "/" + opponentHealth);
+    System.out.println("What would you like to do");
+    selectionStrings[0] = "Fight";
+    selectionStrings[1] = "Inventory";
+    selectionStrings[2] = "Squad";
+    selectionStrings[3] = "Run";
+    for (int i = 0; i < 4; i++) {
+      System.out.println(selectionStrings[i]);
+    }
 
 
     if (phase-1 == 0) {
-      playerAttackChoicePhase = true;
-      for (int i=0; i<4; i++) {
-        selectionStrings = null;
-      }
+      playerPickAttackPhase = true;
       playerChoicePhase = false;
     } else if (phase-1 == 1) {
       playerInventoryPhase = true;
@@ -346,13 +345,13 @@ class Battle /*extends Interaction*/ {
       playerChoicePhase = false;
     }
     //Everything else
-    handler.getKeyManager().tick();
+    /*handler.getKeyManager().tick();
     int answer = determineAnswer(handler);
     if (true) {
     } else if (answer == 2) {
     } else if (answer == 3) {
     } else if (answer == 4) {
-    }
+    }*/
 
     /*if (!battleEnd) {
       do {
@@ -378,8 +377,6 @@ class Battle /*extends Interaction*/ {
         }
       } while (!exitLoop);
     }*/
-    battleTurns++;
-    System.out.println("");
   }
 
   public void goBackInMenu() {
@@ -390,16 +387,22 @@ class Battle /*extends Interaction*/ {
     this.playerInventoryPhase = false;
     this.playerInventoryChoicePhase = false;
     this.playerEndPhase = false;
-    this.turnCalculationsEnd = false;
   }
 
-  public void playerPickAttack(int choice) {
-    //Move displays should be handled differently
+  public void playerPickAttack() {
     playerAttackChoicePhase = true;
     for (int i = 0; i < 4; i++) {
       selectionStrings[i] = player.getMove(i).getName() + " " + player.getPowerPoints(i) + "/" + player.getMove(i).getMaxPowerPoints() + " (" + (i + 1) + ")";
     }
+    for (int i = 0; i < 4; i++) {
+      System.out.println(selectionStrings[i]);
+    }
+  }
 
+  public void playerUseAttack(int choice) {
+    //Move displays should be handled differently
+    playerPickAttackPhase = false;
+    playerAttackChoicePhase = false;
     int opponentMove = determineOpponentMove();
     int moveFirst = determineOrder(player.getMove(choice - 1), opponent.getMove(opponentMove));
     player.setPowerPoints(choice - 1, -1);
@@ -465,8 +468,6 @@ class Battle /*extends Interaction*/ {
         //Protecting will be handled in the move methods
       }
     }
-    playerAttackChoicePhase = false;
-    turnCalculationsEnd = true;
     playerEndPhase = true;
   }
 
@@ -507,6 +508,8 @@ class Battle /*extends Interaction*/ {
     if (itemUsed) {
       playerInventory.useItem(playerInventory.getItemName(answer));
       playerInventoryChoicePhase = false;
+      opponentTurn();
+      playerEndPhase = true;
     }
   }
 
@@ -519,6 +522,7 @@ class Battle /*extends Interaction*/ {
     if (squad.getCharacter(choice - 1).getCurrentHealth() > 0) {
       changeCharacter(squad.getCharacter(choice - 1));
       playerSwitchPhase = false;
+      opponentTurn();
     } else {
       System.out.println("That person is dead");
     }
@@ -535,6 +539,11 @@ class Battle /*extends Interaction*/ {
       System.out.println("Could not run!");
       playerRunPhase = false;
     }
+  }
+
+  public void opponentTurn() {
+    determineAttackType(opponent.getMove(determineOpponentMove()), opponent);
+    playerEndPhase = true;
   }
 
   public void endTurn() {
@@ -594,6 +603,11 @@ class Battle /*extends Interaction*/ {
     }
     if (opponentCurrentHealth != 0 && opponentStatus != null) {
       opponentStatusTurns++;
+    }
+    battleTurns++;
+    System.out.println("");
+    if (!battleEnd) {
+      goBackInMenu();
     }
   }
 
@@ -1530,5 +1544,9 @@ class Battle /*extends Interaction*/ {
 
   public boolean isPlayerEndPhase() {
     return playerEndPhase;
+  }
+
+  public boolean isPlayerPickAttackPhase() {
+    return playerPickAttackPhase;
   }
 }
