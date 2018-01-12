@@ -129,4 +129,8 @@ public class Player extends Creature{
 		
 	}
 
+	public int getDirection() {
+		return direction;
+	}
+
 }
