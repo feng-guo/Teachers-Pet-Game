@@ -334,12 +334,16 @@ class Battle /*extends Interaction*/ {
       for (int i=0; i<4; i++) {
         selectionStrings = null;
       }
+      playerChoicePhase = false;
     } else if (phase-1 == 1) {
       playerInventoryPhase = true;
+      playerChoicePhase = false;
     } else if (phase-1 == 2) {
       playerSwitchPhase = true;
+      playerChoicePhase = false;
     } else if (phase-1 == 3) {
       playerRunPhase = true;
+      playerChoicePhase = false;
     }
     //Everything else
     handler.getKeyManager().tick();

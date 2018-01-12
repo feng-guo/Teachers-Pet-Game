@@ -57,14 +57,14 @@ public class BattleState extends State{
 		if(answer < 0){
 			return;
 		}
-		if (answer == 1) {
-			System.out.println("detected");
-			System.out.println("What move would you like to use");
-		}
-		if (answer == 2) {
-			System.out.println("Killed");
-			System.out.println("What move would you like to use");
-		}
+//		if (answer == 1) {
+//			System.out.println("detected");
+//			System.out.println("What move would you like to use");
+//		}
+//		if (answer == 2) {
+//			System.out.println("Killed");
+//			System.out.println("What move would you like to use");
+//		}
 //		g.setColor(Color.black);
 //		g.fillRect(0, 0, 200, 200);
 //		if(count <= 1) {

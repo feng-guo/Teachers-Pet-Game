@@ -76,8 +76,8 @@ public class Player extends Creature{
 		if (x > (handler.getWorld().getWidth() - 1) * Tile.TILE_WIDTH) {
 			x = (handler.getWorld().getWidth() - 1) * Tile.TILE_WIDTH; 
 		}
-		if (y == handler.getWorld().getHeight() * Tile.TILE_HEIGHT + 3) {
-			y = handler.getWorld().getHeight() * Tile.TILE_HEIGHT; 
+		if (y > (handler.getWorld().getHeight() - 1.5f) * Tile.TILE_HEIGHT) {
+			y = (handler.getWorld().getHeight() - 1.5f) * Tile.TILE_HEIGHT;
 		}
 
 		
