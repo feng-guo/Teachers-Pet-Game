@@ -15,7 +15,7 @@ public class NPC extends Creature{
 	private Animation animDown, animUp, animLeft, animRight;
 	private int direction;
 	private int secondTimer;
-	
+	private float speed = 1.5f;
 	
 	public NPC(Handler handler, float x, float y) {
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
@@ -58,7 +58,7 @@ public class NPC extends Creature{
 		
 		//if(x <= handler.getWorld().getWidth() && x >= 0 && y <= handler.getWorld().getHeight() && y >= 0) {
 		
-		int rand = (int) Math.ceil(Math.random() * 4);
+		int rand = (int) Math.ceil(Math.random() * 8);
 		
 		
 			if(rand == 1) {
@@ -72,6 +72,9 @@ public class NPC extends Creature{
 			}
 			else if(rand == 4) {
 				xMove = speed;
+			} else {
+				xMove = 0;
+				yMove = 0;
 			}
 		//} 
 		if (x == -3) {
