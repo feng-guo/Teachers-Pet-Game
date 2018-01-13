@@ -1,6 +1,7 @@
 package battle;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import game.Handler;
 
@@ -97,5 +98,9 @@ public class BattleRunner {
 
     public boolean isBattleStart() {
 	    return battleStart;
+    }
+
+    public ArrayList<String> getTextArrayList() {
+	    return battle.getTextArrayList();
     }
 }

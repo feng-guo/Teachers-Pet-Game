@@ -17,7 +17,7 @@ import states.State;
 import tiles.Tile;
 
 public class NPC extends Creature{
-	
+
 	private Animation animDown, animUp, animLeft, animRight;
 	private int direction, ultimateDir;
 	private int secondTimer;
@@ -27,23 +27,27 @@ public class NPC extends Creature{
 	private int boxSize;
 	private boolean hasStopped = false;
 	private int battlesStarted = 0;
+<<<<<<< HEAD
 	private Display battleDisplay;
 	
+=======
+
+>>>>>>> b407f1b307f4971047373dec4b5cde8f2b8d7355
 	public NPC(Handler handler, String name, int boxSize,float x, float y) {
 
-		
+
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
 		startX = x;
 		startY = y;
 		this.name = name;
 		this.boxSize = boxSize;
-		
+
 		// SPECIFIC TO A STANDARD NPC
 		bounds.x = 5;
 		bounds.y = 10;
 		bounds.width = 28;
 		bounds.height = 32;
-		
+
 		// Animations
 		animDown = new Animation(100, Assets.feng_down);
 		animUp = new Animation(100, Assets.feng_up);
@@ -58,23 +62,32 @@ public class NPC extends Creature{
 		animUp.tick();
 		animLeft.tick();
 		animRight.tick();
-		
-		
-		
+
+
+
 		Rectangle npcRect = new Rectangle((int) x, (int) y, (int) width, (int) height);
 		Rectangle playerRect = new Rectangle((int) handler.getWorld().getEntityManager().getPlayer().getX(),
 					(int) handler.getWorld().getEntityManager().getPlayer().getY(),
 					(int) handler.getWorld().getEntityManager().getPlayer().getWidth(),
 					(int) handler.getWorld().getEntityManager().getPlayer().getHeight());
-		
-		
+
+
 		if(npcRect.intersects(playerRect)) {
+<<<<<<< HEAD
 			stopNPC();
 			battlesStarted++;
 			if (battlesStarted <= 1) {
 				System.out.println("true");
 				battleDisplay = new Display("Battle", 200, 200);
 				
+=======
+
+			battlesStarted++;
+			if (battlesStarted <= 1) {
+				System.out.println("true");
+				Display battleDisplay = new Display("Battle", 200, 200);
+
+>>>>>>> b407f1b307f4971047373dec4b5cde8f2b8d7355
 				battleDisplay.getFrame().setLocation(Toolkit.getDefaultToolkit().getScreenSize().width/4, Toolkit.getDefaultToolkit().getScreenSize().height/4);
 				Graphics g = battleDisplay.getFrame().getGraphics();
 				g.setColor(Color.BLACK);
@@ -86,10 +99,16 @@ public class NPC extends Creature{
 //				frame.setVisible(true);
 
 			}
+<<<<<<< HEAD
 			//handler.getWorld().getEntityManager().getPlayer().unStopPlayer();
 			
 			handler.getWorld().getEntityManager().getPlayer().stopPlayer();
 
+=======
+
+			stopNPC();
+			
+>>>>>>> b407f1b307f4971047373dec4b5cde8f2b8d7355
 			if (handler.getWorld().getEntityManager().getPlayer().getDirection() == 1) {
 				ultimateDir = 2;
 			} else if (handler.getWorld().getEntityManager().getPlayer().getDirection() == 2) {
@@ -99,30 +118,34 @@ public class NPC extends Creature{
 			} else if (handler.getWorld().getEntityManager().getPlayer().getDirection() == 4) {
 				ultimateDir = 3;
 			}
+<<<<<<< HEAD
 			
 			if(!battleDisplay.getFrame().isActive()) {
 				handler.getWorld().getEntityManager().getPlayer().unStopPlayer();
 			}
 			
+=======
+
+>>>>>>> b407f1b307f4971047373dec4b5cde8f2b8d7355
 		} else {
 			
 			hasStopped = false;
 			ultimateDir = 0;
 		}
-			
-		
+
+
 		if (x < startX){
 			x = startX;
 		} else if (x > startX + boxSize) {
 			x = startX + boxSize;
 		}
-		
+
 		if (y < startY){
 			y = startY;
 		} else if (y > startY + boxSize) {
 			y = startY + boxSize;
 		}
-		
+
 		// Movement
 		secondTimer++;
 		if (secondTimer > 20) {
@@ -134,17 +157,17 @@ public class NPC extends Creature{
 		}
 		//handler.getGameCamera().centerOnEntity(this);
 	}
-	
+
 	private void getInput() {
-		
+
 		xMove = 0;
 		yMove = 0;
-		
+
 		if(x >= startX && x <= startX + boxSize && y >= startY && y <= startY + boxSize) {
-		
+
 			int rand = (int) Math.ceil(Math.random() * 8);
 			//System.out.println(x + ", " + y);
-			
+
 				if(rand == 1) {
 					yMove = -speed;
 				}
@@ -161,12 +184,12 @@ public class NPC extends Creature{
 					yMove = 0;
 				}
 		}
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
 		if (x == -3) {
 			x = 0;
 		}
@@ -175,13 +198,13 @@ public class NPC extends Creature{
 		}
 		//System.out.println(handler.getWorld().getWidth() * Tile.TILE_WIDTH);
 		if (x > (handler.getWorld().getWidth() - 1) * Tile.TILE_WIDTH) {
-			x = (handler.getWorld().getWidth() - 1) * Tile.TILE_WIDTH; 
+			x = (handler.getWorld().getWidth() - 1) * Tile.TILE_WIDTH;
 		}
 		if (y == handler.getWorld().getHeight() * Tile.TILE_HEIGHT + 3) {
-			y = handler.getWorld().getHeight() * Tile.TILE_HEIGHT; 
+			y = handler.getWorld().getHeight() * Tile.TILE_HEIGHT;
 		}
 
-		
+
 	}
 
 	@Override
@@ -199,16 +222,16 @@ public class NPC extends Creature{
 				g.drawImage(Assets.feng_down[0], (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 			}
 		}
-		
-		
-		
+
+
+
 //		g.setColor(Color.RED);
 //		g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
 //					(int) (y + bounds.y - handler.getGameCamera().getyOffset()),
 //					bounds.width, bounds.height);
-//				
+//
 	}
-	
+
 	private BufferedImage getCurrentAnimationFrame() {
 		if (xMove < 0){ // going left
 			direction = 1;
@@ -223,7 +246,7 @@ public class NPC extends Creature{
 			direction = 4;
 			return animDown.getCurrentFrame();
 		} else if (xMove == 0 && yMove == 0){
-			
+
 			// Keeps them facing the current direction
 			if(direction == 1) {
 				return Assets.feng_left[0];
@@ -233,13 +256,13 @@ public class NPC extends Creature{
 				return Assets.feng_up[0];
 			}
 		}
-		
+
 		return Assets.feng_down[0];
-		
-		
-		
+
+
+
 	}
-	
+
 	public void stopNPC() {
 		hasStopped = true;
 	}
