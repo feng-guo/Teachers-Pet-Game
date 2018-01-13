@@ -13,7 +13,8 @@ import game.Handler;
 public class BattleState extends State{
 
 
-	private int count = 60;
+	private int count = 0;
+	private int timer = 0;
 
 	private String battleText;
 	private BattleRunner battleTest;
@@ -52,11 +53,18 @@ public class BattleState extends State{
 			handler.getKeyManager().backspace = false;
 		}
 		if (handler.getKeyManager().enter) {
-			answer = 1;
-			handler.getKeyManager().enter = false;
+			answer = 20;
 		}
-		if (answer != -1) {
-			//Eventually, this should be moved outside of this if statement because it's graphics
+
+		if (handler.getKeyManager().enter && textLoading) {
+			if (count < battleTest.getTextArrayList().get(0).length() * 4 + 200) {
+				count = battleTest.getTextArrayList().get(0).length() * 4 + 200;
+			} else {
+				count = 10000;
+			}
+			handler.getKeyManager().enter = false;
+		} else if (answer != -1) {
+			handler.getKeyManager().enter = false;
 			battleTest.runPhase(answer);
 			answer = -1;
 		}
@@ -65,13 +73,28 @@ public class BattleState extends State{
 	@Override
 	public void render(Graphics g) {
 		count++;
-		if (battleTest.getTextArrayList().get(0) != null) {
+		Color c = new Color(245, 245, 220, 255);
+		g.setColor(c);
+		g.fillRect(0, 270, 600, 400);
+
+		if (battleTest.getTextArrayList().size() > 0) {
 			textLoading = true;
-			g.drawString(battleTest.getTextArrayList().get(0), 20, 20);
+			g.setFont(new Font("Arial", Font.PLAIN, 20));
+			g.setColor(Color.BLACK);
+			if (count/4 < battleTest.getTextArrayList().get(0).length()) {
+				g.drawString(battleTest.getTextArrayList().get(0).substring(0, count/4), 25 /*+ count/2*/, 360);
+			} else {
+				g.drawString(battleTest.getTextArrayList().get(0), 25, 360);
+			}
 		}
-		if (count > 500) {
-			battleTest.getTextArrayList().remove(0);
-			count = 0;
+		if (battleTest.getTextArrayList().size() > 0) {
+			if (count/4 > battleTest.getTextArrayList().get(0).length() + 100 ) {
+				battleTest.getTextArrayList().remove(0);
+				count = 0;
+			}
+		}
+		if (battleTest.getTextArrayList().size() == 0) {
+			textLoading = false;
 		}
 //		if (answer == 1) {
 //			System.out.println("detected");
