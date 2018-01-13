@@ -58,10 +58,10 @@ public class BattleState extends State{
 		}
 
 		if (handler.getKeyManager().enter && textLoading) {
-			if (count < battleTest.getTextArrayList().get(0).length() * 4 + 200) {
+			if (count < battleTest.getTextArrayList().get(0).length()*4) {
 				count = battleTest.getTextArrayList().get(0).length() * 4 + 200;
 			} else {
-				count = 10000;
+				count = 100000;
 			}
 			handler.getKeyManager().enter = false;
 		} else if (answer != -1) {
@@ -74,12 +74,14 @@ public class BattleState extends State{
 	@Override
 	public void render(Graphics g) {
 		count++;
-		Color c = new Color(245, 245, 220, 255);
+		g.setFont(new Font("Arial", Font.PLAIN, 20));
 		g.drawImage(Assets.battleBackground, 0, 0, null);
-		g.drawString(battleTest.getPlayer().getName(), 400, 200);
-		g.drawString(battleTest.getOpponent().getName(), 400, 200);
-		g.drawString(Integer.toString(battleTest.getPlayer().getCurrentHealth()), 20, 20);
-		g.drawString(Integer.toString(battleTest.getOpponent().getCurrentHealth()), 20, 20);
+		g.drawString(battleTest.getPlayer().getName(), 350, 210);
+		g.drawString(battleTest.getOpponent().getName(), 50, 70);
+		g.setFont(new Font("Arial", Font.PLAIN, 17));
+		g.drawString(Integer.toString(battleTest.getPlayer().getCurrentHealth()), 475, 255);
+		g.drawString(Integer.toString(battleTest.getPlayer().getInitialHealth()), 530, 255);
+		g.drawString(Integer.toString(battleTest.getOpponent().getCurrentHealth()), 50, 90);
 
 
 		if (battleTest.getTextArrayList().size() > 0) {
