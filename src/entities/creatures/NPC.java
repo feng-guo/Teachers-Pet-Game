@@ -29,7 +29,7 @@ public class NPC extends Creature{
 	private int battlesStarted = 0;
 	private Display battleDisplay;
 	
-	public NPC(Handler handler, String name, int boxSize,float x, float y) {
+	public NPC(Handler handler, String name, int boxSize, float x, float y) {
 
 		
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
@@ -61,7 +61,7 @@ public class NPC extends Creature{
 		
 		
 		
-		Rectangle npcRect = new Rectangle((int) x, (int) y, (int) width, (int) height);
+		Rectangle npcRect = new Rectangle((int) x - 10, (int) y, (int) width + 10, (int) height);
 		Rectangle playerRect = new Rectangle((int) handler.getWorld().getEntityManager().getPlayer().getX(),
 					(int) handler.getWorld().getEntityManager().getPlayer().getY(),
 					(int) handler.getWorld().getEntityManager().getPlayer().getWidth(),
@@ -75,7 +75,7 @@ public class NPC extends Creature{
 				System.out.println("true");
 				battleDisplay = new Display("Battle", 200, 200);
 				
-				battleDisplay.getFrame().setLocation(Toolkit.getDefaultToolkit().getScreenSize().width/4, Toolkit.getDefaultToolkit().getScreenSize().height/4);
+				battleDisplay.getFrame().setLocation(Toolkit.getDefaultToolkit().getScreenSize().width/4 + 20, Toolkit.getDefaultToolkit().getScreenSize().height/4 + 20);
 				Graphics g = battleDisplay.getFrame().getGraphics();
 				g.setColor(Color.BLACK);
 				g.drawString("hi", 20, 20);
@@ -102,6 +102,9 @@ public class NPC extends Creature{
 			
 			if(!battleDisplay.getFrame().isActive()) {
 				handler.getWorld().getEntityManager().getPlayer().unStopPlayer();
+				if (handler.getWorld().getEntityManager().getPlayer().getxMove() > 0 || handler.getWorld().getEntityManager().getPlayer().getyMove() > 0) {
+					battleDisplay.getFrame().setVisible(false);
+				}
 			}
 			
 		} else {
