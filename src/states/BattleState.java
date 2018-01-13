@@ -29,7 +29,7 @@ public class BattleState extends State{
 	@Override
 	public void tick() {
 		count++;
-		if (count > 5) {
+		if (count > 1) {
 			answer = -1;
 			if (handler.getKeyManager().first) {
 				answer = 1;
@@ -51,6 +51,7 @@ public class BattleState extends State{
 			}
 			if (answer != -1) {
 				//Eventually, this should be moved outside of this if statement because it's graphics
+				handler.getKeyManager().resetKeys();
 				battleTest.runPhase(answer);
 				answer = -1;
 			}

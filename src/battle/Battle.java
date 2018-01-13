@@ -633,6 +633,7 @@ class Battle /*extends Interaction*/ {
       forceSwitchCharacterPhase = false;
     } else {
       System.out.println("That person is dead");
+      squad.displaySquad();
     }
   }
 

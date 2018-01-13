@@ -29,7 +29,22 @@ public class KeyManager implements KeyListener{
 		enter = keys[KeyEvent.VK_ENTER];
 		backspace = keys[KeyEvent.VK_BACK_SPACE];
 	}
-	
+
+	public void resetKeys() {
+		up = false;
+		down = false;
+		left = false;
+		right = false;
+
+		battle = false;
+		first = false;
+		second = false;
+		third = false;
+		fourth = false;
+		enter = false;
+		backspace = false;
+	}
+
 	@Override
 	public void keyPressed(KeyEvent e) {
 		keys[e.getKeyCode()] = true;

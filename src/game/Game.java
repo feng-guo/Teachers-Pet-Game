@@ -85,17 +85,20 @@ public class Game implements Runnable{
 		if(handler.getKeyManager().battle && !(State.getState() instanceof BattleState)) {
 			State.setState(battleState);
 			if (!((BattleState) battleState).getBattleTest().isBattleStart()) {
-				((BattleState) battleState).getBattleTest().initializeBattleAssets();
-				((BattleState) battleState).getBattleTest().startRandomBattle();
-				((BattleState) battleState).getBattleTest().runPhase(-2);
+				startBattle();
 			}
 		}
 		if(State.getState() != null) {
 			State.getState().tick();
 		}
 	}
-	
-	
+
+	public void startBattle() {
+		((BattleState) battleState).getBattleTest().initializeBattleAssets();
+		((BattleState) battleState).getBattleTest().startRandomBattle();
+		((BattleState) battleState).getBattleTest().runPhase(-2);
+	}
+
 	private void render() {
 		bs = display.getCanvas().getBufferStrategy();
 		if(bs == null) {

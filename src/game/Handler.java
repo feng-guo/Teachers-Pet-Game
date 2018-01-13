@@ -3,12 +3,14 @@ package game;
 import graphics.GameCamera;
 import input.KeyManager;
 import input.MouseManager;
+import states.*;
 import worlds.World;
 
 public class Handler {
 	
 	private Game game;
 	private World world;
+	private State battleState;
 	
 	public Handler (Game game) {
 		this.game = game;
