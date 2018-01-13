@@ -14,6 +14,7 @@ public class Player extends Creature{
 	
 	private Animation animDown, animUp, animLeft, animRight;
 	private int direction;
+	private boolean hasStopped;
 	
 	
 	public Player(Handler handler, float x, float y) {
@@ -46,7 +47,10 @@ public class Player extends Creature{
 		
 		// Movement
 		getInput();
-		move();
+		if (!hasStopped) {
+			move();
+		}
+		//hasStopped = false;
 		handler.getGameCamera().centerOnEntity(this);
 	}
 	
@@ -99,6 +103,11 @@ public class Player extends Creature{
 	}
 	
 	private BufferedImage getCurrentAnimationFrame() {
+		
+		if (hasStopped) {
+			return returnStationarySprite(direction);
+		}
+		
 		if (xMove < 0){ // going left
 			direction = 1;
 			return animLeft.getCurrentFrame();
@@ -114,13 +123,7 @@ public class Player extends Creature{
 		} else if (xMove == 0 && yMove == 0){
 			
 			// Keeps them facing the current direction
-			if(direction == 1) {
-				return Assets.feng_left[0];
-			} else if (direction == 2) {
-				return Assets.feng_right[0];
-			} else if (direction == 3) {
-				return Assets.feng_up[0];
-			}
+			return returnStationarySprite(direction);
 		}
 		
 		return Assets.feng_down[0];
@@ -128,9 +131,29 @@ public class Player extends Creature{
 		
 		
 	}
+	
+	public BufferedImage returnStationarySprite(int direction) {
+		if(direction == 1) {
+			return Assets.feng_left[0];
+		} else if (direction == 2) {
+			return Assets.feng_right[0];
+		} else if (direction == 3) {
+			return Assets.feng_up[0];
+		} else {
+			return Assets.feng_down[0];
+		}
+	}
 
 	public int getDirection() {
 		return direction;
+	}
+	
+	public void stopPlayer() {
+		hasStopped = true;
+	}
+	
+	public void unStopPlayer() {
+		hasStopped = false;
 	}
 
 }

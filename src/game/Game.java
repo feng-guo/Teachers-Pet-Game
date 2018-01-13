@@ -1,6 +1,6 @@
  package game;
 
-import java.awt.Color;   
+import java.awt.Color;    
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -103,6 +103,9 @@ public class Game implements Runnable{
 			return;
 		}
 		g = bs.getDrawGraphics();
+		
+		
+		
 		// clear
 		g.clearRect(0, 0, width, height);
 		

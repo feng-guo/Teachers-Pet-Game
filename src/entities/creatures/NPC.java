@@ -27,6 +27,7 @@ public class NPC extends Creature{
 	private int boxSize;
 	private boolean hasStopped = false;
 	private int battlesStarted = 0;
+	private Display battleDisplay;
 	
 	public NPC(Handler handler, String name, int boxSize,float x, float y) {
 
@@ -68,21 +69,27 @@ public class NPC extends Creature{
 		
 		
 		if(npcRect.intersects(playerRect)) {
-			
+			stopNPC();
 			battlesStarted++;
 			if (battlesStarted <= 1) {
 				System.out.println("true");
-				Display battleDisplay = new Display("Battle", 200, 200);
+				battleDisplay = new Display("Battle", 200, 200);
 				
 				battleDisplay.getFrame().setLocation(Toolkit.getDefaultToolkit().getScreenSize().width/4, Toolkit.getDefaultToolkit().getScreenSize().height/4);
-
+				Graphics g = battleDisplay.getFrame().getGraphics();
+				g.setColor(Color.BLACK);
+				g.drawString("hi", 20, 20);
+				
+				
 //				JFrame frame = new JFrame();
 //				frame.setSize(300, 300);
 //				frame.setVisible(true);
+
 			}
+			//handler.getWorld().getEntityManager().getPlayer().unStopPlayer();
 			
-			stopNPC();
-			
+			handler.getWorld().getEntityManager().getPlayer().stopPlayer();
+
 			if (handler.getWorld().getEntityManager().getPlayer().getDirection() == 1) {
 				ultimateDir = 2;
 			} else if (handler.getWorld().getEntityManager().getPlayer().getDirection() == 2) {
@@ -93,7 +100,12 @@ public class NPC extends Creature{
 				ultimateDir = 3;
 			}
 			
+			if(!battleDisplay.getFrame().isActive()) {
+				handler.getWorld().getEntityManager().getPlayer().unStopPlayer();
+			}
+			
 		} else {
+			
 			hasStopped = false;
 			ultimateDir = 0;
 		}
