@@ -76,7 +76,8 @@ public class BattleState extends State{
 		count++;
 		Color c = new Color(245, 245, 220, 255);
 		g.drawImage(Assets.battleBackground, 0, 0, null);
-		//g.drawString(battleTest.getPlayer());
+		g.drawString(battleTest.getPlayer().getName(), 400, 200);
+		g.drawString(battleTest.getOpponent().getName(), 400, 200);
 		g.drawString(Integer.toString(battleTest.getPlayer().getCurrentHealth()), 20, 20);
 		g.drawString(Integer.toString(battleTest.getOpponent().getCurrentHealth()), 20, 20);
 
