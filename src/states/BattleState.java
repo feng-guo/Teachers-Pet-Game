@@ -8,7 +8,8 @@ import java.awt.event.KeyEvent;
 import battle.BattleRunner;
 import battle.BattleRunner;
 import game.Handler;
-//import battle.Battle;
+import graphics.Assets;
+import battle.Character;
 
 public class BattleState extends State{
 
@@ -74,17 +75,20 @@ public class BattleState extends State{
 	public void render(Graphics g) {
 		count++;
 		Color c = new Color(245, 245, 220, 255);
-		g.setColor(c);
-		g.fillRect(0, 270, 600, 400);
+		g.drawImage(Assets.battleBackground, 0, 0, null);
+		//g.drawString(battleTest.getPlayer());
+		g.drawString(Integer.toString(battleTest.getPlayer().getCurrentHealth()), 20, 20);
+		g.drawString(Integer.toString(battleTest.getOpponent().getCurrentHealth()), 20, 20);
+
 
 		if (battleTest.getTextArrayList().size() > 0) {
 			textLoading = true;
 			g.setFont(new Font("Arial", Font.PLAIN, 20));
 			g.setColor(Color.BLACK);
 			if (count/4 < battleTest.getTextArrayList().get(0).length()) {
-				g.drawString(battleTest.getTextArrayList().get(0).substring(0, count/4), 25 /*+ count/2*/, 360);
+				g.drawString(battleTest.getTextArrayList().get(0).substring(0, count/4), 25 /*+ count/2*/, 320);
 			} else {
-				g.drawString(battleTest.getTextArrayList().get(0), 25, 360);
+				g.drawString(battleTest.getTextArrayList().get(0), 25, 320);
 			}
 		}
 		if (battleTest.getTextArrayList().size() > 0) {

@@ -5,7 +5,7 @@ package battle;
  * @author Feng
  */
 
-abstract class Character {
+public abstract class Character {
     //Character states
     private int initialHealth;
     private int currentHealth;

@@ -103,4 +103,12 @@ public class BattleRunner {
     public ArrayList<String> getTextArrayList() {
 	    return battle.getTextArrayList();
     }
+
+    public PlayableCharacter getPlayer() {
+	    return battle.getPlayer();
+    }
+
+    public NonPlayableCharacter getOpponent() {
+	    return battle.getOpponent();
+    }
 }

@@ -11,7 +11,7 @@ public class Assets {
 
 
 	//public static BufferedImage feng_down_1, feng_down_2, feng_down_3;
-	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, floor, hallFloor;
+	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, floor, hallFloor, battleBackground;
 	public static BufferedImage[] feng_down, feng_up, feng_left, feng_right, logo;
 	public static BufferedImage[][] tileArray;
 
@@ -21,6 +21,8 @@ public class Assets {
 		SpriteSheet tileSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile_sheet.png"));
 		SpriteSheet grassSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile_textures.png"));
 		SpriteSheet floorSheet = new SpriteSheet(ImageLoader.loadImage("/textures/sample4.png"));
+
+		battleBackground = ImageLoader.loadImage("/textures/game_background.png");
 
 		tree = ImageLoader.loadImage("/textures/Tree.png");
 		floor = floorSheet.crop(32 * 8 - 9, 32 * 28 - 3, 32, 32);
