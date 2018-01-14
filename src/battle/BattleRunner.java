@@ -111,7 +111,7 @@ public class BattleRunner {
 	    return battle.isBattleEnd();
     }
 
-    public boolean isPlayerAttack() {
+    public boolean isPlayerAttacked() {
 	    return battle.isPlayerAttacked();
     }
 

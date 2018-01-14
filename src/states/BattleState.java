@@ -22,12 +22,17 @@ public class BattleState extends State{
 	private int answer = -1;
 	boolean textLoading = false;
 
+	private boolean menuScreen = false;
+	private boolean[][] menu = new boolean[2][2];
+
 	public BattleState(Handler handler, Graphics g) {
 		super(handler);
 		//handler.setWorld(null);
 		battleTest = new BattleRunner();
-
-
+		menu[0][0] = false;
+		menu[0][1] = false;
+		menu[1][0] = false;
+		menu[1][1] = false;
 	}
 
 	@Override
@@ -35,6 +40,9 @@ public class BattleState extends State{
 		if (battleTest.isBattleEnd()) {
 			State.setState(handler.getGame().getGameState());
 			return;
+		}
+		if (textLoading = false && !battleTest.getSelectionStrings(0).equals("null")) {
+
 		}
 		answer = -1;
 		if (handler.getKeyManager().first) {
@@ -129,6 +137,10 @@ public class BattleState extends State{
 			textLoading = false;
 			count = 0;
 			if (!battleTest.getSelectionStrings(0).equals("null")) {
+				if (!menuScreen) {
+					menu[0][0] = true;
+				}
+				menuScreen = true;
 				g.setFont(Assets.font12);
 				g.drawString(battleTest.getSelectionStrings(0), 30, 320);
 				g.drawString(battleTest.getSelectionStrings(1), 300, 320);
