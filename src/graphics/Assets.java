@@ -35,7 +35,16 @@ public class Assets {
 		SpriteSheet grassSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile_textures.png"));
 		SpriteSheet floorSheet = new SpriteSheet(ImageLoader.loadImage("/textures/sample4.png"));
 
+<<<<<<< HEAD
 		battleBackground = ImageLoader.loadImage("/textures/game_background.png");
+=======
+<<<<<<< HEAD
+		//battleBackground = ImageLoader.loadImage("/textures/Outdoor_Entities/Tree.png");
+		battleBackground = ImageLoader.loadImage("/textures/game_background.png");
+=======
+		battleBackground = ImageLoader.loadImage("/textures/Tree.png");
+>>>>>>> 8598b1a84f44754db9a49b4bae603cc69cc899dc
+>>>>>>> 7dc79fb0454055b9def42a6c3469ca7ffb98c376
 
 		tree = ImageLoader.loadImage("/textures/Outdoor_Entities/Tree.png");
 		locker = ImageLoader.loadImage("/textures/Indoor_Entities/Hallway_Items/Locker.png");
