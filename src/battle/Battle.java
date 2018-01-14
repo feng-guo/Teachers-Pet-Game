@@ -202,6 +202,10 @@ class Battle {
 
     this.turnNumberString = null;
     this.selectionStrings = new String[4];
+    selectionStrings[0] = "null";
+    selectionStrings[1] = "null";
+    selectionStrings[2] = "null";
+    selectionStrings[3] = "null";
 
     this.playerChoicePhase = true;
     this.playerInputPhase = true;
@@ -1553,7 +1557,7 @@ class Battle {
     return textArrayList;
   }
 
-  public String[] getSelectionStrings() {
-    return selectionStrings;
+  public String getSelectionStrings(int i) {
+    return selectionStrings[i];
   }
 }

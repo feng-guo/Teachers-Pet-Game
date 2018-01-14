@@ -25,7 +25,7 @@ public class BattleState extends State{
 	public BattleState(Handler handler, Graphics g) {
 		super(handler);
 		//handler.setWorld(null);
-		battleTest = new BattleRunner(handler, g);
+		battleTest = new BattleRunner();
 
 
 	}
@@ -80,7 +80,7 @@ public class BattleState extends State{
 		g.drawImage(Assets.battleBackground, 0, 0, null);
 		g.drawString(battleTest.getPlayer().getName(), 350, 210);
 		g.drawString(battleTest.getOpponent().getName(), 50, 70);
-		g.setFont(new Font("Arial", Font.PLAIN, 17));
+		//g.setFont(new Font("Arial", Font.PLAIN, 17));
 		g.drawString(Integer.toString(battleTest.getPlayer().getCurrentHealth()), 475, 255);
 		g.drawString(Integer.toString(battleTest.getPlayer().getInitialHealth()), 530, 255);
 		g.drawString(Integer.toString(battleTest.getOpponent().getCurrentHealth()), 50, 90);
@@ -88,8 +88,7 @@ public class BattleState extends State{
 
 		if (battleTest.getTextArrayList().size() > 0) {
 			textLoading = true;
-			g.setFont(new Font("Arial", Font.PLAIN, 20));
-			g.setColor(Color.BLACK);
+			//g.setFont(new Font("Arial", Font.PLAIN, 20));
 			if (count/4 < battleTest.getTextArrayList().get(0).length()) {
 				g.drawString(battleTest.getTextArrayList().get(0).substring(0, count/4), 25 /*+ count/2*/, 320);
 			} else {
@@ -105,9 +104,12 @@ public class BattleState extends State{
 		if (battleTest.getTextArrayList().size() == 0) {
 			textLoading = false;
 			count = 0;
-			/*for (int i=0; i<4; i++) {
-				g.drawString(battleTest.getBattle().getSelectionStrings()[i], 200, 400);
-			}*/
+			if (!battleTest.getSelectionStrings(0).equals("null")) {
+				g.drawString(battleTest.getSelectionStrings(0), 200, 300);
+				g.drawString(battleTest.getSelectionStrings(1), 300, 300);
+				g.drawString(battleTest.getSelectionStrings(2), 200, 350);
+				g.drawString(battleTest.getSelectionStrings(3), 300, 350);
+			}
 		}
 //		if (answer == 1) {
 //			System.out.println("detected");

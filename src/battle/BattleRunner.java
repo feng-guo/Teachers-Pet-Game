@@ -106,4 +106,8 @@ public class BattleRunner {
     public NonPlayableCharacter getOpponent() {
 	    return battle.getOpponent();
     }
+
+    public String getSelectionStrings(int i) {
+	    return battle.getSelectionStrings(i);
+    }
 }
