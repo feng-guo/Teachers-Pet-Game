@@ -28,6 +28,7 @@ public class World {
 
 		entityManager.addEntity(new NPC(handler, "Feng2", 100, 250, 250));
 		entityManager.addEntity(new Tree(handler, 100, 250));
+		//entityManager.addEntity (new Locker(handler, 100, 250));
 
 		loadWorld(path);
 
