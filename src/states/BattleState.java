@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import battle.BattleRunner;
 import battle.BattleRunner;
 import game.Handler;
+import graphics.Animation;
 import graphics.Assets;
 import battle.Character;
 
@@ -21,17 +22,22 @@ public class BattleState extends State{
 	private BattleRunner battleTest;
 	private int answer = -1;
 	boolean textLoading = false;
+	private Animation shake;
 
 	public BattleState(Handler handler, Graphics g) {
 		super(handler);
 		//handler.setWorld(null);
 		battleTest = new BattleRunner();
-
+		shake = new Animation(300, Assets.feng_down);
 
 	}
 
 	@Override
 	public void tick() {
+		timer++;
+		
+		shake.tick();
+		
 		if (battleTest.isBattleEnd()) {
 			State.setState(handler.getGame().getGameState());
 			return;
@@ -135,6 +141,14 @@ public class BattleState extends State{
 				g.drawString(battleTest.getSelectionStrings(2), 30, 370);
 				g.drawString(battleTest.getSelectionStrings(3), 300, 370);
 			}
+		}
+		
+		if(battleTest.isPlayerAttack()) {
+
+			System.out.println("tre");
+			g.drawImage(shake.getCurrentFrame(), 300, 50, null);
+		} else {
+			g.drawImage(Assets.feng_down[0], 300, 30, null);
 		}
 //		if (answer == 1) {
 //			System.out.println("detected");
