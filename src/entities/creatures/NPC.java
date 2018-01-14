@@ -103,12 +103,12 @@ public class NPC extends Creature{
 				ultimateDir = 3;
 			}
 			
-			if(!battleDisplay.getFrame().isActive()) {
-				handler.getWorld().getEntityManager().getPlayer().unStopPlayer();
-				if (handler.getWorld().getEntityManager().getPlayer().getxMove() > 0 || handler.getWorld().getEntityManager().getPlayer().getyMove() > 0) {
-					battleDisplay.getFrame().setVisible(false);
-				}
-			}
+//			if(!battleDisplay.getFrame().isActive()) {
+//				handler.getWorld().getEntityManager().getPlayer().unStopPlayer();
+//				if (handler.getWorld().getEntityManager().getPlayer().getxMove() > 0 || handler.getWorld().getEntityManager().getPlayer().getyMove() > 0) {
+//					battleDisplay.getFrame().setVisible(false);
+//				}
+//			}
 			
 		} else {
 			

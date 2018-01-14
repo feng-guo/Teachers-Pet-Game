@@ -1,4 +1,4 @@
-/* package mini_games.StressEat.src.stresseat;
+package mini_games.StressEat.src.stresseat;
 
 public class StressEat{ //implements clock, points
     
@@ -17,4 +17,4 @@ public class StressEat{ //implements clock, points
     // Drop food
     public static void movement() {
     }
-} */
+} 
