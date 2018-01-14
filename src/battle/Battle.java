@@ -96,6 +96,7 @@ class Battle {
   private boolean opponenetFled;
   private String effectivenessText;
   private int battleTurns;
+  private boolean playerMovedFirst, playerAttacked;
 
   // BIGGO STRING
   private String outputText;
@@ -218,6 +219,9 @@ class Battle {
     this.playerInventoryChoicePhase = false;
     this.playerEndPhase = false;
     this.forceSwitchCharacterPhase = false;
+
+    this.playerMovedFirst = false;
+    this.playerAttacked = false;
   }
 
   private void changeCharacter(PlayableCharacter player) {
@@ -361,6 +365,7 @@ class Battle {
 
   public void playerPickAttack() {
     playerAttackChoicePhase = true;
+    playerAttacked = true;
     for (int i = 0; i < 4; i++) {
       selectionStrings[i] = player.getMove(i).getName() + " " + player.getPowerPoints(i) + "/" + player.getMove(i).getMaxPowerPoints();
     }
@@ -514,6 +519,7 @@ class Battle {
   }
 
   public void opponentTurn() {
+    playerAttacked = false;
     determineAttackType(opponent.getMove(determineOpponentMove()), opponent);
     endTurn();
   }
@@ -620,19 +626,25 @@ class Battle {
     //This code decides who goes first based on their speed
     //Returns an int to see who goes first. -1 is the player, 1 is the opponent
     if (playerMove.getPriority() > opponentMove.getPriority()) {
+      playerMovedFirst = true;
       return -1;
     } else if (playerMove.getPriority() < opponentMove.getPriority()) {
+      playerMovedFirst = false;
       return 1;
     } else if (tempPlayerSpeed > tempOpponentSpeed) {
+      playerMovedFirst = true;
       return -1;
     } else if (tempPlayerSpeed < tempOpponentSpeed) {
+      playerMovedFirst = false;
       return 1;
     } else {
       //In case of a tie breaker
       int decision = (int)Math.floor(Math.random()*2);
       if (decision == 0) {
+        playerMovedFirst = true;
         return -1;
       } else {
+        playerMovedFirst = false;
         return 1;
       }
     }
@@ -1550,5 +1562,13 @@ class Battle {
 
   public String getSelectionStrings(int i) {
     return selectionStrings[i];
+  }
+
+  public boolean isPlayerAttacked() {
+    return playerAttacked;
+  }
+
+  public boolean isPlayerMovedFirst() {
+    return playerMovedFirst;
   }
 }
