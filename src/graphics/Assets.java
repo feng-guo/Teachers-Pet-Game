@@ -20,16 +20,21 @@ public class Assets {
 
 	public static BufferedImage[] feng_down, feng_up, feng_left, feng_right, logo;
 	public static BufferedImage[][] tileArray;
-	public static Font font;
+	public static Font font24, font16, font12;
 
 
 	public static void init() {
 		
-		File bb = new File("/fonts/PokeFont.ttf");
-		System.out.println(bb.getAbsolutePath());
+		File bb = new File("./fonts/PokeFont.ttf");
+		//System.out.println(bb.exists());
+		String filePath = bb.getAbsolutePath().substring(0, bb.getAbsolutePath().indexOf(".")) + "res/fonts/PokeFont.ttf";
 
+		
+		
 		try {
-			font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(bb)).deriveFont(Font.PLAIN, 24);
+			font24 = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File(filePath))).deriveFont(Font.PLAIN, 24);
+			font16 = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File(filePath))).deriveFont(Font.PLAIN, 16);
+			font12 = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File(filePath))).deriveFont(Font.PLAIN, 12);
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();
 		}
