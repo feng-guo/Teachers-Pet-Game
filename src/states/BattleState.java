@@ -105,10 +105,10 @@ public class BattleState extends State{
 			textLoading = false;
 			count = 0;
 			if (!battleTest.getSelectionStrings(0).equals("null")) {
-				g.drawString(battleTest.getSelectionStrings(0), 200, 300);
-				g.drawString(battleTest.getSelectionStrings(1), 300, 300);
-				g.drawString(battleTest.getSelectionStrings(2), 200, 350);
-				g.drawString(battleTest.getSelectionStrings(3), 300, 350);
+				g.drawString(battleTest.getSelectionStrings(0), 100, 320);
+				g.drawString(battleTest.getSelectionStrings(1), 300, 320);
+				g.drawString(battleTest.getSelectionStrings(2), 100, 370);
+				g.drawString(battleTest.getSelectionStrings(3), 300, 370);
 			}
 		}
 //		if (answer == 1) {
