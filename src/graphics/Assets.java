@@ -25,7 +25,7 @@ public class Assets {
 	public static void init() {
 
 		try {
-			font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("/res/fonts/PokeFont.ttf"))).deriveFont(Font.PLAIN, 24);
+			font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("C:/Users/Feng-Work/Documents/GitHub/Teachers-Pet-Game/res/fonts/PokeFont.ttf"))).deriveFont(Font.PLAIN, 24);
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();
 		}

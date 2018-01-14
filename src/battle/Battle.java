@@ -592,7 +592,6 @@ class Battle {
     }
     if (!battleEnd) {
       goBackInMenu();
-      runBattleTurn(-1);
     }
   }
 
