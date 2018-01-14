@@ -278,17 +278,21 @@ class Battle {
         playerPickAttackPhase = true;
         playerPickAttack();
         playerChoicePhase = false;
+        playerAttacked = true;
       } else if (phase - 1 == 1) {
         playerInventoryPhase = true;
         playerPickInventory();
         playerChoicePhase = false;
+        playerAttacked = false;
       } else if (phase - 1 == 2) {
         playerSwitchPhase = true;
         playerSwitchCharacter();
         playerChoicePhase = false;
+        playerAttacked = false;
       } else if (phase - 1 == 3) {
         playerRunPhase = true;
         playerChoicePhase = false;
+        playerAttacked = false;
       }
       return;
     }
