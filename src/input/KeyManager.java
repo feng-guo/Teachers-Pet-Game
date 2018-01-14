@@ -34,6 +34,9 @@ public class KeyManager implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		int code = e.getKeyCode();
 		keys[e.getKeyCode()] = true;
+		
+		
+		
 		if (pressedKeys.contains(code)) {
 			return;
 		} else if (State.getState() instanceof BattleState){
@@ -58,6 +61,10 @@ public class KeyManager implements KeyListener{
 	@Override
 	public void keyTyped(KeyEvent e) {
 
+	}
+	
+	public void forceKeyChange(int keyCode, boolean b) {
+		keys[keyCode] = b;
 	}
 
 }
