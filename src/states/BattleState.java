@@ -74,7 +74,9 @@ public class BattleState extends State{
 	@Override
 	public void render(Graphics g) {
 		count++;
-		g.setFont(new Font("Arial", Font.PLAIN, 20));
+//		g.setFont(new Font("Arial", Font.PLAIN, 20));
+		g.setFont(Assets.font);
+
 		g.drawImage(Assets.battleBackground, 0, 0, null);
 		g.drawString(battleTest.getPlayer().getName(), 350, 210);
 		g.drawString(battleTest.getOpponent().getName(), 50, 70);
@@ -102,6 +104,10 @@ public class BattleState extends State{
 		}
 		if (battleTest.getTextArrayList().size() == 0) {
 			textLoading = false;
+			count = 0;
+			/*for (int i=0; i<4; i++) {
+				g.drawString(battleTest.getBattle().getSelectionStrings()[i], 200, 400);
+			}*/
 		}
 //		if (answer == 1) {
 //			System.out.println("detected");

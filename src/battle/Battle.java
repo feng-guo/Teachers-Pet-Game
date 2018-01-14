@@ -11,12 +11,10 @@ import java.awt.Graphics;
  */
 
 import java.util.ArrayList;
-import java.util.InputMismatchException; //Prevents people like Samyar from intentionally throwing in bad inputs. Will be replaced.
 
 import game.Handler;
-import java.util.Scanner; //Will be replaced
 
-class Battle /*extends Interaction*/ {
+class Battle {
   //Objects that need to be saved here
   private PlayableCharacter player; //Since it is an object, when the values of the objects are changed, they stay changed
   private NonPlayableCharacter opponent; //Same for this one
@@ -101,9 +99,6 @@ class Battle /*extends Interaction*/ {
   // BIGGO STRING
   private String outputText;
 
-  private Handler handler;
-  private Graphics g;
-
   private String turnNumberString;
   private String[] selectionStrings;
 
@@ -112,13 +107,12 @@ class Battle /*extends Interaction*/ {
   private ArrayList<String> textArrayList = new ArrayList<>();
 
 
-  Battle (PlayableCharacter player, NonPlayableCharacter opponent, Squad squad, Inventory inventory, Handler handler, Graphics g) {
+  Battle (PlayableCharacter player, NonPlayableCharacter opponent, Squad squad, Inventory inventory) {
     //Constructor that requires some math
     this.player = player; //Saves the player
     this.opponent = opponent; //Saves the opponent
     this.playerInventory = inventory;
     this.squad = squad;
-    this.handler = handler;
     
     /*
     The reason why I save the variables here is because the stats in battles are reset once the battle ends
@@ -206,8 +200,6 @@ class Battle /*extends Interaction*/ {
     playerFled = false;
     this.battleTurns = 1;
 
-    this.handler = handler;
-    this.g = g;
     this.turnNumberString = null;
     this.selectionStrings = new String[4];
 
@@ -272,6 +264,7 @@ class Battle /*extends Interaction*/ {
   
   public void runBattleTurn(int phase) {
     if (phase > 0) {
+      selectionStrings[0] = "null";
       if (phase - 1 == 0) {
         playerPickAttackPhase = true;
         playerPickAttack();
@@ -343,50 +336,11 @@ class Battle /*extends Interaction*/ {
       textArrayList.add(opponentName + "'s Speed Boost! Their speed increased!");
     }
     //Displays the health of both opponents. This could be a string output too
-    textArrayList.add(playerName + " " + playerCurrentHealth + "/" + playerHealth);
-    textArrayList.add(opponentName + " " + opponentCurrentHealth + "/" + opponentHealth);
     textArrayList.add("What would you like to do");
     selectionStrings[0] = "Fight";
     selectionStrings[1] = "Inventory";
     selectionStrings[2] = "Squad";
     selectionStrings[3] = "Run";
-    for (int i = 0; i < 4; i++) {
-      textArrayList.add(selectionStrings[i]);
-    }
-
-    //Everything else
-    /*handler.getKeyManager().tick();
-    int answer = determineAnswer(handler);
-    if (true) {
-    } else if (answer == 2) {
-    } else if (answer == 3) {
-    } else if (answer == 4) {
-    }*/
-
-    /*if (!battleEnd) {
-      do {
-        //Might throw this into another method
-        if (playerCurrentHealth == 0) {
-          textArrayList.add("Your student broke down");
-          squad.displaySquad();
-          do {
-            try {
-              answer = determineAnswer(handler);
-            } catch (InputMismatchException e) {
-              answer = -1;
-            }
-          } while (answer < 1 || answer > squad.getSize());
-          if (squad.getCharacter(answer - 1).getCurrentHealth() > 0) {
-            changeCharacter(squad.getCharacter(answer - 1));
-            exitLoop = true;
-          } else {
-            textArrayList.add("That student is dead.");
-          }
-        } else {
-          exitLoop = true;
-        }
-      } while (!exitLoop);
-    }*/
   }
 
   public void goBackInMenu() {
@@ -403,15 +357,23 @@ class Battle /*extends Interaction*/ {
   public void playerPickAttack() {
     playerAttackChoicePhase = true;
     for (int i = 0; i < 4; i++) {
-      selectionStrings[i] = player.getMove(i).getName() + " " + player.getPowerPoints(i) + "/" + player.getMove(i).getMaxPowerPoints() + " (" + (i + 1) + ")";
-    }
-    for (int i = 0; i < 4; i++) {
-      textArrayList.add(selectionStrings[i]);
+      String key = "";
+      if (i == 0) {
+        key = "C";
+      } else if (i == 1) {
+        key = "V";
+      } else if (i == 2) {
+        key = "B";
+      } else if (i == 3) {
+        key = "N";
+      }
+      selectionStrings[i] = player.getMove(i).getName() + " " + player.getPowerPoints(i) + "/" + player.getMove(i).getMaxPowerPoints() + " (" + key + ")";
     }
   }
 
   public void playerUseAttack(int choice) {
     //Move displays should be handled differently
+    selectionStrings[0] = "null";
     playerPickAttackPhase = false;
     playerAttackChoicePhase = false;
     int opponentMove = determineOpponentMove();
@@ -1589,5 +1551,9 @@ class Battle /*extends Interaction*/ {
   
   public ArrayList<String> getTextArrayList() {
     return textArrayList;
+  }
+
+  public String[] getSelectionStrings() {
+    return selectionStrings;
   }
 }
