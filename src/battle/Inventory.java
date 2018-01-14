@@ -11,7 +11,7 @@ class Inventory {
         numItems = new ArrayList<Integer>();
     }
 
-    Inventory (ArrayList list) {
+    Inventory (ArrayList<battle.Item> list) {
         this.inventory = list;
         numItems = new ArrayList<Integer>();
     }
