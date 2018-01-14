@@ -1,6 +1,7 @@
 package battle;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import game.Handler;
 
@@ -63,12 +64,20 @@ public class BattleRunner {
     }
 
     public void runPhase(int choice) {
-        if (choice == 10) {
+        /* if (choice == -2) {
+            battle.runBattleTurn(-1);
+        } else */ if (choice == 10) {
             battle.goBackInMenu();
         } else if (battle.isPlayerEndPhase()) {
-	        battle.endTurn();
-        } else if (battle.isPlayerChoicePhase()) {
-	        battle.runBattleTurn(choice);
+            battle.endTurn();
+        } else if (battle.isForceSwitchCharacterPhase()) {
+            battle.forceSwitchCharacter(choice);
+        } else if (battle.isPlayerPickCharacterPhase()) {
+            battle.playerPickCharacter(choice);
+        } else if (battle.isPlayerSwitchPhase()) {
+            battle.playerSwitchCharacter();
+        } else if (battle.isPlayerRunPhase()) {
+            battle.playerRun();
         } else if (battle.isPlayerAttackChoicePhase()) {
             battle.playerUseAttack(choice);
         } else if (battle.isPlayerPickAttackPhase()) {
@@ -77,14 +86,8 @@ public class BattleRunner {
             battle.useInventoryItem(choice);
         } else if (battle.isPlayerInventoryPhase()) {
             battle.playerPickInventory();
-        } else if (battle.isPlayerSwitchPhase()) {
-	        if (!battle.isPlayerInputPhase()) {
-	            battle.playerSwitchCharacter();
-            } else {
-	            battle.playerPickCharacter(choice);
-            }
-        } else if (battle.isPlayerRunPhase()) {
-	        battle.playerRun();
+        } else if (battle.isPlayerChoicePhase()) {
+            battle.runBattleTurn(choice);
         }
     }
 
@@ -95,5 +98,17 @@ public class BattleRunner {
 
     public boolean isBattleStart() {
 	    return battleStart;
+    }
+
+    public ArrayList<String> getTextArrayList() {
+	    return battle.getTextArrayList();
+    }
+
+    public PlayableCharacter getPlayer() {
+	    return battle.getPlayer();
+    }
+
+    public NonPlayableCharacter getOpponent() {
+	    return battle.getOpponent();
     }
 }

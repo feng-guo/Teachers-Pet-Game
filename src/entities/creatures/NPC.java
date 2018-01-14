@@ -3,8 +3,12 @@ package entities.creatures;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 
+import javax.swing.JFrame;
+
+import display.Display;
 import game.Game;
 import game.Handler;
 import graphics.Animation;
@@ -15,15 +19,17 @@ import tiles.Tile;
 public class NPC extends Creature{
 	
 	private Animation animDown, animUp, animLeft, animRight;
-	private int direction;
+	private int direction, ultimateDir;
 	private int secondTimer;
 	private float speed = 1.5f;
 	private String name;
 	private float startX, startY;
 	private int boxSize;
 	private boolean hasStopped = false;
+	private int battlesStarted = 0;
+	private Display battleDisplay;
 	
-	public NPC(Handler handler, String name, int boxSize,float x, float y) {
+	public NPC(Handler handler, String name, int boxSize, float x, float y) {
 
 		
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
@@ -55,23 +61,58 @@ public class NPC extends Creature{
 		
 		
 		
+		Rectangle npcRect = new Rectangle((int) x - 10, (int) y, (int) width + 10, (int) height);
+		Rectangle playerRect = new Rectangle((int) handler.getWorld().getEntityManager().getPlayer().getX(),
+					(int) handler.getWorld().getEntityManager().getPlayer().getY(),
+					(int) handler.getWorld().getEntityManager().getPlayer().getWidth(),
+					(int) handler.getWorld().getEntityManager().getPlayer().getHeight());
 		
 		
-		if(x + bounds.x < handler.getWorld().getEntityManager().getPlayer().getX() + 20 && x + bounds.x  + 20 > handler.getWorld().getEntityManager().getPlayer().getX()) {
-			if(y + bounds.y < handler.getWorld().getEntityManager().getPlayer().getY() + 20 && y + bounds.y  + 20 > handler.getWorld().getEntityManager().getPlayer().getY()) {
-				//State.setState(handler.getGame().battleState);
-				System.out.println("NPC: " + x + ", " + y);
-				System.out.println("PLAYER " + handler.getWorld().getEntityManager().getPlayer().getX() + ", " + handler.getWorld().getEntityManager().getPlayer().getY());
+		if(npcRect.intersects(playerRect)) {
+			stopNPC();
+			battlesStarted++;
+			if (battlesStarted <= 1) {
+				System.out.println("true");
+				battleDisplay = new Display("Battle", 200, 200);
+				
+				battleDisplay.getFrame().setLocation(Toolkit.getDefaultToolkit().getScreenSize().width/4 + 20, Toolkit.getDefaultToolkit().getScreenSize().height/4 + 20);
+				Graphics g = battleDisplay.getFrame().getGraphics();
+				g.setColor(Color.BLACK);
+				g.drawString("hi", 20, 20);
+				
+				
+//				JFrame frame = new JFrame();
+//				frame.setSize(300, 300);
+//				frame.setVisible(true);
+
 			}
+			//handler.getWorld().getEntityManager().getPlayer().unStopPlayer();
+			
+			handler.getWorld().getEntityManager().getPlayer().stopPlayer();
+
+			if (handler.getWorld().getEntityManager().getPlayer().getDirection() == 1) {
+				ultimateDir = 2;
+			} else if (handler.getWorld().getEntityManager().getPlayer().getDirection() == 2) {
+				ultimateDir = 1;
+			} else if (handler.getWorld().getEntityManager().getPlayer().getDirection() == 3) {
+				ultimateDir = 4;
+			} else if (handler.getWorld().getEntityManager().getPlayer().getDirection() == 4) {
+				ultimateDir = 3;
+			}
+			
+			if(!battleDisplay.getFrame().isActive()) {
+				handler.getWorld().getEntityManager().getPlayer().unStopPlayer();
+				if (handler.getWorld().getEntityManager().getPlayer().getxMove() > 0 || handler.getWorld().getEntityManager().getPlayer().getyMove() > 0) {
+					battleDisplay.getFrame().setVisible(false);
+				}
+			}
+			
+		} else {
+			
+			hasStopped = false;
+			ultimateDir = 0;
 		}
 			
-//			if ((handler.getWorld().getEntityManager().getPlayer().getX()) {
-//				System.out.println("COLLIDED");
-//			}
-		
-		
-			
-		//System.out.println(bounds.x);
 		
 		if (x < startX){
 			x = startX;
@@ -148,7 +189,20 @@ public class NPC extends Creature{
 
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+		if (ultimateDir == 0) {
+			g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+		} else {
+			if(ultimateDir == 1) {
+				g.drawImage(Assets.feng_left[0], (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+			} else if (ultimateDir == 2) {
+				g.drawImage(Assets.feng_right[0], (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+			} else if (ultimateDir == 3) {
+				g.drawImage(Assets.feng_up[0], (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+			} else if (ultimateDir == 4) {
+				g.drawImage(Assets.feng_down[0], (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+			}
+		}
+		
 		
 		
 //		g.setColor(Color.RED);

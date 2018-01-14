@@ -1,6 +1,7 @@
 package display;
 import java.awt.Canvas;
 import java.awt.Dimension;
+import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
@@ -22,11 +23,14 @@ public class Display {
 	
 	void createDisplay(){
 		frame = new JFrame(title);
+		frame.setUndecorated(true);
 		frame.setSize(width, height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+		frame.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width/4, Toolkit.getDefaultToolkit().getScreenSize().height/4);
+
 		
 		//frame.setFocusable(true);
 		//frame.requestFocusInWindow();

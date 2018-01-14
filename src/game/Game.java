@@ -1,6 +1,6 @@
  package game;
 
-import java.awt.Color;   
+import java.awt.Color;    
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -82,19 +82,23 @@ public class Game implements Runnable{
 		keyManager.tick();
 		
 		// CHANGE TO BATTLE STATE
-		if(handler.getKeyManager().battle) {
+		if(handler.getKeyManager().battle && !(State.getState() instanceof BattleState)) {
 			State.setState(battleState);
-			if (!((BattleState)battleState).getBattleTest().isBattleStart()) {
-				((BattleState) battleState).getBattleTest().initializeBattleAssets();
-				((BattleState) battleState).getBattleTest().startRandomBattle();
+			if (!((BattleState) battleState).getBattleTest().isBattleStart()) {
+				startBattle();
 			}
 		}
 		if(State.getState() != null) {
 			State.getState().tick();
 		}
 	}
-	
-	
+
+	public void startBattle() {
+		((BattleState) battleState).getBattleTest().initializeBattleAssets();
+		((BattleState) battleState).getBattleTest().startRandomBattle();
+		((BattleState) battleState).getBattleTest().runPhase(-2);
+	}
+
 	private void render() {
 		bs = display.getCanvas().getBufferStrategy();
 		if(bs == null) {
@@ -102,6 +106,9 @@ public class Game implements Runnable{
 			return;
 		}
 		g = bs.getDrawGraphics();
+		
+		
+		
 		// clear
 		g.clearRect(0, 0, width, height);
 		

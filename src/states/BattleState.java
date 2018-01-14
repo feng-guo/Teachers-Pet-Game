@@ -3,20 +3,24 @@ package states;
 import java.awt.Color;  
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 
 import battle.BattleRunner;
 import battle.BattleRunner;
 import game.Handler;
-//import battle.Battle;
+import graphics.Assets;
+import battle.Character;
 
 public class BattleState extends State{
 
 
-	private int count = 60;
+	private int count = 0;
+	private int timer = 0;
 
 	private String battleText;
 	private BattleRunner battleTest;
 	private int answer = -1;
+	boolean textLoading = false;
 
 	public BattleState(Handler handler, Graphics g) {
 		super(handler);
@@ -28,40 +32,76 @@ public class BattleState extends State{
 
 	@Override
 	public void tick() {
-		count++;
-		if (count > 10) {
+		answer = -1;
+		if (handler.getKeyManager().first) {
+			answer = 1;
+			handler.getKeyManager().first = false;
+		}
+		if (handler.getKeyManager().second) {
+			answer = 2;
+			handler.getKeyManager().second = false;
+		}
+		if (handler.getKeyManager().third) {
+			answer = 3;
+			handler.getKeyManager().third = false;
+		}
+		if (handler.getKeyManager().fourth) {
+			answer = 4;
+			handler.getKeyManager().fourth = false;
+		}
+		if (handler.getKeyManager().backspace) {
+			answer = 10;
+			handler.getKeyManager().backspace = false;
+		}
+		if (handler.getKeyManager().enter) {
+			answer = 20;
+		}
+
+		if (handler.getKeyManager().enter && textLoading) {
+			if (count < battleTest.getTextArrayList().get(0).length()*4) {
+				count = battleTest.getTextArrayList().get(0).length() * 4 + 200;
+			} else {
+				count = 100000;
+			}
+			handler.getKeyManager().enter = false;
+		} else if (answer != -1) {
+			handler.getKeyManager().enter = false;
+			battleTest.runPhase(answer);
 			answer = -1;
-			if (handler.getKeyManager().first) {
-				answer = 1;
-			}
-			if (handler.getKeyManager().second) {
-				answer = 2;
-			}
-			if (handler.getKeyManager().third) {
-				answer = 3;
-			}
-			if (handler.getKeyManager().fourth) {
-				answer = 4;
-			}
-			if (handler.getKeyManager().backspace) {
-				answer = 10;
-			}
-			if (handler.getKeyManager().enter) {
-				answer = 1;
-			}
-			if (answer != -1) {
-				//Eventually, this should be moved outside of this if statement because it's graphics
-				battleTest.runPhase(answer);
-				answer = -1;
-			}
-			count = 0;
 		}
 	}
 
 	@Override
 	public void render(Graphics g) {
-		if(answer < 0){
-			return;
+		count++;
+		g.setFont(new Font("Arial", Font.PLAIN, 20));
+		g.drawImage(Assets.battleBackground, 0, 0, null);
+		g.drawString(battleTest.getPlayer().getName(), 350, 210);
+		g.drawString(battleTest.getOpponent().getName(), 50, 70);
+		g.setFont(new Font("Arial", Font.PLAIN, 17));
+		g.drawString(Integer.toString(battleTest.getPlayer().getCurrentHealth()), 475, 255);
+		g.drawString(Integer.toString(battleTest.getPlayer().getInitialHealth()), 530, 255);
+		g.drawString(Integer.toString(battleTest.getOpponent().getCurrentHealth()), 50, 90);
+
+
+		if (battleTest.getTextArrayList().size() > 0) {
+			textLoading = true;
+			g.setFont(new Font("Arial", Font.PLAIN, 20));
+			g.setColor(Color.BLACK);
+			if (count/4 < battleTest.getTextArrayList().get(0).length()) {
+				g.drawString(battleTest.getTextArrayList().get(0).substring(0, count/4), 25 /*+ count/2*/, 320);
+			} else {
+				g.drawString(battleTest.getTextArrayList().get(0), 25, 320);
+			}
+		}
+		if (battleTest.getTextArrayList().size() > 0) {
+			if (count/4 > battleTest.getTextArrayList().get(0).length() + 100 ) {
+				battleTest.getTextArrayList().remove(0);
+				count = 0;
+			}
+		}
+		if (battleTest.getTextArrayList().size() == 0) {
+			textLoading = false;
 		}
 //		if (answer == 1) {
 //			System.out.println("detected");

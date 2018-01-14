@@ -11,7 +11,11 @@ public class Assets {
 
 
 	//public static BufferedImage feng_down_1, feng_down_2, feng_down_3;
+<<<<<<< HEAD
 	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, floor, hallFloor, locker;
+=======
+	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, floor, hallFloor, battleBackground;
+>>>>>>> c6ae3e01d84767380c4be05c8d37dbe0f8548d48
 	public static BufferedImage[] feng_down, feng_up, feng_left, feng_right, logo;
 	public static BufferedImage[][] tileArray;
 
@@ -21,6 +25,9 @@ public class Assets {
 		SpriteSheet tileSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile_sheet.png"));
 		SpriteSheet grassSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile_textures.png"));
 		SpriteSheet floorSheet = new SpriteSheet(ImageLoader.loadImage("/textures/sample4.png"));
+
+		//battleBackground = ImageLoader.loadImage("/textures/Tree.png");
+		battleBackground = ImageLoader.loadImage("/textures/game_background.png");
 
 		tree = ImageLoader.loadImage("/textures/Tree.png");
 		locker = ImageLoader.loadImage("/textures/Locker.png");
@@ -62,7 +69,7 @@ public class Assets {
 			}
 		}
 		rock = tileArray[7][7];
-		hallFloor = tileArray[58][14];
+		//hallFloor = tileArray[58][14];
 
 	}
 }

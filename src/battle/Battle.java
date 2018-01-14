@@ -10,6 +10,7 @@ import java.awt.Graphics;
  * Need to add switching, inventory, fleeing, and move selection
  */
 
+import java.util.ArrayList;
 import java.util.InputMismatchException; //Prevents people like Samyar from intentionally throwing in bad inputs. Will be replaced.
 
 import game.Handler;
@@ -106,7 +107,9 @@ class Battle /*extends Interaction*/ {
   private String turnNumberString;
   private String[] selectionStrings;
 
-  private boolean playerChoicePhase, playerPickAttackPhase, playerAttackChoicePhase, playerSwitchPhase, playerInventoryPhase, playerInventoryChoicePhase, playerRunPhase, playerInputPhase, playerEndPhase;
+  private boolean playerChoicePhase, playerPickAttackPhase, playerAttackChoicePhase, playerSwitchPhase, playerPickCharacterPhase, playerInventoryPhase, playerInventoryChoicePhase, playerRunPhase, playerInputPhase, playerEndPhase;
+  private boolean forceSwitchCharacterPhase;
+  private ArrayList<String> textArrayList = new ArrayList<>();
 
 
   Battle (PlayableCharacter player, NonPlayableCharacter opponent, Squad squad, Inventory inventory, Handler handler, Graphics g) {
@@ -213,9 +216,11 @@ class Battle /*extends Interaction*/ {
     this.playerPickAttackPhase = false;
     this.playerAttackChoicePhase = false;
     this.playerSwitchPhase = false;
+    this.playerPickCharacterPhase = false;
     this.playerInventoryPhase = false;
     this.playerInventoryChoicePhase = false;
     this.playerEndPhase = false;
+    this.forceSwitchCharacterPhase = false;
   }
 
   private void changeCharacter(PlayableCharacter player) {
@@ -266,6 +271,25 @@ class Battle /*extends Interaction*/ {
   private int drawX, drawY;
   
   public void runBattleTurn(int phase) {
+    if (phase > 0) {
+      if (phase - 1 == 0) {
+        playerPickAttackPhase = true;
+        playerPickAttack();
+        playerChoicePhase = false;
+      } else if (phase - 1 == 1) {
+        playerInventoryPhase = true;
+        playerPickInventory();
+        playerChoicePhase = false;
+      } else if (phase - 1 == 2) {
+        playerSwitchPhase = true;
+        playerSwitchCharacter();
+        playerChoicePhase = false;
+      } else if (phase - 1 == 3) {
+        playerRunPhase = true;
+        playerChoicePhase = false;
+      }
+      return;
+    }
     drawX = 20;
     drawY = 20;
     //Turn number output should be its own string
@@ -296,7 +320,7 @@ class Battle /*extends Interaction*/ {
       if (playerAbility.equals("Demoralize")) {
         opponentIntelligence /= 2;
         opponentStatBoost--;
-        System.out.println(opponentName + " is demoralized. Their intelligence fell!");
+        textArrayList.add(opponentName + " is demoralized. Their intelligence fell!");
         playerAbilityTriggered = true;
       }
     }
@@ -304,46 +328,32 @@ class Battle /*extends Interaction*/ {
       if (opponentAbility.equals("Demoralize")) {
         playerIntelligence /= 2;
         playerStatBoost--;
-        System.out.println(playerName + " is demoralized. Their intelligence fell!");
+        textArrayList.add(playerName + " is demoralized. Their intelligence fell!");
         opponentAbilityTriggered = true;
       }
     }
     if (playerAbility.equals("Speed Boost") && playerStatBoost < 5) {
       playerSpeed *= 2;
       playerStatBoost++;
-      System.out.println(playerName + "'s Speed Boost! Their speed increased!");
+      textArrayList.add(playerName + "'s Speed Boost! Their speed increased!");
     }
     if (opponentAbility.equals("Speed Boost") && opponentStatBoost < 5) {
       opponentSpeed *= 2;
       opponentStatBoost++;
-      System.out.println(opponentName + "'s Speed Boost! Their speed increased!");
+      textArrayList.add(opponentName + "'s Speed Boost! Their speed increased!");
     }
     //Displays the health of both opponents. This could be a string output too
-    System.out.println(playerName + " " + playerCurrentHealth + "/" + playerHealth);
-    System.out.println(opponentName + " " + opponentCurrentHealth + "/" + opponentHealth);
-    System.out.println("What would you like to do");
+    textArrayList.add(playerName + " " + playerCurrentHealth + "/" + playerHealth);
+    textArrayList.add(opponentName + " " + opponentCurrentHealth + "/" + opponentHealth);
+    textArrayList.add("What would you like to do");
     selectionStrings[0] = "Fight";
     selectionStrings[1] = "Inventory";
     selectionStrings[2] = "Squad";
     selectionStrings[3] = "Run";
     for (int i = 0; i < 4; i++) {
-      System.out.println(selectionStrings[i]);
+      textArrayList.add(selectionStrings[i]);
     }
 
-
-    if (phase-1 == 0) {
-      playerPickAttackPhase = true;
-      playerChoicePhase = false;
-    } else if (phase-1 == 1) {
-      playerInventoryPhase = true;
-      playerChoicePhase = false;
-    } else if (phase-1 == 2) {
-      playerSwitchPhase = true;
-      playerChoicePhase = false;
-    } else if (phase-1 == 3) {
-      playerRunPhase = true;
-      playerChoicePhase = false;
-    }
     //Everything else
     /*handler.getKeyManager().tick();
     int answer = determineAnswer(handler);
@@ -357,7 +367,7 @@ class Battle /*extends Interaction*/ {
       do {
         //Might throw this into another method
         if (playerCurrentHealth == 0) {
-          System.out.println("Your student broke down");
+          textArrayList.add("Your student broke down");
           squad.displaySquad();
           do {
             try {
@@ -370,7 +380,7 @@ class Battle /*extends Interaction*/ {
             changeCharacter(squad.getCharacter(answer - 1));
             exitLoop = true;
           } else {
-            System.out.println("That student is dead.");
+            textArrayList.add("That student is dead.");
           }
         } else {
           exitLoop = true;
@@ -387,6 +397,7 @@ class Battle /*extends Interaction*/ {
     this.playerInventoryPhase = false;
     this.playerInventoryChoicePhase = false;
     this.playerEndPhase = false;
+    runBattleTurn(-1);
   }
 
   public void playerPickAttack() {
@@ -395,7 +406,7 @@ class Battle /*extends Interaction*/ {
       selectionStrings[i] = player.getMove(i).getName() + " " + player.getPowerPoints(i) + "/" + player.getMove(i).getMaxPowerPoints() + " (" + (i + 1) + ")";
     }
     for (int i = 0; i < 4; i++) {
-      System.out.println(selectionStrings[i]);
+      textArrayList.add(selectionStrings[i]);
     }
   }
 
@@ -409,16 +420,16 @@ class Battle /*extends Interaction*/ {
     if (moveFirst == -1) {
       if (playerStatus != null) {
         if (playerStatus.equals("Sleep")) {
-          System.out.println(playerName + " is asleep!");
+          textArrayList.add(playerName + " is asleep!");
         } else if (Math.random() < 0.25 && playerStatus.equals("Stun")){
-          System.out.println(playerName + " is stunned!");
+          textArrayList.add(playerName + " is stunned!");
         } else {
           //Player moves if it is not stunned or asleep
-          System.out.println(playerName + " used " + player.getMove(choice - 1).getName());
+          textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName());
           determineAttackType(player.getMove(choice - 1), player);
         }
       } else {
-        System.out.println(playerName + " used " + player.getMove(choice - 1).getName());
+        textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName());
         determineAttackType(player.getMove(choice - 1), player);
         //Protecting will be handled in the move methods
       }
@@ -426,54 +437,54 @@ class Battle /*extends Interaction*/ {
         //Can't go if the opponent is dead
         if (opponentStatus != null) {
           if (opponentStatus.equals("Sleep")) {
-            System.out.println(opponentName + " is asleep!");
+            textArrayList.add(opponentName + " is asleep!");
           } else if (Math.random() < 0.25 && opponentStatus.equals("Stun")) {
-            System.out.println(opponentName + " is stunned!");
+            textArrayList.add(opponentName + " is stunned!");
           } else {
-            System.out.println(opponentName + " used " + opponent.getMove(opponentMove).getName());
+            textArrayList.add(opponentName + " used " + opponent.getMove(opponentMove).getName());
             determineAttackType(opponent.getMove(opponentMove), opponent);
           }
         } else {
-          System.out.println(opponentName + " used " + opponent.getMove(opponentMove).getName());
+          textArrayList.add(opponentName + " used " + opponent.getMove(opponentMove).getName());
           determineAttackType(opponent.getMove(opponentMove), opponent);
         }
       }
     } else if (moveFirst == 1) {
       if (opponentStatus != null) {
         if (opponentStatus.equals("Sleep")) {
-          System.out.println(opponentName + " is asleep!");
+          textArrayList.add(opponentName + " is asleep!");
         } else if (Math.random() < 0.25 && opponentStatus.equals("Stun")) {
-          System.out.println(opponentName + " is stunned!");
+          textArrayList.add(opponentName + " is stunned!");
         } else {
-          System.out.println(opponentName + " used " + opponent.getMove(opponentMove).getName());
+          textArrayList.add(opponentName + " used " + opponent.getMove(opponentMove).getName());
           determineAttackType(opponent.getMove(opponentMove), opponent);
         }
       } else {
-        System.out.println(opponentName + " used " + opponent.getMove(opponentMove).getName());
+        textArrayList.add(opponentName + " used " + opponent.getMove(opponentMove).getName());
         determineAttackType(opponent.getMove(opponentMove), opponent);
       }
       if (playerStatus != null) {
         if (playerStatus.equals("Sleep")) {
-          System.out.println(playerName + " is asleep!");
+          textArrayList.add(playerName + " is asleep!");
         } else if (Math.random() < 0.25 && playerStatus.equals("Stun")){
-          System.out.println(playerName + " is stunned!");
+          textArrayList.add(playerName + " is stunned!");
         } else {
           //Player moves if it is not stunned or asleep
-          System.out.println(playerName + " used " + player.getMove(choice - 1).getName());
+          textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName());
           determineAttackType(player.getMove(choice - 1), player);
         }
       } else {
-        System.out.println(playerName + " used " + player.getMove(choice - 1).getName());
+        textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName());
         determineAttackType(player.getMove(choice - 1), player);
         //Protecting will be handled in the move methods
       }
     }
-    playerEndPhase = true;
+    endTurn();
   }
 
   public void playerPickInventory() {
     playerInventoryChoicePhase = true;
-    System.out.println("Inventory items");
+    textArrayList.add("Inventory items");
     playerInventory.displayItems();
   }
 
@@ -503,19 +514,22 @@ class Battle /*extends Interaction*/ {
       }
       //ALL IN DIFFERENT METHODS (pp and hp can be same method)
     } else if (item instanceof StatItem) {
-      System.out.println("You can't use that here!");
+      textArrayList.add("You can't use that here!");
     }
     if (itemUsed) {
       playerInventory.useItem(playerInventory.getItemName(answer));
       playerInventoryChoicePhase = false;
       opponentTurn();
-      playerEndPhase = true;
     }
   }
 
   public void playerSwitchCharacter() {
     squad.displaySquad();
-    playerSwitchPhase = true;
+    if (forceSwitchCharacterPhase) {
+      return;
+    } else {
+      playerPickCharacterPhase = true;
+    }
   }
 
   public void playerPickCharacter(int choice) {
@@ -524,7 +538,7 @@ class Battle /*extends Interaction*/ {
       playerSwitchPhase = false;
       opponentTurn();
     } else {
-      System.out.println("That person is dead");
+      textArrayList.add("That person is dead");
     }
   }
 
@@ -534,16 +548,16 @@ class Battle /*extends Interaction*/ {
       playerFled = true;
       playerLoses = true;
       battleEnd = true;
-      System.out.println("Ran successfully!");
+      textArrayList.add("Ran successfully!");
     } else {
-      System.out.println("Could not run!");
+      textArrayList.add("Could not run!");
       playerRunPhase = false;
     }
   }
 
   public void opponentTurn() {
     determineAttackType(opponent.getMove(determineOpponentMove()), opponent);
-    playerEndPhase = true;
+    endTurn();
   }
 
   public void endTurn() {
@@ -556,7 +570,7 @@ class Battle /*extends Interaction*/ {
           player.changeCurrentHealth((int)(playerHealth*0.06));
           playerCurrentHealth = player.getCurrentHealth();
         }
-        System.out.println(playerName + " bought a Starbucks drink and recovered some health!");
+        textArrayList.add(playerName + " bought a Starbucks drink and recovered some health!");
       }
     }
     if (opponentCurrentHealth > 0 && opponentHeldItem != null) {
@@ -566,7 +580,7 @@ class Battle /*extends Interaction*/ {
         } else {
           opponentCurrentHealth += (int)(opponentHealth*0.06);
         }
-        System.out.println(opponentName + " bought a Starbucks drink and recovered some health!");
+        textArrayList.add(opponentName + " bought a Starbucks drink and recovered some health!");
       }
     }
     if (playerStatus != null && playerCurrentHealth > 0) {
@@ -587,14 +601,14 @@ class Battle /*extends Interaction*/ {
       numberOfFaintedStudents++;
     }
     if (numberOfFaintedStudents == partySize && opponentCurrentHealth == 0) {
-      System.out.println("Everyone died");
+      textArrayList.add("Everyone died");
       battleEnd = true;
     } else if (numberOfFaintedStudents == partySize) {
-      System.out.println("Your party died");
+      textArrayList.add("Your party died");
       battleEnd = true;
       playerLoses = true;
     } else if (opponentCurrentHealth == 0) {
-      System.out.println("Good job you passed");
+      textArrayList.add("Good job you passed");
       battleEnd = true;
       opponentLoses = true;
     }
@@ -605,9 +619,24 @@ class Battle /*extends Interaction*/ {
       opponentStatusTurns++;
     }
     battleTurns++;
-    System.out.println("");
+    textArrayList.add("");
+    if (!battleEnd && playerCurrentHealth == 0) {
+      forceSwitchCharacterPhase = true;
+      playerSwitchCharacter();
+    }
     if (!battleEnd) {
       goBackInMenu();
+      runBattleTurn(-1);
+    }
+  }
+
+  public void forceSwitchCharacter(int choice) {
+    if (squad.getCharacter(choice - 1).getCurrentHealth() > 0) {
+      changeCharacter(squad.getCharacter(choice - 1));
+      forceSwitchCharacterPhase = false;
+    } else {
+      textArrayList.add("That person is dead");
+      squad.displaySquad();
     }
   }
 
@@ -700,10 +729,10 @@ class Battle /*extends Interaction*/ {
               }
             } while (!attackTrue);
           } else {
-            System.out.println("The move failed!");
+            textArrayList.add("The move failed!");
           }
         } else {
-          System.out.println("The move failed!");
+          textArrayList.add("The move failed!");
         }
       } else if (attacker == 1) {
         if (opponentStatus != null) {
@@ -718,10 +747,10 @@ class Battle /*extends Interaction*/ {
               }
             } while (!attackTrue);
           } else {
-            System.out.println("The move failed!");
+            textArrayList.add("The move failed!");
           }
         } else {
-          System.out.println("The move failed!");
+          textArrayList.add("The move failed!");
         }
       }
     }
@@ -782,7 +811,7 @@ class Battle /*extends Interaction*/ {
       if (playerAbility.equals("Clown")) {
         if (Math.random() < 0.25) {
           damageDealt = damageDealt / 2;
-          System.out.println(playerName + " is clowning around.");
+          textArrayList.add(playerName + " is clowning around.");
         }
       } else if (playerAbility.equals("Avoidant")) {
         determineHit *= 4;
@@ -794,7 +823,7 @@ class Battle /*extends Interaction*/ {
       if (opponentAbility.equals("Clown")) {
         if (Math.random() < 0.25) {
           damageDealt = damageDealt / 2;
-            System.out.println(opponentName + " is clowning around.");
+            textArrayList.add(opponentName + " is clowning around.");
         }
       } else if (opponentAbility.equals("Avoidant")) {
         determineHit *= 4;
@@ -811,7 +840,7 @@ class Battle /*extends Interaction*/ {
         if (!opponentProtected) {
           attackTriggered = true;
           if (effectivenessText != null) {
-            System.out.println(effectivenessText);
+            textArrayList.add(effectivenessText);
           }
           if (opponentCurrentHealth - damageDealt < 0) {
             opponent.faintCharacter();
@@ -823,34 +852,34 @@ class Battle /*extends Interaction*/ {
               switch (opponentAbility) {
                 case "Persistent":
                   opponentDefence = opponentDefence * 2;
-                  System.out.println("The opponent is persistent!");
-                  System.out.println("Opponent defence rose sharply!");
+                  textArrayList.add("The opponent is persistent!");
+                  textArrayList.add("Opponent defence rose sharply!");
                   opponentAbilityTriggered = true;
                   break;
                 case "Distressed":
                   opponentIntelligence = opponentIntelligence * 2;
-                  System.out.println("The opponent is distressed!");
-                  System.out.println("Player intelligence rose sharply!");
+                  textArrayList.add("The opponent is distressed!");
+                  textArrayList.add("Player intelligence rose sharply!");
                     opponentAbilityTriggered = true;
                 case "Protective":
                   opponentSpeed *= 2;
                   opponentAttack *= 2;
-                  System.out.println(opponentName + " is protective!");
-                  System.out.println(opponentName + "'s speed rose sharply!");
-                  System.out.println(opponentName + "'s attack rose sharply!");
+                  textArrayList.add(opponentName + " is protective!");
+                  textArrayList.add(opponentName + "'s speed rose sharply!");
+                  textArrayList.add(opponentName + "'s attack rose sharply!");
                   opponentAbilityTriggered = true;
                   break;
               }
             }
           }
         } else {
-          System.out.println("The opponent protected!");
+          textArrayList.add("The opponent protected!");
         }
       } else if (attacker == 1) {
         if (!playerProtected) {
           attackTriggered = true;
           if (effectivenessText != null) {
-            System.out.println(effectivenessText);
+            textArrayList.add(effectivenessText);
           }
           if (playerCurrentHealth - damageDealt < 0) {
             player.faintCharacter();
@@ -862,22 +891,22 @@ class Battle /*extends Interaction*/ {
               switch (playerAbility) {
                 case "Persistent":
                   playerDefence = playerDefence * 2;
-                  System.out.println("The player is persistent!");
-                  System.out.println("Player defence rose sharply!");
+                  textArrayList.add("The player is persistent!");
+                  textArrayList.add("Player defence rose sharply!");
                   playerAbilityTriggered = true;
                   break;
                 case "Distressed":
                   playerIntelligence = playerIntelligence * 2;
-                  System.out.println("The player is distressed!");
-                  System.out.println("Player intelligence rose sharply!");
+                  textArrayList.add("The player is distressed!");
+                  textArrayList.add("Player intelligence rose sharply!");
                   playerAbilityTriggered = true;
                   break;
                 case "Protective":
                   playerSpeed *= 2;
                   playerAttack *= 2;
-                    System.out.println(playerName + " is protective!");
-                    System.out.println(playerName + "'s speed rose sharply!");
-                    System.out.println(playerName + "'s attack rose sharply!");
+                    textArrayList.add(playerName + " is protective!");
+                    textArrayList.add(playerName + "'s speed rose sharply!");
+                    textArrayList.add(playerName + "'s attack rose sharply!");
                   playerAbilityTriggered = true;
                   break;
               }
@@ -885,10 +914,10 @@ class Battle /*extends Interaction*/ {
           }
         }
       } else {
-        System.out.println("The player protected!");
+        textArrayList.add("The player protected!");
       }
     } else {
-      System.out.println("The move missed!");
+      textArrayList.add("The move missed!");
     }
 
     double determineAdditionalHit = Math.random();
@@ -927,13 +956,13 @@ class Battle /*extends Interaction*/ {
       if (Math.random() < playerProtectChance) {
         playerProtected = true;
       } else {
-        System.out.println("The protect failed");
+        textArrayList.add("The protect failed");
       }
     } else if (attacker == 1) {
       if (Math.random() < opponentProtectChance) {
         opponentProtected = true;
       } else {
-        System.out.println("The protect failed");
+        textArrayList.add("The protect failed");
       }
     }
   }
@@ -971,27 +1000,27 @@ class Battle /*extends Interaction*/ {
                         switch (move.getStatType()) {
                             case "Attack":
                                 opponentAttack /= move.getMultiplier();
-                                System.out.println(opponentName + "'s attack fell!");
+                                textArrayList.add(opponentName + "'s attack fell!");
                                 break;
                             case "Intelligence":
                                 opponentIntelligence /= move.getMultiplier();
-                                System.out.println(opponentName + "'s intelligence fell!");
+                                textArrayList.add(opponentName + "'s intelligence fell!");
                                 break;
                             case "Defence":
                                 opponentDefence /= move.getMultiplier();
-                                System.out.println(opponentName + "'s defence fell!");
+                                textArrayList.add(opponentName + "'s defence fell!");
                                 break;
                             case "Speed":
                                 opponentSpeed /= move.getMultiplier();
-                                System.out.println(opponentName + "'s speed fell!");
+                                textArrayList.add(opponentName + "'s speed fell!");
                                 break;
                         }
                         opponentStatBoost--;
                     } else {
-                        System.out.println("That stat cannot be lowered anymore!");
+                        textArrayList.add("That stat cannot be lowered anymore!");
                     }
                 } else {
-                    System.out.println(opponentName + " protected from the attack!");
+                    textArrayList.add(opponentName + " protected from the attack!");
                 }
             } else if (move.getTarget().equals("Self")) {
                 if (playerStatBoost < 5) {
@@ -999,24 +1028,24 @@ class Battle /*extends Interaction*/ {
                     switch (move.getStatType()) {
                         case "Attack":
                             playerAttack *= move.getMultiplier();
-                            System.out.println(opponentName + "'s attack increased!");
+                            textArrayList.add(opponentName + "'s attack increased!");
                             break;
                         case "Intelligence":
                             opponentIntelligence *= move.getMultiplier();
-                            System.out.println(opponentName + "'s intelligence increased!");
+                            textArrayList.add(opponentName + "'s intelligence increased!");
                             break;
                         case "Defence":
                             opponentDefence *= move.getMultiplier();
-                            System.out.println(opponentName + "'s defence increased!");
+                            textArrayList.add(opponentName + "'s defence increased!");
                             break;
                         case "Speed":
                             opponentSpeed *= move.getMultiplier();
-                            System.out.println(opponentName + "'s speed increased!");
+                            textArrayList.add(opponentName + "'s speed increased!");
                             break;
                     }
                     playerStatBoost++;
                 } else {
-                    System.out.println("That stat cannot be raised anymore!");
+                    textArrayList.add("That stat cannot be raised anymore!");
                 }
             }
         } else if (attacker > 0) {
@@ -1027,26 +1056,26 @@ class Battle /*extends Interaction*/ {
                         switch (move.getStatType()) {
                             case "Attack":
                                 playerAttack /= move.getMultiplier();
-                                System.out.println(playerName + "'s attack fell!");
+                                textArrayList.add(playerName + "'s attack fell!");
                                 break;
                             case "Intelligence":
                                 playerIntelligence /= move.getMultiplier();
-                                System.out.println(playerName + "'s intelligence fell!");
+                                textArrayList.add(playerName + "'s intelligence fell!");
                                 break;
                             case "Defence":
                                 playerDefence /= move.getMultiplier();
-                                System.out.println(playerName + "'s defence fell!");
+                                textArrayList.add(playerName + "'s defence fell!");
                                 break;
                             case "Speed":
                                 playerSpeed /= move.getMultiplier();
-                                System.out.println(playerName + "'s speed fell!");
+                                textArrayList.add(playerName + "'s speed fell!");
                                 break;
                         }
                     } else {
-                        System.out.println("That stat cannot be lowered anymore");
+                        textArrayList.add("That stat cannot be lowered anymore");
                     }
                 } else {
-                    System.out.println(playerName + " protected!");
+                    textArrayList.add(playerName + " protected!");
                 }
             } else if (move.getTarget().equals("Self")) {
                 if (opponentStatBoost < 5) {
@@ -1054,19 +1083,19 @@ class Battle /*extends Interaction*/ {
                     switch (move.getStatType()) {
                         case "Attack":
                             opponentAttack *= move.getMultiplier();
-                            System.out.println(opponentName + "'s attack increased!");
+                            textArrayList.add(opponentName + "'s attack increased!");
                             break;
                         case "Intelligence":
                             opponentIntelligence *= move.getMultiplier();
-                            System.out.println(opponentName + "'s intelligence increased!");
+                            textArrayList.add(opponentName + "'s intelligence increased!");
                             break;
                         case "Defence":
                             opponentDefence *= move.getMultiplier();
-                            System.out.println(opponentName + "'s defence increased!");
+                            textArrayList.add(opponentName + "'s defence increased!");
                             break;
                         case "Speed":
                             opponentSpeed *= move.getMultiplier();
-                            System.out.println(opponentName + "'s speed increased!");
+                            textArrayList.add(opponentName + "'s speed increased!");
                             break;
                     }
                 }
@@ -1209,28 +1238,28 @@ class Battle /*extends Interaction*/ {
         if (!opponentProtected) {
           opponentStatus = move.getStatusEffect();
           if (move.getStatusEffect().equals("Sleep")) {
-            System.out.println("The opponent fell asleep.");
+            textArrayList.add("The opponent fell asleep.");
           } else {
-            System.out.println("The opponent was " + move.getStatusEffect() + "ed.");
+            textArrayList.add("The opponent was " + move.getStatusEffect() + "ed.");
           }
         } else {
-          System.out.println("The opponent protected");
+          textArrayList.add("The opponent protected");
         }
       } else if (attacker > 0){
         if (!playerProtected) {
           player.setStatus(move.getStatusEffect());
           playerStatus = player.getStatus();
           if (move.getStatusEffect().equals("Sleep")) {
-            System.out.println("The player fell asleep.");
+            textArrayList.add("The player fell asleep.");
           } else {
-            System.out.println("The player was " + move.getStatusEffect() + "ed.");
+            textArrayList.add("The player was " + move.getStatusEffect() + "ed.");
           }
         } else {
-          System.out.println("The player protected");
+          textArrayList.add("The player protected");
         }
       }
     } else {
-      System.out.println("The move missed!");
+      textArrayList.add("The move missed!");
     }
   }
 
@@ -1390,13 +1419,13 @@ class Battle /*extends Interaction*/ {
         playerStatus = null;
         playerStatusTurns = 0;
         player.setStatus(null);
-        System.out.println(playerName + " woke up.");
+        textArrayList.add(playerName + " woke up.");
       }
     } else if (person instanceof NonPlayableCharacter) {
       if (wakeUpChance < 0.1 || opponentStatusTurns > 5) {
         opponentStatus = null;
         opponentStatusTurns = 0;
-        System.out.println(opponentName + " woke up.");
+        textArrayList.add(opponentName + " woke up.");
       }
     }
   }
@@ -1548,5 +1577,17 @@ class Battle /*extends Interaction*/ {
 
   public boolean isPlayerPickAttackPhase() {
     return playerPickAttackPhase;
+  }
+
+  public boolean isPlayerPickCharacterPhase() {
+    return playerPickCharacterPhase;
+  }
+
+  public boolean isForceSwitchCharacterPhase() {
+    return forceSwitchCharacterPhase;
+  }
+  
+  public ArrayList<String> getTextArrayList() {
+    return textArrayList;
   }
 }
