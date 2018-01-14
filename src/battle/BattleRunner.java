@@ -11,9 +11,7 @@ import game.Handler;
 //import java.util.Scanner;
 
 public class BattleRunner {
-	
-	private String finalText;
-	private Handler handler;
+
     private ListOfCharacters characterList = new ListOfCharacters();
     private ListOfInventoryItems inventoryItems = new ListOfInventoryItems();
     private Inventory inventory = new Inventory();
@@ -22,12 +20,9 @@ public class BattleRunner {
     private Squad squad;
     private boolean battleStart;
     private Battle battle;
-    private Graphics g;
     private boolean battleStarted;
 	
-	public BattleRunner(Handler handler, Graphics g) {
-		this.handler = handler;
-		this.g = g;
+	public BattleRunner() {
 		battleStart = false;
 	}
 
@@ -54,12 +49,12 @@ public class BattleRunner {
         } else {
             opponent = MrTimmerman;
         }
-        battle = new Battle(squad.getCharacter(0), opponent, squad, inventory, handler, g);
+        battle = new Battle(squad.getCharacter(0), opponent, squad, inventory);
         battleStart = true;
     }
 
     public void startBattle (NonPlayableCharacter opponent) {
-	    battle = new Battle(squad.getCharacter(0), opponent, squad, inventory, handler, g);
+	    battle = new Battle(squad.getCharacter(0), opponent, squad, inventory);
 	    battleStart = true;
     }
 
