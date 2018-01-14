@@ -33,9 +33,9 @@ public class BattleRunner {
         newSquad[3] = (PlayableCharacter)characterList.returnCharacter("Yash");
         newSquad[4] = (PlayableCharacter)characterList.returnCharacter("Johann");
         newSquad[5] = (PlayableCharacter)characterList.returnCharacter("Misha");
-        MrChoi = (NonPlayableCharacter)characterList.returnCharacter("Mr. Choi");
-        MrShim = (NonPlayableCharacter)characterList.returnCharacter("Mr. Shim");
-        MrTimmerman = (NonPlayableCharacter)characterList.returnCharacter("Mr. Timmerman");
+        MrChoi = (NonPlayableCharacter)characterList.returnCharacter("Mr.Choi");
+        MrShim = (NonPlayableCharacter)characterList.returnCharacter("Mr.Shim");
+        MrTimmerman = (NonPlayableCharacter)characterList.returnCharacter("Mr.Timmerman");
         squad = new Squad(newSquad);
     }
 
@@ -109,5 +109,9 @@ public class BattleRunner {
 
     public String getSelectionStrings(int i) {
 	    return battle.getSelectionStrings(i);
+    }
+
+    public boolean isBattleEnd() {
+	    return battle.isBattleEnd();
     }
 }

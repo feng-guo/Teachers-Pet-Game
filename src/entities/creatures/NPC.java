@@ -111,8 +111,8 @@ public class NPC extends Creature{
 //			}
 			
 		} else {
-			
-			hasStopped = false;
+
+			unStopNPC();
 			ultimateDir = 0;
 		}
 			
@@ -248,6 +248,9 @@ public class NPC extends Creature{
 	
 	public void stopNPC() {
 		hasStopped = true;
+	}
+	public void unStopNPC() {
+		hasStopped = false;
 	}
 
 }

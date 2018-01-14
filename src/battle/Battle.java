@@ -13,6 +13,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 import game.Handler;
+import states.State;
 
 class Battle {
   //Objects that need to be saved here
@@ -508,6 +509,7 @@ class Battle {
     } else {
       textArrayList.add("Could not run!");
       playerRunPhase = false;
+      opponentTurn();
     }
   }
 

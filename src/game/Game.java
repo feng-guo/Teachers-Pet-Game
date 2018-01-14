@@ -207,4 +207,7 @@ public class Game implements Runnable{
 		}
 	}
 
+	public State getGameState() {
+		return gameState;
+	}
 }

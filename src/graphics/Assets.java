@@ -20,7 +20,7 @@ public class Assets {
 
 	public static BufferedImage[] feng_down, feng_up, feng_left, feng_right, logo;
 	public static BufferedImage[][] tileArray;
-	public static Font font24, font16, font12;
+	public static Font font24, font16, font12, font10;
 
 
 	public static void init() {
@@ -31,6 +31,7 @@ public class Assets {
 			font24 = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File(filePath))).deriveFont(Font.PLAIN, 24);
 			font16 = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File(filePath))).deriveFont(Font.PLAIN, 16);
 			font12 = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File(filePath))).deriveFont(Font.PLAIN, 12);
+			font10 = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File(filePath))).deriveFont(Font.PLAIN, 10);
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();
 		}
