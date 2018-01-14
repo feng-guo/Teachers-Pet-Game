@@ -26,7 +26,7 @@ public class Assets {
 		SpriteSheet grassSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile_textures.png"));
 		SpriteSheet floorSheet = new SpriteSheet(ImageLoader.loadImage("/textures/sample4.png"));
 
-		//battleBackground = ImageLoader.loadImage("/textures/Tree.png");
+		//battleBackground = ImageLoader.loadImage("/textures/Outdoor_Entities/Tree.png");
 		battleBackground = ImageLoader.loadImage("/textures/game_background.png");
 
 		tree = ImageLoader.loadImage("/textures/Outdoor_Entities/Tree.png");
