@@ -1,3 +1,5 @@
+package stresseat;
+
 import java.awt.Rectangle; 
 
 public class FallingItem{
@@ -5,40 +7,31 @@ public class FallingItem{
     private int height, width;
     Rectangle boundingBox;
     
-    FallingItem(int height, int width){
+    FallingItem(){
         X = 300;
-        Y = 0 - height;
-        this.height = height;
-        this.width = width;
+        Y = -16;
+        this.height = 16;
+        this.width = 16;
         speed = 1;
-        boundingBox.x = (int)X;
-        boundingBox.y = (int)Y;
-        boundingBox.height = height;
-        boundingBox.width = width;
+        boundingBox = new Rectangle((int)X, (int)Y, width, height);
     }
     
-    FallingItem(int height, int width, double X){
+    FallingItem(double X){
         this.X = X;
-        Y = 0 - height;
-        this.height = height;
-        this.width = width;
+        Y = -16;
+        this.height = 16;
+        this.width = 16;
         speed = 1;
-        boundingBox.x = (int)X;
-        boundingBox.y = (int)Y;
-        boundingBox.height = height;
-        boundingBox.width = width;
+        boundingBox = new Rectangle((int)X, (int)Y, width, height);
     }
     
-    FallingItem(int height, int width, double X, double speed){
+    FallingItem(double X, double speed){
         this.X = X;
-        Y = 0 - height;
-        this.height = height;
-        this.width = width;
+        Y = -16;
+        this.height = 16;
+        this.width = 16;
         this.speed = speed;
-        boundingBox.x = (int)X;
-        boundingBox.y = (int)Y;
-        boundingBox.height = height;
-        boundingBox.width = width;
+        boundingBox = new Rectangle((int)X, (int)Y, width, height);
     }
     
     public void changeSpeed(double speed){
