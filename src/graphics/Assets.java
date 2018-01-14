@@ -9,8 +9,8 @@ import java.io.IOException;
 
 public class Assets {
 
-	private static final int charWidth = 16;
-	private static final int charHeight = 21;
+	private static final int charWidth = 15;
+	private static final int charHeight = 19;
 	private static final int tileWidth = 16;
 	private static final int tileHeight = 16;
 
@@ -36,7 +36,7 @@ public class Assets {
 			e.printStackTrace();
 		}
 
-		SpriteSheet fengSheet = new SpriteSheet(ImageLoader.loadImage("/textures/feng_textures.png"));
+		SpriteSheet fengSheet = new SpriteSheet(ImageLoader.loadImage("/textures/Sprite_Images/sprites/characters/Johann/johann_spritesheet.png"));
 		SpriteSheet tileSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile_sheet.png"));
 		SpriteSheet grassSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile_textures.png"));
 		SpriteSheet floorSheet = new SpriteSheet(ImageLoader.loadImage("/textures/sample4.png"));
@@ -60,17 +60,17 @@ public class Assets {
 		feng_down[1] = fengSheet.crop(charWidth*1, 0, charWidth, charHeight);
 		feng_down[2] = fengSheet.crop(charWidth*2, 0, charWidth, charHeight);
 
-		feng_left[0] = fengSheet.crop(charWidth*3, 0, charWidth, charHeight);
-		feng_left[1] = fengSheet.crop(charWidth*4, 0, charWidth, charHeight);
-		feng_left[2] = fengSheet.crop(charWidth*5, 0, charWidth, charHeight);
+		feng_left[0] = fengSheet.crop(charWidth*3 + 1, 0, charWidth - 1, charHeight);
+		feng_left[1] = fengSheet.crop(charWidth*4 + 1, 0, charWidth - 1, charHeight);
+		feng_left[2] = fengSheet.crop(charWidth*5 + 1, 0, charWidth - 1, charHeight);
 
-		feng_right[0] = fengSheet.crop(charWidth*6, 0, charWidth, charHeight);
-		feng_right[1] = fengSheet.crop(charWidth*7, 0, charWidth, charHeight);
-		feng_right[2] = fengSheet.crop(charWidth*8, 0, charWidth, charHeight);
+		feng_right[0] = fengSheet.crop(charWidth*6 - 2, 0, charWidth - 1, charHeight);
+		feng_right[1] = fengSheet.crop(charWidth*7 - 2, 0, charWidth - 1, charHeight);
+		feng_right[2] = fengSheet.crop(charWidth*8 - 2, 0, charWidth - 1, charHeight);
 
-		feng_up[0] = fengSheet.crop(charWidth*9, 0, charWidth, charHeight);
-		feng_up[1] = fengSheet.crop(charWidth*10, 0, charWidth, charHeight);
-		feng_up[2] = fengSheet.crop(charWidth*11, 0, charWidth, charHeight);
+		feng_up[0] = fengSheet.crop(charWidth*9 - 3, 0, charWidth, charHeight);
+		feng_up[1] = fengSheet.crop(charWidth*10 - 3, 0, charWidth, charHeight);
+		feng_up[2] = fengSheet.crop(charWidth*11 - 3, 0, charWidth, charHeight);
 
 		//grass_1 = grassSheet.crop(0, 0, tileWidth, tileHeight);
 		//grass_2 = grassSheet.crop(tileWidth, 0, tileWidth, tileHeight);
