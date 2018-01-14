@@ -16,7 +16,11 @@ public class Assets {
 
 
 	//public static BufferedImage feng_down_1, feng_down_2, feng_down_3;
+<<<<<<< HEAD
+	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, floor, hallFloor, locker;
+=======
 	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, floor, hallFloor, battleBackground;
+>>>>>>> c6ae3e01d84767380c4be05c8d37dbe0f8548d48
 	public static BufferedImage[] feng_down, feng_up, feng_left, feng_right, logo;
 	public static BufferedImage[][] tileArray;
 	public static Font font;
@@ -37,7 +41,8 @@ public class Assets {
 
 		battleBackground = ImageLoader.loadImage("/textures/Tree.png");
 
-		tree = ImageLoader.loadImage("/textures/Tree.png");
+		tree = ImageLoader.loadImage("/textures/Outdoor_Entities/Tree.png");
+		locker = ImageLoader.loadImage("/textures/Indoor_Entities/Hallway_Items/Locker.png");
 		floor = floorSheet.crop(32 * 8 - 9, 32 * 28 - 3, 32, 32);
 
 		logo = new BufferedImage[2];
