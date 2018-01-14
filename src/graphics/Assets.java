@@ -1,6 +1,11 @@
 package graphics;
 
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class Assets {
 
@@ -14,16 +19,23 @@ public class Assets {
 	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, floor, hallFloor, battleBackground;
 	public static BufferedImage[] feng_down, feng_up, feng_left, feng_right, logo;
 	public static BufferedImage[][] tileArray;
+	public static Font font;
 
 
 	public static void init() {
+		
+		try {
+			font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("/fonts/PokeFont.ttf"))).deriveFont(Font.PLAIN, 24);
+		} catch (FontFormatException | IOException e) {
+			e.printStackTrace();
+		}
+		
 		SpriteSheet fengSheet = new SpriteSheet(ImageLoader.loadImage("/textures/feng_textures.png"));
 		SpriteSheet tileSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile_sheet.png"));
 		SpriteSheet grassSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile_textures.png"));
 		SpriteSheet floorSheet = new SpriteSheet(ImageLoader.loadImage("/textures/sample4.png"));
 
-		//battleBackground = ImageLoader.loadImage("/textures/Tree.png");
-		battleBackground = ImageLoader.loadImage("/textures/game_background.png");
+		battleBackground = ImageLoader.loadImage("/textures/Tree.png");
 
 		tree = ImageLoader.loadImage("/textures/Tree.png");
 		floor = floorSheet.crop(32 * 8 - 9, 32 * 28 - 3, 32, 32);
