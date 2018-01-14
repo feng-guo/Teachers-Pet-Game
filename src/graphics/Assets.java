@@ -1,6 +1,11 @@
 package graphics;
 
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class Assets {
 
@@ -18,16 +23,28 @@ public class Assets {
 >>>>>>> c6ae3e01d84767380c4be05c8d37dbe0f8548d48
 	public static BufferedImage[] feng_down, feng_up, feng_left, feng_right, logo;
 	public static BufferedImage[][] tileArray;
+	public static Font font;
 
 
 	public static void init() {
+		
+		try {
+			font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("/fonts/PokeFont.ttf"))).deriveFont(Font.PLAIN, 24);
+		} catch (FontFormatException | IOException e) {
+			e.printStackTrace();
+		}
+		
 		SpriteSheet fengSheet = new SpriteSheet(ImageLoader.loadImage("/textures/feng_textures.png"));
 		SpriteSheet tileSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile_sheet.png"));
 		SpriteSheet grassSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile_textures.png"));
 		SpriteSheet floorSheet = new SpriteSheet(ImageLoader.loadImage("/textures/sample4.png"));
 
+<<<<<<< HEAD
 		//battleBackground = ImageLoader.loadImage("/textures/Outdoor_Entities/Tree.png");
 		battleBackground = ImageLoader.loadImage("/textures/game_background.png");
+=======
+		battleBackground = ImageLoader.loadImage("/textures/Tree.png");
+>>>>>>> 8598b1a84f44754db9a49b4bae603cc69cc899dc
 
 		tree = ImageLoader.loadImage("/textures/Outdoor_Entities/Tree.png");
 		locker = ImageLoader.loadImage("/textures/Indoor_Entities/Hallway_Items/Locker.png");
