@@ -32,6 +32,10 @@ public class BattleState extends State{
 
 	@Override
 	public void tick() {
+		if (battleTest.isBattleEnd()) {
+			State.setState(handler.getGame().getGameState());
+			return;
+		}
 		answer = -1;
 		if (handler.getKeyManager().first) {
 			answer = 1;
@@ -75,10 +79,22 @@ public class BattleState extends State{
 	public void render(Graphics g) {
 		count++;
 		//g.setFont(new Font("Arial", Font.PLAIN, 20));
-		g.setFont(Assets.font16);
-
 		g.drawImage(Assets.battleBackground, 0, 0, null);
+		if (battleTest.getPlayer().getName().length() > 15) {
+			g.setFont(Assets.font10);
+		} else if (battleTest.getPlayer().getName().length() > 10) {
+			g.setFont(Assets.font12);
+		} else {
+			g.setFont(Assets.font16);
+		}
 		g.drawString(battleTest.getPlayer().getName(), 350, 210);
+		if (battleTest.getOpponent().getName().length() > 15) {
+			g.setFont(Assets.font10);
+		} else if (battleTest.getOpponent().getName().length() > 10) {
+			g.setFont(Assets.font12);
+		} else {
+			g.setFont(Assets.font16);
+		}
 		g.drawString(battleTest.getOpponent().getName(), 50, 70);
 		//g.setFont(new Font("Arial", Font.PLAIN, 17));
 		g.setFont(Assets.font12);
@@ -92,13 +108,13 @@ public class BattleState extends State{
 			//g.setFont(new Font("Arial", Font.PLAIN, 20));
 			g.setFont(Assets.font16);
 			if (count/4 < battleTest.getTextArrayList().get(0).length()) {
-				g.drawString(battleTest.getTextArrayList().get(0).substring(0, count/4), 25 /*+ count/2*/, 320);
+				if (battleTest.getTextArrayList().get(0).length() > 25) {
+					g.setFont(Assets.font12);
+				}
+				g.drawString(battleTest.getTextArrayList().get(0).substring(0, count/4), 25, 320);
 			} else {
 				if (battleTest.getTextArrayList().get(0).length() > 25) {
-					g.drawString(battleTest.getTextArrayList().get(0).substring(0, battleTest.getTextArrayList().get(0).indexOf(".")), 25, 320);
-					int indexStart = battleTest.getTextArrayList().get(0).indexOf(".");
-					String nextString = battleTest.getTextArrayList().get(0).substring(indexStart + 2, battleTest.getTextArrayList().get(0).length());
-					g.drawString(nextString, 25, 340);
+					g.setFont(Assets.font12);
 				}
 				g.drawString(battleTest.getTextArrayList().get(0), 25, 320);
 			}

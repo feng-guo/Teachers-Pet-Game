@@ -42,9 +42,9 @@ class ListOfCharacters{
         characterList.add(new PlayableCharacter(30, 40, 50, 40, 40, "Technology", "Misha", "[description]", mishaMoves, "Avoidant", null, null, null, null, null));
         characterList.add(new PlayableCharacter(35, 40, 65, 75, 35, "Science", "Angela", "[description]", angelaMoves, "Protective", null, null, null, null, null));
         //List of nonplayable characters
-        characterList.add(new NonPlayableCharacter(60, 30, 110, 70, 230, "Math", "Mr. Choi", "perabler", mrChoiMoves, 100, "Speed Boost", null));
-        characterList.add(new NonPlayableCharacter(300, 50, 100, 30, 20, "Math", "Mr. Shim", "Let homework be your guide", mrShimMoves, 100, "Demoralize", null));
-        characterList.add(new NonPlayableCharacter(200, 40, 100, 60, 100, "Math", "Mr. Timmerman", "Focus isn't just the name of a car.", mrTimmermanMoves, 100, "Unaware", null));
+        characterList.add(new NonPlayableCharacter(60, 30, 110, 70, 230, "Math", "Mr.Choi", "perabler", mrChoiMoves, 100, "Speed Boost", null));
+        characterList.add(new NonPlayableCharacter(300, 50, 100, 30, 20, "Math", "Mr.Shim", "Let homework be your guide", mrShimMoves, 100, "Demoralize", null));
+        characterList.add(new NonPlayableCharacter(200, 40, 100, 60, 100, "Math", "Mr.Timmerman", "Focus isn't just the name of a car.", mrTimmermanMoves, 100, "Unaware", null));
     }
 
     private Move[] returnMoveArray(String[] moveNames) {
