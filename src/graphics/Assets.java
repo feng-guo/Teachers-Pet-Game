@@ -26,11 +26,7 @@ public class Assets {
 	public static void init() {
 		
 		File bb = new File("./fonts/PokeFont.ttf");
-		//System.out.println(bb.exists());
 		String filePath = bb.getAbsolutePath().substring(0, bb.getAbsolutePath().indexOf(".")) + "res/fonts/PokeFont.ttf";
-
-		
-		
 		try {
 			font24 = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File(filePath))).deriveFont(Font.PLAIN, 24);
 			font16 = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File(filePath))).deriveFont(Font.PLAIN, 16);
