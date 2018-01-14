@@ -59,12 +59,8 @@ public class BattleRunner {
     }
 
     public void runPhase(int choice) {
-        /* if (choice == -2) {
-            battle.runBattleTurn(-1);
-        } else */ if (choice == 10) {
+        if (choice == 10) {
             battle.goBackInMenu();
-        } else if (battle.isPlayerEndPhase()) {
-            battle.endTurn();
         } else if (battle.isForceSwitchCharacterPhase()) {
             battle.forceSwitchCharacter(choice);
         } else if (battle.isPlayerPickCharacterPhase()) {
@@ -113,5 +109,13 @@ public class BattleRunner {
 
     public boolean isBattleEnd() {
 	    return battle.isBattleEnd();
+    }
+
+    public boolean isPlayerAttacked() {
+	    return battle.isPlayerAttacked();
+    }
+
+    public boolean isPlayerMovedFirst() {
+	    return battle.isPlayerMovedFirst();
     }
 }

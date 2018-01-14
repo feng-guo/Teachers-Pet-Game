@@ -17,4 +17,4 @@ public class StressEat{ //implements clock, points
     // Drop food
     public static void movement() {
     }
-} 
+}
