@@ -1,4 +1,4 @@
-package stresseat;
+package mini_games.StressEat.src.stresseat;
 
 import java.awt.Rectangle;
 
