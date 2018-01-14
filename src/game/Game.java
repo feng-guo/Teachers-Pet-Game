@@ -110,7 +110,7 @@ public class Game implements Runnable{
 		
 		
 		// clear
-		//g.clearRect(0, 0, width, height);
+		g.clearRect(0, 0, width, height);
 		
 		//beginning of drawing
 
