@@ -1,4 +1,4 @@
-package stresseat;
+package mini_games.StressEat.src.stresseat;
 
 public class Clock extends Thread {
 
