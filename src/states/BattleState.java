@@ -25,7 +25,7 @@ public class BattleState extends State{
 	public BattleState(Handler handler, Graphics g) {
 		super(handler);
 		//handler.setWorld(null);
-		battleTest = new BattleRunner(handler, g);
+		battleTest = new BattleRunner();
 
 
 	}
