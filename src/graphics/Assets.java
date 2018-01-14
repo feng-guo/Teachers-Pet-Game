@@ -29,8 +29,8 @@ public class Assets {
 		//battleBackground = ImageLoader.loadImage("/textures/Tree.png");
 		battleBackground = ImageLoader.loadImage("/textures/game_background.png");
 
-		tree = ImageLoader.loadImage("/textures/Tree.png");
-		locker = ImageLoader.loadImage("/textures/Locker.png");
+		tree = ImageLoader.loadImage("/textures/Outdoor_Entities/Tree.png");
+		locker = ImageLoader.loadImage("/textures/Indoor_Entities/Hallway_Items/Locker.png");
 		floor = floorSheet.crop(32 * 8 - 9, 32 * 28 - 3, 32, 32);
 
 		logo = new BufferedImage[2];
