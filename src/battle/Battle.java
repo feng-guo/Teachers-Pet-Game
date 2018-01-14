@@ -317,7 +317,7 @@ class Battle {
       if (playerAbility.equals("Demoralize")) {
         opponentIntelligence /= 2;
         opponentStatBoost--;
-        textArrayList.add(opponentName + " is demoralized. Their intelligence fell!");
+        textArrayList.add(opponentName + " is demoralized. \n Their intelligence fell!");
         playerAbilityTriggered = true;
       }
     }
@@ -325,19 +325,19 @@ class Battle {
       if (opponentAbility.equals("Demoralize")) {
         playerIntelligence /= 2;
         playerStatBoost--;
-        textArrayList.add(playerName + " is demoralized. Their intelligence fell!");
+        textArrayList.add(playerName + " is demoralized. \n Their intelligence fell!");
         opponentAbilityTriggered = true;
       }
     }
     if (playerAbility.equals("Speed Boost") && playerStatBoost < 5) {
       playerSpeed *= 2;
       playerStatBoost++;
-      textArrayList.add(playerName + "'s Speed Boost! Their speed increased!");
+      textArrayList.add(playerName + "'s Speed Boost! \n Their speed increased!");
     }
     if (opponentAbility.equals("Speed Boost") && opponentStatBoost < 5) {
       opponentSpeed *= 2;
       opponentStatBoost++;
-      textArrayList.add(opponentName + "'s Speed Boost! Their speed increased!");
+      textArrayList.add(opponentName + "'s Speed Boost! \n Their speed increased!");
     }
     //Displays the health of both opponents. This could be a string output too
     textArrayList.add("What would you like to do");
@@ -361,17 +361,7 @@ class Battle {
   public void playerPickAttack() {
     playerAttackChoicePhase = true;
     for (int i = 0; i < 4; i++) {
-      String key = "";
-      if (i == 0) {
-        key = "C";
-      } else if (i == 1) {
-        key = "V";
-      } else if (i == 2) {
-        key = "B";
-      } else if (i == 3) {
-        key = "N";
-      }
-      selectionStrings[i] = player.getMove(i).getName() + " " + player.getPowerPoints(i) + "/" + player.getMove(i).getMaxPowerPoints() + " (" + key + ")";
+      selectionStrings[i] = player.getMove(i).getName() + " " + player.getPowerPoints(i) + "/" + player.getMove(i).getMaxPowerPoints();
     }
   }
 
@@ -536,7 +526,7 @@ class Battle {
           player.changeCurrentHealth((int)(playerHealth*0.06));
           playerCurrentHealth = player.getCurrentHealth();
         }
-        textArrayList.add(playerName + " bought a Starbucks drink and recovered some health!");
+        textArrayList.add(playerName + " bought a Starbucks drink and \n recovered some health!");
       }
     }
     if (opponentCurrentHealth > 0 && opponentHeldItem != null) {
@@ -546,7 +536,7 @@ class Battle {
         } else {
           opponentCurrentHealth += (int)(opponentHealth*0.06);
         }
-        textArrayList.add(opponentName + " bought a Starbucks drink and recovered some health!");
+        textArrayList.add(opponentName + " bought a Starbucks drink and \n recovered some health!");
       }
     }
     if (playerStatus != null && playerCurrentHealth > 0) {

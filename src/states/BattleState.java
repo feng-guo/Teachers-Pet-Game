@@ -75,12 +75,13 @@ public class BattleState extends State{
 	public void render(Graphics g) {
 		count++;
 		//g.setFont(new Font("Arial", Font.PLAIN, 20));
-		g.setFont(Assets.font);
+		g.setFont(Assets.font16);
 
 		g.drawImage(Assets.battleBackground, 0, 0, null);
 		g.drawString(battleTest.getPlayer().getName(), 350, 210);
 		g.drawString(battleTest.getOpponent().getName(), 50, 70);
 		//g.setFont(new Font("Arial", Font.PLAIN, 17));
+		g.setFont(Assets.font12);
 		g.drawString(Integer.toString(battleTest.getPlayer().getCurrentHealth()), 475, 255);
 		g.drawString(Integer.toString(battleTest.getPlayer().getInitialHealth()), 530, 255);
 		g.drawString(Integer.toString(battleTest.getOpponent().getCurrentHealth()), 50, 90);
@@ -89,9 +90,16 @@ public class BattleState extends State{
 		if (battleTest.getTextArrayList().size() > 0) {
 			textLoading = true;
 			//g.setFont(new Font("Arial", Font.PLAIN, 20));
+			g.setFont(Assets.font16);
 			if (count/4 < battleTest.getTextArrayList().get(0).length()) {
 				g.drawString(battleTest.getTextArrayList().get(0).substring(0, count/4), 25 /*+ count/2*/, 320);
 			} else {
+				if (battleTest.getTextArrayList().get(0).length() > 25) {
+					g.drawString(battleTest.getTextArrayList().get(0).substring(0, battleTest.getTextArrayList().get(0).indexOf(".")), 25, 320);
+					int indexStart = battleTest.getTextArrayList().get(0).indexOf(".");
+					String nextString = battleTest.getTextArrayList().get(0).substring(indexStart + 2, battleTest.getTextArrayList().get(0).length());
+					g.drawString(nextString, 25, 340);
+				}
 				g.drawString(battleTest.getTextArrayList().get(0), 25, 320);
 			}
 		}
@@ -105,9 +113,10 @@ public class BattleState extends State{
 			textLoading = false;
 			count = 0;
 			if (!battleTest.getSelectionStrings(0).equals("null")) {
-				g.drawString(battleTest.getSelectionStrings(0), 100, 320);
+				g.setFont(Assets.font12);
+				g.drawString(battleTest.getSelectionStrings(0), 30, 320);
 				g.drawString(battleTest.getSelectionStrings(1), 300, 320);
-				g.drawString(battleTest.getSelectionStrings(2), 100, 370);
+				g.drawString(battleTest.getSelectionStrings(2), 30, 370);
 				g.drawString(battleTest.getSelectionStrings(3), 300, 370);
 			}
 		}
