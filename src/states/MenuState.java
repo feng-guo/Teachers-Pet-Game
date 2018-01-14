@@ -44,7 +44,7 @@ public class MenuState extends State{
 		//g.setFont(Font.BOLD);
 		
 		// THIS ADDS TIME FOR SOME REASON
-		g.drawString("RICHMOND HILL HIGH SIMULATOR", 190, 50);
+		//g.drawString("RICHMOND HILL HIGH SIMULATOR", 190, 50);
 
 	}
 
