@@ -24,11 +24,19 @@ public class BattleState extends State{
 	boolean textLoading = false;
 	private Animation shake;
 
+	private boolean menuScreen = false;
+	private boolean[][] menu = new boolean[2][2];
+
 	public BattleState(Handler handler, Graphics g) {
 		super(handler);
 		//handler.setWorld(null);
 		battleTest = new BattleRunner();
+
 		shake = new Animation(300, Assets.feng_down);
+		menu[0][0] = false;
+		menu[0][1] = false;
+		menu[1][0] = false;
+		menu[1][1] = false;
 
 	}
 
@@ -41,6 +49,9 @@ public class BattleState extends State{
 		if (battleTest.isBattleEnd()) {
 			State.setState(handler.getGame().getGameState());
 			return;
+		}
+		if (textLoading = false && !battleTest.getSelectionStrings(0).equals("null")) {
+
 		}
 		answer = -1;
 		if (handler.getKeyManager().first) {
@@ -135,6 +146,10 @@ public class BattleState extends State{
 			textLoading = false;
 			count = 0;
 			if (!battleTest.getSelectionStrings(0).equals("null")) {
+				if (!menuScreen) {
+					menu[0][0] = true;
+				}
+				menuScreen = true;
 				g.setFont(Assets.font12);
 				g.drawString(battleTest.getSelectionStrings(0), 30, 320);
 				g.drawString(battleTest.getSelectionStrings(1), 300, 320);
@@ -143,9 +158,9 @@ public class BattleState extends State{
 			}
 		}
 		
-		if(battleTest.isPlayerAttack()) {
-
-			System.out.println("tre");
+		if(battleTest.isPlayerAttacked()) {
+			
+			System.out.println("battleTest.isPlayerAttacked() currently returns: True");
 			g.drawImage(shake.getCurrentFrame(), 300, 50, null);
 		} else {
 			g.drawImage(Assets.feng_down[0], 300, 30, null);
