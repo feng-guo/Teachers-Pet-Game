@@ -16,7 +16,8 @@ public class Assets {
 
 
 	//public static BufferedImage feng_down_1, feng_down_2, feng_down_3;
-	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, floor, hallFloor, battleBackground, locker;
+	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, floor, hallFloor, locker, battleBackground;
+
 	public static BufferedImage[] feng_down, feng_up, feng_left, feng_right, logo;
 	public static BufferedImage[][] tileArray;
 	public static Font font;
@@ -24,8 +25,11 @@ public class Assets {
 
 	public static void init() {
 
+		File bb = new File("C:/Users/Feng-Work/Documents/GitHub/Teachers-Pet-Game/res/fonts/PokeFont.ttf");
+		System.out.println(bb.getAbsolutePath());
+
 		try {
-			font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File("C:/Users/Feng-Work/Documents/GitHub/Teachers-Pet-Game/res/fonts/PokeFont.ttf"))).deriveFont(Font.PLAIN, 24);
+			font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(bb)).deriveFont(Font.PLAIN, 24);
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();
 		}
