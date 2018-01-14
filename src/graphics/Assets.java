@@ -27,13 +27,13 @@ public class Assets {
 		
 		File bb = new File("/fonts/PokeFont.ttf");
 		System.out.println(bb.getAbsolutePath());
-		
+
 		try {
-			font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream( bb )).deriveFont(Font.PLAIN, 24);
+			font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(bb)).deriveFont(Font.PLAIN, 24);
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		SpriteSheet fengSheet = new SpriteSheet(ImageLoader.loadImage("/textures/feng_textures.png"));
 		SpriteSheet tileSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile_sheet.png"));
 		SpriteSheet grassSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile_textures.png"));
