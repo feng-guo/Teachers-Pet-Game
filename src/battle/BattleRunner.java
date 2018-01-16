@@ -125,5 +125,23 @@ public class BattleRunner {
 	    return squad;
     }
 
-    //public boolean isSw
+    public boolean isPlayerSwitchPhase() {
+	    return battle.isPlayerSwitchPhase();
+    }
+
+    public String[] getCharacterStrings() {
+	    return battle.getCharacterStrings();
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public boolean isInventoryChoicePhase() {
+	    return battle.isPlayerInventoryChoicePhase();
+    }
+
+    public String getOpponentStatus() {
+	    return battle.getOpponentStatus();
+    }
 }
