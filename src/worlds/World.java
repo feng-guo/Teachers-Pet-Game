@@ -5,10 +5,7 @@ import java.awt.Graphics;
 import entities.EntityManager;
 import entities.creatures.NPC;
 import entities.creatures.Player;
-import entities.statics.HallwayDoorOpen;
-import entities.statics.IndoorWindowClosed;
-import entities.statics.Locker;
-import entities.statics.Tree;
+import entities.statics.*;
 import game.Game;
 import game.Handler;
 import tiles.Tile;
@@ -29,24 +26,31 @@ public class World {
 		this.handler = handler;
 		entityManager = new EntityManager(handler, new Player(handler, spawnX * Tile.TILE_WIDTH, spawnY * Tile.TILE_WIDTH));
 
-		entityManager.addEntity(new NPC(handler, "Feng2", 100, 250, 250));
+		entityManager.addEntity(new NPC(handler, "Feng2", 100, 250, 100));
 		//entityManager.addEntity(new Tree(handler, 100, 250));
 
 		//HALLWAY
 		//Walls and windows
-		for (int x = 1; x < 10; x++) {
-			entityManager.addEntity (new IndoorWindowClosed(handler, (40*x), 0));
+		for (int x = 2; x < 9; x++) {
+			entityManager.addEntity (new IndoorWindowClosed(handler, (40 * x), 10));
 		}
-		for (int x = 11; x < 20; x++) {
-			entityManager.addEntity (new Locker(handler, (40*x), 0));
+		for (int x = 15; x < 26; x++) {
+			entityManager.addEntity (new Locker(handler, (30 * x), 10));
 		}
-		for (int x = 21; x < 30; x++) {
-			entityManager.addEntity (new Locker(handler, (40*x), 0));
+		for (int x = 28; x < 40; x++) {
+			entityManager.addEntity (new Locker(handler, (30 * x), 10));
+		}
+		//Bench
+		for (int x = 5; x < 38; x++) {
+			entityManager.addEntity(new Bench(handler, (10 * x), 60));
+		}
+		for (int x = 127; x < 160; x++) {
+			entityManager.addEntity(new Bench(handler, (10 * x), 60));
 		}
 		//Doors
-		entityManager.addEntity(new HallwayDoorOpen(handler, (40*10), 0));
-		entityManager.addEntity(new HallwayDoorOpen(handler, (40*20), 0));
-		entityManager.addEntity(new HallwayDoorOpen(handler, (40*30), 0));
+		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10));
+		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 20 - 9), 10));
+		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 30 + 10), 10));
 
 
 		loadWorld(path);

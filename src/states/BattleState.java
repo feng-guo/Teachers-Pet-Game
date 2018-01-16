@@ -255,11 +255,11 @@ public class BattleState extends State{
 			}
 		}
 
-		if(battleTest.isPlayerAttacked()) {
-			System.out.println("battleTest.isPlayerAttacked() currently returns: True");
-			g.drawImage(shake.getCurrentFrame(), 300, 50, null);
+		if(battleTest.getBattle().isOpponentAbilityTriggered() == true) {
+			System.out.println("Currently returns: True");
+			g.drawImage(shake.getCurrentFrame(), 390, 20, 120, 150, null);
 		} else {
-			g.drawImage(Assets.feng_down[0], 300, 30, null);
+			g.drawImage(Assets.feng_down[0], 390, 20, 120, 150, null);
 		}
 //		if (answer == 1) {
 //			System.out.println("detected");
