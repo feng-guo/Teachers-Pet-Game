@@ -14,9 +14,9 @@ public class Locker extends StaticEntity{
 
 		// SPECIFIC TO LOCKER
 		bounds.x = 10;
-		bounds.y = 20;
+		bounds.y = 10;
 		bounds.width = 40;
-		bounds.height = 10;
+		bounds.height = 40;
 	}
 
 	@Override
