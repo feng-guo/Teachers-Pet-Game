@@ -1214,9 +1214,9 @@ private void protectMove(int attacker) {
         if (!opponentProtected) {
           opponentStatus = move.getStatusEffect();
           if (move.getStatusEffect().equals("Sleep")) {
-            textArrayList.add("The opponent fell asleep.");
+            textArrayList.add(opponentName + " fell asleep.");
           } else {
-            textArrayList.add("The opponent was " + move.getStatusEffect() + "ed.");
+            textArrayList.add(opponentName +" was " + move.getStatusEffect() + "ed.");
           }
         } else {
           textArrayList.add(opponentName + " protected");
@@ -1226,9 +1226,9 @@ private void protectMove(int attacker) {
           player.setStatus(move.getStatusEffect());
           playerStatus = player.getStatus();
           if (move.getStatusEffect().equals("Sleep")) {
-            textArrayList.add("The player fell asleep.");
+            textArrayList.add(playerName + " fell asleep.");
           } else {
-            textArrayList.add("The player was " + move.getStatusEffect() + "ed.");
+            textArrayList.add(playerName + " was " + move.getStatusEffect() + "ed.");
           }
         } else {
           textArrayList.add(playerName + " protected");
@@ -1280,9 +1280,9 @@ private void protectMove(int attacker) {
           break;
       }
       if (multiplier > 1) {
-        effectivenessText = "Super effective";
+        effectivenessText = "It's super effective!";
       } else if (multiplier < 1) {
-        effectivenessText = "Not very effective";
+        effectivenessText = "It's not very effective";
       }
       if (playerType.equals(move.getType())) {
         multiplier = multiplier * 1.5; //Same Type Attack Bonus (STAB)
@@ -1325,9 +1325,9 @@ private void protectMove(int attacker) {
           break;
       }
       if (multiplier > 1) {
-        effectivenessText = "Super effective";
+        effectivenessText = "It's super effective";
       } else if (multiplier < 1) {
-        effectivenessText = "Not very effective";
+        effectivenessText = "It's not very effective";
       }
       if (opponentType.equals(move.getType())) {
         multiplier = multiplier * 1.5; //Same Type Attack Bonus (STAB)
