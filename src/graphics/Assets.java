@@ -16,7 +16,7 @@ public class Assets {
 
 
 	//public static BufferedImage feng_down_1, feng_down_2, feng_down_3;
-	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, floor, hallFloor, locker, battleBackground;
+	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, floor, battleBackground, hallFloor, locker, openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed;
 
 	public static BufferedImage[] feng_down, feng_up, feng_left, feng_right, logo;
 	public static BufferedImage[][] tileArray;
@@ -45,6 +45,10 @@ public class Assets {
 
 		tree = ImageLoader.loadImage("/textures/Outdoor_Entities/Tree.png");
 		locker = ImageLoader.loadImage("/textures/Indoor_Entities/Hallway_Items/Locker.png");
+		indoorWindowOpen = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Hallway_Window_Open.png");
+		indoorWindowClosed = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Hallway_Window_Closed.png");
+		openDoor = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Open_Door.png");
+		closedDoor = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Closed_Door.png");
 		floor = floorSheet.crop(32 * 8 - 9, 32 * 28 - 3, 32, 32);
 
 		logo = new BufferedImage[2];
