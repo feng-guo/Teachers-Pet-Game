@@ -44,7 +44,7 @@ public class World {
 		for (int x = 5; x < 38; x++) {
 			entityManager.addEntity(new Bench(handler, (10 * x), 60));
 		}
-		for (int x = 120; x < 233; x++) {
+		for (int x = 127; x < 160; x++) {
 			entityManager.addEntity(new Bench(handler, (10 * x), 60));
 		}
 		//Doors
