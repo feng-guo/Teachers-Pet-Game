@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import game.Handler;
 import states.State;
 
-class Battle {
+public class Battle {
   //Objects that need to be saved here
   private PlayableCharacter player; //Since it is an object, when the values of the objects are changed, they stay changed
   private NonPlayableCharacter opponent; //Same for this one
@@ -915,7 +915,11 @@ class Battle {
     }
   }
 
-  private void protectMove(int attacker) {
+  public boolean isOpponentAbilityTriggered() {
+	return opponentAbilityTriggered;
+}
+
+private void protectMove(int attacker) {
     if (attacker == -1) {
       if (Math.random() < playerProtectChance) {
         playerProtected = true;
