@@ -13,6 +13,7 @@ public class Tile {
 	public static Tile nullTile = new NullTile(2);
 	public static Tile pathTile	= new PathTile(3);
 	public static Tile grassTile = new FloorTile(4);
+	public static Tile wallTile = new WallTile (5);
 
 	// CLASS
 

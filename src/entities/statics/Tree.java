@@ -15,8 +15,8 @@ public class Tree extends StaticEntity{
 		// SPECIFIC TO TREE
 		bounds.x = 10;
 		bounds.y = 20;
-		bounds.width = 20;
-		bounds.height = 40;
+		bounds.width = 40;
+		bounds.height = 10;
 	}
 
 	@Override
