@@ -16,7 +16,7 @@ public class Assets {
 
 
 	//public static BufferedImage feng_down_1, feng_down_2, feng_down_3;
-	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, floor, wall, blackBlock, battleBackground, hallFloor, locker, openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench;
+	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, floor, wall, blackBlock, battleBackground, hallFloor, locker, openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench, hallCouch, hallChairLowLeft, hallChairLowRight, hallChairLowUp, hallChairHigh, hallTableLow, hallTableHigh;
 
 	public static BufferedImage[] feng_down, feng_up, feng_left, feng_right, logo;
 	public static BufferedImage[][] tileArray;
@@ -45,15 +45,24 @@ public class Assets {
 
 		battleBackground = ImageLoader.loadImage("/textures/game_background.png");
 
+		floor = floorSheet.crop(32 * 8 - 9, 32 * 28 - 3, 32, 32);
 		tree = ImageLoader.loadImage("/textures/Outdoor_Entities/Tree.png");
+		wall = ImageLoader.loadImage ("/textures/Indoor_Entities/White_Walls.png");
+
 		locker = ImageLoader.loadImage("/textures/Indoor_Entities/Hallway_Items/Locker.png");
 		indoorWindowOpen = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Hallway_Window_Open.png");
 		indoorWindowClosed = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Hallway_Window_Closed.png");
 		openDoor = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Open_Door.png");
 		closedDoor = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Closed_Door.png");
 		bench = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Bench.png");
-		floor = floorSheet.crop(32 * 8 - 9, 32 * 28 - 3, 32, 32);
-		wall = ImageLoader.loadImage ("/textures/Indoor_Entities/White_Walls.png");
+
+		hallCouch = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Hall_Couch.png");
+		hallChairLowRight = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Hall_Chair_Right.png");
+		hallChairLowLeft = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Hall_Chair_Left.png");
+		hallChairLowUp = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Hall_Chair_Front.png");
+		hallChairHigh = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/High_Chair.png");
+		hallTableLow = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Hall_Table_Low.png");
+		hallTableHigh = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Hall_Table_High.png");
 
 		logo = new BufferedImage[2];
 		logo[0] = ImageLoader.loadImage("/textures/RHHSLogo.png");
