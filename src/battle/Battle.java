@@ -103,6 +103,7 @@ public class Battle {
 
   private String turnNumberString;
   private String[] selectionStrings;
+  private String[] characterStrings; //Used for switching out
 
   private boolean playerChoicePhase, playerPickAttackPhase, playerAttackChoicePhase, playerSwitchPhase, playerPickCharacterPhase, playerInventoryPhase, playerInventoryChoicePhase, playerRunPhase, playerInputPhase, playerEndPhase;
   private boolean forceSwitchCharacterPhase;
@@ -222,6 +223,7 @@ public class Battle {
 
     this.playerMovedFirst = false;
     this.playerAttacked = false;
+    this.characterStrings = new String[6];
   }
 
   private void changeCharacter(PlayableCharacter player) {
@@ -494,7 +496,11 @@ public class Battle {
   }
 
   public void playerSwitchCharacter() {
-    squad.displaySquad();
+    int squadSize = squad.getSize();
+    for (int i=0; i<squadSize; i++) {
+      PlayableCharacter character = squad.getCharacter(i);
+      characterStrings[i] = character.getName() + " " + character.getCurrentHealth() + "/" + character.getInitialHealth();
+    }
     if (forceSwitchCharacterPhase) {
       return;
     } else {
@@ -1571,5 +1577,9 @@ private void protectMove(int attacker) {
 
   public boolean isPlayerMovedFirst() {
     return playerMovedFirst;
+  }
+
+  public String[] getCharacterStrings() {
+    return characterStrings;
   }
 }

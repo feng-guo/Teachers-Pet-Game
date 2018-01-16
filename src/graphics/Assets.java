@@ -16,7 +16,7 @@ public class Assets {
 
 
 	//public static BufferedImage feng_down_1, feng_down_2, feng_down_3;
-	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, floor, wall, battleBackground, hallFloor, locker, openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench;
+	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, floor, wall, blackBlock, battleBackground, hallFloor, locker, openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench;
 
 	public static BufferedImage[] feng_down, feng_up, feng_left, feng_right, logo;
 	public static BufferedImage[][] tileArray;
@@ -91,6 +91,7 @@ public class Assets {
 			}
 		}
 		rock = tileArray[7][7];
+		blackBlock = tileArray[0][0];
 		//hallFloor = tileArray[58][14];
 
 	}

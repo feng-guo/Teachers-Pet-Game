@@ -165,6 +165,15 @@ public class BattleState extends State{
 		g.drawString(Integer.toString(battleTest.getPlayer().getInitialHealth()), 530, 255);
 		g.drawString(Integer.toString(battleTest.getOpponent().getCurrentHealth()), 50, 90);
 
+		if (battleTest.getPlayer().getStatus() != null) {
+			g.setFont(Assets.font10);
+			g.drawString(battleTest.getPlayer().getStatus(), 200, 400);
+		}
+		if (battleTest.getOpponentStatus() != null) {
+			g.setFont(Assets.font10);
+			g.drawString(battleTest.getOpponentStatus(), 10, 400);
+		}
+
 		g.setColor(Color.BLACK);
 		if (!menuScreen) {
 			menu[0][0] = true;
@@ -239,6 +248,10 @@ public class BattleState extends State{
 					g.setFont(Assets.font12);
 				}
 				g.drawString(battleTest.getSelectionStrings(3), 300, 370);
+			} else if (battleTest.isPlayerSwitchPhase()){
+				//draw switching characters
+			} else if (battleTest.isInventoryChoicePhase()) {
+				//draw inventory
 			}
 		}
 

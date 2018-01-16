@@ -13,9 +13,9 @@ public class Bench extends StaticEntity{
         super(handler, x, y, (int) (Tile.TILE_WIDTH * 0.5), (int) (Tile.TILE_HEIGHT * 0.5));
 
         // SPECIFIC TO BENCH
-        bounds.x = 10;
-        bounds.y = 20;
-        bounds.width = 40;
+        bounds.x = 0;
+        bounds.y = 0;
+        bounds.width = 15;
         bounds.height = 10;
     }
 

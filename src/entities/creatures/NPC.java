@@ -43,8 +43,8 @@ public class NPC extends Creature{
 		// SPECIFIC TO A STANDARD NPC
 		bounds.x = 5;
 		bounds.y = 10;
-		bounds.width = 40;
-		bounds.height = 10;
+		bounds.width = 20;
+		bounds.height = 20;
 		
 		// Animations
 		animDown = new Animation(100, Assets.feng_down);

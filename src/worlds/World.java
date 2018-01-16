@@ -26,7 +26,7 @@ public class World {
 		this.handler = handler;
 		entityManager = new EntityManager(handler, new Player(handler, spawnX * Tile.TILE_WIDTH, spawnY * Tile.TILE_WIDTH));
 
-		entityManager.addEntity(new NPC(handler, "Feng2", 100, 250, 250));
+		entityManager.addEntity(new NPC(handler, "Feng2", 100, 250, 100));
 		//entityManager.addEntity(new Tree(handler, 100, 250));
 
 		//HALLWAY
@@ -40,7 +40,11 @@ public class World {
 		for (int x = 28; x < 40; x++) {
 			entityManager.addEntity (new Locker(handler, (30 * x), 10));
 		}
+		//Bench
 		for (int x = 5; x < 38; x++) {
+			entityManager.addEntity(new Bench(handler, (10 * x), 60));
+		}
+		for (int x = 127; x < 160; x++) {
 			entityManager.addEntity(new Bench(handler, (10 * x), 60));
 		}
 		//Doors
