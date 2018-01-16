@@ -1,6 +1,6 @@
 package mini_games.StressEat.src.stresseat;
 
-public class StressEat{ //implements clock, points
+public class StressEat{
     
     public static void main(String[] args) {
         Clock clock = new Clock();
@@ -10,11 +10,4 @@ public class StressEat{ //implements clock, points
 
     }
 
-    // Randomly generate food
-    public static void createFood() {
-    }
-
-    // Drop food
-    public static void movement() {
-    }
 }

@@ -61,6 +61,8 @@ public class BattleRunner {
     public void runPhase(int choice) {
         if (choice == 10) {
             battle.goBackInMenu();
+        } else if (choice == 20) {
+            return;
         } else if (battle.isForceSwitchCharacterPhase()) {
             battle.forceSwitchCharacter(choice);
         } else if (battle.isPlayerPickCharacterPhase()) {
@@ -118,4 +120,10 @@ public class BattleRunner {
     public boolean isPlayerMovedFirst() {
 	    return battle.isPlayerMovedFirst();
     }
+
+    public Squad getSquad() {
+	    return squad;
+    }
+
+    //public boolean isSw
 }

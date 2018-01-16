@@ -16,7 +16,6 @@ public class BattleState extends State{
 
 
 	private int count = 0;
-	private int timer = 0;
 
 	private String battleText;
 	private BattleRunner battleTest;
@@ -43,8 +42,6 @@ public class BattleState extends State{
 
 	@Override
 	public void tick() {
-		timer++;
-
 		shake.tick();
 
 		if (battleTest.isBattleEnd()) {
@@ -57,24 +54,28 @@ public class BattleState extends State{
 					menu[y][x] = false;
 					y--;
 					menu[y][x] = true;
+					handler.getKeyManager().up = false;
 				}
 			} else if (handler.getKeyManager().down) {
 				if (y != 1) {
 					menu[y][x] = false;
 					y++;
 					menu[y][x] = true;
+					handler.getKeyManager().down = false;
 				}
 			} else if (handler.getKeyManager().left) {
 				if (x != 0) {
 					menu[y][x] = false;
 					x--;
 					menu[y][x] = true;
+					handler.getKeyManager().left = false;
 				}
 			} else if (handler.getKeyManager().right) {
 				if (x != 1) {
 					menu[y][x] = false;
 					x++;
 					menu[y][x] = true;
+					handler.getKeyManager().right = false;
 				}
 			} else if (handler.getKeyManager().enter) {
 				if (menu[0][0]) {
@@ -87,8 +88,12 @@ public class BattleState extends State{
 					answer = 4;
 				}
 				menuScreen = false;
+				menu[0][0] = true;
+				x = 0;
+				y = 0;
 			} else if (handler.getKeyManager().backspace) {
 				answer = 10;
+				menuScreen = false;
 			}
 		} else if (!textLoading) {
 			answer = -1;
@@ -161,15 +166,24 @@ public class BattleState extends State{
 		g.drawString(Integer.toString(battleTest.getOpponent().getCurrentHealth()), 50, 90);
 
 		g.setColor(Color.BLACK);
+		if (!menuScreen) {
+			menu[0][0] = true;
+			x = 0;
+			y = 0;
+		}
 		if (menuScreen) {
-			if (menu[0][0]) {
-				g.fillRect(22, 312, 5, 5);
-			} else if (menu[0][1]) {
-				g.fillRect(290, 312, 5, 5);
-			} else if (menu[1][0]) {
-				g.fillRect(22, 362, 5, 5);
-			} else if (menu[1][1]) {
-				g.fillRect(290, 362, 5, 5);
+			if (y == 0) {
+				if (x == 0) {
+					g.fillRect(22, 312, 5, 5);
+				} else if (x == 1) {
+					g.fillRect(290, 312, 5, 5);
+				}
+			} else if (y == 1) {
+				if (x == 0) {
+					g.fillRect(22, 362, 5, 5);
+				} else if (x == 1) {
+					g.fillRect(290, 362, 5, 5);
+				}
 			}
 		}
 
@@ -199,22 +213,36 @@ public class BattleState extends State{
 			textLoading = false;
 			count = 0;
 			if (!battleTest.getSelectionStrings(0).equals("null")) {
-				if (!menuScreen) {
-					menu[0][0] = true;
-					x = 0;
-					y = 0;
-				}
 				menuScreen = true;
 				g.setFont(Assets.font12);
+				if (battleTest.getSelectionStrings(0).length() > 20) {
+					g.setFont(Assets.font10);
+				} else {
+					g.setFont(Assets.font12);
+				}
 				g.drawString(battleTest.getSelectionStrings(0), 30, 320);
+				if (battleTest.getSelectionStrings(1).length() > 20) {
+					g.setFont(Assets.font10);
+				} else {
+					g.setFont(Assets.font12);
+				}
 				g.drawString(battleTest.getSelectionStrings(1), 300, 320);
+				if (battleTest.getSelectionStrings(2).length() > 20) {
+					g.setFont(Assets.font10);
+				} else {
+					g.setFont(Assets.font12);
+				}
 				g.drawString(battleTest.getSelectionStrings(2), 30, 370);
+				if (battleTest.getSelectionStrings(3).length() > 20) {
+					g.setFont(Assets.font10);
+				} else {
+					g.setFont(Assets.font12);
+				}
 				g.drawString(battleTest.getSelectionStrings(3), 300, 370);
 			}
 		}
 
 		if(battleTest.isPlayerAttacked()) {
-
 			System.out.println("battleTest.isPlayerAttacked() currently returns: True");
 			g.drawImage(shake.getCurrentFrame(), 300, 50, null);
 		} else {
