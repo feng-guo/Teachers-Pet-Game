@@ -5,7 +5,7 @@ import graphics.Assets;
 public class NullTile extends Tile{
 
 	public NullTile(int id) {
-		super(Assets.rock, id);
+		super(Assets.blackBlock, id);
 	}
 	
 	@Override
