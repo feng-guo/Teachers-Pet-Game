@@ -35,8 +35,10 @@ public class Assets {
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();
 		}
+		
+		String characterName = "Sihan";
 
-		SpriteSheet fengSheet = new SpriteSheet(ImageLoader.loadImage("/textures/Sprite_Images/sprites/characters/Johann/johann_spritesheet.png"));
+		SpriteSheet fengSheet = new SpriteSheet(ImageLoader.loadImage("/textures/Sprite_Images/sprites/characters/" + characterName + "/" + characterName.toLowerCase() + "_spritesheet.png"));
 		SpriteSheet tileSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile_sheet.png"));
 		SpriteSheet grassSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile_textures.png"));
 		SpriteSheet floorSheet = new SpriteSheet(ImageLoader.loadImage("/textures/sample4.png"));
