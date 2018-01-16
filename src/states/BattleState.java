@@ -172,18 +172,32 @@ public class BattleState extends State{
 		g.drawString(Integer.toString(battleTest.getPlayer().getInitialHealth()), 530, 255);
 		g.drawString(Integer.toString(battleTest.getOpponent().getCurrentHealth()), 50, 90);
 
+		//g.setFont(Assets.font8);
+		//g.drawString("", 200, 50);
+
 		if (battleTest.getPlayer().getStatus() != null) {
-			g.setFont(Assets.font10);
-			g.drawString(battleTest.getPlayer().getStatus(), 200, 400);
+			g.setFont(Assets.font8);
+			g.drawString(battleTest.getPlayer().getStatus(), 350, 255);
 		}
 		if (battleTest.getOpponentStatus() != null) {
-			g.setFont(Assets.font10);
-			g.drawString(battleTest.getOpponentStatus(), 10, 400);
+			//g.setFont(Assets.font8);
+			//g.drawString(battleTest.getOpponentStatus(), 10, 400);
+		}
+
+
+		if (battleTest.getBattle().isOpponentAbilityTriggered() == true) {
+			System.out.println("Currently returns: True");
+			g.drawImage(shake.getCurrentFrame(), 390, 20, 120, 150, null);
+		} else {
+			g.drawImage(Assets.feng_down[0], 390, 20, 120, 150, null);
 		}
 
 		g.setColor(Color.BLACK);
 		if (!menuScreen) {
 			menu[0][0] = true;
+			menu[0][1] = false;
+			menu[1][0] = false;
+			menu[1][1] = false;
 			x = 0;
 			y = 0;
 		}
@@ -255,19 +269,22 @@ public class BattleState extends State{
 					g.setFont(Assets.font12);
 				}
 				g.drawString(battleTest.getSelectionStrings(3), 300, 370);
-			} else if (battleTest.isPlayerSwitchPhase()){
-				//draw switching characters
+			} else if (battleTest.isPlayerSwitchPhase()) {
+				menuScreen = false;
+				g.setColor(Color.BLUE);
+				g.fillRect(0, 0, 600, 400);
+				g.setColor(Color.WHITE);
+				g.fillRect(20, 25, 270, 100);
+				g.fillRect(310, 25, 270, 100);
+				g.fillRect(20, 150, 270, 100);
+				g.fillRect(310, 150, 270, 100);
+				g.fillRect(20, 275, 270, 100);
+				g.fillRect(310, 275, 270, 100);
 			} else if (battleTest.isInventoryChoicePhase()) {
 				//draw inventory
 			}
 		}
 
-		if(battleTest.getBattle().isOpponentAbilityTriggered() == true) {
-			System.out.println("Currently returns: True");
-			g.drawImage(shake.getCurrentFrame(), 390, 20, 120, 150, null);
-		} else {
-			g.drawImage(Assets.feng_down[0], 390, 20, 120, 150, null);
-		}
 //		if (answer == 1) {
 //			System.out.println("detected");
 //			System.out.println("What move would you like to use");

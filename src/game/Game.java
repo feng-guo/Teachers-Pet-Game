@@ -112,9 +112,14 @@ public class Game implements Runnable{
 		// clear
 		g.clearRect(0, 0, width, height);
 		
+		
 		//beginning of drawing
 
-		if(State.getState() != null) {
+		if(State.getState() != null && State.getState() instanceof GameState) {
+			g.setColor(Color.black);
+			g.fillRect(-200, -200, width + 200, height + 200);
+			State.getState().render(g);
+		} else if (State.getState() != null) {
 			State.getState().render(g);
 		}
 		
@@ -209,5 +214,9 @@ public class Game implements Runnable{
 
 	public State getGameState() {
 		return gameState;
+	}
+	
+	public BattleState getBattleState() {
+		return (BattleState) battleState;
 	}
 }

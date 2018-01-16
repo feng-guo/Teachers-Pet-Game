@@ -23,6 +23,7 @@ public class World {
 
 
 	public World(Handler handler, String path) {
+
 		this.handler = handler;
 		entityManager = new EntityManager(handler, new Player(handler, spawnX * Tile.TILE_WIDTH, spawnY * Tile.TILE_WIDTH));
 
@@ -32,13 +33,13 @@ public class World {
 		//HALLWAY
 		//Walls and windows
 		for (int x = 2; x < 9; x++) {
-			entityManager.addEntity (new IndoorWindowClosed(handler, (40 * x), 10));
+			entityManager.addEntity(new IndoorWindowClosed(handler, (40 * x), 10));
 		}
 		for (int x = 15; x < 26; x++) {
-			entityManager.addEntity (new Locker(handler, (30 * x), 10));
+			entityManager.addEntity(new Locker(handler, (30 * x), 10));
 		}
 		for (int x = 28; x < 40; x++) {
-			entityManager.addEntity (new Locker(handler, (30 * x), 10));
+			entityManager.addEntity(new Locker(handler, (30 * x), 10));
 		}
 		//Bench
 		for (int x = 5; x < 38; x++) {
@@ -52,6 +53,14 @@ public class World {
 		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 20 - 9), 10));
 		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 30 + 10), 10));
 
+		//Hall Library Chairs
+		entityManager.addEntity(new HallChairLowLeft(handler, 800, 360));
+		entityManager.addEntity(new HallChairLowUp(handler, 835, 390));
+		entityManager.addEntity(new HallCouch(handler, 600, 400));
+
+		//Hall Library Tables
+		entityManager.addEntity(new HallTableLow(handler, 640, 400));
+		entityManager.addEntity(new HallTableHigh(handler, 820, 360));
 
 		loadWorld(path);
 

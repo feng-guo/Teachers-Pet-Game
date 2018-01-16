@@ -74,22 +74,22 @@ public class NPC extends Creature{
 			stopNPC();
 			battlesStarted++;
 			if (battlesStarted <= 1) {
-//				System.out.println("true");
-//				battleDisplay = new Display("Battle", 200, 200);
-//				
-//				battleDisplay.getFrame().setLocation(Toolkit.getDefaultToolkit().getScreenSize().width/4 + 20, Toolkit.getDefaultToolkit().getScreenSize().height/4 + 20);
-//				Graphics g = battleDisplay.getFrame().getGraphics();
-//				g.setColor(Color.BLACK);
-//				g.drawString("hi", 20, 20);
 				
-				handler.getKeyManager().battle = true;
+				//handler.getKeyManager().battle = true;
 				handler.getKeyManager().forceKeyChange(KeyEvent.VK_X, true);
-//				JFrame frame = new JFrame();
-//				frame.setSize(300, 300);
-//				frame.setVisible(true);
 
+			} else if (battlesStarted > 1) {
+				handler.getKeyManager().forceKeyChange(KeyEvent.VK_X, false);
+				unStopNPC();
+				handler.getWorld().getEntityManager().getPlayer().unStopPlayer();
 			}
-			//handler.getWorld().getEntityManager().getPlayer().unStopPlayer();
+			
+			try {
+				if (handler.getGame().getBattleState().getBattleTest().isBattleEnd()) {
+					System.out.println("battle over.");
+				}
+			} catch (NullPointerException e) {
+			}
 			
 			handler.getWorld().getEntityManager().getPlayer().stopPlayer();
 

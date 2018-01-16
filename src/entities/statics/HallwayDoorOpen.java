@@ -16,7 +16,7 @@ public class HallwayDoorOpen extends StaticEntity{
         bounds.x = 10;
         bounds.y = 20;
         bounds.width = 40;
-        bounds.height = 30;
+        bounds.height = 20;
     }
 
     @Override
