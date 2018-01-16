@@ -111,6 +111,8 @@ public class Game implements Runnable{
 		
 		// clear
 		g.clearRect(0, 0, width, height);
+		//g.setColor(Color.black);
+		//g.fillRect(-200, -200, width + 200, height);
 		
 		//beginning of drawing
 
