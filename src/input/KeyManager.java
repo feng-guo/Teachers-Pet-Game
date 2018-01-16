@@ -22,12 +22,14 @@ public class KeyManager implements KeyListener{
 	}
 	
 	public void tick() {
-		up = keys[KeyEvent.VK_W];
-		down = keys[KeyEvent.VK_S];
-		left = keys[KeyEvent.VK_A];
-		right = keys[KeyEvent.VK_D];
-		
-		battle = keys[KeyEvent.VK_X];
+		if (!(State.getState() instanceof BattleState)) {
+			up = keys[KeyEvent.VK_W];
+			down = keys[KeyEvent.VK_S];
+			left = keys[KeyEvent.VK_A];
+			right = keys[KeyEvent.VK_D];
+
+			battle = keys[KeyEvent.VK_X];
+		}
 	}
 
 	@Override
@@ -40,7 +42,11 @@ public class KeyManager implements KeyListener{
 		if (pressedKeys.contains(code)) {
 			return;
 		} else if (State.getState() instanceof BattleState){
-			if (e.getKeyCode() == KeyEvent.VK_C || e.getKeyCode() == KeyEvent.VK_V|| e.getKeyCode() == KeyEvent.VK_B || e.getKeyCode() == KeyEvent.VK_N || e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+			if (e.getKeyCode() == KeyEvent.VK_C || e.getKeyCode() == KeyEvent.VK_V|| e.getKeyCode() == KeyEvent.VK_B || e.getKeyCode() == KeyEvent.VK_N || e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_BACK_SPACE || e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_D) {
+				up = keys[KeyEvent.VK_W];
+				down = keys[KeyEvent.VK_S];
+				left = keys[KeyEvent.VK_A];
+				right = keys[KeyEvent.VK_D];
 				first = keys[KeyEvent.VK_C];
 				second = keys[KeyEvent.VK_V];
 				third = keys[KeyEvent.VK_B];

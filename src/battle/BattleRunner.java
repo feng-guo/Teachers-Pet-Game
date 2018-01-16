@@ -120,4 +120,10 @@ public class BattleRunner {
     public boolean isPlayerMovedFirst() {
 	    return battle.isPlayerMovedFirst();
     }
+
+    public Squad getSquad() {
+	    return squad;
+    }
+
+    //public boolean isSw
 }

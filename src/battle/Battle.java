@@ -397,7 +397,6 @@ class Battle {
       } else {
         textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName());
         determineAttackType(player.getMove(choice - 1), player);
-        //Protecting will be handled in the move methods
       }
       if (opponentCurrentHealth > 0) {
         //Can't go if the opponent is dead
@@ -414,6 +413,8 @@ class Battle {
           textArrayList.add(opponentName + " used " + opponent.getMove(opponentMove).getName());
           determineAttackType(opponent.getMove(opponentMove), opponent);
         }
+      } else {
+        textArrayList.add(opponentName + "fainted!");
       }
     } else if (moveFirst == 1) {
       if (opponentStatus != null) {
@@ -429,20 +430,23 @@ class Battle {
         textArrayList.add(opponentName + " used " + opponent.getMove(opponentMove).getName());
         determineAttackType(opponent.getMove(opponentMove), opponent);
       }
-      if (playerStatus != null) {
-        if (playerStatus.equals("Sleep")) {
-          textArrayList.add(playerName + " is asleep!");
-        } else if (Math.random() < 0.25 && playerStatus.equals("Stun")){
-          textArrayList.add(playerName + " is stunned!");
+      if (playerCurrentHealth > 0) {
+        if (playerStatus != null) {
+          if (playerStatus.equals("Sleep")) {
+            textArrayList.add(playerName + " is asleep!");
+          } else if (Math.random() < 0.25 && playerStatus.equals("Stun")) {
+            textArrayList.add(playerName + " is stunned!");
+          } else {
+            //Player moves if it is not stunned or asleep
+            textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName());
+            determineAttackType(player.getMove(choice - 1), player);
+          }
         } else {
-          //Player moves if it is not stunned or asleep
           textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName());
           determineAttackType(player.getMove(choice - 1), player);
         }
       } else {
-        textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName());
-        determineAttackType(player.getMove(choice - 1), player);
-        //Protecting will be handled in the move methods
+        textArrayList.add(playerName + " fainted!");
       }
     }
     endTurn();
@@ -672,22 +676,9 @@ class Battle {
     } else if (move instanceof HealthMove) {
       healthMove((HealthMove) move, attacker);
     } else if (move instanceof StatChangeMove) {
-      if (((StatChangeMove)move).getTarget().equals("Self")) {
-        //Whenever the target is the user, the attacker uses the move on itself and therefore the attacker would be "technically" the other person
-        //Because the move itself does not affect the attacker, this is okay
-        statChangeMove((StatChangeMove)move, -attacker);
-      } else {
-        //The target is other person
-        statChangeMove((StatChangeMove) move, attacker);
-      }
+      statChangeMove((StatChangeMove) move, attacker);
     } else if (move instanceof StatusMove) {
-      if (((StatusMove)move).getTarget().equals("Self")) {
-        //Whenever the target is the user, the attacker uses the move on itself and therefore the attacker would be "technically" the other person
-        //Because the move itself does not affect the attacker, this is okay
-        statusMove((StatusMove) move, -attacker);
-      } else {
-        statusMove((StatusMove)move, attacker);
-      }
+      statusMove((StatusMove)move, attacker);
     } else if (move instanceof  SleepTalkMove) {
       if (attacker == -1) {
         if (playerStatus != null) {
@@ -885,9 +876,9 @@ class Battle {
               }
             }
           }
+        } else {
+          textArrayList.add("The player protected!");
         }
-      } else {
-        textArrayList.add("The player protected!");
       }
     } else {
       textArrayList.add("The move missed!");
@@ -1001,19 +992,19 @@ class Battle {
                     switch (move.getStatType()) {
                         case "Attack":
                             playerAttack *= move.getMultiplier();
-                            textArrayList.add(opponentName + "'s attack increased!");
+                            textArrayList.add(playerName + "'s attack increased!");
                             break;
                         case "Intelligence":
                             opponentIntelligence *= move.getMultiplier();
-                            textArrayList.add(opponentName + "'s intelligence increased!");
+                            textArrayList.add(playerName + "'s intelligence increased!");
                             break;
                         case "Defence":
                             opponentDefence *= move.getMultiplier();
-                            textArrayList.add(opponentName + "'s defence increased!");
+                            textArrayList.add(playerName + "'s defence increased!");
                             break;
                         case "Speed":
                             opponentSpeed *= move.getMultiplier();
-                            textArrayList.add(opponentName + "'s speed increased!");
+                            textArrayList.add(playerName + "'s speed increased!");
                             break;
                     }
                     playerStatBoost++;
@@ -1071,6 +1062,8 @@ class Battle {
                             textArrayList.add(opponentName + "'s speed increased!");
                             break;
                     }
+                } else {
+                  textArrayList.add("Stats cannot be raised anymore!");
                 }
             }
         }
@@ -1216,7 +1209,7 @@ class Battle {
             textArrayList.add("The opponent was " + move.getStatusEffect() + "ed.");
           }
         } else {
-          textArrayList.add("The opponent protected");
+          textArrayList.add(opponentName + " protected");
         }
       } else if (attacker > 0){
         if (!playerProtected) {
@@ -1228,7 +1221,7 @@ class Battle {
             textArrayList.add("The player was " + move.getStatusEffect() + "ed.");
           }
         } else {
-          textArrayList.add("The player protected");
+          textArrayList.add(playerName + " protected");
         }
       }
     } else {
