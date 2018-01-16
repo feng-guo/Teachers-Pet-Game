@@ -607,7 +607,11 @@ public class Battle {
     }
   }
 
-  public void forceSwitchCharacter(int choice) {
+  public void setBattleEnd(boolean battleEnd) {
+	this.battleEnd = battleEnd;
+}
+
+public void forceSwitchCharacter(int choice) {
     if (squad.getCharacter(choice - 1).getCurrentHealth() > 0) {
       changeCharacter(squad.getCharacter(choice - 1));
       forceSwitchCharacterPhase = false;

@@ -36,7 +36,7 @@ public class Assets {
 			e.printStackTrace();
 		}
 		
-		String characterName = "Sihan";
+		String characterName = "Misha";
 
 		SpriteSheet fengSheet = new SpriteSheet(ImageLoader.loadImage("/textures/Sprite_Images/sprites/characters/" + characterName + "/" + characterName.toLowerCase() + "_spritesheet.png"));
 		SpriteSheet tileSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile_sheet.png"));
