@@ -15,6 +15,7 @@ import input.MouseManager;
 import states.BattleState;
 import states.BeepTestState;
 import states.GameState;
+import states.MathContestState;
 import states.MenuState;
 import states.SettingsState;
 import states.State;
@@ -39,6 +40,7 @@ public class Game implements Runnable{
 	public State battleState;
 	public State stressEatsState;
 	public State beepTestState;
+	public State mathContestState;
 	
 	// Input
 	private KeyManager keyManager;
@@ -71,6 +73,8 @@ public class Game implements Runnable{
 		handler = new Handler(this);
 		gameCamera = new GameCamera(handler, 0, 0);
 		
+		
+		mathContestState = new MathContestState(handler);
 		beepTestState = new BeepTestState(handler);
 		stressEatsState = new StressEatsState(handler);
 		settingsState = new SettingsState(handler);
