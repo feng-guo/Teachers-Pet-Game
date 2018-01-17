@@ -16,15 +16,12 @@ public class Assets {
 
 
 	//public static BufferedImage feng_down_1, feng_down_2, feng_down_3;
-<<<<<<< HEAD
-	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, floor, wall, blackBlock, battleBackground, hallFloor, locker, lockerTop, openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench, hallCouch, hallChairLowLeft, hallChairLowRight, hallChairLowUp, hallChairHigh, hallTableLow, hallTableHigh;
-=======
+
 	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, 
-	floor, wall, blackBlock, battleBackground, hallFloor, locker, 
+	floor, wall, blackBlock, battleBackground, hallFloor, locker, lockerTop,
 	openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench, 
 	hallCouch, hallChairLowLeft, hallChairLowRight, hallChairLowUp, hallChairHigh, hallTableLow, hallTableHigh,
 	foodBanner, happyFace, sadFace;
->>>>>>> f1708d7f73f9fcf62f16ff6abc04c2290b1af063
 
 	public static BufferedImage[] feng_down, feng_up, feng_left, feng_right, logo;
 	public static BufferedImage[][] tileArray, foodArray;
@@ -69,7 +66,6 @@ public class Assets {
 		battleBackground = ImageLoader.loadImage("/game_background.png");
 
 		floor = floorSheet.crop(32 * 8 - 9, 32 * 28 - 3, 32, 32);
-<<<<<<< HEAD
 		tree = ImageLoader.loadImage("/textures/Outdoor_Entities/Tree.png");
 		wall = ImageLoader.loadImage ("/textures/Indoor_Entities/White_Walls.png");
 
@@ -88,7 +84,7 @@ public class Assets {
 		hallChairHigh = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/High_Chair.png");
 		hallTableLow = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Hall_Table_Low.png");
 		hallTableHigh = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Hall_Table_High.png");
-=======
+
 		tree = ImageLoader.loadImage("/Outdoor_Entities/Tree.png");
 		wall = ImageLoader.loadImage ("/Indoor_Entities/White_Walls.png");
 
@@ -106,7 +102,6 @@ public class Assets {
 		hallChairHigh = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/High_Chair.png");
 		hallTableLow = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Table_Low.png");
 		hallTableHigh = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Table_High.png");
->>>>>>> f1708d7f73f9fcf62f16ff6abc04c2290b1af063
 
 		logo = new BufferedImage[2];
 		logo[0] = ImageLoader.loadImage("/RHHSLogo.png");
