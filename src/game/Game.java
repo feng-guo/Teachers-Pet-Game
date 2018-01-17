@@ -15,6 +15,7 @@ import input.MouseManager;
 import states.BattleState;
 import states.GameState;
 import states.MenuState;
+import states.MiniGameState;
 import states.SettingsState;
 import states.State;
 
@@ -35,6 +36,7 @@ public class Game implements Runnable{
 	public State menuState;
 	public State settingsState;
 	public State battleState;
+	public State miniGameState;
 	
 	// Input
 	private KeyManager keyManager;
@@ -67,12 +69,14 @@ public class Game implements Runnable{
 		handler = new Handler(this);
 		gameCamera = new GameCamera(handler, 0, 0);
 		
+		miniGameState = new MiniGameState(handler);
 		settingsState = new SettingsState(handler);
 		gameState = new GameState(handler);
 		menuState = new MenuState(handler);
 		battleState = new BattleState(handler, g);
 
-		State.setState(menuState);
+
+		State.setState(miniGameState);
 
 	}
 	
