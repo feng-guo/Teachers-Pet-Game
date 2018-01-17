@@ -1,6 +1,6 @@
  package game;
 
-import java.awt.Color;     
+import java.awt.Color;      
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -15,9 +15,9 @@ import input.MouseManager;
 import states.BattleState;
 import states.GameState;
 import states.MenuState;
-import states.MiniGameState;
 import states.SettingsState;
 import states.State;
+import states.StressEatsState;
 
 public class Game implements Runnable{
 
@@ -36,7 +36,7 @@ public class Game implements Runnable{
 	public State menuState;
 	public State settingsState;
 	public State battleState;
-	public State miniGameState;
+	public State stressEatsState;
 	
 	// Input
 	private KeyManager keyManager;
@@ -69,14 +69,14 @@ public class Game implements Runnable{
 		handler = new Handler(this);
 		gameCamera = new GameCamera(handler, 0, 0);
 		
-		miniGameState = new MiniGameState(handler);
+		stressEatsState = new StressEatsState(handler);
 		settingsState = new SettingsState(handler);
 		gameState = new GameState(handler);
 		menuState = new MenuState(handler);
 		battleState = new BattleState(handler, g);
 
 
-		State.setState(miniGameState);
+		State.setState(gameState);
 
 	}
 	
@@ -222,5 +222,9 @@ public class Game implements Runnable{
 	
 	public BattleState getBattleState() {
 		return (BattleState) battleState;
+	}
+	
+	public void setGameState() {
+		State.setState(gameState);
 	}
 }

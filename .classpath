@@ -2,7 +2,8 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="res"/>
+	<classpathentry kind="src" path="res/textures"/>
+	<classpathentry excluding="textures/" kind="src" path="res"/>
 	<classpathentry kind="lib" path="/TP_LOCAL/res"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
