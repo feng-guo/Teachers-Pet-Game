@@ -5,6 +5,28 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/res" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/res/fonts" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/res/worlds" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/res/textures" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/res/textures/Outdoor_Entities" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/res/textures/Indoor_Entities" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/res/textures/Indoor_Entities/General_Classroom_Items" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/res/textures/Indoor_Entities/Hallway_Items" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/res/textures/Indoor_Entities/Subject_Specific_Items" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/res/textures/Indoor_Entities/Subject_Specific_Items/Art_Rooms" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/res/textures/Indoor_Entities/Subject_Specific_Items/Geography" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/res/textures/Indoor_Entities/Subject_Specific_Items/Science_Labs" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/res/textures/Sprite_Images" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/res/textures/Sprite_Images/sprites" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/res/textures/Sprite_Images/sprites/characters" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/res/textures/Sprite_Images/sprites/characters/Angela" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/res/textures/Sprite_Images/sprites/characters/Bill" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/res/textures/Sprite_Images/sprites/characters/Feng" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/res/textures/Sprite_Images/sprites/characters/Johann" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/res/textures/Sprite_Images/sprites/characters/Joyce" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/res/textures/Sprite_Images/sprites/characters/Misha" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/res/textures/Sprite_Images/sprites/characters/Sihan" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/res/textures/Sprite_Images/sprites/characters/Yash" type="java-resource" />
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
