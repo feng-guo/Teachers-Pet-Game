@@ -27,7 +27,7 @@ public class World {
 		this.handler = handler;
 		entityManager = new EntityManager(handler, new Player(handler, spawnX * Tile.TILE_WIDTH, spawnY * Tile.TILE_WIDTH));
 
-		/* world1.txt
+		/*world1.txt
 		entityManager.addEntity(new NPC(handler, "Feng2", 100, 250, 100));
 		//entityManager.addEntity(new Tree(handler, 100, 250));
 
@@ -44,6 +44,10 @@ public class World {
 		for (int x = 28; x < 40; x++) {
 			entityManager.addEntity(new Locker(handler, (30 * x), 20));
 		}
+		for (int x = 32; x < 39; x++) {
+			entityManager.addEntity(new IndoorWindowOpen(handler, (40 * x + 15), 10));
+		}
+
 		for (int x = 35; x < 45; x++) {
 			entityManager.addEntity(new Locker(handler, (30 * x), 275));
 		}
@@ -86,6 +90,7 @@ public class World {
 		entityManager.addEntity(new HallTableLow(handler, 600, 400));
 		*/
 
+		/* world2.txt
 		//HALLWAY
 		//Walls and windows
 
@@ -132,6 +137,9 @@ public class World {
 		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10));
 		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 20 - 9), 10));
 		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 31 - 24), 40));
+		*/
+
+		// Cafeteria
 
 		loadWorld(path);
 
