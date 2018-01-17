@@ -61,7 +61,7 @@ public class MiniGameState extends State {
 			if (sendRect[i]) {
 				g.setColor(Color.red);
 				
-				g.drawImage(Assets.feng_down[1], tempRect[i].x, 2*tempTimer - 200 + tempRect[i].y, tempRect[i].width, tempRect[i].height, null);
+				g.drawImage(Assets.foodArray[0][0], tempRect[i].x, 2*tempTimer - 200 + tempRect[i].y, tempRect[i].width, tempRect[i].height, null);
 				
 				//g.fillRect(tempRect[i].x, 2*tempTimer - 200 + tempRect[i].y, tempRect[i].width, tempRect[i].height);
 			}

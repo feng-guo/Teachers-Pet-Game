@@ -16,10 +16,13 @@ public class Assets {
 
 
 	//public static BufferedImage feng_down_1, feng_down_2, feng_down_3;
-	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, floor, wall, blackBlock, battleBackground, hallFloor, locker, openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench, hallCouch, hallChairLowLeft, hallChairLowRight, hallChairLowUp, hallChairHigh, hallTableLow, hallTableHigh;
+	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, 
+	floor, wall, blackBlock, battleBackground, hallFloor, locker, 
+	openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench, 
+	hallCouch, hallChairLowLeft, hallChairLowRight, hallChairLowUp, hallChairHigh, hallTableLow, hallTableHigh;
 
 	public static BufferedImage[] feng_down, feng_up, feng_left, feng_right, logo;
-	public static BufferedImage[][] tileArray;
+	public static BufferedImage[][] tileArray, foodArray;
 	public static Font font24, font16, font12, font10, font8;
 
 
@@ -43,6 +46,14 @@ public class Assets {
 		SpriteSheet tileSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile_sheet.png"));
 		SpriteSheet grassSheet = new SpriteSheet(ImageLoader.loadImage("/textures/tile_textures.png"));
 		SpriteSheet floorSheet = new SpriteSheet(ImageLoader.loadImage("/textures/sample4.png"));
+		SpriteSheet foodSheet = new SpriteSheet(ImageLoader.loadImage("/texures/foodSheet.png"));
+		
+		foodArray = new BufferedImage[8][4];
+		for (int i = 0; i < 8; i ++) {
+			for (int j = 0; j < 4; j++) {
+				foodArray[i][j] = foodSheet.crop(i * 128, j * 128, 128, 128);
+			}
+		}
 
 		battleBackground = ImageLoader.loadImage("/textures/game_background.png");
 
