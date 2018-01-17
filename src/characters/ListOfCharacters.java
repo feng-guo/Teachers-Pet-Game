@@ -1,12 +1,14 @@
-package battle;
+package characters;
+
+import battle.*;
 
 import java.util.ArrayList;
 
-class ListOfCharacters{
+public class ListOfCharacters{
     private ArrayList<Character> characterList;
     private ListOfMoves startMoves;
 
-    ListOfCharacters() {
+    public ListOfCharacters() {
         startMoves = new ListOfMoves();
         characterList = new ArrayList<Character>();
         //Movesets for playable characters

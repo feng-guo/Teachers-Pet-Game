@@ -1,17 +1,17 @@
-package battle;
+package items;
 
 import java.util.ArrayList;
 
-class Inventory {
+public class Inventory {
     private ArrayList<Item> inventory;
     private ArrayList<Integer> numItems;
 
-    Inventory() {
+    public Inventory() {
         inventory = new ArrayList<Item>();
         numItems = new ArrayList<Integer>();
     }
 
-    Inventory (ArrayList<battle.Item> list) {
+    public Inventory (ArrayList<Item> list) {
         this.inventory = list;
         numItems = new ArrayList<Integer>();
     }

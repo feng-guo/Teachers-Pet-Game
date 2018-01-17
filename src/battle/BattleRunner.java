@@ -1,9 +1,13 @@
 package battle;
 
-import java.awt.Graphics;
 import java.util.ArrayList;
 
-import game.Handler;
+import characters.ListOfCharacters;
+import characters.NonPlayableCharacter;
+import characters.PlayableCharacter;
+import characters.Squad;
+import items.Inventory;
+import items.ListOfInventoryItems;
 
 /* This is now an important file that interacts with a battle class
  */
