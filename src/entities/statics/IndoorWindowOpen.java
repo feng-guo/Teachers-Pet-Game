@@ -10,7 +10,7 @@ import tiles.Tile;
 public class IndoorWindowOpen extends StaticEntity{
 
     public IndoorWindowOpen(Handler handler, float x, float y) {
-        super(handler, x, y, (int) (Tile.TILE_WIDTH * 1.5), Tile.TILE_HEIGHT * 2);
+        super(handler, x, y, (int) (Tile.TILE_WIDTH * 1.5), (int) (Tile.TILE_HEIGHT * 1.5));
 
         // SPECIFIC TO INDOOR WINDOW
         bounds.x = 10;

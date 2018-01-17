@@ -13,9 +13,9 @@ public class Locker extends StaticEntity{
 		super(handler, x, y, (int) (Tile.TILE_WIDTH * 1.0), (int) (Tile.TILE_HEIGHT * 1.75));
 
 		// SPECIFIC TO LOCKER
-		bounds.x = 10;
+		bounds.x = 0;
 		bounds.y = 10;
-		bounds.width = 40;
+		bounds.width = 35;
 		bounds.height = 40;
 	}
 

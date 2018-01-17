@@ -16,7 +16,7 @@ public class Assets {
 
 
 	//public static BufferedImage feng_down_1, feng_down_2, feng_down_3;
-	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, floor, wall, blackBlock, battleBackground, hallFloor, locker, openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench, hallCouch, hallChairLowLeft, hallChairLowRight, hallChairLowUp, hallChairHigh, hallTableLow, hallTableHigh;
+	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, floor, wall, blackBlock, battleBackground, hallFloor, locker, lockerTop, openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench, hallCouch, hallChairLowLeft, hallChairLowRight, hallChairLowUp, hallChairHigh, hallTableLow, hallTableHigh;
 
 	public static BufferedImage[] feng_down, feng_up, feng_left, feng_right, logo;
 	public static BufferedImage[][] tileArray;
@@ -51,6 +51,7 @@ public class Assets {
 		wall = ImageLoader.loadImage ("/textures/Indoor_Entities/White_Walls.png");
 
 		locker = ImageLoader.loadImage("/textures/Indoor_Entities/Hallway_Items/Locker.png");
+		lockerTop = ImageLoader.loadImage("/textures/Indoor_Entities/Hallway_Items/Locker_Top.png");
 		indoorWindowOpen = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Hallway_Window_Open.png");
 		indoorWindowClosed = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Hallway_Window_Closed.png");
 		openDoor = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Open_Door.png");

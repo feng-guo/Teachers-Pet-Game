@@ -12,7 +12,7 @@ public class HallTableHigh extends StaticEntity{
     int objDirection;
 
     public HallTableHigh(Handler handler, float x, float y) {
-        super(handler, x, y, (int) (Tile.TILE_WIDTH * 1.25), (int) (Tile.TILE_HEIGHT * 2));
+        super(handler, x, y, (int) (Tile.TILE_WIDTH * 1.25), (int) (Tile.TILE_HEIGHT * 1.25));
 
         // SPECIFIC TO HALL TABLE HIGH
         bounds.x = 0;

@@ -10,13 +10,13 @@ import tiles.Tile;
 public class HallwayDoorClosed extends StaticEntity{
 
     public HallwayDoorClosed(Handler handler, float x, float y) {
-        super(handler, x, y, (int) (Tile.TILE_WIDTH * 1.5), Tile.TILE_HEIGHT * 2);
+        super(handler, x, y, (int) (Tile.TILE_WIDTH * 1.25), (int) (Tile.TILE_HEIGHT * 1.75));
 
         // SPECIFIC TO DOOR
         bounds.x = 10;
         bounds.y = 20;
         bounds.width = 40;
-        bounds.height = 10;
+        bounds.height = 20;
     }
 
     @Override
