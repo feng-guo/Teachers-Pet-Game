@@ -11,6 +11,7 @@ public class MouseManager implements MouseListener, MouseMotionListener{
 	private boolean leftPressed, rightPressed;
 	private int mouseX, mouseY;
 	private UIManager uiManager;
+	private boolean singleClick;
 	
 	public MouseManager() {
 		
@@ -46,8 +47,17 @@ public class MouseManager implements MouseListener, MouseMotionListener{
 		} else if (e.getButton() == MouseEvent.BUTTON3){
 			rightPressed = true;
 		}
+		singleClick = false;
 		
 
+	}
+
+	public boolean isSingleClick() {
+		return singleClick;
+	}
+
+	public void setSingleClick(boolean singleClick) {
+		this.singleClick = singleClick;
 	}
 
 	@Override
@@ -61,6 +71,7 @@ public class MouseManager implements MouseListener, MouseMotionListener{
 		if(uiManager != null) {
 			uiManager.onMouseRelease(e);
 		}
+		singleClick = true;
 	}
 	
 	@Override
