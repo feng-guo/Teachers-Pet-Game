@@ -78,17 +78,24 @@ public class BattleState extends State{
 					handler.getKeyManager().right = false;
 				}
 			} else if (handler.getKeyManager().enter) {
-				if (menu[0][0]) {
-					answer = 1;
-				} else if (menu[0][1]) {
-					answer = 2;
-				} else if (menu[1][0]) {
-					answer = 3;
-				} else if (menu[1][1]) {
-					answer = 4;
+				if (y == 0) {
+					 if (x == 0) {
+					 	answer = 1;
+					 } else if (x == 1) {
+						 answer = 2;
+					 }
+				} else if (y == 1) {
+					if (x == 0) {
+						answer = 3;
+					} else if (x == 1) {
+						answer = 4;
+					}
 				}
 				menuScreen = false;
 				menu[0][0] = true;
+				menu[0][1] = false;
+				menu[1][0] = false;
+				menu[1][1] = false;
 				x = 0;
 				y = 0;
 			} else if (handler.getKeyManager().backspace) {
