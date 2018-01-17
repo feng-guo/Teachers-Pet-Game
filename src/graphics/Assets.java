@@ -21,6 +21,7 @@ public class Assets {
 	floor, wall, blackBlock, battleBackground, hallFloor, locker, lockerTop,
 	openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench, 
 	hallCouch, hallChairLowLeft, hallChairLowRight, hallChairLowUp, hallChairHigh, hallTableLow, hallTableHigh,
+	cafTableUp, cafTableSide,
 	foodBanner, happyFace, sadFace;
 
 	public static BufferedImage[] feng_down, feng_up, feng_left, feng_right, logo;
@@ -84,6 +85,9 @@ public class Assets {
 		hallChairHigh = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/High_Chair.png");
 		hallTableLow = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Hall_Table_Low.png");
 		hallTableHigh = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Hall_Table_High.png");
+
+		cafTableSide = ImageLoader.loadImage ("/textures/Indoor_Entities/Cafeteria/Caf_Table_Long_Left.png");
+		cafTableUp = ImageLoader.loadImage ("/textures/Indoor_Entities/Cafeteria/Caf_Table_Long_Up.png");
 
 		tree = ImageLoader.loadImage("/Outdoor_Entities/Tree.png");
 		wall = ImageLoader.loadImage ("/Indoor_Entities/White_Walls.png");

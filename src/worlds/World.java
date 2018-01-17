@@ -140,8 +140,120 @@ public class World {
 		*/
 
 		//Cafeteria  ---------------------------------------------------------------------------------------------------
-		
 
+		//Caf Chairs Left
+		for (int y = 21; y < 25; y++) {
+			entityManager.addEntity(new HallChairLowLeft(handler, (20 + (int)(Math.random() * 5)), (30 * y)));
+		}
+		for (int y = 8; y < 10; y++) {
+			entityManager.addEntity(new HallChairLowLeft(handler, (20 + (int)(Math.random() * 5)), (30 * y)));
+		}
+		for (int y = 4; y < 6; y++) {
+			entityManager.addEntity(new HallChairLowLeft(handler, (20 + (int)(Math.random() * 5)), (40 * y)));
+		}
+
+		for (int y = 16; y <22; y++) {
+			entityManager.addEntity(new HallChairLowLeft(handler, (170 + (int)(Math.random() * 5)), (30 * y)));
+		}
+		for (int y = 12; y < 14; y++) {
+			entityManager.addEntity(new HallChairLowLeft(handler, (170 + (int)(Math.random() * 5)), (40 * y)));
+		}
+		for (int y = 7; y < 11; y++) {
+			entityManager.addEntity(new HallChairLowLeft(handler, (170 + (int)(Math.random() * 5)), (30 * y)));
+		}
+		for (int y = 3; y < 5; y++) {
+			entityManager.addEntity(new HallChairLowLeft(handler, (170 + (int)(Math.random() * 5)), (40 * y)));
+		}
+
+		for (int y = 20; y < 25; y++) {
+			entityManager.addEntity(new HallChairLowLeft(handler, (320 + (int)(Math.random() * 5)), (30 * y)));
+		}
+		for (int y = 12; y < 14; y++) {
+			entityManager.addEntity(new HallChairLowLeft(handler, (320 + (int)(Math.random() * 5)), (40 * y)));
+		}
+		for (int y = 10; y < 12; y++) {
+			entityManager.addEntity(new HallChairLowLeft(handler, (320 + (int)(Math.random() * 5)), (30 * y)));
+		}
+		for (int y = 4; y < 6; y++) {
+			entityManager.addEntity(new HallChairLowLeft(handler, (320 + (int)(Math.random() * 5)), (40 * y)));
+		}
+
+		for (int y = 18; y <23; y++) {
+			entityManager.addEntity(new HallChairLowLeft(handler, (470 + (int)(Math.random() * 5)), (30 * y)));
+		}
+		for (int y = 7; y < 9; y++) {
+			entityManager.addEntity(new HallChairLowLeft(handler, (470 + (int)(Math.random() * 5)), (40 * y)));
+		}
+		for (int y = 9; y < 10; y++) {
+			entityManager.addEntity(new HallChairLowLeft(handler, (470 + (int)(Math.random() * 5)), (30 * y)));
+		}
+		for (int y = 4; y < 6; y++) {
+			entityManager.addEntity(new HallChairLowLeft(handler, (470 + (int)(Math.random() * 5)), (40 * y)));
+		}
+
+		//Caf Chairs Right
+		for (int y = 20; y < 25; y++) {
+			entityManager.addEntity(new HallChairLowRight(handler, (65 + (int)(Math.random() * 5)), (30 * y)));
+		}
+		for (int y = 12; y < 14; y++) {
+			entityManager.addEntity(new HallChairLowRight(handler, (65 + (int)(Math.random() * 5)), (40 * y)));
+		}
+		for (int y = 10; y < 12; y++) {
+			entityManager.addEntity(new HallChairLowRight(handler, (65 + (int)(Math.random() * 5)), (30 * y)));
+		}
+		for (int y = 3; y < 6; y++) {
+			entityManager.addEntity(new HallChairLowRight(handler, (65 + (int)(Math.random() * 5)), (40 * y)));
+		}
+
+		for (int y = 18; y <23; y++) {
+			entityManager.addEntity(new HallChairLowRight(handler, (215 + (int)(Math.random() * 5)), (30 * y)));
+		}
+		for (int y = 7; y < 9; y++) {
+			entityManager.addEntity(new HallChairLowRight(handler, (215 + (int)(Math.random() * 5)), (40 * y)));
+		}
+		for (int y = 9; y < 10; y++) {
+			entityManager.addEntity(new HallChairLowRight(handler, (215 + (int)(Math.random() * 5)), (30 * y)));
+		}
+		for (int y = 3; y < 6; y++) {
+			entityManager.addEntity(new HallChairLowRight(handler, (215 + (int)(Math.random() * 5)), (40 * y)));
+		}
+
+		for (int y = 12; y < 14; y++) {
+			entityManager.addEntity(new HallChairLowRight(handler, (365 + (int)(Math.random() * 5)), (40 * y)));
+		}
+		for (int y = 8; y < 10; y++) {
+			entityManager.addEntity(new HallChairLowRight(handler, (365 + (int)(Math.random() * 5)), (30 * y)));
+		}
+		for (int y = 3; y < 6; y++) {
+			entityManager.addEntity(new HallChairLowRight(handler, (365 + (int)(Math.random() * 5)), (40 * y)));
+		}
+
+		for (int y = 16; y <22; y++) {
+			entityManager.addEntity(new HallChairLowRight(handler, (515 + (int)(Math.random() * 5)), (30 * y)));
+		}
+		for (int y = 12; y < 14; y++) {
+			entityManager.addEntity(new HallChairLowRight(handler, (515 + (int)(Math.random() * 5)), (40 * y)));
+		}
+		for (int y = 7; y < 11; y++) {
+			entityManager.addEntity(new HallChairLowRight(handler, (515 + (int)(Math.random() * 5)), (30 * y)));
+		}
+		for (int y = 3; y < 5; y++) {
+			entityManager.addEntity(new HallChairLowRight(handler, (515 + (int)(Math.random() * 5)), (40 * y)));
+		}
+
+		for (int y = 21; y < 25; y++) {
+			entityManager.addEntity(new HallChairLowRight(handler, 320, (30 * y)));
+		}
+
+		//Caf tables
+		for (int x = 2; x < 6; x++) {
+			for (int y = 2; y < 7; y++) {
+				entityManager.addEntity(new CafTableSide(handler, (150 * x - 260), (57 * y)));
+			}
+			for (int y = 8; y < 13; y++) {
+				entityManager.addEntity(new CafTableSide(handler, (150 * x - 260), (57 * y)));
+			}
+		}
 		loadWorld(path);
 
 		entityManager.getPlayer().setX(spawnX);
