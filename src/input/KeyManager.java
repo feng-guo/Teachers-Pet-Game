@@ -14,7 +14,7 @@ public class KeyManager implements KeyListener{
 	private Set<Integer> pressedKeys = new TreeSet<>();
 	
 	public boolean up, down, left, right;
-	public boolean battle, first, second, third, fourth;
+	public boolean battle, stressEat, first, second, third, fourth;
 	public boolean enter, backspace;
 	
 	public KeyManager() {
@@ -27,7 +27,8 @@ public class KeyManager implements KeyListener{
 			down = keys[KeyEvent.VK_S];
 			left = keys[KeyEvent.VK_A];
 			right = keys[KeyEvent.VK_D];
-
+			
+			stressEat = keys[KeyEvent.VK_Z];
 			battle = keys[KeyEvent.VK_X];
 		}
 	}

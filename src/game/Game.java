@@ -91,6 +91,8 @@ public class Game implements Runnable{
 			if (!((BattleState) battleState).getBattleTest().isBattleStart()) {
 				startBattle();
 			}
+		} else if (handler.getKeyManager().stressEat) {
+			State.setState(stressEatsState);
 		}
 		if(State.getState() != null) {
 			State.getState().tick();
