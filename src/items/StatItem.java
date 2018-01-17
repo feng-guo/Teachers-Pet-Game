@@ -1,6 +1,6 @@
-package battle;
+package items;
 
-class StatItem extends Item {
+public class StatItem extends Item {
     private String type; //held item or clothing item
     private String statAffected;
     private double multiplier;

@@ -1,12 +1,12 @@
-package battle;
+package characters;
 
 import java.util.ArrayList;
 
 public class Squad {
-    ArrayList<PlayableCharacter> squad;
+    private ArrayList<PlayableCharacter> squad;
     private int numberOfFaintedStudents;
 
-    Squad (PlayableCharacter[] squadMembers) {
+    public Squad (PlayableCharacter[] squadMembers) {
         this.numberOfFaintedStudents = 0;
         squad = new ArrayList<>();
         for (int i=0; i<squadMembers.length; i++) {

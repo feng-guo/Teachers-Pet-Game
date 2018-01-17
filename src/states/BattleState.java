@@ -1,16 +1,12 @@
 package states;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
 
-import battle.BattleRunner;
 import battle.BattleRunner;
 import game.Handler;
 import graphics.Animation;
 import graphics.Assets;
-import battle.Character;
 
 public class BattleState extends State{
 
@@ -23,7 +19,7 @@ public class BattleState extends State{
 	boolean textLoading = false;
 	private Animation shake;
 
-	private boolean menuScreen = false;
+	private boolean menuScreen = false, characterSelectionScreen;
 	private boolean[][] menu = new boolean[2][2];
 	private int x, y;
 
@@ -98,34 +94,17 @@ public class BattleState extends State{
 				menu[1][1] = false;
 				x = 0;
 				y = 0;
+				handler.getKeyManager().enter = false;
 			} else if (handler.getKeyManager().backspace) {
 				answer = 10;
 				menuScreen = false;
-			}
-		} else if (!textLoading) {
-			answer = -1;
-			if (handler.getKeyManager().first) {
-				answer = 1;
-				handler.getKeyManager().first = false;
-			}
-			if (handler.getKeyManager().second) {
-				answer = 2;
-				handler.getKeyManager().second = false;
-			}
-			if (handler.getKeyManager().third) {
-				answer = 3;
-				handler.getKeyManager().third = false;
-			}
-			if (handler.getKeyManager().fourth) {
-				answer = 4;
-				handler.getKeyManager().fourth = false;
-			}
-			if (handler.getKeyManager().backspace) {
-				answer = 10;
+				menu[0][0] = true;
+				menu[0][1] = false;
+				menu[1][0] = false;
+				menu[1][1] = false;
+				x = 0;
+				y = 0;
 				handler.getKeyManager().backspace = false;
-			}
-			if (handler.getKeyManager().enter) {
-				answer = 20;
 			}
 		}
 
@@ -137,6 +116,7 @@ public class BattleState extends State{
 			}
 			handler.getKeyManager().enter = false;
 		} else if (textLoading) {
+			//Nothing should happen if the text is currently being displayed
 			return;
 		} else if (answer != -1) {
 			handler.getKeyManager().enter = false;
@@ -271,6 +251,8 @@ public class BattleState extends State{
 				g.drawString(battleTest.getSelectionStrings(3), 300, 370);
 			} else if (battleTest.isPlayerSwitchPhase()) {
 				menuScreen = false;
+				//Replaces this with an image!!
+
 				g.setColor(Color.BLUE);
 				g.fillRect(0, 0, 600, 400);
 				g.setColor(Color.WHITE);
@@ -280,6 +262,26 @@ public class BattleState extends State{
 				g.fillRect(310, 150, 270, 100);
 				g.fillRect(20, 275, 270, 100);
 				g.fillRect(310, 275, 270, 100);
+				//g.drawImage(Assets.battleBackground, 0, 0, null);
+
+				try {
+					g.setColor(Color.BLACK);
+					g.drawString(battleTest.getSquad().getCharacter(0).getName(), 75, 50);
+					g.drawString(battleTest.getSquad().getCharacter(1).getName(), 365, 50);
+					g.drawString(battleTest.getSquad().getCharacter(2).getName(), 75, 175);
+					g.drawString(battleTest.getSquad().getCharacter(3).getName(), 365, 175);
+					g.drawString(battleTest.getSquad().getCharacter(4).getName(), 75, 300);
+					g.drawString(battleTest.getSquad().getCharacter(5).getName(), 365, 300);
+				} catch (NullPointerException e) {}
+				try {
+					g.drawImage(Assets.feng_down[0], 35, 35, null);
+					g.drawImage(Assets.feng_down[0], 325, 35, null);
+					g.drawImage(Assets.feng_down[0], 35, 160, null);
+					g.drawImage(Assets.feng_down[0], 325, 160, null);
+					g.drawImage(Assets.feng_down[0], 35, 285, null);
+					g.drawImage(Assets.feng_down[0], 325, 285, null);
+				} catch (NullPointerException e) {};
+
 			} else if (battleTest.isInventoryChoicePhase()) {
 				//draw inventory
 			}

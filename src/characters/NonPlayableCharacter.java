@@ -1,4 +1,7 @@
-package battle;
+package characters;
+
+import battle.Move;
+import items.*;
 
 public class NonPlayableCharacter extends Character {
   private String speech; //Something they say when they start a battle
