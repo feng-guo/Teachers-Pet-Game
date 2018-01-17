@@ -12,15 +12,9 @@ import graphics.ImageLoader;
 import graphics.SpriteSheet;
 import input.KeyManager;
 import input.MouseManager;
-import states.BattleState;
-import states.BeepTestState;
-import states.GameState;
-import states.MenuState;
-import states.SettingsState;
-import states.State;
-import states.StressEatsState;
+import states.*;
 
-public class Game implements Runnable{
+ public class Game implements Runnable{
 
 	private int width, height;
 	private String title;
@@ -33,6 +27,7 @@ public class Game implements Runnable{
 	private Graphics g;
 	
 	// States
+	public State catchBusState;
 	public State gameState;
 	public State menuState;
 	public State settingsState;
@@ -70,7 +65,8 @@ public class Game implements Runnable{
 		
 		handler = new Handler(this);
 		gameCamera = new GameCamera(handler, 0, 0);
-		
+
+		catchBusState = new CatchBusState(handler);
 		beepTestState = new BeepTestState(handler);
 		stressEatsState = new StressEatsState(handler);
 		settingsState = new SettingsState(handler);
@@ -79,7 +75,7 @@ public class Game implements Runnable{
 		battleState = new BattleState(handler, g);
 
 
-		State.setState(menuState);
+		State.setState(catchBusState);
 
 	}
 	
