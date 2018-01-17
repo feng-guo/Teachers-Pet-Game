@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class ListOfMoves {
     private ArrayList<Move> moveList;
 
-    ListOfMoves () {
+    public ListOfMoves () {
         moveList = new ArrayList<Move>();
         //Basic moves
         Move selfSleep = new StatusMove("SelfSleep", 4.0, "Neutral", "Sleep", 100, 0, "Self");

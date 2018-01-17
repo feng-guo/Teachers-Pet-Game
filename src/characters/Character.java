@@ -1,4 +1,7 @@
-package battle;
+package characters;
+
+import battle.Move;
+import items.*;
 
 /**
  *

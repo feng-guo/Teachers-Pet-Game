@@ -1,4 +1,7 @@
-package battle;
+package characters;
+
+import battle.Move;
+import items.*;
 
 public class PlayableCharacter extends Character {
     private String description; //description of the character
@@ -69,7 +72,7 @@ public class PlayableCharacter extends Character {
     }
 
     //Clothing item
-    //When returning items from removing or adding them, they are returned as items to be put back into the arraylist
+    //When returning items.items from removing or adding them, they are returned as items.items to be put back into the arraylist
     public Item setHatItem(StatItem hatItem) {
         if (hatItem.getName().equals("Shoes")) {
             if (this.hatItem == null) {

@@ -42,7 +42,9 @@ public class Assets {
 			e.printStackTrace();
 		}
 		
+
 		String characterName = "Johann";
+
 
 		SpriteSheet fengSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/" + characterName + "/" + characterName.toLowerCase() + "_spritesheet.png"));
 		SpriteSheet tileSheet = new SpriteSheet(ImageLoader.loadImage("/tile_sheet.png"));

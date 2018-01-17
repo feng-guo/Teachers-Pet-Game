@@ -1,8 +1,5 @@
 package battle;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
 
 //Author @Feng and now Yash + Sihan
 /* Battle classes are an object itself
@@ -12,8 +9,12 @@ import java.awt.Graphics;
 
 import java.util.ArrayList;
 
+import characters.Character;
+import characters.NonPlayableCharacter;
+import characters.PlayableCharacter;
+import characters.Squad;
 import game.Handler;
-import states.State;
+        import items.*;
 
 public class Battle {
   //Objects that need to be saved here
@@ -147,7 +148,7 @@ public class Battle {
     this.playerFainted = player.isFainted();
     this.playerAbilityTriggered = false;
     
-    //Player items
+    //Player items.items
     this.playerHeldItem = player.getHeldItem();
     this.playerHatItem = player.getHatItem();
     this.playerShirtItem = player.getShirtItem();
@@ -250,7 +251,7 @@ public class Battle {
     this.playerProtected = false;
     this.playerFainted = player.isFainted();
     this.playerAbilityTriggered = false;
-    //Player items
+    //Player items.items
     this.playerHeldItem = player.getHeldItem();
     this.playerHatItem = player.getHatItem();
     this.playerShirtItem = player.getShirtItem();
@@ -456,7 +457,7 @@ public class Battle {
 
   public void playerPickInventory() {
     playerInventoryChoicePhase = true;
-    textArrayList.add("Inventory items");
+    textArrayList.add("Inventory items.items");
     playerInventory.displayItems();
   }
 

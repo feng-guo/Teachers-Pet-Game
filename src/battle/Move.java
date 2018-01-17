@@ -1,6 +1,6 @@
 package battle;
 
-abstract class Move {
+public abstract class Move {
     //Base stats for a move
     private int power; //Base power of a move
     private double hitChance;

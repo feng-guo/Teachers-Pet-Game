@@ -1,6 +1,6 @@
-package battle;
+package items;
 
-class HealItem extends Item {
+public class HealItem extends Item {
     private String type;
     private int change;
 

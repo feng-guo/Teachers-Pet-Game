@@ -1,6 +1,6 @@
 package battle;
 
-class AttackMove extends Move {
+public class AttackMove extends Move {
     //This class of moves are for attacks that do damage
     //Additional effects??
     //StatChangeMove against the other player?
