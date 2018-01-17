@@ -42,7 +42,9 @@ public class Assets {
 			e.printStackTrace();
 		}
 		
-		String characterName = "Misha";
+
+		String characterName = "Johann";
+
 
 		SpriteSheet fengSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/" + characterName + "/" + characterName.toLowerCase() + "_spritesheet.png"));
 		SpriteSheet tileSheet = new SpriteSheet(ImageLoader.loadImage("/tile_sheet.png"));
@@ -66,24 +68,24 @@ public class Assets {
 		battleBackground = ImageLoader.loadImage("/game_background.png");
 
 		floor = floorSheet.crop(32 * 8 - 9, 32 * 28 - 3, 32, 32);
-		tree = ImageLoader.loadImage("/textures/Outdoor_Entities/Tree.png");
-		wall = ImageLoader.loadImage ("/textures/Indoor_Entities/White_Walls.png");
+		tree = ImageLoader.loadImage("/Outdoor_Entities/Tree.png");
+		wall = ImageLoader.loadImage ("/Indoor_Entities/White_Walls.png");
 
-		locker = ImageLoader.loadImage("/textures/Indoor_Entities/Hallway_Items/Locker.png");
-		lockerTop = ImageLoader.loadImage("/textures/Indoor_Entities/Hallway_Items/Locker_Top.png");
-		indoorWindowOpen = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Hallway_Window_Open.png");
-		indoorWindowClosed = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Hallway_Window_Closed.png");
-		openDoor = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Open_Door.png");
-		closedDoor = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Closed_Door.png");
-		bench = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Bench.png");
+		locker = ImageLoader.loadImage("/Indoor_Entities/Hallway_Items/Locker.png");
+		lockerTop = ImageLoader.loadImage("/Indoor_Entities/Hallway_Items/Locker_Top.png");
+		indoorWindowOpen = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hallway_Window_Open.png");
+		indoorWindowClosed = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hallway_Window_Closed.png");
+		openDoor = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Open_Door.png");
+		closedDoor = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Closed_Door.png");
+		bench = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Bench.png");
 
-		hallCouch = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Hall_Couch.png");
-		hallChairLowRight = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Hall_Chair_Right.png");
-		hallChairLowLeft = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Hall_Chair_Left.png");
-		hallChairLowUp = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Hall_Chair_Front.png");
-		hallChairHigh = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/High_Chair.png");
-		hallTableLow = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Hall_Table_Low.png");
-		hallTableHigh = ImageLoader.loadImage ("/textures/Indoor_Entities/Hallway_Items/Hall_Table_High.png");
+		hallCouch = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Couch.png");
+		hallChairLowRight = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Chair_Right.png");
+		hallChairLowLeft = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Chair_Left.png");
+		hallChairLowUp = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Chair_Front.png");
+		hallChairHigh = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/High_Chair.png");
+		hallTableLow = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Table_Low.png");
+		hallTableHigh = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Table_High.png");
 
 		tree = ImageLoader.loadImage("/Outdoor_Entities/Tree.png");
 		wall = ImageLoader.loadImage ("/Indoor_Entities/White_Walls.png");

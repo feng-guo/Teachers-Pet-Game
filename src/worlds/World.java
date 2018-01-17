@@ -27,7 +27,7 @@ public class World {
 		this.handler = handler;
 		entityManager = new EntityManager(handler, new Player(handler, spawnX * Tile.TILE_WIDTH, spawnY * Tile.TILE_WIDTH));
 
-		/*world1.txt
+		/*world1.txt ---------------------------------------------------------------------------------------------------
 		entityManager.addEntity(new NPC(handler, "Feng2", 100, 250, 100));
 		//entityManager.addEntity(new Tree(handler, 100, 250));
 
@@ -90,7 +90,7 @@ public class World {
 		entityManager.addEntity(new HallTableLow(handler, 600, 400));
 		*/
 
-		/* world2.txt
+		/* world2.txt --------------------------------------------------------------------------------------------------
 		//HALLWAY
 		//Walls and windows
 
@@ -139,7 +139,8 @@ public class World {
 		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 31 - 24), 40));
 		*/
 
-		// Cafeteria
+		//Cafeteria  ---------------------------------------------------------------------------------------------------
+		
 
 		loadWorld(path);
 

@@ -41,10 +41,10 @@ public class BattleState extends State{
 	public void tick() {
 		shake.tick();
 
-		if (battleTest.isBattleEnd()) {
-			State.setState(handler.getGame().getGameState());
-			return;
-		}
+		// if (battleTest.isBattleEnd()) {
+		// 	State.setState(handler.getGame().getGameState());
+		// 	return;
+		// }
 		if (characterSelectionScreen) {
 			if (handler.getKeyManager().up) {
 				if (y != 0) {
