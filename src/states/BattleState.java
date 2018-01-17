@@ -35,6 +35,13 @@ public class BattleState extends State{
 		menu[1][0] = false;
 		menu[1][1] = false;
 
+		characterSelection[0][0] = false;
+		characterSelection[0][1] = false;
+		characterSelection[1][0] = false;
+		characterSelection[1][1] = false;
+		characterSelection[2][0] = false;
+		characterSelection[2][1] = false;
+
 	}
 
 	@Override
@@ -45,6 +52,9 @@ public class BattleState extends State{
 		// 	State.setState(handler.getGame().getGameState());
 		// 	return;
 		// }
+		if (!battleTest.battleStart) {
+			return;
+		}
 		if (characterSelectionScreen) {
 			if (handler.getKeyManager().up) {
 				if (y != 0) {
@@ -203,6 +213,9 @@ public class BattleState extends State{
 
 	@Override
 	public void render(Graphics g) {
+		if (!battleTest.battleStart) {
+			return;
+		}
 		count++;
 		//g.setFont(new Font("Arial", Font.PLAIN, 20));
 		g.drawImage(Assets.battleBackground, 0, 0, null);

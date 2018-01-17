@@ -83,7 +83,7 @@ public class Game implements Runnable{
 		battleState = new BattleState(handler, g);
 
 
-		State.setState(battleState);
+		State.setState(menuState);
 
 	}
 	
