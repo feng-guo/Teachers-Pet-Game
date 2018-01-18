@@ -119,19 +119,15 @@ public class Assets {
 		feng_up = new BufferedImage[3];
 		feng_left = new BufferedImage[3];
 		feng_right = new BufferedImage[3];
-
 		feng_down[0] = fengSheet.crop(charWidth*0, 0, charWidth, charHeight);
 		feng_down[1] = fengSheet.crop(charWidth*1, 0, charWidth, charHeight);
 		feng_down[2] = fengSheet.crop(charWidth*2, 0, charWidth, charHeight);
-
 		feng_left[0] = fengSheet.crop(charWidth*3 + 1, 0, charWidth - 1, charHeight);
 		feng_left[1] = fengSheet.crop(charWidth*4 + 1, 0, charWidth - 1, charHeight);
 		feng_left[2] = fengSheet.crop(charWidth*5 + 1, 0, charWidth - 1, charHeight);
-
 		feng_right[0] = fengSheet.crop(charWidth*6 - 2, 0, charWidth - 1, charHeight);
 		feng_right[1] = fengSheet.crop(charWidth*7 - 2, 0, charWidth - 1, charHeight);
 		feng_right[2] = fengSheet.crop(charWidth*8 - 2, 0, charWidth - 1, charHeight);
-
 		feng_up[0] = fengSheet.crop(charWidth*9 - 3, 0, charWidth, charHeight);
 		feng_up[1] = fengSheet.crop(charWidth*10 - 3, 0, charWidth, charHeight);
 		feng_up[2] = fengSheet.crop(charWidth*11 - 3, 0, charWidth, charHeight);
