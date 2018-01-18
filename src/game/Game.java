@@ -88,9 +88,7 @@ import states.StressEatsState;
 		battleState = new BattleState(handler, g);
 
 		State.setState(menuState);
-
 	}
-	
 	
 	private void tick() {
 		
