@@ -48,6 +48,7 @@ public class PlayableCharacter extends Character {
     public void resetStatus() {
       status = null;
     }
+
     public void faintCharacter() {
         fainted = true;
         setCurrentHealth(0);

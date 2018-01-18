@@ -1547,6 +1547,7 @@ public class Battle {
       if (playerCurrentHealth - (int)burn < 0) {
         player.faintCharacter();
         playerFainted = true;
+        playerCurrentHealth = player.getCurrentHealth();
       } else {
         person.changeCurrentHealth(-(int)burn);
         playerCurrentHealth = player.getCurrentHealth();
@@ -1556,6 +1557,7 @@ public class Battle {
       burn = opponentHealth/12;
       if (opponentCurrentHealth - (int)burn < 0) {
         opponent.faintCharacter();
+        opponentCurrentHealth = opponent.getCurrentHealth();
       } else {
         person.changeCurrentHealth(-(int)burn);
         opponentCurrentHealth = opponent.getCurrentHealth();
@@ -1571,6 +1573,7 @@ public class Battle {
       if (playerCurrentHealth - (int)poison < 0) {
         player.faintCharacter();
         playerFainted = true;
+        playerCurrentHealth = player.getCurrentHealth();
       } else {
         person.changeCurrentHealth(-(int)poison);
         playerCurrentHealth = player.getCurrentHealth();
@@ -1580,6 +1583,7 @@ public class Battle {
       poison = opponentHealth/15 * opponentStatusTurns;
       if (opponentCurrentHealth - (int)poison < 0) {
         opponent.faintCharacter();
+        opponentCurrentHealth = opponent.getCurrentHealth();
       } else {
         person.changeCurrentHealth(-(int)poison);
         opponentCurrentHealth = opponent.getCurrentHealth();
