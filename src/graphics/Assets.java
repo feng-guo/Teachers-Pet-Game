@@ -121,8 +121,11 @@ public class Assets {
 		}
 		rock = tileArray[7][7];
 		blackBlock = tileArray[0][0];
-		gymTile =  tileArray [29][1];
+		gymTile =  tileArray [10][3];
 		//hallFloor = tileArray[58][14];
+		
+		
+		gymTile = ImageLoader.loadImage("/gym_tile.jpg");
 
 	}
 	
