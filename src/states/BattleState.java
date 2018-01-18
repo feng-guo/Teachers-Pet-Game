@@ -19,6 +19,8 @@ public class BattleState extends State{
 	private int answer = -1;
 	boolean textLoading = false;
 	private Animation shake;
+	
+	private double opponentPercent, playerPercent;
 
 	private boolean menuScreen = false, characterSelectionScreen;
 	private boolean[][] menu = new boolean[2][2];
@@ -217,6 +219,9 @@ public class BattleState extends State{
 			handler.getKeyManager().enter = false;
 			handler.getKeyManager().backspace = false;
 		}
+		
+		opponentPercent = (double) battleTest.getOpponent().getCurrentHealth() / (double) battleTest.getOpponent().getInitialHealth();
+		playerPercent = (double) battleTest.getPlayer().getCurrentHealth() / (double) battleTest.getPlayer().getInitialHealth();
 	}
 
 	@Override
@@ -248,6 +253,26 @@ public class BattleState extends State{
 		g.drawString(Integer.toString(battleTest.getPlayer().getCurrentHealth()), 475, 255);
 		g.drawString(Integer.toString(battleTest.getPlayer().getInitialHealth()), 530, 255);
 		g.drawString(Integer.toString(battleTest.getOpponent().getCurrentHealth()), 50, 90);
+		
+		if (opponentPercent > 0.67) {
+			g.setColor(Color.GREEN);
+		} else if (opponentPercent > 0.33) {
+			g.setColor(Color.ORANGE);
+		} else {
+			g.setColor(Color.RED);
+		}
+		g.fillRect(130, 84, (int) (120 * opponentPercent), 6);
+		
+		if (playerPercent > 0.67) {
+			g.setColor(Color.GREEN);
+		} else if (playerPercent > 0.33) {
+			g.setColor(Color.ORANGE);
+		} else {
+			g.setColor(Color.RED);
+		}		
+		g.fillRect(435, 226, (int) (120 * playerPercent), 6);
+
+		g.setColor(Color.black);
 
 		//g.setFont(Assets.font8);
 		//g.drawString("", 200, 50);
@@ -293,6 +318,7 @@ public class BattleState extends State{
 			}
 		}
 		if (menuScreen) {
+
 			if (y == 0) {
 				if (x == 0) {
 					g.fillRect(22, 312, 5, 5);
@@ -307,6 +333,12 @@ public class BattleState extends State{
 				}
 			}
 		}
+		
+
+
+
+		
+		
 		if (!characterSelectionScreen) {
 			characterSelection[0][0] = true;
 			characterSelection[0][1] = false;
@@ -367,6 +399,12 @@ public class BattleState extends State{
 					g.setFont(Assets.font12);
 				}
 				g.drawString(battleTest.getSelectionStrings(3), 300, 370);
+				
+//				g.setColor(Color.RED);
+//				opponentPercent = battleTest.getOpponent().getCurrentHealth() / battleTest.getOpponent().getInitialHealth();
+//				playerPercent = battleTest.getPlayer().getCurrentHealth() / battleTest.getPlayer().getInitialHealth();
+//				g.fillRect(130, 84, 120 * opponentPercent, 6);
+				
 			} else if (battleTest.isPlayerSwitchPhase()) {
 				menuScreen = false;
 				characterSelectionScreen = true;
@@ -409,6 +447,7 @@ public class BattleState extends State{
 					g.drawImage(battleTest.getSquad().getCharacter(5).getSprite(0), 325, 285, null);
 				} catch (NullPointerException e) {};
 				
+	
 				g.setColor(new Color(150, 150, 150));
 				Graphics2D g2 = (Graphics2D) g;
 				g2.setStroke(new BasicStroke(5F));
