@@ -900,13 +900,13 @@ public class Battle {
                 case "Persistent":
                   opponentDefence = opponentDefence * 2;
                   textArrayList.add(opponentName + " is persistent!");
-                  textArrayList.add("Opponent defence rose sharply!");
+                  textArrayList.add(opponentName + "'s defence rose sharply!");
                   opponentAbilityTriggered = true;
                   break;
                 case "Distressed":
                   opponentIntelligence = opponentIntelligence * 2;
                   textArrayList.add(opponentName + " is distressed!");
-                  textArrayList.add("Player intelligence rose sharply!");
+                  textArrayList.add(opponentName + "'s intelligence rose sharply!");
                   opponentAbilityTriggered = true;
                   break;
                 case "Protective":
@@ -940,13 +940,13 @@ public class Battle {
                 case "Persistent":
                   playerDefence = playerDefence * 2;
                   textArrayList.add(playerName + " is persistent!");
-                  textArrayList.add("Player defence rose sharply!");
+                  textArrayList.add(playerName + "'s defence rose sharply!");
                   playerAbilityTriggered = true;
                   break;
                 case "Distressed":
                   playerIntelligence = playerIntelligence * 2;
                   textArrayList.add(playerName + " is distressed!");
-                  textArrayList.add("Player intelligence rose sharply!");
+                  textArrayList.add(playerName + "'s intelligence rose sharply!");
                   playerAbilityTriggered = true;
                   break;
                 case "Protective":
