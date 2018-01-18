@@ -43,6 +43,8 @@ public class BattleRunner {
         MrTimmerman = (NonPlayableCharacter)characterList.returnCharacter("Mr.Timmerman");
         randomNiner = (NonPlayableCharacter)characterList.returnCharacter("Random Niner");
         squad = new Squad(newSquad);
+        
+        //inventory.addItem(item);
     }
 
     public void startRandomBattle() {
