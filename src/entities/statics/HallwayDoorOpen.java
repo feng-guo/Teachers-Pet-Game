@@ -17,17 +17,12 @@ public class HallwayDoorOpen extends StaticEntity{
 
     public HallwayDoorOpen(Handler handler, float x, float y, String worldPath, int setX, int setY) {
         super(handler, x, y, (int) (Tile.TILE_WIDTH * 1.25), (int) (Tile.TILE_HEIGHT * 1.75));
-<<<<<<< HEAD
         
         this.worldPath = worldPath;
         this.setX = setX;
         this.setY = setY;
         
         // SPECIFIC TO DOOR
-=======
-
-        // SPECIFIC TO DOOR OPEN
->>>>>>> 608dbd126e5633f61a6e059342c72d1b0b1d8bdf
         bounds.x = 0;
         bounds.y = 0;
         bounds.width = 38;
