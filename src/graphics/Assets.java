@@ -124,10 +124,10 @@ public class Assets {
 		studentChairUp = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Chair_Front.png");
 
 		labBench = ImageLoader.loadImage ("/Indoor_Entities/Subject_Specific_Items/Science/Lab_Bench.png");
-		labTableSide = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Lab_Island_Side.png");
-		labTableUp = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Lab_Island_Front.png");
-		labStool = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Stool.png");
-		labShelf = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Shelf.png");
+		labTableSide = ImageLoader.loadImage ("/Indoor_Entities/Subject_Specific_Items/Science/Lab_Island_Side.png");
+		labTableUp = ImageLoader.loadImage ("/Indoor_Entities/Subject_Specific_Items/Science/Lab_Island_Front.png");
+		labStool = ImageLoader.loadImage ("/Indoor_Entities/Subject_Specific_Items/Science/Stool.png");
+		labShelf = ImageLoader.loadImage ("/Indoor_Entities/Subject_Specific_Items/Science/Shelf.png");
 
 		counterSide = ImageLoader.loadImage ("/Indoor_Entities/Guidance_Office/Counter_Side.png");
 		counterUp = ImageLoader.loadImage ("/Indoor_Entities/Guidance_Office/Counter_Up.png");
@@ -135,8 +135,8 @@ public class Assets {
 		announcementBoard2 = ImageLoader.loadImage ("/Indoor_Entities/Guidance_Office/Announcement_Board2.png");
 		greenBoard = ImageLoader.loadImage ("/Indoor_Entities/Guidance_Office/Green_Board.png");
 		brownBoard = ImageLoader.loadImage ("/Indoor_Entities/Guidance_Office/Brown_Board.png");
-		guidanceChairSide = ("/Indoor_Entities/Guidance_Office/Chair_Side.png");
-		guidanceChairBack = ("/Indoor_Entities/Guidance_Office/Chair_Back.png");
+		guidanceChairSide = ImageLoader.loadImage ("/Indoor_Entities/Guidance_Office/Chair_Side.png");
+		guidanceChairBack = ImageLoader.loadImage ("/Indoor_Entities/Guidance_Office/Chair_Back.png");
 		longTableSide = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Long_Table_Side.png");
 		longTableUp = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Long_Table_Up.png");
 
@@ -157,8 +157,15 @@ public class Assets {
 		}
 		rock = tileArray[7][7];
 		blackBlock = tileArray[0][0];
-		gymTile = tileArray [30][2];
+
+//		gymTile =  tileArray [10][3];
+//
+//		gymTile = tileArray [30][2];
+
 		//hallFloor = tileArray[58][14];
+		
+		
+		gymTile = ImageLoader.loadImage("/gym_tile.jpg");
 
 	}
 	

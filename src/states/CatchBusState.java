@@ -76,7 +76,7 @@ public class CatchBusState extends State{
     	g.setFont(Assets.font16);
         //creates background
         //g.setColor(Color.LIGHT_GRAY);
-        g.drawImage(Assets.blackBoard, 0, 0, 600, 400, null);
+        g.drawImage(Assets.blackScreen, 0, 0, 600, 400, null);
         
         g.setColor(Color.LIGHT_GRAY);
         
@@ -111,8 +111,8 @@ public class CatchBusState extends State{
         g.drawRect(560, 85, 20, 300);
         g.setColor(Color.LIGHT_GRAY);
         
-        g.drawString("Time Left: " + clockTimer, 40, 375);
-        g.drawString("Score: " + score, 340, 375);
+        g.drawString("Time: " + clockTimer, 40, 375);
+        g.drawString("Health: " + score, 340, 375);
     }
 
     public void movePosition() {
