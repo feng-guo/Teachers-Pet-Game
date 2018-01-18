@@ -114,14 +114,18 @@ public class Assets {
 		path = grassSheet.crop(0, tileWidth, tileWidth, tileHeight);
 
 		tileArray = new BufferedImage[60][27];
-		for (int i = 0; i < 10; i ++) {
-			for (int j = 0; j < 10; j++) {
+		for (int i = 0; i < 60; i ++) {
+			for (int j = 0; j < 27; j++) {
 				tileArray[i][j] = tileSheet.crop(i *(tileWidth + 1), j *(tileHeight + 1), tileWidth, tileHeight);
 			}
 		}
 		rock = tileArray[7][7];
 		blackBlock = tileArray[0][0];
-		gymTile =  tileArray [10][3];
+
+//		gymTile =  tileArray [10][3];
+//
+//		gymTile = tileArray [30][2];
+
 		//hallFloor = tileArray[58][14];
 		
 		
