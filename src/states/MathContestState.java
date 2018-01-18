@@ -38,6 +38,10 @@ public class MathContestState extends State {
 //		handler.getGame().getDisplay().getFrame().setFocusable(false);
 //		handler.getGame().getDisplay().getCanvas().setFocusable(false);
 
+		if(clockTimer < 1 || score == 20) {
+			handler.getGame().setGameState();
+			frame.setVisible(false);
+		}
 
 		
 		timer++;
@@ -45,11 +49,11 @@ public class MathContestState extends State {
 			clockTimer--;
 		}
 		
-			if(additionQuestion == 1) {
-				answer = rand1 + rand2;
-			} else {
-				answer = rand1 * rand2;
-			}
+		if(additionQuestion == 1) {
+			answer = rand1 + rand2;
+		} else {				
+			answer = rand1 * rand2;
+		}
 		
 		try {
 			System.out.println(input.getText());
@@ -78,30 +82,40 @@ public class MathContestState extends State {
 	public void render(Graphics g) {
 
 		
-		g.setColor(new Color(176, 224, 230));
+		g.setColor(new Color(245, 245, 220));
 		g.fillRect(0, 0, 600, 400);
-		g.setColor(Color.black);
 		
-		g.setFont(Assets.font12); 
+		
+		g.drawImage(Assets.blackBoard, 30, 40, 540, 320, null);
+		g.setColor(Color.WHITE);
+		g.setFont(Assets.font24); 
 		if(additionQuestion == 1) {
-			g.drawString("what is " + rand1 + " + " + rand2 + "?", 10, 50);
+			g.drawString("" + rand1 + " + " + rand2 + " equals ", 100, 150);
 		} else {
-			g.drawString("what is " + rand1 + " x " + rand2 + "?", 10, 50);		
+			g.drawString("" + rand1 + " x " + rand2 + " equals ", 100, 150);		
 			
 		}
-		g.drawString("" + answer, 10, 70);
-		g.drawString("" + score, 10, 90);
+		
+//		try {
+//			//g.drawString(input.getText(), 260, 150);
+//		} catch (NullPointerException e) {
+//			
+//		}
+		g.drawString("Time Left: " + clockTimer, 100, 250);
+		g.drawString("Your Score: " + score, 100, 300);
 		
 		if (timesInitialized < 1) {
-			g.setFont(Assets.font12); 
+			g.setFont(Assets.font24); 
 			frame = new JFrame();
 			frame.setUndecorated(true);
-			frame.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width/4, Toolkit.getDefaultToolkit().getScreenSize().height/4);
-			frame.setSize(30, 30);
+			frame.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width/4 + 410, Toolkit.getDefaultToolkit().getScreenSize().height/4 + 132);
+			frame.setSize(120, 30);
 			input = new JTextArea(5, 5);
-			input.setBackground(new Color(176, 224, 230)); 
-			input.setBounds(10, 10, 200, 20);
-			input.setFont(Assets.font12);
+			input.setBackground(Color.BLACK);
+			//input.setOpaque(false);
+			input.setForeground(Color.WHITE);
+			input.setBounds(10, 30, 200, 20);
+			input.setFont(Assets.font24);
 			input.setBorder(null);
 			input.setFocusable(true);
 			frame.add(input);
@@ -109,6 +123,9 @@ public class MathContestState extends State {
 			frame.setVisible(true);
 			timesInitialized++;
 		}
+		
+		g.setColor(Color.GREEN);
+		g.fillRect(50, 50, score*25, 20);
 	}
 
 }
