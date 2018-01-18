@@ -38,6 +38,8 @@ public class ListOfCharacters{
         String[] michaelMoveNames = {"Dodge Homework", "Math Angels", "Stack Overflow", "Dissect Frog"};
         String[] msKostanenkoMoveNames = {"Splash Acid", "Teach Stoichiometry", "Titration", "Mark Test"};
         String[] mrGissingMoveNames = {"Greet", "Clap", "TLAP", "Meter Stick"};
+        String[] nikhilMoveNames = {"Cry", "Debate", "Electrocute Paperclip", "Play Clarinet"};
+        String[] aaronMoveNames = {"Play Saxophone", "Write Garbage Code", "Burn Piano Book", "Greet"};
         Move[] mrChoiMoves = returnMoveArray(mrChoiMoveNames);
         Move[] mrShimMoves = returnMoveArray(mrShimMoveNames);
         Move[] mrTimmermanMoves = returnMoveArray(mrTimmermanMoveNames);
@@ -46,6 +48,8 @@ public class ListOfCharacters{
         Move[] michaelMoves = returnMoveArray(michaelMoveNames);
         Move[] msKostanenkoMoves = returnMoveArray(msKostanenkoMoveNames);
         Move[] mrGissingMoves = returnMoveArray(mrGissingMoveNames);
+        Move[] nikhilMoves = returnMoveArray(nikhilMoveNames);
+        Move[] aaronMoves = returnMoveArray(aaronMoveNames);
 
         //List of playable characters
         characterList.add(new PlayableCharacter(50, 60, 20, 50, 60, "Technology", "Feng", "[description]", fengMoves, "Clown", null, null, null, null, null, Assets.feng_down));
@@ -64,6 +68,8 @@ public class ListOfCharacters{
         characterList.add(new NonPlayableCharacter(60, 70, 80, 10, 50, "Technology", "Michael", "Oh shoot!", michaelMoves, 200, "Persistent", null, Assets.bill_down));
         characterList.add(new NonPlayableCharacter(200, 40, 90, 40, 60, "Science", "Ms.Kostanenko", "Wake up people!", msKostanenkoMoves, 300, "Demoralize", null, Assets.bill_down));
         characterList.add(new NonPlayableCharacter(150, 70, 40, 50, 60, "Science", "Mr.Gissing", "Hi everyone!", mrGissingMoves, 300, "Friendly", null, Assets.bill_down));
+        characterList.add(new NonPlayableCharacter(40, 60, 40, 50, 80, "English", "Nikhil", "I'm vegan", nikhilMoves, 100, "Clown", null, Assets.bill_down));
+        characterList.add(new NonPlayableCharacter(30, 20, 20, 80, 70, "Technology", "Aaron", "Do u kno da wae", aaronMoves, 100, "Friendly", null, Assets.bill_down));
     }
 
     private Move[] returnMoveArray(String[] moveNames) {

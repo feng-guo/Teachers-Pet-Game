@@ -449,7 +449,7 @@ public class Battle {
           determineAttackType(opponent.getMove(opponentMove), opponent);
         }
       } else {
-        textArrayList.add(opponentName + "fainted!");
+        textArrayList.add(opponentName + " fainted!");
       }
     } else if (moveFirst == 1) {
       if (opponentStatus != null) {
@@ -601,16 +601,16 @@ public class Battle {
       }
     }
     if (playerStatus != null && playerCurrentHealth > 0) {
-      if (playerStatus.equals("Burned")) {
+      if (playerStatus.equals("Burn")) {
         burnPerson(player);
-      } else if (playerStatus.equals("Poisoned")) {
+      } else if (playerStatus.equals("Poison")) {
         poisonPerson(player);
       }
     }
     if (opponentStatus != null && opponentCurrentHealth > 0) {
-      if (opponentStatus.equals("Burned")) {
+      if (opponentStatus.equals("Burn")) {
         burnPerson(opponent);
-      } else if (opponentStatus.equals("Poisoned")) {
+      } else if (opponentStatus.equals("Poison")) {
         poisonPerson(opponent);
       }
     }

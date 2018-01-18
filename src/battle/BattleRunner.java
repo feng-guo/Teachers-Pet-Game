@@ -21,7 +21,7 @@ public class BattleRunner {
     private ListOfInventoryItems inventoryItems = new ListOfInventoryItems();
     private Inventory inventory = new Inventory();
     private PlayableCharacter[] newSquad = new PlayableCharacter[6];
-    private NonPlayableCharacter MrChoi, MrShim, MrTimmerman, randomNiner, alston, michael, msKostanenko, mrGissing;
+    private NonPlayableCharacter MrChoi, MrShim, MrTimmerman, randomNiner, alston, michael, msKostanenko, mrGissing, nikhil, aaron;
     private Squad squad;
     public boolean battleStart;
     private Battle battle;
@@ -47,6 +47,8 @@ public class BattleRunner {
         michael = (NonPlayableCharacter) characterList.returnCharacter("Michael");
         msKostanenko = (NonPlayableCharacter) characterList.returnCharacter("Ms.Kostanenko");
         mrGissing = (NonPlayableCharacter) characterList.returnCharacter("Mr.Gissing");
+        nikhil = (NonPlayableCharacter) characterList.returnCharacter("Nikhil");
+        aaron = (NonPlayableCharacter) characterList.returnCharacter("Aaron");
         squad = new Squad(newSquad);
 
         inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
@@ -61,11 +63,11 @@ public class BattleRunner {
         double random2 = Math.random();
         NonPlayableCharacter opponent;
         if (random2 < 0.33) {
-            opponent = MrChoi;
+            opponent = randomNiner;
         } else if (random2 < 0.66) {
-            opponent = MrShim;
+            opponent = alston;
         } else {
-            opponent = MrTimmerman;
+            opponent = michael;
         }
         battle = new Battle(squad.getCharacter(0), opponent, squad, inventory);
         battleStart = true;

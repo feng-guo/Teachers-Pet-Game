@@ -20,7 +20,7 @@ public class ListOfMoves {
         Move halveOpponentIntelligence10 = new StatChangeMove("halveOpponentIntelligence10", 0.1, "Neutral", 2, "Intelligence", 100, 0, "Opponent");
         Move opponentPoison10 = new StatusMove("opponentPoison10", 0.1, "Science", "Poison", 100, 0, "Opponent");
         Move opponentPoison30 = new StatusMove("opponentPoison10", 0.3, "Science", "Poison", 100, 0, "Opponent");
-        Move doubleUserHealth = new StatChangeMove("doubleUserHealth", 1.0, "Neutral", 2, "Health", 100, 0, "Self");
+        Move opponentStun70 = new StatusMove("opponentStun70", 0.7, "Neutral", "Stun", 100, 0, "Opponent");
         //neutral
         moveList.add(new AttackMove("Burn Piano Book", 60, 1.0, "Neutral", "Attack", 12, 0, randomBurn50));
         moveList.add(new AttackMove("Explode Phone", 120, 0.8, "Neutral", "Attack", 10, 0, opponentBurn75));
@@ -41,6 +41,8 @@ public class ListOfMoves {
         moveList.add(new HealthMove("Drink Bubble Tea", "Neutral", 0, "Health", -2, 10, 0, null));
         moveList.add(new AttackMove("Clap", 40, 1.0, "Neutral", "Attack",  15, 3, doubleUserIntelligence10));
         moveList.add(new StatChangeMove("Greet", 1.0, "Neutral", 2, "Defence", 15, 0, "Opponent", null));
+        moveList.add(new AttackMove("Play Clarinet", 20, 1.0, "Neutral", "Intelligence", 20, 0, doubleUserIntelligence));
+        moveList.add(new AttackMove("Play Saxophone", 20, 1.0, "Neutral", "Intelligence", 20, 0, doubleUserIntelligence));
         //math
         moveList.add(new AttackMove("Spam Calculator", 50, 1.0, "Math", "Attack", 15, 0, null));
         moveList.add(new HealthMove("Calculate Mark", "Math", 0, "Health", -2, 8, 0, null));
@@ -71,6 +73,7 @@ public class ListOfMoves {
         moveList.add(new AttackMove("Splash Acid", 80, 1.0, "Science", "Attack", 10, 0, opponentPoison10));
         moveList.add(new StatusMove("Dissect Frog", 0.9, "Science","Poison", 15, 0, "Opponent"));
         moveList.add(new AttackMove("Titration", 70,1.0, "Science", "Intelligence", 15, 0, opponentPoison30));
+        moveList.add(new AttackMove("Electrocute Paperclip", 120, 0.7, "Science", "Attack", 10, 0, opponentStun70));
         //technology
         moveList.add(new StatChangeMove("Implement APIs", 1.0, "Technology", 2, "Speed", 8, 0, "Self"));
         moveList.add(new AttackMove("Deoptimize Code", 50, 1.0, "Technology", "Intelligence", 10, 0, null));
