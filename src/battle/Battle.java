@@ -13,8 +13,7 @@ import characters.Character;
 import characters.NonPlayableCharacter;
 import characters.PlayableCharacter;
 import characters.Squad;
-import game.Handler;
-        import items.*;
+import items.*;
 
 public class Battle {
   //Objects that need to be saved here
@@ -504,14 +503,16 @@ public class Battle {
   }
 
   public void playerPickCharacter(int choice) {
-    if (squad.getCharacter(choice).getCurrentHealth() > 0) {
-      changeCharacter(squad.getCharacter(choice));
-      playerSwitchPhase = false;
-      if (!forceSwitchCharacterPhase) {
-        opponentTurn();
-      } else if (forceSwitchCharacterPhase) {
-        forceSwitchCharacterPhase = false;
-        goBackInMenu();
+    if (squad.getCharacter(choice) != null) {
+      if (squad.getCharacter(choice).getCurrentHealth() > 0) {
+        changeCharacter(squad.getCharacter(choice));
+        playerSwitchPhase = false;
+        if (!forceSwitchCharacterPhase) {
+          opponentTurn();
+        } else if (forceSwitchCharacterPhase) {
+          forceSwitchCharacterPhase = false;
+          goBackInMenu();
+        }
       }
     }
   }
@@ -814,15 +815,16 @@ public class Battle {
               switch (opponentAbility) {
                 case "Persistent":
                   opponentDefence = opponentDefence * 2;
-                  textArrayList.add("The opponent is persistent!");
+                  textArrayList.add(opponentName + " is persistent!");
                   textArrayList.add("Opponent defence rose sharply!");
                   opponentAbilityTriggered = true;
                   break;
                 case "Distressed":
                   opponentIntelligence = opponentIntelligence * 2;
-                  textArrayList.add("The opponent is distressed!");
+                  textArrayList.add(opponentName + " is distressed!");
                   textArrayList.add("Player intelligence rose sharply!");
-                    opponentAbilityTriggered = true;
+                  opponentAbilityTriggered = true;
+                  break;
                 case "Protective":
                   opponentSpeed *= 2;
                   opponentAttack *= 2;
@@ -835,7 +837,7 @@ public class Battle {
             }
           }
         } else {
-          textArrayList.add("The opponent protected!");
+          textArrayList.add(opponentName + " protected!");
         }
       } else if (attacker == 1) {
         if (!playerProtected) {
@@ -853,13 +855,13 @@ public class Battle {
               switch (playerAbility) {
                 case "Persistent":
                   playerDefence = playerDefence * 2;
-                  textArrayList.add("The player is persistent!");
+                  textArrayList.add(playerName + " is persistent!");
                   textArrayList.add("Player defence rose sharply!");
                   playerAbilityTriggered = true;
                   break;
                 case "Distressed":
                   playerIntelligence = playerIntelligence * 2;
-                  textArrayList.add("The player is distressed!");
+                  textArrayList.add(playerName + " is distressed!");
                   textArrayList.add("Player intelligence rose sharply!");
                   playerAbilityTriggered = true;
                   break;
@@ -875,7 +877,7 @@ public class Battle {
             }
           }
         } else {
-          textArrayList.add("The player protected!");
+          textArrayList.add(playerName + " protected!");
         }
       }
     } else {
@@ -922,13 +924,13 @@ public class Battle {
       if (Math.random() < playerProtectChance) {
         playerProtected = true;
       } else {
-        textArrayList.add("The protect failed");
+        textArrayList.add("The protect failed.");
       }
     } else if (attacker == 1) {
       if (Math.random() < opponentProtectChance) {
         opponentProtected = true;
       } else {
-        textArrayList.add("The protect failed");
+        textArrayList.add("The protect failed.");
       }
     }
   }
@@ -1293,7 +1295,7 @@ public class Battle {
       if (multiplier > 1) {
         effectivenessText = "It's super effective!";
       } else if (multiplier < 1) {
-        effectivenessText = "It's not very effective";
+        effectivenessText = "It's not very effective...";
       }
       if (playerType.equals(move.getType())) {
         multiplier = multiplier * 1.5; //Same Type Attack Bonus (STAB)
@@ -1336,9 +1338,9 @@ public class Battle {
           break;
       }
       if (multiplier > 1) {
-        effectivenessText = "It's super effective";
+        effectivenessText = "It's super effective!";
       } else if (multiplier < 1) {
-        effectivenessText = "It's not very effective";
+        effectivenessText = "It's not very effective...";
       }
       if (opponentType.equals(move.getType())) {
         multiplier = multiplier * 1.5; //Same Type Attack Bonus (STAB)

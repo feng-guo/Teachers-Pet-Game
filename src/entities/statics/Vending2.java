@@ -12,7 +12,7 @@ public class Vending2 extends StaticEntity{
     public Vending2(Handler handler, float x, float y) {
         super(handler, x, y, (int) (Tile.TILE_WIDTH * 1.25), (int) (Tile.TILE_HEIGHT * 2.25));
 
-        // SPECIFIC TO LOCKER
+        // SPECIFIC TO VENDING MACHINE 2
         bounds.x = 0;
         bounds.y = 10;
         bounds.width = 35;
