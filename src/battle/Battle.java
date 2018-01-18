@@ -435,73 +435,47 @@ public class Battle {
     player.setPowerPoints(choice - 1, -1);
     if (moveFirst == -1) {
       if (playerStatus != null) {
-        if (playerStatus.equals("Sleep") && !(player.getMove(choice -1) instanceof SleepTalkMove)) {
+        if (playerStatus.equals("Sleep") && !(player.getMove(choice - 1) instanceof SleepTalkMove)) {
           textArrayList.add(playerName + " is sound asleep.");
-        } else if (Math.random() < 0.25 && playerStatus.equals("Stun")){
-<<<<<<< HEAD
+        } else if (Math.random() < 0.25 && playerStatus.equals("Stun")) {
           textArrayList.add(playerName + " is stunned! They can't move.");
-=======
-          textArrayList.add(playerName + " is stunned! They can't move!");
->>>>>>> 25ff31c1e8eb7cceac7cdf7d149cf45d879bb608
         } else {
           //Player moves if it is not stunned or asleep
           textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName() + ".");
           determineAttackType(player.getMove(choice - 1), player);
         }
       } else {
-<<<<<<< HEAD
-        textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName()  + ".");
-=======
         textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName() + ".");
->>>>>>> 25ff31c1e8eb7cceac7cdf7d149cf45d879bb608
-        determineAttackType(player.getMove(choice - 1), player);
       }
       if (opponentCurrentHealth > 0) {
         //Can't go if the opponent is dead
         if (opponentStatus != null) {
-          if (opponentStatus.equals("Sleep") && !(opponent.getMove(choice -1) instanceof SleepTalkMove)) {
+          if (opponentStatus.equals("Sleep") && !(opponent.getMove(choice - 1) instanceof SleepTalkMove)) {
             textArrayList.add(opponentName + " is sound asleep.");
           } else if (Math.random() < 0.25 && opponentStatus.equals("Stun")) {
             textArrayList.add(opponentName + " is stunned! They can't move!");
-          } else {
-<<<<<<< HEAD
-            textArrayList.add(opponentName + " used " + opponent.getMove(opponentMove).getName()  + ".");
-            determineAttackType(opponent.getMove(opponentMove), opponent);
-          }
-        } else {
-          textArrayList.add(opponentName + " used " + opponent.getMove(opponentMove).getName()  + ".");
-=======
+          } else
             textArrayList.add(opponentName + " used " + opponent.getMove(opponentMove).getName() + ".");
-            determineAttackType(opponent.getMove(opponentMove), opponent);
-          }
-        } else {
-          textArrayList.add(opponentName + " used " + opponent.getMove(opponentMove).getName() + ".");
->>>>>>> 25ff31c1e8eb7cceac7cdf7d149cf45d879bb608
           determineAttackType(opponent.getMove(opponentMove), opponent);
-        }
+        } else {
+        textArrayList.add(opponentName + " used " + opponent.getMove(opponentMove).getName() + ".");
+        determineAttackType(opponent.getMove(opponentMove), opponent);
+       }
       } else {
         textArrayList.add(opponentName + " fainted!");
       }
-    } else if (moveFirst == 1) {
+    } else if(moveFirst == 1) {
       if (opponentStatus != null) {
         if (opponentStatus.equals("Sleep") && !(opponent.getMove(choice -1) instanceof SleepTalkMove)) {
           textArrayList.add(opponentName + " is sound asleep.");
         } else if (Math.random() < 0.25 && opponentStatus.equals("Stun")) {
           textArrayList.add(opponentName + " is stunned! They can't move!");
         } else {
-<<<<<<< HEAD
-          textArrayList.add(opponentName + " used " + opponent.getMove(opponentMove).getName()  + ".");
-          determineAttackType(opponent.getMove(opponentMove), opponent);
-        }
-      } else {
-        textArrayList.add(opponentName + " used " + opponent.getMove(opponentMove).getName()  + ".");
-=======
           textArrayList.add(opponentName + " used " + opponent.getMove(opponentMove).getName() + ".");
           determineAttackType(opponent.getMove(opponentMove), opponent);
         }
       } else {
         textArrayList.add(opponentName + " used " + opponent.getMove(opponentMove).getName() + ".");
->>>>>>> 25ff31c1e8eb7cceac7cdf7d149cf45d879bb608
         determineAttackType(opponent.getMove(opponentMove), opponent);
       }
       if (playerCurrentHealth > 0) {
@@ -512,19 +486,11 @@ public class Battle {
             textArrayList.add(playerName + " is stunned! They can't move!");
           } else {
             //Player moves if it is not stunned or asleep
-<<<<<<< HEAD
-            textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName()  + ".");
-            determineAttackType(player.getMove(choice - 1), player);
-          }
-        } else {
-          textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName()  + ".");
-=======
             textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName() + ".");
             determineAttackType(player.getMove(choice - 1), player);
           }
         } else {
           textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName() + ".");
->>>>>>> 25ff31c1e8eb7cceac7cdf7d149cf45d879bb608
           determineAttackType(player.getMove(choice - 1), player);
         }
       } else {
@@ -616,11 +582,7 @@ public class Battle {
   private void opponentTurn() {
     playerAttacked = false;
     int moveUsed = determineOpponentMove();
-<<<<<<< HEAD
-    textArrayList.add(opponentName + " used " + opponent.getMove(moveUsed).getName()  + ".");
-=======
     textArrayList.add(opponentName + " used " + opponent.getMove(moveUsed).getName() + ".");
->>>>>>> 25ff31c1e8eb7cceac7cdf7d149cf45d879bb608
     determineAttackType(opponent.getMove(moveUsed), opponent);
     if (playerCurrentHealth == 0) {
       textArrayList.add(playerName + " fainted!");
@@ -800,11 +762,7 @@ public class Battle {
                 determineAttackType(moveUsed, player);
               }
             } while (!attackTrue);
-<<<<<<< HEAD
-            textArrayList.add(playerName + " used " + player.getMove(randomMove).getName()  + ".");
-=======
             textArrayList.add(playerName + " used " + player.getMove(randomMove).getName() + ".");
->>>>>>> 25ff31c1e8eb7cceac7cdf7d149cf45d879bb608
           } else {
             textArrayList.add("The move failed!");
           }
