@@ -12,7 +12,7 @@ public class IndoorWindowOpen extends StaticEntity{
     public IndoorWindowOpen(Handler handler, float x, float y) {
         super(handler, x, y, (int) (Tile.TILE_WIDTH * 1.5), (int) (Tile.TILE_HEIGHT * 1.5));
 
-        // SPECIFIC TO INDOOR WINDOW
+        // SPECIFIC TO INDOOR WINDOW OPEN
         bounds.x = 10;
         bounds.y = 20;
         bounds.width = 40;

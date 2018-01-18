@@ -14,7 +14,7 @@ public class HallChairLowLeft extends StaticEntity{
     public HallChairLowLeft(Handler handler, float x, float y) {
         super(handler, x, y, (int) (Tile.TILE_WIDTH * 0.75), (int) (Tile.TILE_HEIGHT * 0.75));
 
-        // SPECIFIC TO HALL CHAIR LOW
+        // SPECIFIC TO HALL CHAIR LOW LEFT
         bounds.x = 0;
         bounds.y = 0;
         bounds.width = 15;
