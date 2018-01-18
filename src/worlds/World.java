@@ -28,9 +28,9 @@ public class World {
 		this.handler = handler;
 		entityManager = new EntityManager(handler, new Player(handler, spawnX * Tile.TILE_WIDTH, spawnY * Tile.TILE_WIDTH));
 
-		loadTopHall();
+		//loadTopHall();
 
-		//loadBottomHall();
+		loadBottomHall();
 		
 
 		//loadCafeteria();
@@ -264,8 +264,9 @@ public class World {
 	}
 	
 	public void loadTopHall() {
+
+		//entityManager.addEntity(new NPC(handler, Assets.angela_down, 100, 250, 100));
 		entityManager.addEntity(new NPC(handler, Assets.angela_down, Assets.angela_up, Assets.angela_left, Assets.angela_right, 100, 250, 100));
-		//entityManager.addEntity(new Tree(handler, 100, 250));
 
 		//HALLWAY
 		//Walls and windows
@@ -324,55 +325,63 @@ public class World {
 
 		entityManager.addEntity(new HallCouch(handler, 550, 400));
 		entityManager.addEntity(new HallTableLow(handler, 600, 400));
+
+		//Stairs
+		entityManager.addEntity(new Stairs(handler, 384, 320));
 	}
 	
 	public void loadBottomHall() {
 		//HALLWAY
-				//Walls and windows
+		//Walls and windows
 
-				//entityManager.addEntity(new NPC(handler, "Feng2", 100, 400, 150));
+		//entityManager.addEntity(new NPC(handler, "Feng2", 100, 400, 150));
 
-				//Lockers & windows
-				for (int x = 2; x < 9; x++) {
-					entityManager.addEntity(new IndoorWindowClosed(handler, (40 * x), 10));
-				}
-				for (int x = 12; x < 19; x++) {
-					entityManager.addEntity(new IndoorWindowClosed(handler, (40 * x - 4), 10));
-				}
-				for (int x = 28; x < 39; x++) {
-					entityManager.addEntity(new Locker(handler, (30 * x), 20));
-				}
-				for (int x = 42; x < 53; x++) {
-					entityManager.addEntity(new Locker(handler, (30 * x + 5), 50));
-				}
+		//Lockers & windows
+		for (int x = 2; x < 9; x++) {
+			entityManager.addEntity(new IndoorWindowClosed(handler, (40 * x), 10));
+		}
+		for (int x = 12; x < 19; x++) {
+			entityManager.addEntity(new IndoorWindowClosed(handler, (40 * x - 4), 10));
+		}
+		for (int x = 28; x < 39; x++) {
+			entityManager.addEntity(new Locker(handler, (30 * x), 20));
+		}
+		for (int x = 42; x < 53; x++) {
+			entityManager.addEntity(new Locker(handler, (30 * x + 5), 50));
+		}
 
-				for (int x = 29; x < 37; x++) {
-					entityManager.addEntity(new Locker(handler, (30 * x - 4), 400));
-				}
-				for (int y = 16; y < 24; y++) {
-					entityManager.addEntity(new LockerTop(handler, (41 * 29 + 11), (17 * y - 5)));
-				}
-				for (int y = 10; y < 13; y++) {
-					entityManager.addEntity(new LockerTop(handler, (36 * 29 - 4), (16 * y + 6)));
-				}
-				entityManager.addEntity(new LockerTop(handler, (40 * 29 + 8), 20));
-				entityManager.addEntity(new LockerTop(handler, (40 * 29 + 8), 37));
-				for (int x = 30; x < 32; x++) {
-					entityManager.addEntity(new IndoorWindowOpen(handler, (40 * x + 18), 390));
-				}
+		for (int x = 29; x < 37; x++) {
+			entityManager.addEntity(new Locker(handler, (30 * x - 4), 400));
+		}
+		for (int y = 16; y < 24; y++) {
+		    entityManager.addEntity(new LockerTop(handler, (41 * 29 + 11), (17 * y - 5)));
+		}
+		for (int y = 10; y < 13; y++) {
+		    entityManager.addEntity(new LockerTop(handler, (36 * 29 - 4), (16 * y + 6)));
+		}
 
-				//Bench
-				for (int x = 5; x < 38; x++) {
-					entityManager.addEntity(new Bench(handler, (10 * x), 60));
-				}
-				for (int x = 46; x < 78; x++) {
-					entityManager.addEntity(new Bench(handler, (10 * x - 5), 60));
-				}
+		entityManager.addEntity(new LockerTop(handler, (40 * 29 + 8), 20));
+		entityManager.addEntity(new LockerTop(handler, (40 * 29 + 8), 37));
 
-				//Doors
-				entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10));
-				entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 20 - 9), 10));
-				entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 31 - 24), 40));
+		for (int x = 30; x < 32; x++) {
+		    entityManager.addEntity(new IndoorWindowOpen(handler, (40 * x + 18), 390));
+		}
+
+		//Bench
+        for (int x = 5; x < 38; x++) {
+		    entityManager.addEntity(new Bench(handler, (10 * x), 60));
+		}
+		for (int x = 46; x < 78; x++) {
+		    entityManager.addEntity(new Bench(handler, (10 * x - 5), 60));
+		}
+
+		//Doors
+        entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10));
+		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 20 - 9), 10));
+		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 31 - 24), 40));
+
+		//Stairs
+        entityManager.addEntity(new Stairs(handler, 576, 193));
 	}
 
 }
