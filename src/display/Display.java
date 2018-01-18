@@ -1,5 +1,6 @@
 package display;
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -28,6 +29,7 @@ public class Display {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
+		frame.setBackground(new Color(0, 0, 0, 0));
 		frame.setVisible(true);
 		frame.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width/4, Toolkit.getDefaultToolkit().getScreenSize().height/4);
 
@@ -36,6 +38,7 @@ public class Display {
 		//frame.requestFocusInWindow();
 		
 		canvas = new Canvas();
+		canvas.setBackground(new Color(0, 0, 0, 0));
 		canvas.setPreferredSize(new Dimension(width, height));
 		canvas.setMaximumSize(new Dimension(width, height));
 		canvas.setMinimumSize(new Dimension(width, height));

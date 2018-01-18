@@ -36,8 +36,8 @@ public class BattleRunner {
         newSquad[2] = (PlayableCharacter)characterList.returnCharacter("Sihan");
         newSquad[3] = (PlayableCharacter)characterList.returnCharacter("Yash");
         newSquad[4] = (PlayableCharacter)characterList.returnCharacter("Johann");
-        //newSquad[5] = (PlayableCharacter)characterList.returnCharacter("Misha");
-        newSquad[5] = (PlayableCharacter)characterList.returnCharacter("Angela");
+        newSquad[5] = (PlayableCharacter)characterList.returnCharacter("Misha");
+        //newSquad[5] = (PlayableCharacter)characterList.returnCharacter("Angela");
         MrChoi = (NonPlayableCharacter)characterList.returnCharacter("Mr.Choi");
         MrShim = (NonPlayableCharacter)characterList.returnCharacter("Mr.Shim");
         MrTimmerman = (NonPlayableCharacter)characterList.returnCharacter("Mr.Timmerman");
@@ -80,7 +80,7 @@ public class BattleRunner {
             battle.useInventoryItem(choice);
         } else if (battle.isPlayerInventoryPhase()) {
             battle.playerPickInventory();
-        } else if (battle.isPlayerChoicePhase()) {
+        } else {
             battle.runBattleTurn(choice);
         }
     }

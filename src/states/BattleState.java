@@ -118,8 +118,6 @@ public class BattleState extends State{
 					x = 0;
 					y = 0;
 					handler.getKeyManager().enter = false;
-				} else {
-					System.out.println("Sorry but no");
 				}
 			} else if (handler.getKeyManager().backspace) {
 				answer = 10;

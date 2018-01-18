@@ -17,7 +17,8 @@ public class ListOfCharacters{
         String[] joyceMoveNames = {"Cram", "Throw Basketball", "Quick Maths", "Call Uber"};
         String[] sihanMoveNames = {"Argue", "Cram", "Cry", "Ghost"};
         String[] yashMoveNames = {"Quadratic Formula", "Chemistry Pun", "Dodge Homework", "TLAP"};
-        String[] mishaMoveNames = {"Stack Overflow", "Argue", "Cry", "Write Garbage Code"};
+        //String[] mishaMoveNames = {"Stack Overflow", "Argue", "Cry", "Write Garbage Code"};
+        String[] mishaMoveNames = {"Stack Overflow", "Sleep Talk", "Cry", "Write Garbage Code"};
         String[] johannMoveNames = {"Spam Calculator", "Quick Maths", "Work Out", "Not Study"};
         String[] angelaMoveNames = {"Dissect Frog", "Drink Bubble Tea", "Splash Acid", "Chemistry Pun"};
         Move[] fengMoves = returnMoveArray(fengMoveNames);
