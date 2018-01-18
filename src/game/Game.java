@@ -76,12 +76,11 @@ import states.StressEatsState;
 		handler = new Handler(this);
 		gameCamera = new GameCamera(handler, 0, 0);
 
-		catchBusState = new CatchBusState(handler);
-		catchBus = new CatchBus(handler);
-		
+		catchBusState = new CatchBusState(handler);		
 		mathContestState = new MathContestState(handler);
 		beepTestState = new BeepTestState(handler);
 		stressEatsState = new StressEatsState(handler);
+		
 		settingsState = new SettingsState(handler);
 		gameState = new GameState(handler);
 		menuState = new MenuState(handler);
