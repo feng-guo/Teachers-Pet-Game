@@ -36,7 +36,7 @@ public class ListOfInventoryItems {
         itemList.add(new HealItem("Sushi", "Fully restores health and cures status","Full restore", 0));
         itemList.add(new HealItem("Chicken nuggets (20pc)", "Revives a pokemon with half their max health","Half revive", 0));
         itemList.add(new HealItem("Chicken nuggets (50pc)", "Revives a pokemon with their max health","Full revive", 0));
-        //capture itemss
+        //capture items
         itemList.add(new CaptureItem("Aced test", "80% chance of attracting a playable character onto your team",0.8));
         itemList.add(new CaptureItem("Aced quiz", "50% chance of attracting a playable character onto your team",0.5));
         itemList.add(new CaptureItem("\"Carry\" on project", "75% chance of attracting a playable character onto your team",0.75));
