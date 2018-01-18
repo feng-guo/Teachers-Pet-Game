@@ -503,20 +503,20 @@ public class Battle {
       PlayableCharacter character = squad.getCharacter(i);
       characterStrings[i] = character.getName() + " " + character.getCurrentHealth() + "/" + character.getInitialHealth();
     }
-    if (forceSwitchCharacterPhase) {
-      return;
-    } else {
-      playerPickCharacterPhase = true;
-    }
+    //I don't think I ever use this ^^
+    playerPickCharacterPhase = true;
   }
 
   public void playerPickCharacter(int choice) {
-    if (squad.getCharacter(choice - 1).getCurrentHealth() > 0) {
-      changeCharacter(squad.getCharacter(choice - 1));
+    if (squad.getCharacter(choice).getCurrentHealth() > 0) {
+      changeCharacter(squad.getCharacter(choice));
       playerSwitchPhase = false;
-      opponentTurn();
-    } else {
-      textArrayList.add("That person is dead");
+      if (!forceSwitchCharacterPhase) {
+        opponentTurn();
+      } else if (forceSwitchCharacterPhase) {
+        forceSwitchCharacterPhase = false;
+        goBackInMenu();
+      }
     }
   }
 
@@ -603,10 +603,10 @@ public class Battle {
     battleTurns++;
     textArrayList.add("");
     if (!battleEnd && playerCurrentHealth == 0) {
+      goBackInMenu();
       forceSwitchCharacterPhase = true;
-      playerSwitchCharacter();
-    }
-    if (!battleEnd) {
+      runBattleTurn(3);
+    } else if (!battleEnd) {
       goBackInMenu();
     }
   }
@@ -614,16 +614,6 @@ public class Battle {
   public void setBattleEnd(boolean battleEnd) {
 	this.battleEnd = battleEnd;
 }
-
-public void forceSwitchCharacter(int choice) {
-    if (squad.getCharacter(choice - 1).getCurrentHealth() > 0) {
-      changeCharacter(squad.getCharacter(choice - 1));
-      forceSwitchCharacterPhase = false;
-    } else {
-      textArrayList.add("That person is dead");
-      squad.displaySquad();
-    }
-  }
 
   //Calculations
   private int determineOrder(Move playerMove, Move opponentMove) {
@@ -1166,20 +1156,20 @@ public void forceSwitchCharacter(int choice) {
       }
     }
 
-    double determineAddtionalHit = Math.random();
+    double determineAdditionalHit = Math.random();
     if (attacker == 1) {
       if (opponentAbility.equals("Extreme Luck")) {
-        determineAddtionalHit /= 2;
+        determineAdditionalHit /= 2;
       }
     } else if (attacker == -1) {
       if (opponentAbility.equals("Extreme Luck")) {
-        determineAddtionalHit /= 2;
+        determineAdditionalHit /= 2;
       }
     }
 
     if (move.getAdditionalEffect() != null) {
       Move additionalEffect = move.getAdditionalEffect();
-      if (determineAddtionalHit < additionalEffect.getHitChance()) {
+      if (determineAdditionalHit < additionalEffect.getHitChance()) {
         if (additionalEffect instanceof HealthMove) {
           healthMove((HealthMove) additionalEffect, attacker);
         } else if (additionalEffect instanceof StatChangeMove) {
@@ -1219,18 +1209,7 @@ public void forceSwitchCharacter(int choice) {
     if (determineHit < move.getHitChance()) {
       //Checks hit chance
       if (attacker < 0) {
-        if (!opponentProtected) {
-          opponentStatus = move.getStatusEffect();
-          if (move.getStatusEffect().equals("Sleep")) {
-            textArrayList.add(opponentName + " fell asleep.");
-          } else {
-            textArrayList.add(opponentName +" was " + move.getStatusEffect() + "ed.");
-          }
-        } else {
-          textArrayList.add(opponentName + " protected");
-        }
-      } else if (attacker > 0){
-        if (!playerProtected) {
+        if (move.getTarget().equals("Self")) {
           player.setStatus(move.getStatusEffect());
           playerStatus = player.getStatus();
           if (move.getStatusEffect().equals("Sleep")) {
@@ -1238,8 +1217,38 @@ public void forceSwitchCharacter(int choice) {
           } else {
             textArrayList.add(playerName + " was " + move.getStatusEffect() + "ed.");
           }
-        } else {
-          textArrayList.add(playerName + " protected");
+        } else if (move.getTarget().equals("Opponent")) {
+          if (!opponentProtected) {
+            opponentStatus = move.getStatusEffect();
+            if (move.getStatusEffect().equals("Sleep")) {
+              textArrayList.add(opponentName + " fell asleep.");
+            } else {
+              textArrayList.add(opponentName + " was " + move.getStatusEffect() + "ed.");
+            }
+          } else {
+            textArrayList.add(opponentName + " protected.");
+          }
+        }
+      } else if (attacker > 0) {
+        if (move.getTarget().equals("Self")) {
+          opponentStatus = move.getStatusEffect();
+          if (move.getStatusEffect().equals("Sleep")) {
+            textArrayList.add(opponentName + " fell asleep.");
+          } else {
+            textArrayList.add(opponentName + " was " + move.getStatusEffect() + "ed.");
+          }
+        } else if (move.getTarget().equals("Opponent")) {
+          if (!playerProtected) {
+            player.setStatus(move.getStatusEffect());
+            playerStatus = player.getStatus();
+            if (move.getStatusEffect().equals("Sleep")) {
+              textArrayList.add(playerName + " fell asleep.");
+            } else {
+              textArrayList.add(playerName + " was " + move.getStatusEffect() + "ed.");
+            }
+          } else {
+            textArrayList.add(playerName + " protected.");
+          }
         }
       }
     } else {
@@ -1451,40 +1460,7 @@ public void forceSwitchCharacter(int choice) {
     return opponentStatus;
   }
 
-  public String getPlayerStatus() {
-    return playerStatus;
-  }
-
-  public String getOpponentName() {
-    return opponentName;
-  }
-
-  public String getPlayerName() {
-    return playerName;
-  }
-
-  public void setOutputText(String text) {
-	  this.outputText = outputText + "\n" + text;
-  }
-
-  public String getOutputText() {
-	  return outputText;
-  }
-
-  public int determineAnswer(Handler handler) {
-	if (handler.getKeyManager().first) {
-		return 1;
-	} else if (handler.getKeyManager().second) {
-		return 2;
-	} else if (handler.getKeyManager().third) {
-		return 3;
-	} else if (handler.getKeyManager().fourth) {
-		return 4;
-	}
-	return 0;
-  }
-
-  public void HP(PlayableCharacter player, HealItem item){
+  private void HP(PlayableCharacter player, HealItem item){
     if(playerHealth - player.getCurrentHealth() >= item.getChange()) {
       player.changeCurrentHealth(item.getChange());
     }else{
@@ -1493,14 +1469,14 @@ public void forceSwitchCharacter(int choice) {
     playerCurrentHealth = player.getCurrentHealth();
   }
 
-  public void cureStatus(PlayableCharacter player, HealItem item){
+  private void cureStatus(PlayableCharacter player, HealItem item){
       if(item.getType().equals(playerStatus)){
           player.resetStatus();
           playerStatus = player.getStatus();
       }
   }
 
-  public void revive(PlayableCharacter player, HealItem item){
+  private void revive(PlayableCharacter player, HealItem item){
     if (player.isFainted()) {
       if(item.getType().equals("Half revive")) {
         player.setCurrentHealth(playerHealth/2);
@@ -1513,7 +1489,7 @@ public void forceSwitchCharacter(int choice) {
     }
   }
 
-  public void useStatItem(PlayableCharacter player, StatItem item){
+  private void useStatItem(PlayableCharacter player, StatItem item){
       if(item.getStatAffected().equals("Speed")){
           playerSpeed *= item.getMultiplier();
       }else if(item.getStatAffected().equals("Attack")){

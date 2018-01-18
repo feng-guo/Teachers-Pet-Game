@@ -264,7 +264,7 @@ public class BattleState extends State{
 		}
 
 
-		if (battleTest.getBattle().isOpponentAbilityTriggered() == true) {
+		if (battleTest.getBattle().isOpponentAbilityTriggered()) {
 			//System.out.println("Currently returns: True");
 			g.drawImage(shake.getCurrentFrame(), 390, 20, 120, 150, null);
 		} else {
