@@ -31,7 +31,8 @@ public class BattleState extends State{
 		//handler.setWorld(null);
 		battleTest = new BattleRunner();
 
-		shake = new Animation(300, Assets.player_down);
+		shake = null;
+//		shake = new Animation(300, battleTest.getOpponent().getSprites());
 		menu[0][0] = false;
 		menu[0][1] = false;
 		menu[1][0] = false;
@@ -48,12 +49,11 @@ public class BattleState extends State{
 
 	@Override
 	public void tick() {
+		if (shake == null) {
+			shake = new Animation(300, battleTest.getOpponent().getSprites());
+		}
 		shake.tick();
 
-		// if (battleTest.isBattleEnd()) {
-		// 	State.setState(handler.getGame().getGameState());
-		// 	return;
-		// }
 		if (!battleTest.battleStart) {
 			return;
 		}
@@ -264,11 +264,11 @@ public class BattleState extends State{
 		}
 
 
-		if (battleTest.getBattle().isOpponentAbilityTriggered()) {
+		if (battleTest.isPlayerAttacked()) {
 			//System.out.println("Currently returns: True");
 			g.drawImage(shake.getCurrentFrame(), 390, 20, 120, 150, null);
 		} else {
-			g.drawImage(Assets.player_down[0], 390, 20, 120, 150, null);
+			g.drawImage(battleTest.getOpponent().getSprite(0), 390, 20, 120, 150, null);
 		}
 
 		g.setColor(Color.BLACK);
@@ -376,6 +376,7 @@ public class BattleState extends State{
 
 				try {
 					g.setColor(Color.BLACK);
+					g.setFont(Assets.font12);
 					g.drawString(battleTest.getSquad().getCharacter(0).getName(), 75, 50);
 					g.drawString(battleTest.getSquad().getCharacter(1).getName(), 365, 50);
 					g.drawString(battleTest.getSquad().getCharacter(2).getName(), 75, 175);
@@ -384,12 +385,30 @@ public class BattleState extends State{
 					g.drawString(battleTest.getSquad().getCharacter(5).getName(), 365, 300);
 				} catch (NullPointerException e) {}
 				try {
-					g.drawImage(Assets.player_down[0], 35, 35, null);
-					g.drawImage(Assets.player_down[0], 325, 35, null);
-					g.drawImage(Assets.player_down[0], 35, 160, null);
-					g.drawImage(Assets.player_down[0], 325, 160, null);
-					g.drawImage(Assets.player_down[0], 35, 285, null);
-					g.drawImage(Assets.player_down[0], 325, 285, null);
+					g.setColor(Color.BLACK);
+					g.setFont(Assets.font12);
+					g.drawString(battleTest.getSquad().getCharacter(0).getCurrentHealth() + "/" + battleTest.getSquad().getCharacter(0).getInitialHealth(), 175, 50);
+					g.drawString(battleTest.getSquad().getCharacter(1).getCurrentHealth() + "/" + battleTest.getSquad().getCharacter(1).getInitialHealth(), 465, 50);
+					g.drawString(battleTest.getSquad().getCharacter(2).getCurrentHealth() + "/" + battleTest.getSquad().getCharacter(2).getInitialHealth(), 175, 175);
+					g.drawString(battleTest.getSquad().getCharacter(3).getCurrentHealth() + "/" + battleTest.getSquad().getCharacter(3).getInitialHealth(), 465, 175);
+					g.drawString(battleTest.getSquad().getCharacter(4).getCurrentHealth() + "/" + battleTest.getSquad().getCharacter(4).getInitialHealth(), 175, 300);
+					g.drawString(battleTest.getSquad().getCharacter(5).getCurrentHealth() + "/" + battleTest.getSquad().getCharacter(5).getInitialHealth(), 465, 300);
+				} catch (NullPointerException e) {};
+				try {
+					g.drawImage(battleTest.getSquad().getCharacter(0).getSprite(0), 35, 35, null);
+					g.drawImage(battleTest.getSquad().getCharacter(1).getSprite(0), 325, 35, null);
+					g.drawImage(battleTest.getSquad().getCharacter(2).getSprite(0), 35, 160, null);
+					g.drawImage(battleTest.getSquad().getCharacter(3).getSprite(0), 325, 160, null);
+					g.drawImage(battleTest.getSquad().getCharacter(4).getSprite(0), 35, 285, null);
+					g.drawImage(battleTest.getSquad().getCharacter(5).getSprite(0), 325, 285, null);
+				} catch (NullPointerException e) {};
+				try {
+					g.drawImage(battleTest.getSquad().getCharacter(0).getSprite(0), 35, 35, null);
+					g.drawImage(battleTest.getSquad().getCharacter(1).getSprite(0), 325, 35, null);
+					g.drawImage(battleTest.getSquad().getCharacter(2).getSprite(0), 35, 160, null);
+					g.drawImage(battleTest.getSquad().getCharacter(3).getSprite(0), 325, 160, null);
+					g.drawImage(battleTest.getSquad().getCharacter(4).getSprite(0), 35, 285, null);
+					g.drawImage(battleTest.getSquad().getCharacter(5).getSprite(0), 325, 285, null);
 				} catch (NullPointerException e) {};
 				
 				g.setColor(new Color(150, 150, 150));
@@ -417,6 +436,10 @@ public class BattleState extends State{
 				}
 			} else if (battleTest.isInventoryChoicePhase()) {
 				//draw inventory
+			}
+			if (battleTest.isBattleEnd()) {
+				State.setState(handler.getGame().getGameState());
+				return;
 			}
 		}
 	}

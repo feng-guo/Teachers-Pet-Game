@@ -36,7 +36,8 @@ public class BattleRunner {
         newSquad[2] = (PlayableCharacter)characterList.returnCharacter("Sihan");
         newSquad[3] = (PlayableCharacter)characterList.returnCharacter("Yash");
         newSquad[4] = (PlayableCharacter)characterList.returnCharacter("Johann");
-        newSquad[5] = (PlayableCharacter)characterList.returnCharacter("Misha");
+        //newSquad[5] = (PlayableCharacter)characterList.returnCharacter("Misha");
+        newSquad[5] = (PlayableCharacter)characterList.returnCharacter("Angela");
         MrChoi = (NonPlayableCharacter)characterList.returnCharacter("Mr.Choi");
         MrShim = (NonPlayableCharacter)characterList.returnCharacter("Mr.Shim");
         MrTimmerman = (NonPlayableCharacter)characterList.returnCharacter("Mr.Timmerman");
@@ -71,8 +72,6 @@ public class BattleRunner {
             battle.playerPickCharacter(choice);
         } else if (battle.isPlayerSwitchPhase()) {
             battle.playerSwitchCharacter();
-        } else if (battle.isPlayerRunPhase()) {
-            battle.playerRun();
         } else if (battle.isPlayerAttackChoicePhase()) {
             battle.playerUseAttack(choice);
         } else if (battle.isPlayerPickAttackPhase()) {
