@@ -37,7 +37,7 @@ public class ListOfCharacters{
         String[] alstonMoveNames = {"Trigonometry Test", "Practice Set", "Chemistry Pun", "Splash Acid"};
         String[] michaelMoveNames = {"Dodge Homework", "Math Angels", "Stack Overflow", "Dissect Frog"};
         String[] msKostanenkoMoveNames = {"Splash Acid", "Teach Stoichiometry", "Titration", "Mark Test"};
-        String[] rosemaryMoveNames = {"Cram", "Dissect Frog", "Drink Bubble Tea", "Splash Acid"};
+        String[] rosemaryMoveNames = {"Cry", "Dissect Frog", "Drink Bubble Tea", "Splash Acid"};
         String[] mrGissingMoveNames = {"Greet", "Clap", "TLAP", "Meter Stick"};
         String[] nikhilMoveNames = {"Cry", "Debate", "Electrocute Paperclip", "Play Clarinet"};
         String[] aaronMoveNames = {"Play Saxophone", "Write Garbage Code", "Burn Piano Book", "Greet"};

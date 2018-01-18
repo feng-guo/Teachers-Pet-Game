@@ -438,14 +438,14 @@ public class Battle {
         if (playerStatus.equals("Sleep") && !(player.getMove(choice -1) instanceof SleepTalkMove)) {
           textArrayList.add(playerName + " is sound asleep.");
         } else if (Math.random() < 0.25 && playerStatus.equals("Stun")){
-          textArrayList.add(playerName + " is stunned! They can't move");
+          textArrayList.add(playerName + " is stunned! They can't move.");
         } else {
           //Player moves if it is not stunned or asleep
-          textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName());
+          textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName() + ".");
           determineAttackType(player.getMove(choice - 1), player);
         }
       } else {
-        textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName());
+        textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName()  + ".");
         determineAttackType(player.getMove(choice - 1), player);
       }
       if (opponentCurrentHealth > 0) {
@@ -456,11 +456,11 @@ public class Battle {
           } else if (Math.random() < 0.25 && opponentStatus.equals("Stun")) {
             textArrayList.add(opponentName + " is stunned! They can't move!");
           } else {
-            textArrayList.add(opponentName + " used " + opponent.getMove(opponentMove).getName());
+            textArrayList.add(opponentName + " used " + opponent.getMove(opponentMove).getName()  + ".");
             determineAttackType(opponent.getMove(opponentMove), opponent);
           }
         } else {
-          textArrayList.add(opponentName + " used " + opponent.getMove(opponentMove).getName());
+          textArrayList.add(opponentName + " used " + opponent.getMove(opponentMove).getName()  + ".");
           determineAttackType(opponent.getMove(opponentMove), opponent);
         }
       } else {
@@ -473,11 +473,11 @@ public class Battle {
         } else if (Math.random() < 0.25 && opponentStatus.equals("Stun")) {
           textArrayList.add(opponentName + " is stunned! They can't move!");
         } else {
-          textArrayList.add(opponentName + " used " + opponent.getMove(opponentMove).getName());
+          textArrayList.add(opponentName + " used " + opponent.getMove(opponentMove).getName()  + ".");
           determineAttackType(opponent.getMove(opponentMove), opponent);
         }
       } else {
-        textArrayList.add(opponentName + " used " + opponent.getMove(opponentMove).getName());
+        textArrayList.add(opponentName + " used " + opponent.getMove(opponentMove).getName()  + ".");
         determineAttackType(opponent.getMove(opponentMove), opponent);
       }
       if (playerCurrentHealth > 0) {
@@ -488,11 +488,11 @@ public class Battle {
             textArrayList.add(playerName + " is stunned! They can't move!");
           } else {
             //Player moves if it is not stunned or asleep
-            textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName());
+            textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName()  + ".");
             determineAttackType(player.getMove(choice - 1), player);
           }
         } else {
-          textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName());
+          textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName()  + ".");
           determineAttackType(player.getMove(choice - 1), player);
         }
       } else {
@@ -584,7 +584,7 @@ public class Battle {
   private void opponentTurn() {
     playerAttacked = false;
     int moveUsed = determineOpponentMove();
-    textArrayList.add(opponentName + " used " + opponent.getMove(moveUsed).getName());
+    textArrayList.add(opponentName + " used " + opponent.getMove(moveUsed).getName()  + ".");
     determineAttackType(opponent.getMove(moveUsed), opponent);
     if (playerCurrentHealth == 0) {
       textArrayList.add(playerName + " fainted!");
@@ -634,10 +634,10 @@ public class Battle {
       numberOfFaintedStudents++;
     }
     if (numberOfFaintedStudents == partySize && opponentCurrentHealth == 0) {
-      textArrayList.add("Everyone died");
+      textArrayList.add("Everyone died.");
       battleEnd = true;
     } else if (numberOfFaintedStudents == partySize) {
-      textArrayList.add("Your party died");
+      textArrayList.add("Your party died.");
       battleEnd = true;
       playerLoses = true;
     } else if (opponentCurrentHealth == 0) {
@@ -764,7 +764,7 @@ public class Battle {
                 determineAttackType(moveUsed, player);
               }
             } while (!attackTrue);
-            textArrayList.add(playerName + " used " + player.getMove(randomMove).getName());
+            textArrayList.add(playerName + " used " + player.getMove(randomMove).getName()  + ".");
           } else {
             textArrayList.add("The move failed!");
           }
