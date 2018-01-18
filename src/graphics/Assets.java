@@ -40,12 +40,12 @@ public class Assets {
 	public static Font font24, font16, font12, font10, font8;
 
 	public static String characterName = "Misha";
-
+	
 	public static void init() {
 		
 		loadFont();
 		loadSprites();
-
+		
 		cars = new BufferedImage[3];
 		cars[0] = ImageLoader.loadImage("/red_car.png");
 		cars[1] = ImageLoader.loadImage("/blue_car.png");

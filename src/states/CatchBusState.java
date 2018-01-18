@@ -73,6 +73,7 @@ public class CatchBusState extends State{
 
     @Override
     public void render(Graphics g) {
+    	g.setFont(Assets.font16);
         //creates background
         //g.setColor(Color.LIGHT_GRAY);
         g.drawImage(Assets.blackBoard, 0, 0, 600, 400, null);
@@ -108,6 +109,8 @@ public class CatchBusState extends State{
         }
         g.setColor(Color.BLACK);
         g.drawRect(560, 85, 20, 300);
+        g.setColor(Color.LIGHT_GRAY);
+        
         g.drawString("Time Left: " + clockTimer, 40, 375);
         g.drawString("Score: " + score, 340, 375);
     }
