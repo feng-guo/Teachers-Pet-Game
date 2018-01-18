@@ -66,13 +66,12 @@ public class BattleRunner {
         double random2 = Math.random();
         System.out.println(random2);
         NonPlayableCharacter opponent;
-        		//opponent = rosemary;
         if (random2 < 0.33) {
             opponent = nikhil;
         } else if (random2 < 0.66) {
-            opponent = nikhil;
+            opponent = aaron;
         } else {
-            opponent = nikhil;
+            opponent = mrGissing;
         }
         battle = new Battle(squad.getCharacter(0), opponent, squad, inventory);
         battleStart = true;
