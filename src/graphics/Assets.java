@@ -41,8 +41,6 @@ public class Assets {
 
 	public static String characterName = "Misha";
 
-	//public static String characterName = "Bill";
-
 	public static void init() {
 		
 		loadFont();
