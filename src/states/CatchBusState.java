@@ -9,103 +9,99 @@ import java.util.concurrent.TimeUnit;
 
 public class CatchBusState extends State{
 
-        private int clockTimer = 60;
-        private int tempTimer = 0;
+    private int clockTimer = 60;
+    private int tempTimer = 0;
 
-        private int x = 300;
-        private int y = 300;
+    private int x = 300;
+    private int y = 300;
+    private Rectangle playerRect;
+    private Rectangle[] tempRect;
+    private boolean[] sendRect;
+    private BufferedImage[] rectPic;
 
-        private Rectangle playerRect;
-        private Rectangle[] tempRect;
-        private boolean[] sendRect;
-        private BufferedImage[] rectPic;
+    private int score = 1000;
+    public CatchBusState(Handler handler) {
+        super(handler);
 
-        private int score = 1000;
+        playerRect = new Rectangle(x, y, 20, 20);
+        tempRect = new Rectangle[200];
+        sendRect = new boolean[200];
+        rectPic = new BufferedImage[200];
 
-        public CatchBusState(Handler handler) {
-            super(handler);
+        for (int i = 0; i < 200; i++) {
+            tempRect[i] = new Rectangle((int)(Math.random()*460), -200 * i, 50, 50);
+            sendRect[i] = false;
+            rectPic[i] = Assets.foodArray[(int)(Math.random()*3)][(int)(Math.random()*4)];
+        }
+    }
 
-            playerRect = new Rectangle(x, y, 20, 20);
-            tempRect = new Rectangle[200];
-            sendRect = new boolean[200];
-            rectPic = new BufferedImage[200];
+    @Override
+    public void tick() {
+        movePosition();
 
-            for (int i = 0; i < 200; i++) {
-                tempRect[i] = new Rectangle((int)(Math.random()*460), -200 * i, 50, 50);
-                sendRect[i] = false;
-                rectPic[i] = Assets.foodArray[(int)(Math.random()*3)][(int)(Math.random()*4)];
-            }
+        playerRect.x = x;
+        playerRect.y = y;
 
+        tempTimer++;
+
+        if (tempTimer % 60 == 0) {
+            clockTimer--;
+        }else if(tempTimer % 20 == 0){
+            sendRect[60 - clockTimer] = true;
         }
 
-        @Override
-        public void tick() {
-            movePosition();
+        if (clockTimer < 1 || score == 0) {
+            handler.getGame().setGameState();
+        }
+    }
 
-            playerRect.x = x;
-            playerRect.y = y;
+    @Override
+    public void render(Graphics g) {
+        boolean hit;
+        g.setColor(new Color(176, 224, 230));
+        g.fillRect(0, 0, 600, 400);
 
-            tempTimer++;
 
-            if (tempTimer % 60 == 0) {
-                clockTimer--;
-            }else if(tempTimer % 20 == 0){
-                sendRect[60 - clockTimer] = true;
+        g.setFont(Assets.font16);
+        g.setColor(Color.red);
+        g.fillRect(playerRect.x - 10, playerRect.y - 10, playerRect.width + 10, playerRect.height + 10);
+
+        //g.fillRect(playerRect.x, playerRect.y, playerRect.width, playerRect.height);
+
+        int tempY = 2 * tempTimer - 200;
+        for (int i = 0; i < 200; i++) {
+            if (sendRect[i]) {
+                g.setColor(Color.red);
+                g.drawImage(rectPic[i], tempRect[i].x, tempY + tempRect[i].y, tempRect[i].width, tempRect[i].height, null);
+                //g.fillRect(tempRect[i].x, 2*tempTimer - 200 + tempRect[i].y, tempRect[i].width, tempRect[i].height);
             }
-
-            if (clockTimer < 1 || score == 0) {
-                handler.getGame().setGameState();
+            if (new Rectangle(tempRect[i].x, tempY + tempRect[i].y, tempRect[i].width, tempRect[i].height).intersects(playerRect)) {
+                g.drawImage(rectPic[i], tempRect[i].x, tempY + tempRect[i].y, tempRect[i].width, tempRect[i].height, null);
             }
         }
-
-        @Override
-        public void render(Graphics g) {
-            boolean hit;
-            g.setColor(new Color(176, 224, 230));
-            g.fillRect(0, 0, 600, 400);
-
-
-            g.setFont(Assets.font16);
-            g.setColor(Color.red);
-            g.fillRect(playerRect.x - 10, playerRect.y - 10, playerRect.width + 10, playerRect.height + 10);
-
-            //g.fillRect(playerRect.x, playerRect.y, playerRect.width, playerRect.height);
-
-            int tempY = 2 * tempTimer - 200;
-            for (int i = 0; i < 200; i++) {
-                if (sendRect[i]) {
-                    g.setColor(Color.red);
-                    g.drawImage(rectPic[i], tempRect[i].x, tempY + tempRect[i].y, tempRect[i].width, tempRect[i].height , null);
-
-                    //g.fillRect(tempRect[i].x, 2*tempTimer - 200 + tempRect[i].y, tempRect[i].width, tempRect[i].height);
-                }
-                if(new Rectangle(tempRect[i].x, tempY + tempRect[i].y, tempRect[i].width, tempRect[i].height).intersects(playerRect)) {
-                    g.drawImage(rectPic[i], tempRect[i].x, tempY + tempRect[i].y, tempRect[i].width, tempRect[i].height , null);
-                    }
-            }
-            //g.setColor(new Color(144, 238, 144));
-           g.setColor(Color.GREEN);
-           if (score > 0) {
-                g.fillRect(560, 85, 20, score/3);
-            } else if (score <= 0) {
-                g.fillRect(560, 85, 20, 900);
-            }
-            g.setColor(Color.BLACK);
-            g.drawRect(560, 85, 20, 300);
-            g.drawString("Time Left: " + clockTimer, 40, 375);
-            g.drawString("Score: " + score, 340, 375);
-            g.drawImage(Assets.foodBanner, 0, 0, null);
+        //g.setColor(new Color(144, 238, 144));
+        g.setColor(Color.GREEN);
+        if (score > 0) {
+            g.fillRect(560, 85, 20, score/3);
+        } else if (score <= 0) {
+            g.fillRect(560, 85, 20, 900);
         }
+        g.setColor(Color.BLACK);
+        g.drawRect(560, 85, 20, 300);
+        g.drawString("Time Left: " + clockTimer, 40, 375);
+        g.drawString("Score: " + score, 340, 375);
+        g.drawImage(Assets.foodBanner, 0, 0, null);
+    }
 
-        public void movePosition() {
-            if (handler.getKeyManager().left) {
-                if (x > 20) {
-                    x -= 10;
-                }
-            } else if (handler.getKeyManager().right) {
-                if (x < 580) {
-                    x += 10;
-                }
+    public void movePosition() {
+        if (handler.getKeyManager().left) {
+            if (x > 20) {
+                x -= 10;
+            }
+        } else if (handler.getKeyManager().right) {
+            if (x < 580) {
+                x += 10;
             }
         }
+    }
 }
