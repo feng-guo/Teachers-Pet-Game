@@ -512,6 +512,7 @@ public class BattleState extends State{
 
 			}
 			if (battleTest.isBattleEnd()) {
+				handler.getGame().setRecentlyPlayed();
 				State.setState(handler.getGame().getGameState());
 				return;
 			}

@@ -25,6 +25,7 @@ import states.StressEatsState;
  public class Game implements Runnable{
 
 	private int width, height;
+	private int recentlyPlayed;
 	private String title;
 	private Display display;
 	
@@ -89,26 +90,30 @@ import states.StressEatsState;
 	}
 	
 	private void tick() {
+		recentlyPlayed++;
 		
 		keyManager.tick();
 		
-		if (State.getState() instanceof GameState) {
+		if (State.getState() instanceof GameState && recentlyPlayed > 120) {
 			// CHANGE TO BATTLE STATE
 			if(handler.getKeyManager().battle && !(State.getState() instanceof BattleState)) {
+				
+				battleState = new BattleState(handler, g);
 				State.setState(battleState);
 				if (!((BattleState) battleState).getBattleTest().isBattleStart()) {
 					startBattle();
 				}
-			} else if (handler.getKeyManager().stressEat) {
-				State.setState(stressEatsState);
+			} else if (handler.getKeyManager().stressEat && !(State.getState() instanceof StressEatsState)) {
+				State.setState(new StressEatsState(handler));
 			} else if (handler.getKeyManager().beepTest) {
-				State.setState(beepTestState);
+				State.setState(new BeepTestState(handler));
 			} else if (handler.getKeyManager().mathContest) {
-				State.setState(mathContestState);
+				State.setState(new MathContestState(handler));
 			} else if (handler.getKeyManager().catchBus) {
-				State.setState(catchBusState);
+				State.setState(new CatchBusState(handler));
 			}
 		}
+		System.out.println(State.getState());
 		if(State.getState() != null) {
 			State.getState().tick();
 		}
@@ -251,6 +256,10 @@ import states.StressEatsState;
 	
 	public State getState() {
 		return State.getState();
+	}
+	
+	public void setRecentlyPlayed() {
+		recentlyPlayed = 0;
 	}
 
 }
