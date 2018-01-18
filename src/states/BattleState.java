@@ -382,14 +382,18 @@ public class BattleState extends State{
 			//g.setFont(new Font("Arial", Font.PLAIN, 20));
 			g.setFont(Assets.font16);
 			if (count/4 < battleTest.getTextArrayList().get(0).length()) {
-				if (battleTest.getTextArrayList().get(0).length() > 30) {
+				if (battleTest.getTextArrayList().get(0).length() > 50) {
+					g.setFont(Assets.font8);
+				} else if (battleTest.getTextArrayList().get(0).length() > 40) {
 					g.setFont(Assets.font10);
 				} else if (battleTest.getTextArrayList().get(0).length() > 25) {
 					g.setFont(Assets.font12);
 				}
 				g.drawString(battleTest.getTextArrayList().get(0).substring(0, count/4), 35, 320);
 			} else {
-				if (battleTest.getTextArrayList().get(0).length() > 30) {
+				if (battleTest.getTextArrayList().get(0).length() > 50) {
+					g.setFont(Assets.font8);
+				} else if (battleTest.getTextArrayList().get(0).length() > 40) {
 					g.setFont(Assets.font10);
 				} else if (battleTest.getTextArrayList().get(0).length() > 25) {
 					g.setFont(Assets.font12);

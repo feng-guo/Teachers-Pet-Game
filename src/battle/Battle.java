@@ -379,6 +379,16 @@ public class Battle {
         opponentStatBoost++;
         textArrayList.add(opponentName + " got a Speed Boost! Their speed increased!");
       }
+      if (playerAbility.equals("Power Boost") && playerStatBoost < 5) {
+        playerAttack *= 2;
+        playerStatBoost++;
+        textArrayList.add(playerName + " got a Power Boost! Their attack increased!");
+      }
+      if (opponentAbility.equals("Power Boost") && opponentStatBoost < 5) {
+        opponentAttack *= 2;
+        opponentStatBoost++;
+        textArrayList.add(opponentName + " got a Power Boost! Their attack increased!");
+      }
     }
     //Displays the health of both opponents. This could be a string output too
     selectionStrings[0] = "Fight";
@@ -631,14 +641,14 @@ public class Battle {
     if (playerCurrentHealth == 0) {
       numberOfFaintedStudents++;
     }
-    if (numberOfFaintedStudents == partySize && opponentCurrentHealth == 0) {
+    if (numberOfFaintedStudents == partySize && opponentCurrentHealth < 1) {
       textArrayList.add("Everyone died.");
       battleEnd = true;
     } else if (numberOfFaintedStudents == partySize) {
       textArrayList.add("Your party died.");
       battleEnd = true;
       playerLoses = true;
-    } else if (opponentCurrentHealth == 0) {
+    } else if (opponentCurrentHealth < 1) {
       textArrayList.add("Great job!");
       textArrayList.add("You passed!");
       battleEnd = true;
