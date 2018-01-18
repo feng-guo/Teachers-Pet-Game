@@ -137,7 +137,7 @@ public class Battle {
     this.playerAbility = player.getAbility();
     
     //Battle number variables
-    this.playerStatBoost = 0;
+    this.playerStatBoost = 0; 
     this.playerStatusTurns = 0;
     this.playerProtectChance = 1.00;
     this.playerFleeChance = 0.25;
@@ -295,7 +295,7 @@ public class Battle {
       return;
     }
     //Turn number output should be its own string
-    turnNumberString = "Turn number " + battleTurns;
+    turnNumberString = "Turn number: " + battleTurns;
 
     if (playerProtected) {
       playerProtectChance /= 2;
@@ -356,12 +356,12 @@ public class Battle {
       if (playerAbility.equals("Speed Boost") && playerStatBoost < 5) {
         playerSpeed *= 2;
         playerStatBoost++;
-        textArrayList.add(playerName + "'s Speed Boost! Their speed increased!");
+        textArrayList.add(playerName + " got a Speed Boost! Their speed increased!");
       }
       if (opponentAbility.equals("Speed Boost") && opponentStatBoost < 5) {
         opponentSpeed *= 2;
         opponentStatBoost++;
-        textArrayList.add(opponentName + "'s Speed Boost! Their speed increased!");
+        textArrayList.add(opponentName + " got a Speed Boost! Their speed increased!");
       }
     }
     //Displays the health of both opponents. This could be a string output too
@@ -433,7 +433,7 @@ public class Battle {
           determineAttackType(opponent.getMove(opponentMove), opponent);
         }
       } else {
-        textArrayList.add(opponentName + "fainted!");
+        textArrayList.add(opponentName + " fainted!");
       }
     } else if (moveFirst == 1) {
       if (opponentStatus != null) {
@@ -561,6 +561,7 @@ public class Battle {
     endTurn();
   }
 
+  
   public void endTurn() {
     if (playerCurrentHealth > 0 && playerHeldItem != null) {
       if (playerHeldItem.getName().equals("Starbucks Card") && playerCurrentHealth != playerHealth) {
@@ -609,7 +610,8 @@ public class Battle {
       battleEnd = true;
       playerLoses = true;
     } else if (opponentCurrentHealth == 0) {
-      textArrayList.add("Good job you passed");
+      textArrayList.add("Great job!");
+      textArrayList.add("You passed!");
       battleEnd = true;
       opponentLoses = true;
     }

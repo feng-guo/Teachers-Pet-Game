@@ -321,15 +321,19 @@ public class BattleState extends State{
 
 			if (y == 0) {
 				if (x == 0) {
-					g.fillRect(22, 312, 5, 5);
+					g.drawImage(Assets.selectionArrow, 36, 309, 10, 10, null);
+					//g.fillRect(40, 312, 5, 5);
 				} else if (x == 1) {
-					g.fillRect(290, 312, 5, 5);
+					g.drawImage(Assets.selectionArrow, 306, 309, 10, 10, null);
+					//g.fillRect(310, 312, 5, 5);
 				}
 			} else if (y == 1) {
 				if (x == 0) {
-					g.fillRect(22, 362, 5, 5);
+					g.drawImage(Assets.selectionArrow, 36, 359, 10, 10, null);
+					//g.fillRect(40, 362, 5, 5);
 				} else if (x == 1) {
-					g.fillRect(290, 362, 5, 5);
+					g.drawImage(Assets.selectionArrow, 306, 359, 10, 10, null);
+					//g.fillRect(310, 362, 5, 5);
 				}
 			}
 		}
@@ -355,12 +359,12 @@ public class BattleState extends State{
 				if (battleTest.getTextArrayList().get(0).length() > 25) {
 					g.setFont(Assets.font12);
 				}
-				g.drawString(battleTest.getTextArrayList().get(0).substring(0, count/4), 25, 320);
+				g.drawString(battleTest.getTextArrayList().get(0).substring(0, count/4), 35, 320);
 			} else {
 				if (battleTest.getTextArrayList().get(0).length() > 25) {
 					g.setFont(Assets.font12);
 				}
-				g.drawString(battleTest.getTextArrayList().get(0), 25, 320);
+				g.drawString(battleTest.getTextArrayList().get(0), 35, 320);
 			}
 		}
 		if (battleTest.getTextArrayList().size() > 0) {
@@ -380,25 +384,25 @@ public class BattleState extends State{
 				} else {
 					g.setFont(Assets.font12);
 				}
-				g.drawString(battleTest.getSelectionStrings(0), 30, 320);
+				g.drawString(battleTest.getSelectionStrings(0), 50, 320);
 				if (battleTest.getSelectionStrings(1).length() > 20) {
 					g.setFont(Assets.font10);
 				} else {
 					g.setFont(Assets.font12);
 				}
-				g.drawString(battleTest.getSelectionStrings(1), 300, 320);
+				g.drawString(battleTest.getSelectionStrings(1), 320, 320);
 				if (battleTest.getSelectionStrings(2).length() > 20) {
 					g.setFont(Assets.font10);
 				} else {
 					g.setFont(Assets.font12);
 				}
-				g.drawString(battleTest.getSelectionStrings(2), 30, 370);
+				g.drawString(battleTest.getSelectionStrings(2), 50, 370);
 				if (battleTest.getSelectionStrings(3).length() > 20) {
 					g.setFont(Assets.font10);
 				} else {
 					g.setFont(Assets.font12);
 				}
-				g.drawString(battleTest.getSelectionStrings(3), 300, 370);
+				g.drawString(battleTest.getSelectionStrings(3), 320, 370);
 				
 //				g.setColor(Color.RED);
 //				opponentPercent = battleTest.getOpponent().getCurrentHealth() / battleTest.getOpponent().getInitialHealth();
