@@ -1,8 +1,11 @@
 package game;
 
+import battle.ListOfMoves;
+import characters.ListOfCharacters;
 import graphics.GameCamera;
 import input.KeyManager;
 import input.MouseManager;
+import items.ListOfInventoryItems;
 import states.*;
 import worlds.World;
 
@@ -50,5 +53,17 @@ public class Handler {
 
 	public void setWorld(World world) {
 		this.world = world;
+	}
+
+	public ListOfCharacters getListOfCharacters() {
+		return game.getListOfCharacters();
+	}
+
+	public ListOfInventoryItems getListOfInventoryItems() {
+		return game.getListOfInventoryItems();
+	}
+
+	public ListOfMoves getListOfMoves() {
+		return game.getListOfMoves();
 	}
 }
