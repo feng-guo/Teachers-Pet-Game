@@ -448,9 +448,9 @@ public class Battle {
         if (playerStatus.equals("Sleep") && !(player.getMove(choice - 1) instanceof SleepTalkMove)) {
           textArrayList.add(playerName + " is sound asleep.");
         } else if (Math.random() < 0.25 && playerStatus.equals("Stun")) {
-          textArrayList.add(playerName + " is stunned! They can't move.");
+        	textArrayList.add(playerName + " is stunned! They can't move.");
         } else {
-          //Player moves if it is not stunned or asleep
+        		//Player moves if it is not stunned or asleep
           textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName() + ".");
           determineAttackType(player.getMove(choice - 1), player);
         }

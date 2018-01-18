@@ -18,7 +18,7 @@ public class Assets {
 
 	//public static BufferedImage player_down_1, player_down_2, player_down_3;
 
-	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, 
+	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, gymTile, blackScreen,
 	floor, wall, blackBlock, battleBackground, characterSelect, hallFloor, locker, lockerTop, stairs,
 	openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench, 
 	hallCouch, hallChairLowLeft, hallChairLowRight, hallChairLowUp, hallChairHigh, hallTableLow, hallTableHigh,
@@ -35,17 +35,21 @@ public class Assets {
 								sihan_down, sihan_up, sihan_left, sihan_right,
 								yash_down, yash_up, yash_left, yash_right;
 								
-	public static BufferedImage[] logo;
+	public static BufferedImage[] logo, cars;
 	public static BufferedImage[][] tileArray, foodArray;
 	public static Font font24, font16, font12, font10, font8;
-	
-	public static String characterName = "Bill";
+
+	public static String characterName = "Misha";
 
 	public static void init() {
 		
 		loadFont();
 		loadSprites();
-
+		
+		cars = new BufferedImage[3];
+		cars[0] = ImageLoader.loadImage("/red_car.png");
+		cars[1] = ImageLoader.loadImage("/blue_car.png");
+		cars[2] = ImageLoader.loadImage("/green_car.jpg");
 
 		
 		SpriteSheet tileSheet = new SpriteSheet(ImageLoader.loadImage("/tile_sheet.png"));
@@ -66,8 +70,8 @@ public class Assets {
 		foodBanner = ImageLoader.loadImage("/foodBanner.png");
 		happyFace = ImageLoader.loadImage("/happyFace.png");
 		sadFace = ImageLoader.loadImage("/sadFace.png");
-		blackBoard = ImageLoader.loadImage("/blackBoard.png");
-		
+		blackBoard = ImageLoader.loadImage("/Indoor_Entities/General_Classroom_Items/Clean_Blackboard.png");
+		blackScreen = ImageLoader.loadImage("/blackBoard.png");
 		
 		battleBackground = ImageLoader.loadImage("/game_background.png");
 
@@ -89,7 +93,6 @@ public class Assets {
 		hallChairLowRight = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Chair_Right.png");
 		hallChairLowLeft = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Chair_Left.png");
 		hallChairLowUp = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Chair_Front.png");
-		hallChairHigh = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/High_Chair.png");
 		hallTableLow = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Table_Low.png");
 		hallTableHigh = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Table_High.png");
 
@@ -101,24 +104,6 @@ public class Assets {
 		cafTableSide = ImageLoader.loadImage ("/Indoor_Entities/Cafeteria/Caf_Table_Long_Left.png");
 		cafTableUp = ImageLoader.loadImage ("/Indoor_Entities/Cafeteria/Caf_Table_Long_Up.png");
 
-		tree = ImageLoader.loadImage("/Outdoor_Entities/Tree.png");
-		wall = ImageLoader.loadImage ("/Indoor_Entities/White_Walls.png");
-
-		locker = ImageLoader.loadImage("/Indoor_Entities/Hallway_Items/Locker.png");
-		indoorWindowOpen = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hallway_Window_Open.png");
-		indoorWindowClosed = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hallway_Window_Closed.png");
-		openDoor = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Open_Door.png");
-		closedDoor = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Closed_Door.png");
-		bench = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Bench.png");
-
-		hallCouch = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Couch.png");
-		hallChairLowRight = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Chair_Right.png");
-		hallChairLowLeft = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Chair_Left.png");
-		hallChairLowUp = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Chair_Front.png");
-		hallChairHigh = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/High_Chair.png");
-		hallTableLow = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Table_Low.png");
-		hallTableHigh = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Table_High.png");
-
 		logo = new BufferedImage[2];
 		logo[0] = ImageLoader.loadImage("/logo_up.png");
 		logo[1] = ImageLoader.loadImage("/logo_down.png");
@@ -128,14 +113,15 @@ public class Assets {
 		//grass_2 = grassSheet.crop(tileWidth, 0, tileWidth, tileHeight);
 		path = grassSheet.crop(0, tileWidth, tileWidth, tileHeight);
 
-		tileArray = new BufferedImage[10][10];
-		for (int i = 0; i < 10; i ++) {
-			for (int j = 0; j < 10; j++) {
+		tileArray = new BufferedImage[60][27];
+		for (int i = 0; i < 60; i ++) {
+			for (int j = 0; j < 27; j++) {
 				tileArray[i][j] = tileSheet.crop(i *(tileWidth + 1), j *(tileHeight + 1), tileWidth, tileHeight);
 			}
 		}
 		rock = tileArray[7][7];
 		blackBlock = tileArray[0][0];
+		gymTile = tileArray [30][2];
 		//hallFloor = tileArray[58][14];
 
 	}

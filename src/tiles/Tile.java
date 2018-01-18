@@ -14,6 +14,7 @@ public class Tile {
 	public static Tile pathTile	= new PathTile(3);
 	public static Tile grassTile = new FloorTile(4);
 	public static Tile wallTile = new WallTile (5);
+	public static Tile gymTile = new GymTile (6);
 
 	// CLASS
 
