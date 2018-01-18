@@ -353,6 +353,22 @@ public class Battle {
           opponentAbilityTriggered = true;
         }
       }
+      if (!playerAbilityTriggered && opponentStatBoost > -5) {
+        if (playerAbility.equals("Friendly")) {
+          opponentDefence /= 2;
+          opponentStatBoost--;
+          textArrayList.add(playerName + " is friendly. " + opponentName + "'s defence fell!");
+          playerAbilityTriggered = true;
+        }
+      }
+      if (!opponentAbilityTriggered && playerStatBoost > -5) {
+        if (opponentAbility.equals("Friendly")) {
+          playerDefence /= 2;
+          playerStatBoost--;
+          textArrayList.add(opponentName + " is friendly. " + playerName + "'s defence fell!");
+          opponentAbilityTriggered = true;
+        }
+      }
       if (playerAbility.equals("Speed Boost") && playerStatBoost < 5) {
         playerSpeed *= 2;
         playerStatBoost++;
@@ -386,6 +402,21 @@ public class Battle {
     runBattleTurn(-10);
   }
 
+  public void runAnotherTurn() {
+    this.playerChoicePhase = true;
+
+    this.playerPickAttackPhase = false;
+    this.playerAttackChoicePhase = false;
+    this.playerSwitchPhase = false;
+    this.playerPickCharacterPhase = false;
+    this.playerInventoryPhase = false;
+    this.playerInventoryChoicePhase = false;
+    if (playerCurrentHealth != 0) {
+      forceSwitchCharacterPhase = false;
+    }
+    runBattleTurn(-2);
+  }
+
   public void playerPickAttack() {
     playerAttackChoicePhase = true;
     playerAttacked = true;
@@ -405,9 +436,9 @@ public class Battle {
     if (moveFirst == -1) {
       if (playerStatus != null) {
         if (playerStatus.equals("Sleep") && !(player.getMove(choice -1) instanceof SleepTalkMove)) {
-          textArrayList.add(playerName + " is asleep!");
+          textArrayList.add(playerName + " is sound asleep.");
         } else if (Math.random() < 0.25 && playerStatus.equals("Stun")){
-          textArrayList.add(playerName + " is stunned!");
+          textArrayList.add(playerName + " is stunned! They can't move");
         } else {
           //Player moves if it is not stunned or asleep
           textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName());
@@ -421,9 +452,9 @@ public class Battle {
         //Can't go if the opponent is dead
         if (opponentStatus != null) {
           if (opponentStatus.equals("Sleep") && !(opponent.getMove(choice -1) instanceof SleepTalkMove)) {
-            textArrayList.add(opponentName + " is asleep!");
+            textArrayList.add(opponentName + " is sound asleep.");
           } else if (Math.random() < 0.25 && opponentStatus.equals("Stun")) {
-            textArrayList.add(opponentName + " is stunned!");
+            textArrayList.add(opponentName + " is stunned! They can't move!");
           } else {
             textArrayList.add(opponentName + " used " + opponent.getMove(opponentMove).getName());
             determineAttackType(opponent.getMove(opponentMove), opponent);
@@ -438,9 +469,9 @@ public class Battle {
     } else if (moveFirst == 1) {
       if (opponentStatus != null) {
         if (opponentStatus.equals("Sleep") && !(opponent.getMove(choice -1) instanceof SleepTalkMove)) {
-          textArrayList.add(opponentName + " is asleep!");
+          textArrayList.add(opponentName + " is sound asleep.");
         } else if (Math.random() < 0.25 && opponentStatus.equals("Stun")) {
-          textArrayList.add(opponentName + " is stunned!");
+          textArrayList.add(opponentName + " is stunned! They can't move!");
         } else {
           textArrayList.add(opponentName + " used " + opponent.getMove(opponentMove).getName());
           determineAttackType(opponent.getMove(opponentMove), opponent);
@@ -452,9 +483,9 @@ public class Battle {
       if (playerCurrentHealth > 0) {
         if (playerStatus != null) {
           if (playerStatus.equals("Sleep") && !(player.getMove(choice -1) instanceof SleepTalkMove)) {
-            textArrayList.add(playerName + " is asleep!");
+            textArrayList.add(playerName + " is sound asleep.");
           } else if (Math.random() < 0.25 && playerStatus.equals("Stun")) {
-            textArrayList.add(playerName + " is stunned!");
+            textArrayList.add(playerName + " is stunned! They can't move!");
           } else {
             //Player moves if it is not stunned or asleep
             textArrayList.add(playerName + " used " + player.getMove(choice - 1).getName());
@@ -531,7 +562,7 @@ public class Battle {
           opponentTurn();
         } else if (forceSwitchCharacterPhase) {
           forceSwitchCharacterPhase = false;
-          goBackInMenu();
+          runAnotherTurn();
         }
       }
     }
@@ -586,16 +617,16 @@ public class Battle {
       }
     }
     if (playerStatus != null && playerCurrentHealth > 0) {
-      if (playerStatus.equals("Burned")) {
+      if (playerStatus.equals("Burn")) {
         burnPerson(player);
-      } else if (playerStatus.equals("Poisoned")) {
+      } else if (playerStatus.equals("Poison")) {
         poisonPerson(player);
       }
     }
     if (opponentStatus != null && opponentCurrentHealth > 0) {
-      if (opponentStatus.equals("Burned")) {
+      if (opponentStatus.equals("Burn")) {
         burnPerson(opponent);
-      } else if (opponentStatus.equals("Poisoned")) {
+      } else if (opponentStatus.equals("Poison")) {
         poisonPerson(opponent);
       }
     }
@@ -643,7 +674,7 @@ public class Battle {
       forceSwitchCharacterPhase = true;
       runBattleTurn(3);
     } else if (!battleEnd) {
-      goBackInMenu();
+      runAnotherTurn();
     }
   }
 
@@ -1257,6 +1288,8 @@ public class Battle {
             playerStatus = player.getStatus();
             if (move.getStatusEffect().equals("Sleep")) {
               textArrayList.add(playerName + " fell asleep.");
+            } else if (move.getStatusEffect().equals("Stun")) {
+              textArrayList.add(playerName + " was stunned! They may not be able to move.");
             } else {
               textArrayList.add(playerName + " was " + move.getStatusEffect() + "ed.");
             }
@@ -1264,6 +1297,8 @@ public class Battle {
             if (attacker != -2) {
               if (move.getStatusEffect().equals("Sleep")) {
                 textArrayList.add(playerName + " is already asleep.");
+              } else if (move.getStatusEffect().equals("Stun")) {
+                textArrayList.add(playerName + " is already stunned.");
               } else {
                 textArrayList.add(playerName + " is already " + move.getStatusEffect() + "ed.");
               }
@@ -1274,6 +1309,8 @@ public class Battle {
             playerStatus = player.getStatus();
             if (move.getStatusEffect().equals("Sleep")) {
               textArrayList.add(playerName + " fell asleep.");
+            } else if (move.getStatusEffect().equals("Stun")) {
+              textArrayList.add(playerName + " was stunned! They may not be able to move.");
             } else {
               textArrayList.add(playerName + " was " + move.getStatusEffect() + "ed.");
             }
@@ -1285,6 +1322,8 @@ public class Battle {
               opponentStatus = move.getStatusEffect();
               if (move.getStatusEffect().equals("Sleep")) {
                 textArrayList.add(opponentName + " fell asleep.");
+              } else if (move.getStatusEffect().equals("Stun")) {
+                textArrayList.add(opponentName + " was stunned! They may not be able to move.");
               } else {
                 textArrayList.add(opponentName + " was " + move.getStatusEffect() + "ed.");
               }
@@ -1292,6 +1331,8 @@ public class Battle {
               if (attacker != -2) {
                 if (move.getStatusEffect().equals("Sleep")) {
                   textArrayList.add(opponentName + " is already asleep.");
+                } else if (move.getStatusEffect().equals("Stun")) {
+                  textArrayList.add(opponentName + " is already stunned.");
                 } else {
                   textArrayList.add(opponentName + " is already " + move.getStatusEffect() + "ed.");
                 }
@@ -1301,6 +1342,8 @@ public class Battle {
               opponentStatus = move.getStatusEffect();
               if (move.getStatusEffect().equals("Sleep")) {
                 textArrayList.add(opponentName + " fell asleep.");
+              } else if (move.getStatusEffect().equals("Stun")) {
+                textArrayList.add(opponentName + " was stunned! They may not be able to move.");
               } else {
                 textArrayList.add(opponentName + " was " + move.getStatusEffect() + "ed.");
               }
@@ -1316,6 +1359,8 @@ public class Battle {
             opponentStatus = move.getStatusEffect();
             if (move.getStatusEffect().equals("Sleep")) {
               textArrayList.add(opponentName + " fell asleep.");
+            } else if (move.getStatusEffect().equals("Stun")) {
+              textArrayList.add(opponentName + " was stunned! They may not be able to move.");
             } else {
               textArrayList.add(opponentName + " was " + move.getStatusEffect() + "ed.");
             }
@@ -1323,6 +1368,8 @@ public class Battle {
             if (attacker != 2) {
               if (move.getStatusEffect().equals("Sleep")) {
                 textArrayList.add(opponentName + " is already asleep.");
+              } else if (move.getStatusEffect().equals("Stun")) {
+                textArrayList.add(opponentName + " is already stunned.");
               } else {
                 textArrayList.add(opponentName + " is already " + move.getStatusEffect() + "ed.");
               }
@@ -1332,6 +1379,8 @@ public class Battle {
             opponentStatus = move.getStatusEffect();
             if (move.getStatusEffect().equals("Sleep")) {
               textArrayList.add(opponentName + " fell asleep.");
+            } else if (move.getStatusEffect().equals("Stun")) {
+              textArrayList.add(opponentName + " was stunned! They may not be able to move.");
             } else {
               textArrayList.add(opponentName + " was " + move.getStatusEffect() + "ed.");
             }
@@ -1344,6 +1393,8 @@ public class Battle {
               playerStatus = player.getStatus();
               if (move.getStatusEffect().equals("Sleep")) {
                 textArrayList.add(playerName + " fell asleep.");
+              } else if (move.getStatusEffect().equals("Stun")) {
+                textArrayList.add(playerName + " was stunned! They may not be able to move.");
               } else {
                 textArrayList.add(playerName + " was " + move.getStatusEffect() + "ed.");
               }
@@ -1351,6 +1402,8 @@ public class Battle {
               if (attacker != 2) {
                 if (move.getStatusEffect().equals("Sleep")) {
                   textArrayList.add(playerName + " is already asleep.");
+                } else if (move.getStatusEffect().equals("Stun")) {
+                  textArrayList.add(playerName + " is already stunned.");
                 } else {
                   textArrayList.add(playerName + " is already " + move.getStatusEffect() + "ed.");
                 }
@@ -1361,6 +1414,8 @@ public class Battle {
               playerStatus = player.getStatus();
               if (move.getStatusEffect().equals("Sleep")) {
                 textArrayList.add(playerName + " fell asleep.");
+              } else if (move.getStatusEffect().equals("Stun")) {
+                textArrayList.add(playerName + " was stunned! They may not be able to move.");
               } else {
                 textArrayList.add(playerName + " was " + move.getStatusEffect() + "ed.");
               }

@@ -234,7 +234,7 @@ public class BattleState extends State{
 		g.drawImage(Assets.battleBackground, 0, 0, null);
 		if (battleTest.getPlayer().getName().length() > 15) {
 			g.setFont(Assets.font10);
-		} else if (battleTest.getPlayer().getName().length() > 10) {
+		} else if (battleTest.getPlayer().getName().length() > 9) {
 			g.setFont(Assets.font12);
 		} else {
 			g.setFont(Assets.font16);
@@ -242,17 +242,17 @@ public class BattleState extends State{
 		g.drawString(battleTest.getPlayer().getName(), 350, 210);
 		if (battleTest.getOpponent().getName().length() > 15) {
 			g.setFont(Assets.font10);
-		} else if (battleTest.getOpponent().getName().length() > 10) {
+		} else if (battleTest.getOpponent().getName().length() > 9) {
 			g.setFont(Assets.font12);
 		} else {
 			g.setFont(Assets.font16);
 		}
-		g.drawString(battleTest.getOpponent().getName(), 50, 70);
+		g.drawString(battleTest.getOpponent().getName(), 45, 70);
 		//g.setFont(new Font("Arial", Font.PLAIN, 17));
 		g.setFont(Assets.font12);
 		g.drawString(Integer.toString(battleTest.getPlayer().getCurrentHealth()), 475, 255);
 		g.drawString(Integer.toString(battleTest.getPlayer().getInitialHealth()), 530, 255);
-		g.drawString(Integer.toString(battleTest.getOpponent().getCurrentHealth()), 50, 90);
+		//g.drawString(Integer.toString(battleTest.getOpponent().getCurrentHealth()), 50, 90);
 		
 		if (opponentPercent > 0.67) {
 			g.setColor(Color.GREEN);
@@ -278,12 +278,38 @@ public class BattleState extends State{
 		//g.drawString("", 200, 50);
 
 		if (battleTest.getPlayer().getStatus() != null) {
+			String toDraw;
 			g.setFont(Assets.font8);
-			g.drawString(battleTest.getPlayer().getStatus(), 350, 255);
+			if (battleTest.getPlayer().getStatus().equals("Sleep")) {
+				toDraw = "SLP";
+				g.drawString(toDraw, 350, 255);
+			} else if (battleTest.getPlayer().getStatus().equals("Stun")) {
+				toDraw = "STN";
+				g.drawString(toDraw, 350, 255);
+			} else if (battleTest.getPlayer().getStatus().equals("Burn")) {
+				toDraw = "BRN";
+				g.drawString(toDraw, 350, 255);
+			} else if (battleTest.getPlayer().getStatus().equals("Poison")) {
+				toDraw = "PSN";
+				g.drawString(toDraw, 350, 255);
+			}
 		}
 		if (battleTest.getOpponentStatus() != null) {
-			//g.setFont(Assets.font8);
-			//g.drawString(battleTest.getOpponentStatus(), 10, 400);
+			String toDraw;
+			g.setFont(Assets.font8);
+			if (battleTest.getOpponentStatus().equals("Sleep")) {
+				toDraw = "SLP";
+				g.drawString(toDraw, 50, 90);
+			} else if (battleTest.getOpponentStatus().equals("Stun")) {
+				toDraw = "STN";
+				g.drawString(toDraw, 50, 90);
+			} else if (battleTest.getOpponentStatus().equals("Burn")) {
+				toDraw = "BRN";
+				g.drawString(toDraw, 50, 90);
+			} else if (battleTest.getOpponentStatus().equals("Poison")) {
+				toDraw = "PSN";
+				g.drawString(toDraw, 50, 90);
+			}
 		}
 
 
@@ -356,12 +382,16 @@ public class BattleState extends State{
 			//g.setFont(new Font("Arial", Font.PLAIN, 20));
 			g.setFont(Assets.font16);
 			if (count/4 < battleTest.getTextArrayList().get(0).length()) {
-				if (battleTest.getTextArrayList().get(0).length() > 25) {
+				if (battleTest.getTextArrayList().get(0).length() > 30) {
+					g.setFont(Assets.font10);
+				} else if (battleTest.getTextArrayList().get(0).length() > 25) {
 					g.setFont(Assets.font12);
 				}
 				g.drawString(battleTest.getTextArrayList().get(0).substring(0, count/4), 35, 320);
 			} else {
-				if (battleTest.getTextArrayList().get(0).length() > 25) {
+				if (battleTest.getTextArrayList().get(0).length() > 30) {
+					g.setFont(Assets.font10);
+				} else if (battleTest.getTextArrayList().get(0).length() > 25) {
 					g.setFont(Assets.font12);
 				}
 				g.drawString(battleTest.getTextArrayList().get(0), 35, 320);
