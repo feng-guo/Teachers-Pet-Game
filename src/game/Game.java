@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
+import battle.ListOfMoves;
+import characters.ListOfCharacters;
 import display.Display;
 import graphics.Assets;
 import graphics.GameCamera;
@@ -12,6 +14,7 @@ import graphics.ImageLoader;
 import graphics.SpriteSheet;
 import input.KeyManager;
 import input.MouseManager;
+import items.ListOfInventoryItems;
 import states.*;
 import states.BattleState;
 import states.BeepTestState;
@@ -54,6 +57,11 @@ import states.StressEatsState;
 		
 	// Handler
 	private Handler handler;
+
+	// Lists of stuff
+	private ListOfCharacters listOfCharacters;
+	private ListOfInventoryItems listOfInventoryItems;
+	private ListOfMoves listOfMoves;
 	
 	public Game(String title, int width, int height) {
 		this.width = width;
@@ -61,6 +69,9 @@ import states.StressEatsState;
 		this.title = title;
 		keyManager = new KeyManager();
 		mouseManager = new MouseManager();
+		listOfCharacters = new ListOfCharacters();
+		listOfInventoryItems = new ListOfInventoryItems();
+		listOfMoves = new ListOfMoves();
 	}
 	
 	private void init() {
@@ -262,4 +273,15 @@ import states.StressEatsState;
 		recentlyPlayed = 0;
 	}
 
-}
+	public ListOfInventoryItems getListOfInventoryItems() {
+		return listOfInventoryItems;
+	}
+
+	public ListOfCharacters getListOfCharacters() {
+		return listOfCharacters;
+	}
+
+	 public ListOfMoves getListOfMoves() {
+		 return listOfMoves;
+	 }
+ }
