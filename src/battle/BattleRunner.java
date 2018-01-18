@@ -22,7 +22,7 @@ public class BattleRunner {
     private PlayableCharacter[] newSquad = new PlayableCharacter[6];
     private NonPlayableCharacter MrChoi, MrShim, MrTimmerman;
     private Squad squad;
-    private boolean battleStart;
+    public boolean battleStart;
     private Battle battle;
     private boolean battleStarted;
 	

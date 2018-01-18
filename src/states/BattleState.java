@@ -13,7 +13,6 @@ public class BattleState extends State{
 
 	private int count = 0;
 
-	private String battleText;
 	private BattleRunner battleTest;
 	private int answer = -1;
 	boolean textLoading = false;
@@ -21,7 +20,9 @@ public class BattleState extends State{
 
 	private boolean menuScreen = false, characterSelectionScreen;
 	private boolean[][] menu = new boolean[2][2];
+	private boolean[][] characterSelection = new boolean[3][2];
 	private int x, y;
+	private boolean cannotSwitchCharacter;
 
 	public BattleState(Handler handler, Graphics g) {
 		super(handler);
@@ -34,20 +35,104 @@ public class BattleState extends State{
 		menu[1][0] = false;
 		menu[1][1] = false;
 
+		characterSelection[0][0] = false;
+		characterSelection[0][1] = false;
+		characterSelection[1][0] = false;
+		characterSelection[1][1] = false;
+		characterSelection[2][0] = false;
+		characterSelection[2][1] = false;
+
 	}
 
 	@Override
 	public void tick() {
 		shake.tick();
-		
-//		try {
-//		if (battleTest.isBattleEnd()) {
-//			State.setState(handler.getGame().getGameState());
-//			return;
-//		}
-//		} catch (NullPointerException e){
-//			e.printStackTrace();
-//		}
+
+		// if (battleTest.isBattleEnd()) {
+		// 	State.setState(handler.getGame().getGameState());
+		// 	return;
+		// }
+		if (!battleTest.battleStart) {
+			return;
+		}
+		if (characterSelectionScreen) {
+			if (handler.getKeyManager().up) {
+				if (y != 0) {
+					characterSelection[y][x] = false;
+					y--;
+					characterSelection[y][x] = true;
+					handler.getKeyManager().up = false;
+				}
+			} else if (handler.getKeyManager().down) {
+				if (y != 2) {
+					characterSelection[y][x] = false;
+					y++;
+					characterSelection[y][x] = true;
+					handler.getKeyManager().down = false;
+				}
+			} else if (handler.getKeyManager().left) {
+				if (x != 0) {
+					characterSelection[y][x] = false;
+					x--;
+					characterSelection[y][x] = true;
+					handler.getKeyManager().left = false;
+				}
+			} else if (handler.getKeyManager().right) {
+				if (x != 1) {
+					characterSelection[y][x] = false;
+					x++;
+					characterSelection[y][x] = true;
+					handler.getKeyManager().right = false;
+				}
+			} else if (handler.getKeyManager().enter) {
+				if (y == 0) {
+					if (x == 0) {
+						answer = 1;
+					} else if (x == 1) {
+						answer = 2;
+					}
+				} else if (y == 1) {
+					if (x == 0) {
+						answer = 3;
+					} else if (x == 1) {
+						answer = 4;
+					}
+				} else if (y == 2) {
+					if (x == 0) {
+						answer = 5;
+					} else if (x == 1) {
+						answer = 6;
+					}
+				}
+				if (battleTest.getSquad().getCharacter(answer) != null) {
+					characterSelectionScreen = false;
+					characterSelection[0][0] = true;
+					characterSelection[0][1] = false;
+					characterSelection[1][0] = false;
+					characterSelection[1][1] = false;
+					characterSelection[2][0] = false;
+					characterSelection[2][1] = false;
+					x = 0;
+					y = 0;
+					handler.getKeyManager().enter = false;
+				} else {
+					System.out.println("Sorry but no");
+				}
+			} else if (handler.getKeyManager().backspace) {
+				answer = 10;
+				characterSelectionScreen = false;
+				characterSelectionScreen = false;
+				characterSelection[0][0] = true;
+				characterSelection[0][1] = false;
+				characterSelection[1][0] = false;
+				characterSelection[1][1] = false;
+				characterSelection[2][0] = false;
+				characterSelection[2][1] = false;
+				x = 0;
+				y = 0;
+				handler.getKeyManager().backspace = false;
+			}
+		}
 		if (!textLoading && !battleTest.getSelectionStrings(0).equals("null")) {
 			if (handler.getKeyManager().up) {
 				if (y != 0) {
@@ -131,6 +216,9 @@ public class BattleState extends State{
 
 	@Override
 	public void render(Graphics g) {
+		if (!battleTest.battleStart) {
+			return;
+		}
 		count++;
 		//g.setFont(new Font("Arial", Font.PLAIN, 20));
 		g.drawImage(Assets.battleBackground, 0, 0, null);
@@ -182,8 +270,22 @@ public class BattleState extends State{
 			menu[0][1] = false;
 			menu[1][0] = false;
 			menu[1][1] = false;
-			x = 0;
-			y = 0;
+			if (!characterSelectionScreen) {
+				x = 0;
+				y = 0;
+			}
+		}
+		if (!characterSelectionScreen) {
+			characterSelection[0][0] = true;
+			characterSelection[0][1] = false;
+			characterSelection[1][0] = false;
+			characterSelection[1][1] = false;
+			characterSelection[2][0] = false;
+			characterSelection[2][1] = false;
+			if (!menuScreen) {
+				x = 0;
+				y = 0;
+			}
 		}
 		if (menuScreen) {
 			if (y == 0) {
@@ -200,8 +302,15 @@ public class BattleState extends State{
 				}
 			}
 		}
-
-			if (battleTest.getTextArrayList().size() > 0) {
+		if (!characterSelectionScreen) {
+			characterSelection[0][0] = true;
+			characterSelection[0][1] = false;
+			characterSelection[1][0] = false;
+			characterSelection[1][1] = false;
+			characterSelection[2][0] = false;
+			characterSelection[2][1] = false;
+		}
+		if (battleTest.getTextArrayList().size() > 0) {
 			textLoading = true;
 			//g.setFont(new Font("Arial", Font.PLAIN, 20));
 			g.setFont(Assets.font16);
@@ -255,6 +364,7 @@ public class BattleState extends State{
 				g.drawString(battleTest.getSelectionStrings(3), 300, 370);
 			} else if (battleTest.isPlayerSwitchPhase()) {
 				menuScreen = false;
+				characterSelectionScreen = true;
 				//Replaces this with an image!!
 
 				g.setColor(Color.BLUE);
@@ -285,7 +395,26 @@ public class BattleState extends State{
 					g.drawImage(Assets.feng_down[0], 35, 285, null);
 					g.drawImage(Assets.feng_down[0], 325, 285, null);
 				} catch (NullPointerException e) {};
-
+				g.setColor(Color.RED);
+				if (y == 0) {
+					if (x == 0) {
+						g.drawRect(20, 25, 270, 100);
+					} else if (x == 1) {
+						g.drawRect(310, 25, 270, 100);
+					}
+				} else if (y == 1) {
+					if (x == 0) {
+						g.drawRect(20, 150, 270, 100);
+					} else if (x == 1) {
+						g.drawRect(310, 150, 270, 100);
+					}
+				} else if (y == 2) {
+					if (x == 0) {
+						g.drawRect(20, 275, 270, 100);
+					} else if (x == 1) {
+						g.drawRect(310, 275, 270, 100);
+					}
+				}
 			} else if (battleTest.isInventoryChoicePhase()) {
 				//draw inventory
 			}
