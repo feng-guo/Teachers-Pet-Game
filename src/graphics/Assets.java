@@ -35,7 +35,7 @@ public class Assets {
 								sihan_down, sihan_up, sihan_left, sihan_right,
 								yash_down, yash_up, yash_left, yash_right;
 								
-	public static BufferedImage[] logo;
+	public static BufferedImage[] logo, cars;
 	public static BufferedImage[][] tileArray, foodArray;
 	public static Font font24, font16, font12, font10, font8;
 	
@@ -46,6 +46,10 @@ public class Assets {
 		loadFont();
 		loadSprites();
 
+		cars = new BufferedImage[3];
+		cars[0] = ImageLoader.loadImage("/red_car.png");
+		cars[1] = ImageLoader.loadImage("/blue_car.png");
+		cars[2] = ImageLoader.loadImage("/green_car.jpg");
 
 		
 		SpriteSheet tileSheet = new SpriteSheet(ImageLoader.loadImage("/tile_sheet.png"));

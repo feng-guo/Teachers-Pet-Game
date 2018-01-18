@@ -15,6 +15,7 @@ public class CatchBusState extends State{
     private Rectangle playerRect;
     private Rectangle[] tempRect;
     private boolean[] sendRect;
+    private BufferedImage[] rectSprite;
     private int score = 400;
 
     public CatchBusState(Handler handler) {
@@ -23,6 +24,7 @@ public class CatchBusState extends State{
         playerRect = new Rectangle(x, y, 67, 100);
         tempRect = new Rectangle[200];
         sendRect = new boolean[200];
+        rectSprite = new BufferedImage[200];
 
         for (int i = 0; i < 200; i++) {
             int determiner = (int)(Math.random() * 3);
@@ -36,6 +38,14 @@ public class CatchBusState extends State{
             }
             tempRect[i] = new Rectangle(X, -500 * i, 67, 100);
             sendRect[i] = false;
+            double tempRand = Math.random();
+            if (tempRand < 0.33) {
+            		rectSprite[i] = Assets.cars[0];
+            } else if (tempRand < 0.66) {
+            		rectSprite[i] = Assets.cars[1];
+            } else {
+            		rectSprite[i] = Assets.cars[2];
+            }
         }
     }
 
@@ -64,19 +74,27 @@ public class CatchBusState extends State{
     @Override
     public void render(Graphics g) {
         //creates background
+        //g.setColor(Color.LIGHT_GRAY);
+        g.drawImage(Assets.blackBoard, 0, 0, 600, 400, null);
+        
         g.setColor(Color.LIGHT_GRAY);
-        g.fillRect(0, 0, 600, 400);
+        
+        for (int i = 0; i < 5; i++) {
+        		g.fillRect(195, 80 * i, 10, 40);
+            g.fillRect(395, 80 * i, 10, 40);
+        }
+        
 
         //create player
         g.setColor(Color.BLACK);
-        g.fillRect(playerRect.x, playerRect.y, playerRect.width, playerRect.height);
+        g.drawImage(Assets.player_up[0], playerRect.x, playerRect.y, playerRect.width, playerRect.height, null);
 
         int tempY;
         for(int i = 0; i < 200; i++){
             tempY = 7 * tempTimer - 800;
             if(sendRect[i]){
                 g.setColor(Color.WHITE);
-                g.fillRect(tempRect[i].x, tempY + tempRect[i].y, tempRect[i].width, tempRect[i].height);
+                g.drawImage(rectSprite[i], tempRect[i].x, tempY + tempRect[i].y, tempRect[i].width, tempRect[i].height, null);
             }
             if(new Rectangle(tempRect[i].x, tempY + tempRect[i].y, tempRect[i].width, tempRect[i].height).intersects(playerRect)){
                 score /= 2;
