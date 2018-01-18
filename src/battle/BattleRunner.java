@@ -37,8 +37,8 @@ public class BattleRunner {
         newSquad[2] = (PlayableCharacter)characterList.returnCharacter("Sihan");
         newSquad[3] = (PlayableCharacter)characterList.returnCharacter("Yash");
         newSquad[4] = (PlayableCharacter)characterList.returnCharacter("Johann");
-        newSquad[5] = (PlayableCharacter)characterList.returnCharacter("Misha");
-        //newSquad[5] = (PlayableCharacter)characterList.returnCharacter("Angela");
+        //newSquad[5] = (PlayableCharacter)characterList.returnCharacter("Misha");
+        newSquad[5] = (PlayableCharacter)characterList.returnCharacter("Angela");
         MrChoi = (NonPlayableCharacter)characterList.returnCharacter("Mr.Choi");
         MrShim = (NonPlayableCharacter)characterList.returnCharacter("Mr.Shim");
         MrTimmerman = (NonPlayableCharacter)characterList.returnCharacter("Mr.Timmerman");
@@ -51,7 +51,7 @@ public class BattleRunner {
         inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
         inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
         inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
-
+    }
 
     public void startRandomBattle() {
         double random2 = Math.random();
