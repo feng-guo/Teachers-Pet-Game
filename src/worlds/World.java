@@ -25,16 +25,18 @@ public class World {
 
 	public World(Handler handler, String path) {
 
-		this.handler = handler;
+		this.handler = handler; 
 		entityManager = new EntityManager(handler, new Player(handler, spawnX * Tile.TILE_WIDTH, spawnY * Tile.TILE_WIDTH));
 
-		loadTopHall();
-
-		//loadBottomHall();
 		
-
-		//loadCafeteria();
-
+		if (path.equals("res/worlds/world1.txt")) {
+			loadTopHall();
+		} else if (path.equals("res/worlds/world2.txt")) {
+			loadBottomHall();
+		} else if (path.equals("res/worlds/cafeteria.txt")) {
+			loadCafeteria();
+		}
+		
 		loadWorld(path);
 
 		entityManager.getPlayer().setX(spawnX);

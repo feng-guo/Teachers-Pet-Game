@@ -97,18 +97,20 @@ import states.StressEatsState;
 		
 		keyManager.tick();
 		
-		// CHANGE TO BATTLE STATE
-		if(handler.getKeyManager().battle && !(State.getState() instanceof BattleState)) {
-			State.setState(battleState);
-			if (!((BattleState) battleState).getBattleTest().isBattleStart()) {
-				startBattle();
+		if (State.getState() instanceof GameState) {
+			// CHANGE TO BATTLE STATE
+			if(handler.getKeyManager().battle && !(State.getState() instanceof BattleState)) {
+				State.setState(battleState);
+				if (!((BattleState) battleState).getBattleTest().isBattleStart()) {
+					startBattle();
+				}
+			} else if (handler.getKeyManager().stressEat) {
+				State.setState(stressEatsState);
+			} else if (handler.getKeyManager().beepTest) {
+				State.setState(beepTestState);
+			} else if (handler.getKeyManager().mathContest) {
+				State.setState(mathContestState);
 			}
-		} else if (handler.getKeyManager().stressEat) {
-			State.setState(stressEatsState);
-		} else if (handler.getKeyManager().beepTest) {
-			State.setState(beepTestState);
-		} else if (handler.getKeyManager().mathContest) {
-			State.setState(mathContestState);
 		}
 		if(State.getState() != null) {
 			State.getState().tick();
@@ -234,8 +236,8 @@ import states.StressEatsState;
 		}
 	}
 
-	public State getGameState() {
-		return gameState;
+	public GameState getGameState() {
+		return (GameState) gameState;
 	}
 	
 	public BattleState getBattleState() {
@@ -253,4 +255,5 @@ import states.StressEatsState;
 	public State getState() {
 		return State.getState();
 	}
+
 }
