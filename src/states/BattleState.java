@@ -106,7 +106,8 @@ public class BattleState extends State{
 				}
 				if (battleTest.getSquad().getCharacter(answer) != null) {
 					characterSelectionScreen = false;
-					characterSelection[0][0] = true;
+					menuScreen = false;
+					characterSelection[0][0] = false;
 					characterSelection[0][1] = false;
 					characterSelection[1][0] = false;
 					characterSelection[1][1] = false;
@@ -121,8 +122,8 @@ public class BattleState extends State{
 			} else if (handler.getKeyManager().backspace) {
 				answer = 10;
 				characterSelectionScreen = false;
-				characterSelectionScreen = false;
-				characterSelection[0][0] = true;
+				menuScreen = false;
+				characterSelection[0][0] = false;
 				characterSelection[0][1] = false;
 				characterSelection[1][0] = false;
 				characterSelection[1][1] = false;
@@ -177,7 +178,7 @@ public class BattleState extends State{
 					}
 				}
 				menuScreen = false;
-				menu[0][0] = true;
+				menu[0][0] = false;
 				menu[0][1] = false;
 				menu[1][0] = false;
 				menu[1][1] = false;
@@ -204,13 +205,17 @@ public class BattleState extends State{
 				count = 100000;
 			}
 			handler.getKeyManager().enter = false;
+			handler.getKeyManager().backspace = false;
 		} else if (textLoading) {
 			//Nothing should happen if the text is currently being displayed
+			handler.getKeyManager().enter = false;
+			handler.getKeyManager().backspace = false;
 			return;
 		} else if (answer != -1) {
-			handler.getKeyManager().enter = false;
 			battleTest.runPhase(answer);
 			answer = -1;
+			handler.getKeyManager().enter = false;
+			handler.getKeyManager().backspace = false;
 		}
 	}
 
@@ -365,17 +370,6 @@ public class BattleState extends State{
 			} else if (battleTest.isPlayerSwitchPhase()) {
 				menuScreen = false;
 				characterSelectionScreen = true;
-				//Replaces this with an image!!
-
-//				g.setColor(Color.BLUE);
-//				g.fillRect(0, 0, 600, 400);
-//				g.setColor(Color.WHITE);
-//				g.fillRect(20, 25, 270, 100);
-//				g.fillRect(310, 25, 270, 100);
-//				g.fillRect(20, 150, 270, 100);
-//				g.fillRect(310, 150, 270, 100);
-//				g.fillRect(20, 275, 270, 100);
-//				g.fillRect(310, 275, 270, 100);
 				g.drawImage(Assets.characterSelect, 0, 0, null);
 
 				try {
@@ -419,31 +413,7 @@ public class BattleState extends State{
 				//draw inventory
 			}
 		}
-
-//		if (answer == 1) {
-//			System.out.println("detected");
-//			System.out.println("What move would you like to use");
-//		}
-//		if (answer == 2) {
-//			System.out.println("Killed");
-//			System.out.println("What move would you like to use");
-//		}
-//		g.setColor(Color.black);
-//		g.fillRect(0, 0, 200, 200);
-//		if(count <= 1) {
-//			battleTest.simulateBattle(g);
-//		}
-
-		//g.setFont(new Font("Arial", Font.PLAIN, 50));
-		//g.drawString(battleText, 10, 60);
-		//g.drawString("display number"+count, 10, 60);
-
-		//System.out.println(battleText);
-
-		//System.out.println("done");
-
 	}
-
 
 	public BattleRunner getBattleTest() {
 		return battleTest;
