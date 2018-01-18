@@ -18,7 +18,7 @@ public class Assets {
 
 	//public static BufferedImage player_down_1, player_down_2, player_down_3;
 
-	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, gymTile,
+	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, gymTile, blackScreen,
 	floor, wall, blackBlock, battleBackground, characterSelect, hallFloor, locker, lockerTop, stairs,
 	openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench, 
 	hallCouch, hallChairLowLeft, hallChairLowRight, hallChairLowUp, hallChairHigh, hallTableLow, hallTableHigh,
@@ -40,7 +40,7 @@ public class Assets {
 	public static Font font24, font16, font12, font10, font8;
 
 	public static String characterName = "Misha";
-	
+
 	public static void init() {
 		
 		loadFont();
@@ -71,7 +71,7 @@ public class Assets {
 		happyFace = ImageLoader.loadImage("/happyFace.png");
 		sadFace = ImageLoader.loadImage("/sadFace.png");
 		blackBoard = ImageLoader.loadImage("/Indoor_Entities/General_Classroom_Items/Clean_Blackboard.png");
-		
+		blackScreen = ImageLoader.loadImage("/blackBoard.png");
 		
 		battleBackground = ImageLoader.loadImage("/game_background.png");
 
@@ -114,14 +114,14 @@ public class Assets {
 		path = grassSheet.crop(0, tileWidth, tileWidth, tileHeight);
 
 		tileArray = new BufferedImage[60][27];
-		for (int i = 0; i < 10; i ++) {
-			for (int j = 0; j < 10; j++) {
+		for (int i = 0; i < 60; i ++) {
+			for (int j = 0; j < 27; j++) {
 				tileArray[i][j] = tileSheet.crop(i *(tileWidth + 1), j *(tileHeight + 1), tileWidth, tileHeight);
 			}
 		}
 		rock = tileArray[7][7];
 		blackBlock = tileArray[0][0];
-		gymTile =  tileArray [29][1];
+		gymTile = tileArray [30][2];
 		//hallFloor = tileArray[58][14];
 
 	}
