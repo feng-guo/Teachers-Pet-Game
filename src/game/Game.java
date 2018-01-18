@@ -83,7 +83,7 @@ public class Game implements Runnable{
 		battleState = new BattleState(handler, g);
 
 
-		State.setState(battleState);
+		State.setState(menuState);
 
 	}
 	
@@ -102,6 +102,8 @@ public class Game implements Runnable{
 			State.setState(stressEatsState);
 		} else if (handler.getKeyManager().beepTest) {
 			State.setState(beepTestState);
+		} else if (handler.getKeyManager().mathContest) {
+			State.setState(mathContestState);
 		}
 		if(State.getState() != null) {
 			State.getState().tick();
@@ -237,5 +239,13 @@ public class Game implements Runnable{
 	
 	public void setGameState() {
 		State.setState(gameState);
+	}
+	
+	public Display getDisplay() {
+		return display;
+	}
+	
+	public State getState() {
+		return State.getState();
 	}
 }

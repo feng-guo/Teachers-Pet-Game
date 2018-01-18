@@ -58,7 +58,7 @@ public class Assets {
 				foodArray[i][j] = foodSheet.crop(i * 128, j * 128, 128, 128);
 			}
 		}
-		
+		 
 		foodBanner = ImageLoader.loadImage("/foodBanner.png");
 		happyFace = ImageLoader.loadImage("/happyFace.png");
 		sadFace = ImageLoader.loadImage("/sadFace.png");
