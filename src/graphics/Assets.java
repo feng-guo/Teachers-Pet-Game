@@ -129,7 +129,7 @@ public class Assets {
 		//hallFloor = tileArray[58][14];
 		
 		
-		gymTile = ImageLoader.loadImage("/gym_tile.jpg");
+		gymTile = ImageLoader.loadImage("/gym_tile.png");
 
 	}
 	

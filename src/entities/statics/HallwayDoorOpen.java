@@ -12,15 +12,21 @@ public class HallwayDoorOpen extends StaticEntity{
 	
 	private Rectangle tempDoorRect;
 	private Rectangle tempPlayerRect;
+	private String worldPath;
+	private int setX, setY;
 
-    public HallwayDoorOpen(Handler handler, float x, float y) {
+    public HallwayDoorOpen(Handler handler, float x, float y, String worldPath, int setX, int setY) {
         super(handler, x, y, (int) (Tile.TILE_WIDTH * 1.25), (int) (Tile.TILE_HEIGHT * 1.75));
-
+        
+        this.worldPath = worldPath;
+        this.setX = setX;
+        this.setY = setY;
+        
         // SPECIFIC TO DOOR
         bounds.x = 0;
         bounds.y = 0;
         bounds.width = 38;
-        bounds.height = 50;
+        bounds.height = 35;
     }
 
     @Override
@@ -31,7 +37,7 @@ public class HallwayDoorOpen extends StaticEntity{
 //    					bounds.width + 2, 
 //    					bounds.height + 2);
     		
-    		tempDoorRect = new Rectangle((int) x, (int) y, width, height);
+    		tempDoorRect = new Rectangle((int) x, (int) y, width, height-12);
     		
     		tempPlayerRect = new Rectangle((int) handler.getWorld().getEntityManager().getPlayer().getX(),
 					(int) handler.getWorld().getEntityManager().getPlayer().getY(),
@@ -39,8 +45,10 @@ public class HallwayDoorOpen extends StaticEntity{
 					(int) handler.getWorld().getEntityManager().getPlayer().getHeight());
     		
     		if (tempDoorRect.intersects(tempPlayerRect)) {
-    			System.out.println("truuuuue");
-    			handler.getGame().getGameState().setCurrentWorld("res/worlds/world2.txt");
+    			handler.getGame().getGameState().setCurrentWorld(worldPath);
+    			handler.getWorld().getEntityManager().getPlayer().setX(setX);
+    			handler.getWorld().getEntityManager().getPlayer().setY(setY);
+
     		}
     }
 

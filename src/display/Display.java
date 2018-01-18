@@ -24,14 +24,14 @@ public class Display {
 	
 	void createDisplay(){
 		frame = new JFrame(title);
-		frame.setUndecorated(true);
+		frame.setUndecorated(false);
 		frame.setSize(width, height);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
+		frame.setResizable(true);
 		frame.setLocationRelativeTo(null);
 		//frame.setBackground(new Color(0, 0, 0, 0));
 		frame.setVisible(true);
-		frame.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width/4, Toolkit.getDefaultToolkit().getScreenSize().height/4);
+		//frame.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width/4, Toolkit.getDefaultToolkit().getScreenSize().height/4);
 
 		
 		//frame.setFocusable(true);

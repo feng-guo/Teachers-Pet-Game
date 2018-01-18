@@ -32,7 +32,7 @@ public class GameState extends State{
 		world2 = new World(handler, "res/worlds/world2.txt");
 		cafeteria = new World(handler, "res/worlds/cafeteria.txt");
 		
-		world = gym;
+		world = cafeteria;
 		
 		handler.setWorld(world);
 				
@@ -52,6 +52,7 @@ public class GameState extends State{
 	}
 	
 	public void setCurrentWorld(String path) {
+		
 		if (path.equals("res/worlds/world1.txt")) {
 			world = world1;
 		} else if (path.equals("res/worlds/world2.txt")) {
@@ -60,6 +61,7 @@ public class GameState extends State{
 			world = cafeteria;
 		}
 		handler.setWorld(world);
+		
 	}
  	
 	

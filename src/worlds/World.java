@@ -175,9 +175,9 @@ public class World {
 		}
 
 		//Doors
-		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10));
-		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 20 - 9), 10));
-		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 30 + 10), 10));
+		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10, "res/worlds/world2.txt", 410, 60));
+		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 20 - 9), 10, "res/worlds/world2.txt", 800, 60));
+		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 30 + 10), 10, "res/worlds/world2.txt", 1217, 90));
 
 		//Hall Library Chairs/Tables
 		entityManager.addEntity(new HallChairLowUp(handler, 828, 343));
@@ -201,7 +201,7 @@ public class World {
 		entityManager.addEntity(new HallTableLow(handler, 600, 400));
 
 		//Stairs
-		entityManager.addEntity(new Stairs(handler, 384, 320));
+		entityManager.addEntity(new Stairs(handler, 384, 320, "res/worlds/world2.txt", 545, 205));
 	}
 	
 	public void loadBottomHall() {
@@ -251,12 +251,12 @@ public class World {
 		}
 
 		//Doors
-        entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10));
-		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 20 - 9), 10));
-		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 31 - 24), 40));
+        entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10, "res/worlds/world1.txt", 400, 60));
+		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 20 - 9), 10, "res/worlds/world1.txt", 800, 60));
+		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 31 - 24), 40, "res/worlds/world1.txt", 1217, 60));
 
 		//Stairs
-        entityManager.addEntity(new Stairs(handler, 576, 193));
+        entityManager.addEntity(new Stairs(handler, 576, 193, "res/worlds/world1.txt", 490, 310));
 	}
 
     public void loadCafeteria() {
@@ -399,7 +399,7 @@ public class World {
 
         //Doors
         entityManager.addEntity(new HallwayDoorClosed(handler, 650, 10));
-        entityManager.addEntity(new HallwayDoorOpen(handler, 950, 10));
+        entityManager.addEntity(new HallwayDoorOpen(handler, 950, 10, "res/worlds/world2.txt", 20, 100));
         entityManager.addEntity(new HallwayDoorClosed(handler, 340, 10));
 
         //Vending machines

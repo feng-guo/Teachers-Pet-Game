@@ -71,7 +71,7 @@ public class NPC extends Creature{
 		
 		
 		
-		Rectangle npcRect = new Rectangle((int) x - 10, (int) y, (int) width + 10, (int) height);
+		Rectangle npcRect = new Rectangle((int) x, (int) y, (int) width, (int) height);
 		Rectangle playerRect = new Rectangle((int) handler.getWorld().getEntityManager().getPlayer().getX(),
 					(int) handler.getWorld().getEntityManager().getPlayer().getY(),
 					(int) handler.getWorld().getEntityManager().getPlayer().getWidth(),

@@ -19,7 +19,7 @@ public class StressEatsState extends State {
 	
 	private Rectangle playerRect;
 	private Rectangle[] tempRect;
-	private boolean[] sendRect;
+	private boolean[] sendRect, caughtRect;
 	private BufferedImage[] rectPic;
 	
 	private int score = 0;
@@ -31,8 +31,10 @@ public class StressEatsState extends State {
 			tempRect = new Rectangle[200];
 			sendRect = new boolean[200];
 			rectPic = new BufferedImage[200];
+			caughtRect = new boolean[200];
 			
 			for (int i = 0; i < 200; i++) {
+				caughtRect[i] = false;
 				tempRect[i] = new Rectangle((int) (Math.random()*460), - 200 * i, 50, 50);
 				sendRect[i] = false;
 				rectPic[i] = Assets.foodArray[(int)(Math.random()*3)][(int)(Math.random()*4)];
@@ -79,7 +81,7 @@ public class StressEatsState extends State {
 		int tempY = 2 * tempTimer - 200;
 		
 		for (int i = 0; i < 200; i++) {
-			if (sendRect[i]) {
+			if (sendRect[i] && !caughtRect[i]) {
 				g.setColor(Color.red);
 				
 				g.drawImage(rectPic[i], tempRect[i].x, tempY + tempRect[i].y, tempRect[i].width, tempRect[i].height , null);
@@ -87,8 +89,8 @@ public class StressEatsState extends State {
 				//g.fillRect(tempRect[i].x, 2*tempTimer - 200 + tempRect[i].y, tempRect[i].width, tempRect[i].height);
 			}
 			if(new Rectangle(tempRect[i].x, tempY + tempRect[i].y, tempRect[i].width, tempRect[i].height).intersects(playerRect)) {
-				
-				g.drawImage(rectPic[i], tempRect[i].x, tempY + tempRect[i].y, tempRect[i].width, tempRect[i].height , null);
+				caughtRect[i] = true;
+				//g.drawImage(rectPic[i], tempRect[i].x, tempY + tempRect[i].y, tempRect[i].width, tempRect[i].height , null);
 				score++;
 			}
 		}

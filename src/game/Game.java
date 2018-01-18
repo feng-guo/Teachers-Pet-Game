@@ -35,7 +35,6 @@ import states.StressEatsState;
 	private Graphics g;
 	
 	// States
-    public State catchBus;
 	public State catchBusState;
 	public State gameState;
 	public State menuState;
@@ -106,6 +105,8 @@ import states.StressEatsState;
 				State.setState(beepTestState);
 			} else if (handler.getKeyManager().mathContest) {
 				State.setState(mathContestState);
+			} else if (handler.getKeyManager().catchBus) {
+				State.setState(catchBusState);
 			}
 		}
 		if(State.getState() != null) {

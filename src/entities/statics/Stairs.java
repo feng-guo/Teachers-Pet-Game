@@ -11,8 +11,10 @@ import tiles.Tile;
 public class Stairs extends StaticEntity{
 	
 	private Rectangle tempStairRect, tempPlayerRect;
+	String worldPath;
+	int setX, setY;
 
-    public Stairs(Handler handler, float x, float y) {
+    public Stairs(Handler handler, float x, float y, String worldPath, int setX, int setY) {
         super(handler, x, y, (int) (Tile.TILE_WIDTH * 3), (int) (Tile.TILE_HEIGHT * 2));
 
         // SPECIFIC TO STAIRS
@@ -20,6 +22,11 @@ public class Stairs extends StaticEntity{
         bounds.y = 0;
         bounds.width = 0;
         bounds.height = 0;
+        
+        this.worldPath = worldPath;
+        this.setX = setX;
+        this.setY = setY;
+        
     }
 
     @Override
@@ -34,9 +41,9 @@ public class Stairs extends StaticEntity{
 		
 		if (tempStairRect.intersects(tempPlayerRect)) {
 			
-			handler.getGame().getGameState().setCurrentWorld("res/worlds/world2.txt");
-			handler.getWorld().getEntityManager().getPlayer().setX(545);
-			handler.getWorld().getEntityManager().getPlayer().setY(205);
+			handler.getGame().getGameState().setCurrentWorld(worldPath);
+			handler.getWorld().getEntityManager().getPlayer().setX(setX);
+			handler.getWorld().getEntityManager().getPlayer().setY(setY);
 
 		}
 
