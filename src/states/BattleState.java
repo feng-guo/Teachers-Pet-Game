@@ -367,16 +367,16 @@ public class BattleState extends State{
 				characterSelectionScreen = true;
 				//Replaces this with an image!!
 
-				g.setColor(Color.BLUE);
-				g.fillRect(0, 0, 600, 400);
-				g.setColor(Color.WHITE);
-				g.fillRect(20, 25, 270, 100);
-				g.fillRect(310, 25, 270, 100);
-				g.fillRect(20, 150, 270, 100);
-				g.fillRect(310, 150, 270, 100);
-				g.fillRect(20, 275, 270, 100);
-				g.fillRect(310, 275, 270, 100);
-				//g.drawImage(Assets.battleBackground, 0, 0, null);
+//				g.setColor(Color.BLUE);
+//				g.fillRect(0, 0, 600, 400);
+//				g.setColor(Color.WHITE);
+//				g.fillRect(20, 25, 270, 100);
+//				g.fillRect(310, 25, 270, 100);
+//				g.fillRect(20, 150, 270, 100);
+//				g.fillRect(310, 150, 270, 100);
+//				g.fillRect(20, 275, 270, 100);
+//				g.fillRect(310, 275, 270, 100);
+				g.drawImage(Assets.characterSelect, 0, 0, null);
 
 				try {
 					g.setColor(Color.BLACK);

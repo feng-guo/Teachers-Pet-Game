@@ -18,7 +18,7 @@ public class Assets {
 	//public static BufferedImage feng_down_1, feng_down_2, feng_down_3;
 
 	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, 
-	floor, wall, blackBlock, battleBackground, hallFloor, locker, lockerTop,
+	floor, wall, blackBlock, battleBackground, characterSelect, hallFloor, locker, lockerTop,
 	openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench, 
 	hallCouch, hallChairLowLeft, hallChairLowRight, hallChairLowUp, hallChairHigh, hallTableLow, hallTableHigh,
 	cafTableUp, cafTableSide,
@@ -59,7 +59,9 @@ public class Assets {
 				foodArray[i][j] = foodSheet.crop(i * 128, j * 128, 128, 128);
 			}
 		}
-		 
+		
+		characterSelect = ImageLoader.loadImage("/playerSelect.png");
+		
 		foodBanner = ImageLoader.loadImage("/foodBanner.png");
 		happyFace = ImageLoader.loadImage("/happyFace.png");
 		sadFace = ImageLoader.loadImage("/sadFace.png");
