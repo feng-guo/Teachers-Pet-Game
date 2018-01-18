@@ -86,7 +86,7 @@ import states.StressEatsState;
 		menuState = new MenuState(handler);
 		battleState = new BattleState(handler, g);
 
-		State.setState(catchBusState);
+		State.setState(menuState);
 	}
 	
 	private void tick() {

@@ -32,7 +32,7 @@ public class GameState extends State{
 		world2 = new World(handler, "res/worlds/world2.txt");
 		cafeteria = new World(handler, "res/worlds/cafeteria.txt");
 		
-		world = world1;
+		world = gym;
 		
 		handler.setWorld(world);
 				
