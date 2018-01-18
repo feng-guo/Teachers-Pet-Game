@@ -3,6 +3,8 @@ package characters;
 import battle.Move;
 import items.*;
 
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author Feng
@@ -27,8 +29,9 @@ public abstract class Character {
     private int[] powerPoints;
 
     private StatItem heldItem;
+    private BufferedImage[] sprites;
 
-    Character(int health, int attack, int intelligence, int defence, int speed, String type, String name, Move[] moveset, String ability, StatItem heldItem) {
+    Character(int health, int attack, int intelligence, int defence, int speed, String type, String name, Move[] moveset, String ability, StatItem heldItem, BufferedImage[] sprites) {
         //Integer variables
         this.initialHealth = health;
         this.currentHealth = health;
@@ -47,6 +50,7 @@ public abstract class Character {
         }
         this.powerPoints = powerPointCounter;
         this.heldItem = heldItem;
+        this.sprites = sprites;
     }
 
     //Changing health
@@ -162,5 +166,15 @@ public abstract class Character {
         return heldItem;
     }
 
+    public BufferedImage getSprite(int index) {
+        if (index < sprites.length) {
+            return sprites[index];
+        } else {
+            return null;
+        }
+    }
 
+    public BufferedImage[] getSprites() {
+        return sprites;
+    }
 }

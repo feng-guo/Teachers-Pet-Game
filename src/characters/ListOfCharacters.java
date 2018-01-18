@@ -1,6 +1,7 @@
 package characters;
 
 import battle.*;
+import graphics.Assets;
 
 import java.util.ArrayList;
 
@@ -36,17 +37,17 @@ public class ListOfCharacters{
         Move[] mrTimmermanMoves = returnMoveArray(mrTimmermanMoveNames);
 
         //List of playable characters
-        characterList.add(new PlayableCharacter(50, 60, 20, 50, 60, "Technology", "Feng", "[description]", fengMoves, "Clown", null, null, null, null, null));
-        characterList.add(new PlayableCharacter(25, 25, 70, 20, 60, "Math", "Joyce", "[description]", joyceMoves, "Persistent", null, null, null, null, null));
-        characterList.add(new PlayableCharacter(20, 20, 65, 60, 35, "English", "Sihan", "[description]", sihanMoves, "Distressed", null, null, null, null, null));
-        characterList.add(new PlayableCharacter(30, 40, 30, 70, 30, "Science", "Yash", "[description]", yashMoves, "Relieve", null, null, null, null, null));
-        characterList.add(new PlayableCharacter(80, 60, 80, 10, 70, "Math", "Johann", "[description]", johannMoves, "Extreme Luck", null, null, null, null, null));
-        characterList.add(new PlayableCharacter(30, 40, 50, 40, 40, "Technology", "Misha", "[description]", mishaMoves, "Avoidant", null, null, null, null, null));
-        characterList.add(new PlayableCharacter(35, 40, 65, 75, 35, "Science", "Angela", "[description]", angelaMoves, "Protective", null, null, null, null, null));
+        characterList.add(new PlayableCharacter(50, 60, 20, 50, 60, "Technology", "Feng", "[description]", fengMoves, "Clown", null, null, null, null, null, Assets.feng_down));
+        characterList.add(new PlayableCharacter(25, 25, 70, 20, 60, "Math", "Joyce", "[description]", joyceMoves, "Persistent", null, null, null, null, null, Assets.joyce_down));
+        characterList.add(new PlayableCharacter(20, 20, 65, 60, 35, "English", "Sihan", "[description]", sihanMoves, "Distressed", null, null, null, null, null, Assets.sihan_down));
+        characterList.add(new PlayableCharacter(30, 40, 30, 70, 30, "Science", "Yash", "[description]", yashMoves, "Relieve", null, null, null, null, null, Assets.yash_down));
+        characterList.add(new PlayableCharacter(80, 60, 80, 10, 70, "Math", "Johann", "[description]", johannMoves, "Extreme Luck", null, null, null, null, null, Assets.johann_down));
+        characterList.add(new PlayableCharacter(30, 40, 50, 40, 40, "Technology", "Misha", "[description]", mishaMoves, "Avoidant", null, null, null, null, null, Assets.misha_down));
+        characterList.add(new PlayableCharacter(35, 40, 65, 75, 35, "Science", "Angela", "[description]", angelaMoves, "Protective", null, null, null, null, null, Assets.angela_down));
         //List of nonplayable characters
-        characterList.add(new NonPlayableCharacter(60, 30, 110, 70, 230, "Math", "Mr.Choi", "perabler", mrChoiMoves, 100, "Speed Boost", null));
-        characterList.add(new NonPlayableCharacter(300, 50, 100, 30, 20, "Math", "Mr.Shim", "Let homework be your guide", mrShimMoves, 100, "Demoralize", null));
-        characterList.add(new NonPlayableCharacter(200, 40, 100, 60, 100, "Math", "Mr.Timmerman", "Focus isn't just the name of a car.", mrTimmermanMoves, 100, "Unaware", null));
+        characterList.add(new NonPlayableCharacter(60, 30, 110, 70, 230, "Math", "Mr.Choi", "perabler", mrChoiMoves, 100, "Speed Boost", null, Assets.bill_down));
+        characterList.add(new NonPlayableCharacter(300, 50, 100, 30, 20, "Math", "Mr.Shim", "Let homework be your guide", mrShimMoves, 100, "Demoralize", null, Assets.bill_down));
+        characterList.add(new NonPlayableCharacter(200, 40, 100, 60, 100, "Math", "Mr.Timmerman", "Focus isn't just the name of a car.", mrTimmermanMoves, 100, "Unaware", null, Assets.bill_down));
     }
 
     private Move[] returnMoveArray(String[] moveNames) {
