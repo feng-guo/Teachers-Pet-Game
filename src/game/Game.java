@@ -86,7 +86,7 @@ import states.StressEatsState;
 		gameState = new GameState(handler);
 		menuState = new MenuState(handler);
 		battleState = new BattleState(handler, g);
-		
+
 		State.setState(menuState);
 
 	}

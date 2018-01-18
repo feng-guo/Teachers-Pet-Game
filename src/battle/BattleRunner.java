@@ -80,7 +80,7 @@ public class BattleRunner {
             battle.useInventoryItem(choice);
         } else if (battle.isPlayerInventoryPhase()) {
             battle.playerPickInventory();
-        } else if (battle.isPlayerChoicePhase()) {
+        } else {
             battle.runBattleTurn(choice);
         }
     }

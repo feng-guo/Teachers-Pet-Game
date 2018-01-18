@@ -289,23 +289,24 @@ public class Battle {
         playerAttacked = false;
       } else if (phase - 1 == 3) {
         playerRun();
-        goBackInMenu();
+        playerChoicePhase = false;
+        playerAttacked = false;
       }
       return;
     }
     //Turn number output should be its own string
     turnNumberString = "Turn number " + battleTurns;
 
+    if (playerProtected) {
+      playerProtectChance /= 2;
+      playerProtected = false;
+    }
+    if (opponentProtected) {
+      opponentProtectChance /= 2;
+      opponentProtected = false;
+    }
     //Protect, status and ability handling
     if (phase != -10) {
-      if (playerProtected) {
-        playerProtectChance /= 2;
-        playerProtected = false;
-      }
-      if (opponentProtected) {
-        opponentProtectChance /= 2;
-        opponentProtected = false;
-      }
       if (playerStatus != null) {
         if (playerStatus.equals("Sleep")) {
           attemptWakeUp(player);
@@ -524,6 +525,7 @@ public class Battle {
       battleEnd = true;
       textArrayList.add("Ran successfully!");
     } else {
+      goBackInMenu();
       textArrayList.add("Could not run!");
       opponentTurn();
     }
