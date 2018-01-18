@@ -7,16 +7,16 @@ import game.Handler;
 import graphics.Assets;
 import tiles.Tile;
 
-public class Vending1 extends StaticEntity{
+public class Stairs extends StaticEntity{
 
-    public Vending1(Handler handler, float x, float y) {
-        super(handler, x, y, (int) (Tile.TILE_WIDTH * 1.25), (int) (Tile.TILE_HEIGHT * 2.25));
+    public Stairs(Handler handler, float x, float y) {
+        super(handler, x, y, (int) (Tile.TILE_WIDTH * 3), (int) (Tile.TILE_HEIGHT * 2));
 
-        // SPECIFIC TO VENDING MACHINE 1
+        // SPECIFIC TO STAIRS
         bounds.x = 0;
-        bounds.y = 10;
-        bounds.width = 35;
-        bounds.height = 40;
+        bounds.y = 0;
+        bounds.width = 0;
+        bounds.height = 0;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class Vending1 extends StaticEntity{
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Assets.vending1, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+        g.drawImage(Assets.stairs, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
         //g.setColor(Color.RED);
         //g.fillRect((int) (x - handler.getGameCamera().getxOffset() + bounds.x), (int) (y - handler.getGameCamera().getyOffset() + bounds.y), bounds.width, bounds.height);
     }

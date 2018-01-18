@@ -18,7 +18,7 @@ public class Assets {
 	//public static BufferedImage player_down_1, player_down_2, player_down_3;
 
 	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, 
-	floor, wall, blackBlock, battleBackground, characterSelect, hallFloor, locker, lockerTop,
+	floor, wall, blackBlock, battleBackground, characterSelect, hallFloor, locker, lockerTop, stairs,
 	openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench, 
 	hallCouch, hallChairLowLeft, hallChairLowRight, hallChairLowUp, hallChairHigh, hallTableLow, hallTableHigh,
 	cafTableUp, cafTableSide, vending1, vending2,
@@ -73,6 +73,7 @@ public class Assets {
 		floor = floorSheet.crop(32 * 8 - 9, 32 * 28 - 3, 32, 32);
 		tree = ImageLoader.loadImage("/Outdoor_Entities/Tree.png");
 		wall = ImageLoader.loadImage ("/Indoor_Entities/White_Walls.png");
+		stairs = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Stairs.png");
 
 		locker = ImageLoader.loadImage("/Indoor_Entities/Hallway_Items/Locker.png");
 		lockerTop = ImageLoader.loadImage("/Indoor_Entities/Hallway_Items/Locker_Top.png");
