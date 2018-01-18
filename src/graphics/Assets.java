@@ -41,13 +41,11 @@ public class Assets {
 
 	public static String characterName = "Misha";
 
-	public static String characterName = "Bill";
-
 	public static void init() {
 		
 		loadFont();
 		loadSprites();
-
+		
 		cars = new BufferedImage[3];
 		cars[0] = ImageLoader.loadImage("/red_car.png");
 		cars[1] = ImageLoader.loadImage("/blue_car.png");
