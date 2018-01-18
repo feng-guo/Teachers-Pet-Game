@@ -13,6 +13,14 @@ import graphics.SpriteSheet;
 import input.KeyManager;
 import input.MouseManager;
 import states.*;
+import states.BattleState;
+import states.BeepTestState;
+import states.GameState;
+import states.MathContestState;
+import states.MenuState;
+import states.SettingsState;
+import states.State;
+import states.StressEatsState;
 
  public class Game implements Runnable{
 
@@ -34,6 +42,7 @@ import states.*;
 	public State battleState;
 	public State stressEatsState;
 	public State beepTestState;
+	public State mathContestState;
 	
 	// Input
 	private KeyManager keyManager;
@@ -67,6 +76,9 @@ import states.*;
 		gameCamera = new GameCamera(handler, 0, 0);
 
 		catchBusState = new CatchBusState(handler);
+		
+		
+		mathContestState = new MathContestState(handler);
 		beepTestState = new BeepTestState(handler);
 		stressEatsState = new StressEatsState(handler);
 		settingsState = new SettingsState(handler);
@@ -94,6 +106,8 @@ import states.*;
 			State.setState(stressEatsState);
 		} else if (handler.getKeyManager().beepTest) {
 			State.setState(beepTestState);
+		} else if (handler.getKeyManager().mathContest) {
+			State.setState(mathContestState);
 		}
 		if(State.getState() != null) {
 			State.getState().tick();
@@ -229,5 +243,13 @@ import states.*;
 	
 	public void setGameState() {
 		State.setState(gameState);
+	}
+	
+	public Display getDisplay() {
+		return display;
+	}
+	
+	public State getState() {
+		return State.getState();
 	}
 }

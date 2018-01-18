@@ -535,7 +535,9 @@ public class Battle {
 
   public void opponentTurn() {
     playerAttacked = false;
-    determineAttackType(opponent.getMove(determineOpponentMove()), opponent);
+    int moveUsed = determineOpponentMove();
+    textArrayList.add(opponentName + " used " + opponent.getMove(moveUsed).getName());
+    determineAttackType(opponent.getMove(moveUsed), opponent);
     endTurn();
   }
 

@@ -45,7 +45,11 @@ public class Squad {
     }
 
     public PlayableCharacter getCharacter(int index) {
-        return squad.get(index);
+        if (index < squad.size() && index > -1) {
+            return squad.get(index);
+        } else {
+            return null;
+        }
     }
 
     public int getSize() {
