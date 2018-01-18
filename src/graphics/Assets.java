@@ -22,8 +22,6 @@ public class Assets {
 	openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench, 
 	hallCouch, hallChairLowLeft, hallChairLowRight, hallChairLowUp, hallChairHigh, hallTableLow, hallTableHigh,
 	cafTableUp, cafTableSide, vending1, vending2,
-	foodBanner, happyFace, sadFace;
-	cafTableUp, cafTableSide,
 	foodBanner, happyFace, sadFace, blackBoard;
 
 	public static BufferedImage[] feng_down, feng_up, feng_left, feng_right, logo;
