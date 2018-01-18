@@ -234,7 +234,7 @@ public class BattleState extends State{
 		g.drawImage(Assets.battleBackground, 0, 0, null);
 		if (battleTest.getPlayer().getName().length() > 15) {
 			g.setFont(Assets.font10);
-		} else if (battleTest.getPlayer().getName().length() > 10) {
+		} else if (battleTest.getPlayer().getName().length() > 9) {
 			g.setFont(Assets.font12);
 		} else {
 			g.setFont(Assets.font16);
@@ -242,12 +242,12 @@ public class BattleState extends State{
 		g.drawString(battleTest.getPlayer().getName(), 350, 210);
 		if (battleTest.getOpponent().getName().length() > 15) {
 			g.setFont(Assets.font10);
-		} else if (battleTest.getOpponent().getName().length() > 10) {
+		} else if (battleTest.getOpponent().getName().length() > 9) {
 			g.setFont(Assets.font12);
 		} else {
 			g.setFont(Assets.font16);
 		}
-		g.drawString(battleTest.getOpponent().getName(), 50, 70);
+		g.drawString(battleTest.getOpponent().getName(), 45, 70);
 		//g.setFont(new Font("Arial", Font.PLAIN, 17));
 		g.setFont(Assets.font12);
 		g.drawString(Integer.toString(battleTest.getPlayer().getCurrentHealth()), 475, 255);
