@@ -67,8 +67,6 @@ public class BattleRunner {
             battle.goBackInMenu();
         } else if (choice == 20) {
             return;
-        } else if (battle.isForceSwitchCharacterPhase()) {
-            battle.forceSwitchCharacter(choice);
         } else if (battle.isPlayerPickCharacterPhase()) {
             battle.playerPickCharacter(choice);
         } else if (battle.isPlayerSwitchPhase()) {
@@ -143,6 +141,10 @@ public class BattleRunner {
 
     public boolean isInventoryChoicePhase() {
 	    return battle.isPlayerInventoryChoicePhase();
+    }
+
+    public boolean isPlayerPickCharacterPhase() {
+	    return battle.isPlayerPickCharacterPhase();
     }
 
     public String getOpponentStatus() {

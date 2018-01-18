@@ -31,7 +31,7 @@ public class NPC extends Creature{
 	private int battlesStarted = 0;
 	private Display battleDisplay;
 	
-	public NPC(Handler handler, String name, int boxSize, float x, float y) {
+	public NPC(Handler handler, BufferedImage[] spriteSet, int boxSize, float x, float y) {
 
 		
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
@@ -47,10 +47,10 @@ public class NPC extends Creature{
 		bounds.height = 20;
 		
 		// Animations
-		animDown = new Animation(100, Assets.feng_down);
-		animUp = new Animation(100, Assets.feng_up);
-		animLeft = new Animation(100, Assets.feng_left);
-		animRight = new Animation(100, Assets.feng_right);
+		animDown = new Animation(100, spriteSet);
+		animUp = new Animation(100, spriteSet);
+		animLeft = new Animation(100, spriteSet);
+		animRight = new Animation(100, spriteSet);
 	}
 
 	@Override
@@ -196,13 +196,13 @@ public class NPC extends Creature{
 			g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 		} else {
 			if(ultimateDir == 1) {
-				g.drawImage(Assets.feng_left[0], (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+				g.drawImage(Assets.player_left[0], (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 			} else if (ultimateDir == 2) {
-				g.drawImage(Assets.feng_right[0], (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+				g.drawImage(Assets.player_right[0], (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 			} else if (ultimateDir == 3) {
-				g.drawImage(Assets.feng_up[0], (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+				g.drawImage(Assets.player_up[0], (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 			} else if (ultimateDir == 4) {
-				g.drawImage(Assets.feng_down[0], (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+				g.drawImage(Assets.player_down[0], (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 			}
 		}
 		
@@ -232,15 +232,15 @@ public class NPC extends Creature{
 			
 			// Keeps them facing the current direction
 			if(direction == 1) {
-				return Assets.feng_left[0];
+				return Assets.player_left[0];
 			} else if (direction == 2) {
-				return Assets.feng_right[0];
+				return Assets.player_right[0];
 			} else if (direction == 3) {
-				return Assets.feng_up[0];
+				return Assets.player_up[0];
 			}
 		}
 		
-		return Assets.feng_down[0];
+		return Assets.player_down[0];
 		
 		
 		

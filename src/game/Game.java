@@ -88,6 +88,8 @@ import states.StressEatsState;
 
 		State.setState(catchBusState);
 
+		State.setState(menuState);
+
 	}
 	
 	

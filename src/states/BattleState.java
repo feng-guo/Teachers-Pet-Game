@@ -1,7 +1,9 @@
 package states;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import battle.BattleRunner;
 import game.Handler;
@@ -29,7 +31,7 @@ public class BattleState extends State{
 		//handler.setWorld(null);
 		battleTest = new BattleRunner();
 
-		shake = new Animation(300, Assets.feng_down);
+		shake = new Animation(300, Assets.player_down);
 		menu[0][0] = false;
 		menu[0][1] = false;
 		menu[1][0] = false;
@@ -87,26 +89,27 @@ public class BattleState extends State{
 			} else if (handler.getKeyManager().enter) {
 				if (y == 0) {
 					if (x == 0) {
-						answer = 1;
+						answer = 0;
 					} else if (x == 1) {
-						answer = 2;
+						answer = 1;
 					}
 				} else if (y == 1) {
 					if (x == 0) {
-						answer = 3;
+						answer = 2;
 					} else if (x == 1) {
-						answer = 4;
+						answer = 3;
 					}
 				} else if (y == 2) {
 					if (x == 0) {
-						answer = 5;
+						answer = 4;
 					} else if (x == 1) {
-						answer = 6;
+						answer = 5;
 					}
 				}
 				if (battleTest.getSquad().getCharacter(answer) != null) {
 					characterSelectionScreen = false;
-					characterSelection[0][0] = true;
+					menuScreen = false;
+					characterSelection[0][0] = false;
 					characterSelection[0][1] = false;
 					characterSelection[1][0] = false;
 					characterSelection[1][1] = false;
@@ -121,8 +124,8 @@ public class BattleState extends State{
 			} else if (handler.getKeyManager().backspace) {
 				answer = 10;
 				characterSelectionScreen = false;
-				characterSelectionScreen = false;
-				characterSelection[0][0] = true;
+				menuScreen = false;
+				characterSelection[0][0] = false;
 				characterSelection[0][1] = false;
 				characterSelection[1][0] = false;
 				characterSelection[1][1] = false;
@@ -177,7 +180,7 @@ public class BattleState extends State{
 					}
 				}
 				menuScreen = false;
-				menu[0][0] = true;
+				menu[0][0] = false;
 				menu[0][1] = false;
 				menu[1][0] = false;
 				menu[1][1] = false;
@@ -204,13 +207,17 @@ public class BattleState extends State{
 				count = 100000;
 			}
 			handler.getKeyManager().enter = false;
+			handler.getKeyManager().backspace = false;
 		} else if (textLoading) {
 			//Nothing should happen if the text is currently being displayed
+			handler.getKeyManager().enter = false;
+			handler.getKeyManager().backspace = false;
 			return;
 		} else if (answer != -1) {
-			handler.getKeyManager().enter = false;
 			battleTest.runPhase(answer);
 			answer = -1;
+			handler.getKeyManager().enter = false;
+			handler.getKeyManager().backspace = false;
 		}
 	}
 
@@ -257,11 +264,11 @@ public class BattleState extends State{
 		}
 
 
-		if (battleTest.getBattle().isOpponentAbilityTriggered() == true) {
-			System.out.println("Currently returns: True");
+		if (battleTest.getBattle().isOpponentAbilityTriggered()) {
+			//System.out.println("Currently returns: True");
 			g.drawImage(shake.getCurrentFrame(), 390, 20, 120, 150, null);
 		} else {
-			g.drawImage(Assets.feng_down[0], 390, 20, 120, 150, null);
+			g.drawImage(Assets.player_down[0], 390, 20, 120, 150, null);
 		}
 
 		g.setColor(Color.BLACK);
@@ -365,18 +372,7 @@ public class BattleState extends State{
 			} else if (battleTest.isPlayerSwitchPhase()) {
 				menuScreen = false;
 				characterSelectionScreen = true;
-				//Replaces this with an image!!
-
-				g.setColor(Color.BLUE);
-				g.fillRect(0, 0, 600, 400);
-				g.setColor(Color.WHITE);
-				g.fillRect(20, 25, 270, 100);
-				g.fillRect(310, 25, 270, 100);
-				g.fillRect(20, 150, 270, 100);
-				g.fillRect(310, 150, 270, 100);
-				g.fillRect(20, 275, 270, 100);
-				g.fillRect(310, 275, 270, 100);
-				//g.drawImage(Assets.battleBackground, 0, 0, null);
+				g.drawImage(Assets.characterSelect, 0, 0, null);
 
 				try {
 					g.setColor(Color.BLACK);
@@ -388,62 +384,42 @@ public class BattleState extends State{
 					g.drawString(battleTest.getSquad().getCharacter(5).getName(), 365, 300);
 				} catch (NullPointerException e) {}
 				try {
-					g.drawImage(Assets.feng_down[0], 35, 35, null);
-					g.drawImage(Assets.feng_down[0], 325, 35, null);
-					g.drawImage(Assets.feng_down[0], 35, 160, null);
-					g.drawImage(Assets.feng_down[0], 325, 160, null);
-					g.drawImage(Assets.feng_down[0], 35, 285, null);
-					g.drawImage(Assets.feng_down[0], 325, 285, null);
+					g.drawImage(Assets.player_down[0], 35, 35, null);
+					g.drawImage(Assets.player_down[0], 325, 35, null);
+					g.drawImage(Assets.player_down[0], 35, 160, null);
+					g.drawImage(Assets.player_down[0], 325, 160, null);
+					g.drawImage(Assets.player_down[0], 35, 285, null);
+					g.drawImage(Assets.player_down[0], 325, 285, null);
 				} catch (NullPointerException e) {};
-				g.setColor(Color.RED);
+				
+				g.setColor(new Color(150, 150, 150));
+				Graphics2D g2 = (Graphics2D) g;
+				g2.setStroke(new BasicStroke(5F));
+				
 				if (y == 0) {
 					if (x == 0) {
-						g.drawRect(20, 25, 270, 100);
+						g2.drawRect(20, 25, 270, 100);
 					} else if (x == 1) {
-						g.drawRect(310, 25, 270, 100);
+						g2.drawRect(310, 25, 270, 100);
 					}
 				} else if (y == 1) {
 					if (x == 0) {
-						g.drawRect(20, 150, 270, 100);
+						g2.drawRect(20, 150, 270, 100);
 					} else if (x == 1) {
-						g.drawRect(310, 150, 270, 100);
+						g2.drawRect(310, 150, 270, 100);
 					}
 				} else if (y == 2) {
 					if (x == 0) {
-						g.drawRect(20, 275, 270, 100);
+						g2.drawRect(20, 275, 270, 100);
 					} else if (x == 1) {
-						g.drawRect(310, 275, 270, 100);
+						g2.drawRect(310, 275, 270, 100);
 					}
 				}
 			} else if (battleTest.isInventoryChoicePhase()) {
 				//draw inventory
 			}
 		}
-
-//		if (answer == 1) {
-//			System.out.println("detected");
-//			System.out.println("What move would you like to use");
-//		}
-//		if (answer == 2) {
-//			System.out.println("Killed");
-//			System.out.println("What move would you like to use");
-//		}
-//		g.setColor(Color.black);
-//		g.fillRect(0, 0, 200, 200);
-//		if(count <= 1) {
-//			battleTest.simulateBattle(g);
-//		}
-
-		//g.setFont(new Font("Arial", Font.PLAIN, 50));
-		//g.drawString(battleText, 10, 60);
-		//g.drawString("display number"+count, 10, 60);
-
-		//System.out.println(battleText);
-
-		//System.out.println("done");
-
 	}
-
 
 	public BattleRunner getBattleTest() {
 		return battleTest;

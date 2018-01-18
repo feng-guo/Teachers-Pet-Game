@@ -27,10 +27,10 @@ public class Player extends Creature{
 		bounds.height = 22;
 		
 		// Animations
-		animDown = new Animation(100, Assets.feng_down);
-		animUp = new Animation(100, Assets.feng_up);
-		animLeft = new Animation(100, Assets.feng_left);
-		animRight = new Animation(100, Assets.feng_right);
+		animDown = new Animation(100, Assets.player_down);
+		animUp = new Animation(100, Assets.player_up);
+		animLeft = new Animation(100, Assets.player_left);
+		animRight = new Animation(100, Assets.player_right);
 
 		
 		
@@ -126,7 +126,7 @@ public class Player extends Creature{
 			return returnStationarySprite(direction);
 		}
 		
-		return Assets.feng_down[0];
+		return Assets.player_down[0];
 		
 		
 		
@@ -134,13 +134,13 @@ public class Player extends Creature{
 	
 	public BufferedImage returnStationarySprite(int direction) {
 		if(direction == 1) {
-			return Assets.feng_left[0];
+			return Assets.player_left[0];
 		} else if (direction == 2) {
-			return Assets.feng_right[0];
+			return Assets.player_right[0];
 		} else if (direction == 3) {
-			return Assets.feng_up[0];
+			return Assets.player_up[0];
 		} else {
-			return Assets.feng_down[0];
+			return Assets.player_down[0];
 		}
 	}
 
