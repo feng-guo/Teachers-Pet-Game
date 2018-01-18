@@ -9,7 +9,7 @@ public class ListOfMoves {
         moveList = new ArrayList<Move>();
         //Basic moves
         Move selfSleep = new StatusMove("SelfSleep", 4.0, "Neutral", "Sleep", 100, 0, "Self");
-        Move randomBurn50 = new StatusMove("randomBurn50", 0.5, "Neutral", "Burn", 100, 0, "Random");
+        Move randomBurn50 = new StatusMove("randomBurn50", 0.5, "Neutral", "Burn", 100, 0, "Random"); //Code in the random!!
         Move opponentBurn75 = new StatusMove("opponentBurn75", 0.75, "Neutral", "Burn", 100, 0, "Opponent");
         Move doubleUserDefence = new StatChangeMove("doubleUserDefence", 4.0, "Neutral", 2, "Defence", 100, 0, "Self");
         Move doubleUserIntelligence = new StatChangeMove("doubleUserIntelligence", 4.0, "Neutral", 2, "Intelligence", 100, 0, "Self");

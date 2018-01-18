@@ -620,6 +620,19 @@ public class Battle {
       opponentStatusTurns++;
     }
     battleTurns++;
+
+    if (!battleEnd) {
+      if (playerAbility.equals("Osmosis")) {
+        if (opponentCurrentHealth == 0) {
+          playerIntelligence *= 2;
+        }
+      }
+      if (opponentAbility.equals("Osmosis")) {
+        if (playerCurrentHealth == 0) {
+          opponentIntelligence *= 2;
+        }
+      }
+    }
     if (!battleEnd && playerCurrentHealth > 0) {
       textArrayList.add("");
     }
@@ -1335,9 +1348,9 @@ public class Battle {
             } else if (playerStatus.equals(move.getStatusEffect())) {
               if (attacker != 2) {
                 if (move.getStatusEffect().equals("Sleep")) {
-                  textArrayList.add(opponentName + " is already asleep.");
+                  textArrayList.add(playerName + " is already asleep.");
                 } else {
-                  textArrayList.add(opponentName + " is already " + move.getStatusEffect() + "ed.");
+                  textArrayList.add(playerName + " is already " + move.getStatusEffect() + "ed.");
                 }
               }
             } else {
