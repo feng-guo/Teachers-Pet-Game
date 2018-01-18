@@ -307,6 +307,9 @@ public class Battle {
     }
     //Protect, status and ability handling
     if (phase != -10) {
+      if (battleTurns == 1) {
+        textArrayList.add(opponent.getSpeech());
+      }
       if (playerStatus != null) {
         if (playerStatus.equals("Sleep")) {
           attemptWakeUp(player);
@@ -318,6 +321,22 @@ public class Battle {
         }
       }
       //Whenever a string needs to be drawn, it should call for a repaint
+      if (!playerAbilityTriggered && opponentStatBoost < 5) {
+        if (playerAbility.equals("Annoying")) {
+          opponentAttack *= 2;
+          opponentStatBoost++;
+          textArrayList.add(playerName + " is annoying! " + opponentName + "'s attack increased!");
+          playerAbilityTriggered = true;
+        }
+      }
+      if (!opponentAbilityTriggered && playerStatBoost < 5) {
+        if (opponentAbility.equals("Annoying")) {
+          playerAttack *= 2;
+          playerStatBoost++;
+          textArrayList.add(opponentName + " is annoying! " + playerName + "'s attack increased!");
+          opponentAbilityTriggered = true;
+        }
+      }
       if (!playerAbilityTriggered && opponentStatBoost > -5) {
         if (playerAbility.equals("Demoralize")) {
           opponentIntelligence /= 2;
