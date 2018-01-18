@@ -264,7 +264,7 @@ public class World {
 	}
 	
 	public void loadTopHall() {
-		//entityManager.addEntity(new NPC(handler, Assets.angela_down, 100, 250, 100));
+		entityManager.addEntity(new NPC(handler, Assets.angela_down, Assets.angela_up, Assets.angela_left, Assets.angela_right, 100, 250, 100));
 		//entityManager.addEntity(new Tree(handler, 100, 250));
 
 		//HALLWAY
