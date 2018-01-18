@@ -21,7 +21,7 @@ public class Assets {
 	floor, wall, blackBlock, battleBackground, characterSelect, hallFloor, locker, lockerTop,
 	openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench, 
 	hallCouch, hallChairLowLeft, hallChairLowRight, hallChairLowUp, hallChairHigh, hallTableLow, hallTableHigh,
-	cafTableUp, cafTableSide,
+	cafTableUp, cafTableSide, vending1, vending2,
 	foodBanner, happyFace, sadFace, blackBoard;
 
 	public static BufferedImage[] player_down, player_up, player_left, player_right,
@@ -89,6 +89,11 @@ public class Assets {
 		hallChairHigh = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/High_Chair.png");
 		hallTableLow = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Table_Low.png");
 		hallTableHigh = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Table_High.png");
+
+		cafTableSide = ImageLoader.loadImage ("/textures/Indoor_Entities/Cafeteria/Caf_Table_Long_Left.png");
+		cafTableUp = ImageLoader.loadImage ("/textures/Indoor_Entities/Cafeteria/Caf_Table_Long_Up.png");
+		vending1 = ImageLoader.loadImage ("/textures/Indoor_Entities/Cafeteria/Vending1.png");
+		vending2 = ImageLoader.loadImage ("/textures/Indoor_Entities/Cafeteria/Vending2.png");
 
 		cafTableSide = ImageLoader.loadImage ("/Indoor_Entities/Cafeteria/Caf_Table_Long_Left.png");
 		cafTableUp = ImageLoader.loadImage ("/Indoor_Entities/Cafeteria/Caf_Table_Long_Up.png");

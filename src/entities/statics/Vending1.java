@@ -7,15 +7,15 @@ import game.Handler;
 import graphics.Assets;
 import tiles.Tile;
 
-public class CafTableUp extends StaticEntity{
+public class Vending1 extends StaticEntity{
 
-    public CafTableUp(Handler handler, float x, float y) {
-        super(handler, x, y, (int) (Tile.TILE_WIDTH * 2), (int) (Tile.TILE_HEIGHT * 1));
+    public Vending1(Handler handler, float x, float y) {
+        super(handler, x, y, (int) (Tile.TILE_WIDTH * 1.25), (int) (Tile.TILE_HEIGHT * 2.25));
 
-        // SPECIFIC TO CAFE TABLE UP
+        // SPECIFIC TO LOCKER
         bounds.x = 0;
-        bounds.y = 0;
-        bounds.width = 60;
+        bounds.y = 10;
+        bounds.width = 35;
         bounds.height = 40;
     }
 
@@ -26,10 +26,9 @@ public class CafTableUp extends StaticEntity{
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Assets.cafTableUp, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+        g.drawImage(Assets.vending1, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
         //g.setColor(Color.RED);
         //g.fillRect((int) (x - handler.getGameCamera().getxOffset() + bounds.x), (int) (y - handler.getGameCamera().getyOffset() + bounds.y), bounds.width, bounds.height);
     }
 
 }
-

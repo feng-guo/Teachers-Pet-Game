@@ -106,7 +106,7 @@ public class Battle {
   private String[] selectionStrings;
   private String[] characterStrings; //Used for switching out
 
-  private boolean playerChoicePhase, playerPickAttackPhase, playerAttackChoicePhase, playerSwitchPhase, playerPickCharacterPhase, playerInventoryPhase, playerInventoryChoicePhase, playerRunPhase, playerInputPhase, playerEndPhase;
+  private boolean playerChoicePhase, playerPickAttackPhase, playerAttackChoicePhase, playerSwitchPhase, playerPickCharacterPhase, playerInventoryPhase, playerInventoryChoicePhase, playerRunPhase, playerEndPhase;
   private boolean forceSwitchCharacterPhase;
   private ArrayList<String> textArrayList = new ArrayList<>();
 
@@ -212,7 +212,6 @@ public class Battle {
     selectionStrings[3] = "null";
 
     this.playerChoicePhase = true;
-    this.playerInputPhase = true;
     this.playerPickAttackPhase = false;
     this.playerAttackChoicePhase = false;
     this.playerSwitchPhase = false;
@@ -271,8 +270,6 @@ public class Battle {
       useStatItem(player, playerShoesItem);
     }
   }
-
-  private int drawX, drawY;
   
   public void runBattleTurn(int phase) {
     if (phase > 0) {
@@ -299,57 +296,56 @@ public class Battle {
       }
       return;
     }
-    drawX = 20;
-    drawY = 20;
     //Turn number output should be its own string
     turnNumberString = "Turn number " + battleTurns;
 
     //Protect, status and ability handling
-    //Maybe move to outside of this method?
-    if (playerProtected) {
-      playerProtectChance /= 2;
-      playerProtected = false;
-    }
-    if (opponentProtected) {
-      opponentProtectChance /= 2;
-      opponentProtected = false;
-    }
-    if (playerStatus != null) {
-      if (playerStatus.equals("Sleep")) {
-        attemptWakeUp(player);
+    if (phase != -10) {
+      if (playerProtected) {
+        playerProtectChance /= 2;
+        playerProtected = false;
       }
-    }
-    if (opponentStatus != null) {
-      if (opponentStatus.equals("Sleep")) {
-        attemptWakeUp(opponent);
+      if (opponentProtected) {
+        opponentProtectChance /= 2;
+        opponentProtected = false;
       }
-    }
-    //Whenever a string needs to be drawn, it should call for a repaint
-    if (!playerAbilityTriggered && opponentStatBoost > -5) {
-      if (playerAbility.equals("Demoralize")) {
-        opponentIntelligence /= 2;
-        opponentStatBoost--;
-        textArrayList.add(opponentName + " is demoralized. \n Their intelligence fell!");
-        playerAbilityTriggered = true;
+      if (playerStatus != null) {
+        if (playerStatus.equals("Sleep")) {
+          attemptWakeUp(player);
+        }
       }
-    }
-    if (!opponentAbilityTriggered && playerStatBoost > -5) {
-      if (opponentAbility.equals("Demoralize")) {
-        playerIntelligence /= 2;
-        playerStatBoost--;
-        textArrayList.add(playerName + " is demoralized. \n Their intelligence fell!");
-        opponentAbilityTriggered = true;
+      if (opponentStatus != null) {
+        if (opponentStatus.equals("Sleep")) {
+          attemptWakeUp(opponent);
+        }
       }
-    }
-    if (playerAbility.equals("Speed Boost") && playerStatBoost < 5) {
-      playerSpeed *= 2;
-      playerStatBoost++;
-      textArrayList.add(playerName + "'s Speed Boost! \n Their speed increased!");
-    }
-    if (opponentAbility.equals("Speed Boost") && opponentStatBoost < 5) {
-      opponentSpeed *= 2;
-      opponentStatBoost++;
-      textArrayList.add(opponentName + "'s Speed Boost! \n Their speed increased!");
+      //Whenever a string needs to be drawn, it should call for a repaint
+      if (!playerAbilityTriggered && opponentStatBoost > -5) {
+        if (playerAbility.equals("Demoralize")) {
+          opponentIntelligence /= 2;
+          opponentStatBoost--;
+          textArrayList.add(opponentName + " is demoralized. \n Their intelligence fell!");
+          playerAbilityTriggered = true;
+        }
+      }
+      if (!opponentAbilityTriggered && playerStatBoost > -5) {
+        if (opponentAbility.equals("Demoralize")) {
+          playerIntelligence /= 2;
+          playerStatBoost--;
+          textArrayList.add(playerName + " is demoralized. \n Their intelligence fell!");
+          opponentAbilityTriggered = true;
+        }
+      }
+      if (playerAbility.equals("Speed Boost") && playerStatBoost < 5) {
+        playerSpeed *= 2;
+        playerStatBoost++;
+        textArrayList.add(playerName + "'s Speed Boost! \n Their speed increased!");
+      }
+      if (opponentAbility.equals("Speed Boost") && opponentStatBoost < 5) {
+        opponentSpeed *= 2;
+        opponentStatBoost++;
+        textArrayList.add(opponentName + "'s Speed Boost! \n Their speed increased!");
+      }
     }
     //Displays the health of both opponents. This could be a string output too
     textArrayList.add("What would you like to do");
@@ -361,13 +357,18 @@ public class Battle {
 
   public void goBackInMenu() {
     this.playerChoicePhase = true;
-    this.playerInputPhase = true;
+
+    this.playerPickAttackPhase = false;
     this.playerAttackChoicePhase = false;
     this.playerSwitchPhase = false;
+    this.playerPickCharacterPhase = false;
     this.playerInventoryPhase = false;
     this.playerInventoryChoicePhase = false;
     this.playerEndPhase = false;
-    runBattleTurn(-1);
+    if (playerCurrentHealth != 0) {
+      forceSwitchCharacterPhase = false;
+    }
+    runBattleTurn(-10);
   }
 
   public void playerPickAttack() {
@@ -533,7 +534,7 @@ public class Battle {
     }
   }
 
-  public void opponentTurn() {
+  private void opponentTurn() {
     playerAttacked = false;
     int moveUsed = determineOpponentMove();
     textArrayList.add(opponentName + " used " + opponent.getMove(moveUsed).getName());
@@ -932,7 +933,7 @@ public void forceSwitchCharacter(int choice) {
 	return opponentAbilityTriggered;
 }
 
-private void protectMove(int attacker) {
+  private void protectMove(int attacker) {
     if (attacker == -1) {
       if (Math.random() < playerProtectChance) {
         playerProtected = true;
@@ -1546,16 +1547,8 @@ private void protectMove(int attacker) {
     return playerRunPhase;
   }
 
-  public boolean isPlayerInputPhase() {
-    return playerInputPhase;
-  }
-
   public boolean isPlayerInventoryChoicePhase() {
     return playerInventoryChoicePhase;
-  }
-
-  public boolean isPlayerEndPhase() {
-    return playerEndPhase;
   }
 
   public boolean isPlayerPickAttackPhase() {
