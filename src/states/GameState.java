@@ -12,26 +12,25 @@ import worlds.World;
 
 public class GameState extends State{
 
-	private World world, world1, world2, cafeteria, currentWorld;
-		
+	private World world, world1, world2, cafeteria, guidance, compsci, drama, english, gym, math, science;
 	public GameState(Handler handler) {
 		super(handler);
 
 		//world = new World(handler, "res/worlds/world1.txt");
 		//world = new World(handler, "res/worlds/world2.txt");
 		//world = new World(handler, "res/worlds/cafeteria.txt");
-		//world = new World(handler, "res/worlds/guidance.txt");
+		guidance = new World(handler, "res/worlds/guidance.txt");
 
-		//world = new World(handler, "res/worlds/compsci.txt");
-		//world = new World(handler, "res/worlds/drama.txt");
-		//world = new World(handler, "res/worlds/english.txt");
-		world = new World(handler, "res/worlds/gym.txt");
-		//world = new World(handler, "res/worlds/math.txt");
-		//world = new World(handler, "res/worlds/science.txt");
+		compsci = new World(handler, "res/worlds/compsci.txt");
+		drama = new World(handler, "res/worlds/drama.txt");
+		english = new World(handler, "res/worlds/english.txt");
+		gym = new World(handler, "res/worlds/gym.txt");
+		math = new World(handler, "res/worlds/math.txt");
+		science = new World(handler, "res/worlds/science.txt");
 
-		//world1 = new World(handler, "res/worlds/world1.txt");
-		//world2 = new World(handler, "res/worlds/world2.txt");
-		//cafeteria = new World(handler, "res/worlds/cafeteria.txt");
+		world1 = new World(handler, "res/worlds/world1.txt");
+		world2 = new World(handler, "res/worlds/world2.txt");
+		cafeteria = new World(handler, "res/worlds/cafeteria.txt");
 		
 		world = world1;
 		
