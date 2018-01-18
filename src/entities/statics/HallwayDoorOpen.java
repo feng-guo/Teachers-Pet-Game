@@ -2,6 +2,7 @@ package entities.statics;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 import game.Handler;
 import graphics.Assets;
@@ -21,7 +22,16 @@ public class HallwayDoorOpen extends StaticEntity{
 
     @Override
     public void tick() {
-
+    		
+    		Rectangle tempDoorRect = new Rectangle(bounds.x, bounds.y, bounds.width, bounds.height);
+    		Rectangle tempPlayerRect = new Rectangle((int) handler.getWorld().getEntityManager().getPlayer().getX(),
+					(int) handler.getWorld().getEntityManager().getPlayer().getY(),
+					(int) handler.getWorld().getEntityManager().getPlayer().getWidth(),
+					(int) handler.getWorld().getEntityManager().getPlayer().getHeight());
+    		
+    		if (tempDoorRect.intersects(tempPlayerRect)) {
+    			System.out.println("true");
+    		}
     }
 
     @Override

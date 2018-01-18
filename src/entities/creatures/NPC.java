@@ -24,21 +24,29 @@ public class NPC extends Creature{
 	private int direction, ultimateDir;
 	private int secondTimer;
 	private float speed = 1.5f;
-	private String name;
 	private float startX, startY;
 	private int boxSize;
 	private boolean hasStopped = false;
 	private int battlesStarted = 0;
 	private Display battleDisplay;
 	
-	public NPC(Handler handler, BufferedImage[] spriteSet, int boxSize, float x, float y) {
+	private BufferedImage[] spriteSetDown, spriteSetUp, spriteSetLeft, spriteSetRight;
+	
+	public NPC(Handler handler, 
+			BufferedImage[] spriteSetDown, BufferedImage[] spriteSetUp, BufferedImage[] spriteSetLeft, BufferedImage[] spriteSetRight,
+			int boxSize, float x, float y) {
 
 		
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
 		startX = x;
 		startY = y;
-		this.name = name;
 		this.boxSize = boxSize;
+		
+		this.spriteSetDown = spriteSetDown;
+		this.spriteSetUp = spriteSetUp;
+		this.spriteSetLeft = spriteSetLeft;
+		this.spriteSetRight = spriteSetRight;
+		
 		
 		// SPECIFIC TO A STANDARD NPC
 		bounds.x = 5;
@@ -47,10 +55,10 @@ public class NPC extends Creature{
 		bounds.height = 20;
 		
 		// Animations
-		animDown = new Animation(100, spriteSet);
-		animUp = new Animation(100, spriteSet);
-		animLeft = new Animation(100, spriteSet);
-		animRight = new Animation(100, spriteSet);
+		animDown = new Animation(100, spriteSetDown);
+		animUp = new Animation(100, spriteSetUp);
+		animLeft = new Animation(100, spriteSetLeft);
+		animRight = new Animation(100, spriteSetRight);
 	}
 
 	@Override
@@ -168,11 +176,6 @@ public class NPC extends Creature{
 				}
 		}
 		
-		
-		
-		
-		
-		
 		if (x == -3) {
 			x = 0;
 		}
@@ -232,15 +235,15 @@ public class NPC extends Creature{
 			
 			// Keeps them facing the current direction
 			if(direction == 1) {
-				return Assets.player_left[0];
+				return spriteSetLeft[0];
 			} else if (direction == 2) {
-				return Assets.player_right[0];
+				return spriteSetRight[0];
 			} else if (direction == 3) {
-				return Assets.player_up[0];
+				return spriteSetUp[0];
 			}
 		}
 		
-		return Assets.player_down[0];
+		return spriteSetDown[0];
 		
 		
 		

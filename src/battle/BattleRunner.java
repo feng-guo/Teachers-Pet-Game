@@ -71,8 +71,6 @@ public class BattleRunner {
             battle.playerPickCharacter(choice);
         } else if (battle.isPlayerSwitchPhase()) {
             battle.playerSwitchCharacter();
-        } else if (battle.isPlayerRunPhase()) {
-            battle.playerRun();
         } else if (battle.isPlayerAttackChoicePhase()) {
             battle.playerUseAttack(choice);
         } else if (battle.isPlayerPickAttackPhase()) {
