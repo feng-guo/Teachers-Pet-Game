@@ -5,33 +5,37 @@ import graphics.Assets;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.concurrent.TimeUnit;
 
 public class CatchBusState extends State{
-
     private int clockTimer = 60;
     private int tempTimer = 0;
 
-    private int x = 300;
+    private int x = 267;
     private int y = 300;
     private Rectangle playerRect;
     private Rectangle[] tempRect;
     private boolean[] sendRect;
-    private BufferedImage[] rectPic;
+    private int score = 400;
 
-    private int score = 1000;
     public CatchBusState(Handler handler) {
         super(handler);
 
-        playerRect = new Rectangle(x, y, 20, 20);
+        playerRect = new Rectangle(x, y, 67, 100);
         tempRect = new Rectangle[200];
         sendRect = new boolean[200];
-        rectPic = new BufferedImage[200];
 
         for (int i = 0; i < 200; i++) {
-            tempRect[i] = new Rectangle((int)(Math.random()*460), -200 * i, 50, 50);
+            int determiner = (int)(Math.random() * 3);
+            int X;
+            if(determiner == 0){
+                X = 67;
+            }else if (determiner == 1){
+                X = 267;
+            }else{
+                X = 467;
+            }
+            tempRect[i] = new Rectangle(X, -500 * i, 67, 100);
             sendRect[i] = false;
-            rectPic[i] = Assets.foodArray[(int)(Math.random()*3)][(int)(Math.random()*4)];
         }
     }
 
@@ -46,10 +50,12 @@ public class CatchBusState extends State{
 
         if (tempTimer % 60 == 0) {
             clockTimer--;
-        }else if(tempTimer % 20 == 0){
-            sendRect[60 - clockTimer] = true;
         }
-
+        for(int i = 0; i < 200; i++) {
+            if (tempTimer % 5 == 0) {
+                sendRect[i] = true;
+            }
+        }
         if (clockTimer < 1 || score == 0) {
             handler.getGame().setGameState();
         }
@@ -57,29 +63,25 @@ public class CatchBusState extends State{
 
     @Override
     public void render(Graphics g) {
-        boolean hit;
-        g.setColor(new Color(176, 224, 230));
+        //creates background
+        g.setColor(Color.LIGHT_GRAY);
         g.fillRect(0, 0, 600, 400);
 
+        //create player
+        g.setColor(Color.BLACK);
+        g.fillRect(playerRect.x, playerRect.y, playerRect.width, playerRect.height);
 
-        g.setFont(Assets.font16);
-        g.setColor(Color.red);
-        g.fillRect(playerRect.x - 10, playerRect.y - 10, playerRect.width + 10, playerRect.height + 10);
-
-        //g.fillRect(playerRect.x, playerRect.y, playerRect.width, playerRect.height);
-
-        int tempY = 2 * tempTimer - 200;
-        for (int i = 0; i < 200; i++) {
-            if (sendRect[i]) {
-                g.setColor(Color.red);
-                g.drawImage(rectPic[i], tempRect[i].x, tempY + tempRect[i].y, tempRect[i].width, tempRect[i].height, null);
-                //g.fillRect(tempRect[i].x, 2*tempTimer - 200 + tempRect[i].y, tempRect[i].width, tempRect[i].height);
+        int tempY;
+        for(int i = 0; i < 200; i++){
+            tempY = 7 * tempTimer - 800;
+            if(sendRect[i]){
+                g.setColor(Color.WHITE);
+                g.fillRect(tempRect[i].x, tempY + tempRect[i].y, tempRect[i].width, tempRect[i].height);
             }
-            if (new Rectangle(tempRect[i].x, tempY + tempRect[i].y, tempRect[i].width, tempRect[i].height).intersects(playerRect)) {
-                g.drawImage(rectPic[i], tempRect[i].x, tempY + tempRect[i].y, tempRect[i].width, tempRect[i].height, null);
+            if(new Rectangle(tempRect[i].x, tempY + tempRect[i].y, tempRect[i].width, tempRect[i].height).intersects(playerRect)){
+                score /= 2;
             }
         }
-        //g.setColor(new Color(144, 238, 144));
         g.setColor(Color.GREEN);
         if (score > 0) {
             g.fillRect(560, 85, 20, score/3);
@@ -90,17 +92,24 @@ public class CatchBusState extends State{
         g.drawRect(560, 85, 20, 300);
         g.drawString("Time Left: " + clockTimer, 40, 375);
         g.drawString("Score: " + score, 340, 375);
-        g.drawImage(Assets.foodBanner, 0, 0, null);
     }
 
     public void movePosition() {
         if (handler.getKeyManager().left) {
-            if (x > 20) {
-                x -= 10;
+            if (tempTimer % 7 == 0) {
+                if(x == 467) {
+                    x = 267;
+                }else if (x == 267) {
+                    x = 67;
+                }
             }
         } else if (handler.getKeyManager().right) {
-            if (x < 580) {
-                x += 10;
+            if (tempTimer % 7 == 0) {
+                if(x == 67) {
+                    x = 267;
+                }else if (x == 267) {
+                    x = 467;
+                }
             }
         }
     }

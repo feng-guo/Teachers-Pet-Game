@@ -1,4 +1,4 @@
- package game;
+package game;
 
 import java.awt.Color;      
 import java.awt.Graphics;
@@ -35,6 +35,7 @@ import states.StressEatsState;
 	private Graphics g;
 	
 	// States
+    public State catchBus;
 	public State catchBusState;
 	public State gameState;
 	public State menuState;
@@ -75,40 +76,37 @@ import states.StressEatsState;
 		handler = new Handler(this);
 		gameCamera = new GameCamera(handler, 0, 0);
 
-		catchBusState = new CatchBusState(handler);
-		
-		
+		catchBusState = new CatchBusState(handler);		
 		mathContestState = new MathContestState(handler);
 		beepTestState = new BeepTestState(handler);
 		stressEatsState = new StressEatsState(handler);
+		
 		settingsState = new SettingsState(handler);
 		gameState = new GameState(handler);
 		menuState = new MenuState(handler);
 		battleState = new BattleState(handler, g);
 
-		State.setState(catchBusState);
-
 		State.setState(menuState);
-
 	}
-	
 	
 	private void tick() {
 		
 		keyManager.tick();
 		
-		// CHANGE TO BATTLE STATE
-		if(handler.getKeyManager().battle && !(State.getState() instanceof BattleState)) {
-			State.setState(battleState);
-			if (!((BattleState) battleState).getBattleTest().isBattleStart()) {
-				startBattle();
+		if (State.getState() instanceof GameState) {
+			// CHANGE TO BATTLE STATE
+			if(handler.getKeyManager().battle && !(State.getState() instanceof BattleState)) {
+				State.setState(battleState);
+				if (!((BattleState) battleState).getBattleTest().isBattleStart()) {
+					startBattle();
+				}
+			} else if (handler.getKeyManager().stressEat) {
+				State.setState(stressEatsState);
+			} else if (handler.getKeyManager().beepTest) {
+				State.setState(beepTestState);
+			} else if (handler.getKeyManager().mathContest) {
+				State.setState(mathContestState);
 			}
-		} else if (handler.getKeyManager().stressEat) {
-			State.setState(stressEatsState);
-		} else if (handler.getKeyManager().beepTest) {
-			State.setState(beepTestState);
-		} else if (handler.getKeyManager().mathContest) {
-			State.setState(mathContestState);
 		}
 		if(State.getState() != null) {
 			State.getState().tick();
@@ -234,8 +232,8 @@ import states.StressEatsState;
 		}
 	}
 
-	public State getGameState() {
-		return gameState;
+	public GameState getGameState() {
+		return (GameState) gameState;
 	}
 	
 	public BattleState getBattleState() {
@@ -253,4 +251,5 @@ import states.StressEatsState;
 	public State getState() {
 		return State.getState();
 	}
+
 }

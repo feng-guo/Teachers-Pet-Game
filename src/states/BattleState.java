@@ -19,6 +19,8 @@ public class BattleState extends State{
 	private int answer = -1;
 	boolean textLoading = false;
 	private Animation shake;
+	
+	private double opponentPercent, playerPercent;
 
 	private boolean menuScreen = false, characterSelectionScreen;
 	private boolean[][] menu = new boolean[2][2];
@@ -31,7 +33,8 @@ public class BattleState extends State{
 		//handler.setWorld(null);
 		battleTest = new BattleRunner();
 
-		shake = new Animation(300, Assets.player_down);
+		shake = null;
+//		shake = new Animation(300, battleTest.getOpponent().getSprites());
 		menu[0][0] = false;
 		menu[0][1] = false;
 		menu[1][0] = false;
@@ -48,6 +51,9 @@ public class BattleState extends State{
 
 	@Override
 	public void tick() {
+		if (shake == null) {
+			shake = new Animation(300, battleTest.getOpponent().getSprites());
+		}
 		shake.tick();
 
 		if (!battleTest.battleStart) {
@@ -114,8 +120,6 @@ public class BattleState extends State{
 					x = 0;
 					y = 0;
 					handler.getKeyManager().enter = false;
-				} else {
-					System.out.println("Sorry but no");
 				}
 			} else if (handler.getKeyManager().backspace) {
 				answer = 10;
@@ -215,6 +219,9 @@ public class BattleState extends State{
 			handler.getKeyManager().enter = false;
 			handler.getKeyManager().backspace = false;
 		}
+		
+		opponentPercent = (double) battleTest.getOpponent().getCurrentHealth() / (double) battleTest.getOpponent().getInitialHealth();
+		playerPercent = (double) battleTest.getPlayer().getCurrentHealth() / (double) battleTest.getPlayer().getInitialHealth();
 	}
 
 	@Override
@@ -227,7 +234,7 @@ public class BattleState extends State{
 		g.drawImage(Assets.battleBackground, 0, 0, null);
 		if (battleTest.getPlayer().getName().length() > 15) {
 			g.setFont(Assets.font10);
-		} else if (battleTest.getPlayer().getName().length() > 10) {
+		} else if (battleTest.getPlayer().getName().length() > 9) {
 			g.setFont(Assets.font12);
 		} else {
 			g.setFont(Assets.font16);
@@ -235,36 +242,82 @@ public class BattleState extends State{
 		g.drawString(battleTest.getPlayer().getName(), 350, 210);
 		if (battleTest.getOpponent().getName().length() > 15) {
 			g.setFont(Assets.font10);
-		} else if (battleTest.getOpponent().getName().length() > 10) {
+		} else if (battleTest.getOpponent().getName().length() > 9) {
 			g.setFont(Assets.font12);
 		} else {
 			g.setFont(Assets.font16);
 		}
-		g.drawString(battleTest.getOpponent().getName(), 50, 70);
+		g.drawString(battleTest.getOpponent().getName(), 45, 70);
 		//g.setFont(new Font("Arial", Font.PLAIN, 17));
 		g.setFont(Assets.font12);
 		g.drawString(Integer.toString(battleTest.getPlayer().getCurrentHealth()), 475, 255);
 		g.drawString(Integer.toString(battleTest.getPlayer().getInitialHealth()), 530, 255);
-		g.drawString(Integer.toString(battleTest.getOpponent().getCurrentHealth()), 50, 90);
+		//g.drawString(Integer.toString(battleTest.getOpponent().getCurrentHealth()), 50, 90);
+		
+		if (opponentPercent > 0.67) {
+			g.setColor(Color.GREEN);
+		} else if (opponentPercent > 0.33) {
+			g.setColor(Color.ORANGE);
+		} else {
+			g.setColor(Color.RED);
+		}
+		g.fillRect(130, 84, (int) (120 * opponentPercent), 6);
+		
+		if (playerPercent > 0.67) {
+			g.setColor(Color.GREEN);
+		} else if (playerPercent > 0.33) {
+			g.setColor(Color.ORANGE);
+		} else {
+			g.setColor(Color.RED);
+		}		
+		g.fillRect(435, 226, (int) (120 * playerPercent), 6);
+
+		g.setColor(Color.black);
 
 		//g.setFont(Assets.font8);
 		//g.drawString("", 200, 50);
 
 		if (battleTest.getPlayer().getStatus() != null) {
+			String toDraw;
 			g.setFont(Assets.font8);
-			g.drawString(battleTest.getPlayer().getStatus(), 350, 255);
+			if (battleTest.getPlayer().getStatus().equals("Sleep")) {
+				toDraw = "SLP";
+				g.drawString(toDraw, 350, 255);
+			} else if (battleTest.getPlayer().getStatus().equals("Stun")) {
+				toDraw = "STN";
+				g.drawString(toDraw, 350, 255);
+			} else if (battleTest.getPlayer().getStatus().equals("Burn")) {
+				toDraw = "BRN";
+				g.drawString(toDraw, 350, 255);
+			} else if (battleTest.getPlayer().getStatus().equals("Poison")) {
+				toDraw = "PSN";
+				g.drawString(toDraw, 350, 255);
+			}
 		}
 		if (battleTest.getOpponentStatus() != null) {
-			//g.setFont(Assets.font8);
-			//g.drawString(battleTest.getOpponentStatus(), 10, 400);
+			String toDraw;
+			g.setFont(Assets.font8);
+			if (battleTest.getOpponentStatus().equals("Sleep")) {
+				toDraw = "SLP";
+				g.drawString(toDraw, 50, 90);
+			} else if (battleTest.getOpponentStatus().equals("Stun")) {
+				toDraw = "STN";
+				g.drawString(toDraw, 50, 90);
+			} else if (battleTest.getOpponentStatus().equals("Burn")) {
+				toDraw = "BRN";
+				g.drawString(toDraw, 50, 90);
+			} else if (battleTest.getOpponentStatus().equals("Poison")) {
+				toDraw = "PSN";
+				g.drawString(toDraw, 50, 90);
+			}
 		}
 
 
-		if (battleTest.getBattle().isOpponentAbilityTriggered()) {
+		if (battleTest.isPlayerAttacked()) {
 			//System.out.println("Currently returns: True");
 			g.drawImage(shake.getCurrentFrame(), 390, 20, 120, 150, null);
 		} else {
-			g.drawImage(Assets.player_down[0], 390, 20, 120, 150, null);
+			g.drawImage(battleTest.getOpponent().getSprite(0), 390, 20, 120, 150, null);
 		}
 
 		g.setColor(Color.BLACK);
@@ -291,20 +344,31 @@ public class BattleState extends State{
 			}
 		}
 		if (menuScreen) {
+
 			if (y == 0) {
 				if (x == 0) {
-					g.fillRect(22, 312, 5, 5);
+					g.drawImage(Assets.selectionArrow, 36, 309, 10, 10, null);
+					//g.fillRect(40, 312, 5, 5);
 				} else if (x == 1) {
-					g.fillRect(290, 312, 5, 5);
+					g.drawImage(Assets.selectionArrow, 306, 309, 10, 10, null);
+					//g.fillRect(310, 312, 5, 5);
 				}
 			} else if (y == 1) {
 				if (x == 0) {
-					g.fillRect(22, 362, 5, 5);
+					g.drawImage(Assets.selectionArrow, 36, 359, 10, 10, null);
+					//g.fillRect(40, 362, 5, 5);
 				} else if (x == 1) {
-					g.fillRect(290, 362, 5, 5);
+					g.drawImage(Assets.selectionArrow, 306, 359, 10, 10, null);
+					//g.fillRect(310, 362, 5, 5);
 				}
 			}
 		}
+		
+
+
+
+		
+		
 		if (!characterSelectionScreen) {
 			characterSelection[0][0] = true;
 			characterSelection[0][1] = false;
@@ -318,15 +382,19 @@ public class BattleState extends State{
 			//g.setFont(new Font("Arial", Font.PLAIN, 20));
 			g.setFont(Assets.font16);
 			if (count/4 < battleTest.getTextArrayList().get(0).length()) {
-				if (battleTest.getTextArrayList().get(0).length() > 25) {
+				if (battleTest.getTextArrayList().get(0).length() > 30) {
+					g.setFont(Assets.font10);
+				} else if (battleTest.getTextArrayList().get(0).length() > 25) {
 					g.setFont(Assets.font12);
 				}
-				g.drawString(battleTest.getTextArrayList().get(0).substring(0, count/4), 25, 320);
+				g.drawString(battleTest.getTextArrayList().get(0).substring(0, count/4), 35, 320);
 			} else {
-				if (battleTest.getTextArrayList().get(0).length() > 25) {
+				if (battleTest.getTextArrayList().get(0).length() > 30) {
+					g.setFont(Assets.font10);
+				} else if (battleTest.getTextArrayList().get(0).length() > 25) {
 					g.setFont(Assets.font12);
 				}
-				g.drawString(battleTest.getTextArrayList().get(0), 25, 320);
+				g.drawString(battleTest.getTextArrayList().get(0), 35, 320);
 			}
 		}
 		if (battleTest.getTextArrayList().size() > 0) {
@@ -346,25 +414,31 @@ public class BattleState extends State{
 				} else {
 					g.setFont(Assets.font12);
 				}
-				g.drawString(battleTest.getSelectionStrings(0), 30, 320);
+				g.drawString(battleTest.getSelectionStrings(0), 50, 320);
 				if (battleTest.getSelectionStrings(1).length() > 20) {
 					g.setFont(Assets.font10);
 				} else {
 					g.setFont(Assets.font12);
 				}
-				g.drawString(battleTest.getSelectionStrings(1), 300, 320);
+				g.drawString(battleTest.getSelectionStrings(1), 320, 320);
 				if (battleTest.getSelectionStrings(2).length() > 20) {
 					g.setFont(Assets.font10);
 				} else {
 					g.setFont(Assets.font12);
 				}
-				g.drawString(battleTest.getSelectionStrings(2), 30, 370);
+				g.drawString(battleTest.getSelectionStrings(2), 50, 370);
 				if (battleTest.getSelectionStrings(3).length() > 20) {
 					g.setFont(Assets.font10);
 				} else {
 					g.setFont(Assets.font12);
 				}
-				g.drawString(battleTest.getSelectionStrings(3), 300, 370);
+				g.drawString(battleTest.getSelectionStrings(3), 320, 370);
+				
+//				g.setColor(Color.RED);
+//				opponentPercent = battleTest.getOpponent().getCurrentHealth() / battleTest.getOpponent().getInitialHealth();
+//				playerPercent = battleTest.getPlayer().getCurrentHealth() / battleTest.getPlayer().getInitialHealth();
+//				g.fillRect(130, 84, 120 * opponentPercent, 6);
+				
 			} else if (battleTest.isPlayerSwitchPhase()) {
 				menuScreen = false;
 				characterSelectionScreen = true;
@@ -372,6 +446,7 @@ public class BattleState extends State{
 
 				try {
 					g.setColor(Color.BLACK);
+					g.setFont(Assets.font12);
 					g.drawString(battleTest.getSquad().getCharacter(0).getName(), 75, 50);
 					g.drawString(battleTest.getSquad().getCharacter(1).getName(), 365, 50);
 					g.drawString(battleTest.getSquad().getCharacter(2).getName(), 75, 175);
@@ -380,14 +455,33 @@ public class BattleState extends State{
 					g.drawString(battleTest.getSquad().getCharacter(5).getName(), 365, 300);
 				} catch (NullPointerException e) {}
 				try {
-					g.drawImage(Assets.player_down[0], 35, 35, null);
-					g.drawImage(Assets.player_down[0], 325, 35, null);
-					g.drawImage(Assets.player_down[0], 35, 160, null);
-					g.drawImage(Assets.player_down[0], 325, 160, null);
-					g.drawImage(Assets.player_down[0], 35, 285, null);
-					g.drawImage(Assets.player_down[0], 325, 285, null);
+					g.setColor(Color.BLACK);
+					g.setFont(Assets.font12);
+					g.drawString(battleTest.getSquad().getCharacter(0).getCurrentHealth() + "/" + battleTest.getSquad().getCharacter(0).getInitialHealth(), 175, 50);
+					g.drawString(battleTest.getSquad().getCharacter(1).getCurrentHealth() + "/" + battleTest.getSquad().getCharacter(1).getInitialHealth(), 465, 50);
+					g.drawString(battleTest.getSquad().getCharacter(2).getCurrentHealth() + "/" + battleTest.getSquad().getCharacter(2).getInitialHealth(), 175, 175);
+					g.drawString(battleTest.getSquad().getCharacter(3).getCurrentHealth() + "/" + battleTest.getSquad().getCharacter(3).getInitialHealth(), 465, 175);
+					g.drawString(battleTest.getSquad().getCharacter(4).getCurrentHealth() + "/" + battleTest.getSquad().getCharacter(4).getInitialHealth(), 175, 300);
+					g.drawString(battleTest.getSquad().getCharacter(5).getCurrentHealth() + "/" + battleTest.getSquad().getCharacter(5).getInitialHealth(), 465, 300);
+				} catch (NullPointerException e) {};
+				try {
+					g.drawImage(battleTest.getSquad().getCharacter(0).getSprite(0), 35, 35, null);
+					g.drawImage(battleTest.getSquad().getCharacter(1).getSprite(0), 325, 35, null);
+					g.drawImage(battleTest.getSquad().getCharacter(2).getSprite(0), 35, 160, null);
+					g.drawImage(battleTest.getSquad().getCharacter(3).getSprite(0), 325, 160, null);
+					g.drawImage(battleTest.getSquad().getCharacter(4).getSprite(0), 35, 285, null);
+					g.drawImage(battleTest.getSquad().getCharacter(5).getSprite(0), 325, 285, null);
+				} catch (NullPointerException e) {};
+				try {
+					g.drawImage(battleTest.getSquad().getCharacter(0).getSprite(0), 35, 35, null);
+					g.drawImage(battleTest.getSquad().getCharacter(1).getSprite(0), 325, 35, null);
+					g.drawImage(battleTest.getSquad().getCharacter(2).getSprite(0), 35, 160, null);
+					g.drawImage(battleTest.getSquad().getCharacter(3).getSprite(0), 325, 160, null);
+					g.drawImage(battleTest.getSquad().getCharacter(4).getSprite(0), 35, 285, null);
+					g.drawImage(battleTest.getSquad().getCharacter(5).getSprite(0), 325, 285, null);
 				} catch (NullPointerException e) {};
 				
+	
 				g.setColor(new Color(150, 150, 150));
 				Graphics2D g2 = (Graphics2D) g;
 				g2.setStroke(new BasicStroke(5F));

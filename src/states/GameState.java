@@ -12,7 +12,7 @@ import worlds.World;
 
 public class GameState extends State{
 
-	private World world;
+	private World world, world1, world2, cafeteria, currentWorld;
 		
 	public GameState(Handler handler) {
 		super(handler);
@@ -29,6 +29,12 @@ public class GameState extends State{
 		//world = new World(handler, "res/worlds/math.txt");
 		//world = new World(handler, "res/worlds/science.txt");
 
+		world1 = new World(handler, "res/worlds/world1.txt");
+		world2 = new World(handler, "res/worlds/world2.txt");
+		cafeteria = new World(handler, "res/worlds/cafeteria.txt");
+		
+		world = world1;
+		
 		handler.setWorld(world);
 				
 	}
@@ -45,5 +51,18 @@ public class GameState extends State{
 		world.render(g);		
 		
 	}
+	
+	public void setCurrentWorld(String path) {
+		if (path.equals("res/worlds/world1.txt")) {
+			world = world1;
+		} else if (path.equals("res/worlds/world2.txt")) {
+			world = world2;
+		} else if (path.equals("res/worlds/cafeteria.txt")) {
+			world = cafeteria;
+		}
+		handler.setWorld(world);
+	}
+ 	
+	
 
 }

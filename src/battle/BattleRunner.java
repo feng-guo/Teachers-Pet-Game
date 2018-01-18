@@ -7,6 +7,7 @@ import characters.NonPlayableCharacter;
 import characters.PlayableCharacter;
 import characters.Squad;
 import items.Inventory;
+import items.Item;
 import items.ListOfInventoryItems;
 
 /* This is now an important file that interacts with a battle class
@@ -20,7 +21,9 @@ public class BattleRunner {
     private ListOfInventoryItems inventoryItems = new ListOfInventoryItems();
     private Inventory inventory = new Inventory();
     private PlayableCharacter[] newSquad = new PlayableCharacter[6];
-    private NonPlayableCharacter MrChoi, MrShim, MrTimmerman;
+
+
+    private NonPlayableCharacter MrChoi, MrShim, MrTimmerman, randomNiner, alston, michael, msKostanenko, mrGissing, nikhil, aaron, rosemary;
     private Squad squad;
     public boolean battleStart;
     private Battle battle;
@@ -31,27 +34,44 @@ public class BattleRunner {
 	}
 
     public void initializeBattleAssets() {
-        newSquad[0] = (PlayableCharacter)characterList.returnCharacter("Feng");
-        newSquad[1] = (PlayableCharacter)characterList.returnCharacter("Joyce");
-        newSquad[2] = (PlayableCharacter)characterList.returnCharacter("Sihan");
-        newSquad[3] = (PlayableCharacter)characterList.returnCharacter("Yash");
-        newSquad[4] = (PlayableCharacter)characterList.returnCharacter("Johann");
-        newSquad[5] = (PlayableCharacter)characterList.returnCharacter("Misha");
-        MrChoi = (NonPlayableCharacter)characterList.returnCharacter("Mr.Choi");
-        MrShim = (NonPlayableCharacter)characterList.returnCharacter("Mr.Shim");
-        MrTimmerman = (NonPlayableCharacter)characterList.returnCharacter("Mr.Timmerman");
+        newSquad[0] = (PlayableCharacter) characterList.returnCharacter("Feng");
+        newSquad[1] = (PlayableCharacter) characterList.returnCharacter("Joyce");
+        newSquad[2] = (PlayableCharacter) characterList.returnCharacter("Sihan");
+        newSquad[3] = (PlayableCharacter) characterList.returnCharacter("Yash");
+        newSquad[4] = (PlayableCharacter) characterList.returnCharacter("Johann");
+        //newSquad[5] = (PlayableCharacter) characterList.returnCharacter("Misha");
+        newSquad[5] = (PlayableCharacter)characterList.returnCharacter("Angela");
+        MrChoi = (NonPlayableCharacter) characterList.returnCharacter("Mr.Choi");
+        MrShim = (NonPlayableCharacter) characterList.returnCharacter("Mr.Shim");
+        MrTimmerman = (NonPlayableCharacter) characterList.returnCharacter("Mr.Timmerman");
+        randomNiner = (NonPlayableCharacter) characterList.returnCharacter("Random Niner");
+        alston = (NonPlayableCharacter) characterList.returnCharacter("Alston");
+        michael = (NonPlayableCharacter) characterList.returnCharacter("Michael");
+        msKostanenko = (NonPlayableCharacter) characterList.returnCharacter("Ms.Kostanenko");
+        rosemary = (NonPlayableCharacter) characterList.returnCharacter("Rosemary");
+        mrGissing = (NonPlayableCharacter) characterList.returnCharacter("Mr.Gissing");
+        nikhil = (NonPlayableCharacter) characterList.returnCharacter("Nikhil");
+        aaron = (NonPlayableCharacter) characterList.returnCharacter("Aaron");
         squad = new Squad(newSquad);
+
+        inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
+        inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
+        inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
+        inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
+        inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
+        inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
     }
 
     public void startRandomBattle() {
         double random2 = Math.random();
+        System.out.println(random2);
         NonPlayableCharacter opponent;
         if (random2 < 0.33) {
-            opponent = MrChoi;
+            opponent = nikhil;
         } else if (random2 < 0.66) {
-            opponent = MrShim;
+            opponent = aaron;
         } else {
-            opponent = MrTimmerman;
+            opponent = mrGissing;
         }
         battle = new Battle(squad.getCharacter(0), opponent, squad, inventory);
         battleStart = true;
@@ -79,7 +99,7 @@ public class BattleRunner {
             battle.useInventoryItem(choice);
         } else if (battle.isPlayerInventoryPhase()) {
             battle.playerPickInventory();
-        } else if (battle.isPlayerChoicePhase()) {
+        } else {
             battle.runBattleTurn(choice);
         }
     }

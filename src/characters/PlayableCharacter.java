@@ -3,6 +3,8 @@ package characters;
 import battle.Move;
 import items.*;
 
+import java.awt.image.BufferedImage;
+
 public class PlayableCharacter extends Character {
     private String description; //description of the character
     private String status; //Status would be the status condition
@@ -15,8 +17,8 @@ public class PlayableCharacter extends Character {
     private StatItem shoesItem;
 
     //Possibly dumb stats to display??
-    PlayableCharacter(int health, int attack, int intelligence, int defence, int speed, String type, String name, String description, Move[] moveset, String ability, StatItem heldItem, StatItem hatItem, StatItem shirtItem, StatItem pantsItem, StatItem shoesItem) {
-      super(health, attack, intelligence, defence, speed, type, name, moveset, ability, heldItem);
+    PlayableCharacter(int health, int attack, int intelligence, int defence, int speed, String type, String name, String description, Move[] moveset, String ability, StatItem heldItem, StatItem hatItem, StatItem shirtItem, StatItem pantsItem, StatItem shoesItem, BufferedImage[] sprites) {
+      super(health, attack, intelligence, defence, speed, type, name, moveset, ability, heldItem, sprites);
       this.description = description;
       this.status = null;
       this.fainted = false;
