@@ -18,11 +18,13 @@ public class Assets {
 	//public static BufferedImage feng_down_1, feng_down_2, feng_down_3;
 
 	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, 
-	floor, wall, blackBlock, battleBackground, hallFloor, locker, lockerTop,
 	openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench, 
 	hallCouch, hallChairLowLeft, hallChairLowRight, hallChairLowUp, hallChairHigh, hallTableLow, hallTableHigh,
+<<<<<<< HEAD
 	cafTableUp, cafTableSide, vending1, vending2,
 	foodBanner, happyFace, sadFace;
+=======
+>>>>>>> 9dd6dc514ddeca7886329f9d0a9ddc79998d6788
 
 	public static BufferedImage[] feng_down, feng_up, feng_left, feng_right, logo;
 	public static BufferedImage[][] tileArray, foodArray;
@@ -63,7 +65,7 @@ public class Assets {
 		foodBanner = ImageLoader.loadImage("/foodBanner.png");
 		happyFace = ImageLoader.loadImage("/happyFace.png");
 		sadFace = ImageLoader.loadImage("/sadFace.png");
-
+		blackBoard = ImageLoader.loadImage("/blackBoard.png");
 		
 		
 		battleBackground = ImageLoader.loadImage("/game_background.png");
@@ -88,10 +90,13 @@ public class Assets {
 		hallTableLow = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Table_Low.png");
 		hallTableHigh = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Table_High.png");
 
+<<<<<<< HEAD
 		cafTableSide = ImageLoader.loadImage ("/textures/Indoor_Entities/Cafeteria/Caf_Table_Long_Left.png");
 		cafTableUp = ImageLoader.loadImage ("/textures/Indoor_Entities/Cafeteria/Caf_Table_Long_Up.png");
 		vending1 = ImageLoader.loadImage ("/textures/Indoor_Entities/Cafeteria/Vending1.png");
 		vending2 = ImageLoader.loadImage ("/textures/Indoor_Entities/Cafeteria/Vending2.png");
+=======
+>>>>>>> 9dd6dc514ddeca7886329f9d0a9ddc79998d6788
 
 		tree = ImageLoader.loadImage("/Outdoor_Entities/Tree.png");
 		wall = ImageLoader.loadImage ("/Indoor_Entities/White_Walls.png");
@@ -119,19 +124,15 @@ public class Assets {
 		feng_up = new BufferedImage[3];
 		feng_left = new BufferedImage[3];
 		feng_right = new BufferedImage[3];
-
 		feng_down[0] = fengSheet.crop(charWidth*0, 0, charWidth, charHeight);
 		feng_down[1] = fengSheet.crop(charWidth*1, 0, charWidth, charHeight);
 		feng_down[2] = fengSheet.crop(charWidth*2, 0, charWidth, charHeight);
-
 		feng_left[0] = fengSheet.crop(charWidth*3 + 1, 0, charWidth - 1, charHeight);
 		feng_left[1] = fengSheet.crop(charWidth*4 + 1, 0, charWidth - 1, charHeight);
 		feng_left[2] = fengSheet.crop(charWidth*5 + 1, 0, charWidth - 1, charHeight);
-
 		feng_right[0] = fengSheet.crop(charWidth*6 - 2, 0, charWidth - 1, charHeight);
 		feng_right[1] = fengSheet.crop(charWidth*7 - 2, 0, charWidth - 1, charHeight);
 		feng_right[2] = fengSheet.crop(charWidth*8 - 2, 0, charWidth - 1, charHeight);
-
 		feng_up[0] = fengSheet.crop(charWidth*9 - 3, 0, charWidth, charHeight);
 		feng_up[1] = fengSheet.crop(charWidth*10 - 3, 0, charWidth, charHeight);
 		feng_up[2] = fengSheet.crop(charWidth*11 - 3, 0, charWidth, charHeight);

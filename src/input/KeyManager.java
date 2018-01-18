@@ -28,6 +28,7 @@ public class KeyManager implements KeyListener{
 			left = keys[KeyEvent.VK_A];
 			right = keys[KeyEvent.VK_D];
 			
+			
 			mathContest = keys[KeyEvent.VK_V];
 			beepTest = keys[KeyEvent.VK_C];
 			stressEat = keys[KeyEvent.VK_Z];
