@@ -353,6 +353,22 @@ public class Battle {
           opponentAbilityTriggered = true;
         }
       }
+      if (!playerAbilityTriggered && opponentStatBoost > -5) {
+        if (playerAbility.equals("Friendly")) {
+          opponentDefence /= 2;
+          opponentStatBoost--;
+          textArrayList.add(playerName + " is friendly. " + opponentName + "'s defence fell!");
+          playerAbilityTriggered = true;
+        }
+      }
+      if (!opponentAbilityTriggered && playerStatBoost > -5) {
+        if (opponentAbility.equals("Friendly")) {
+          playerDefence /= 2;
+          playerStatBoost--;
+          textArrayList.add(opponentName + " is friendly. " + playerName + "'s defence fell!");
+          opponentAbilityTriggered = true;
+        }
+      }
       if (playerAbility.equals("Speed Boost") && playerStatBoost < 5) {
         playerSpeed *= 2;
         playerStatBoost++;

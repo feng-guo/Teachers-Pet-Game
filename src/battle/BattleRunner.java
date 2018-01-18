@@ -21,7 +21,7 @@ public class BattleRunner {
     private ListOfInventoryItems inventoryItems = new ListOfInventoryItems();
     private Inventory inventory = new Inventory();
     private PlayableCharacter[] newSquad = new PlayableCharacter[6];
-    private NonPlayableCharacter MrChoi, MrShim, MrTimmerman, randomNiner, alston, michael, msKostanenko;
+    private NonPlayableCharacter MrChoi, MrShim, MrTimmerman, randomNiner, alston, michael, msKostanenko, mrGissing;
     private Squad squad;
     public boolean battleStart;
     private Battle battle;
@@ -46,6 +46,7 @@ public class BattleRunner {
         alston = (NonPlayableCharacter) characterList.returnCharacter("Alston");
         michael = (NonPlayableCharacter) characterList.returnCharacter("Michael");
         msKostanenko = (NonPlayableCharacter) characterList.returnCharacter("Ms.Kostanenko");
+        mrGissing = (NonPlayableCharacter) characterList.returnCharacter("Mr.Gissing");
         squad = new Squad(newSquad);
 
         inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
