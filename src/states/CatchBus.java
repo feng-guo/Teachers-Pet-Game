@@ -10,8 +10,8 @@ public class CatchBus extends State{
     private int clockTimer = 60;
     private int tempTimer = 0;
 
-    private int x = 262;
-    private int y = 250;
+    private int x = 230;
+    private int y = 370;
     private Rectangle playerRect;
     private Rectangle[] tempRect;
     private boolean[] sendRect;
@@ -39,7 +39,7 @@ public class CatchBus extends State{
             }else{
                 X = 530;
             }
-            tempRect[i] = new Rectangle(X, -200 * i, 76, 150);
+            tempRect[i] = new Rectangle(X, -200 * i, 30, 30);
             sendRect[i] = false;
         }
     }
@@ -75,7 +75,6 @@ public class CatchBus extends State{
 
         int tempY = tempTimer - 200;
         for(int i = 0; i < 200; i++){
-            System.out.println(tempRect[i].x);
             if(sendRect[i]){
                 g.setColor(Color.WHITE);
                 g.fillRect(tempRect[i].x, tempY + tempRect[i].y, tempRect[i].width, tempRect[i].height);
@@ -92,7 +91,7 @@ public class CatchBus extends State{
 
     public void movePosition() {
         if (handler.getKeyManager().left) {
-            if (tempTimer % 7 == 0) {
+            if (tempTimer % 2 == 0) {
                 if(x == 530) {
                     x = 430;
                 }else if (x == 430) {
@@ -106,7 +105,7 @@ public class CatchBus extends State{
                 }
             }
         } else if (handler.getKeyManager().right) {
-            if (tempTimer % 7 == 0) {
+            if (tempTimer % 2 == 0) {
                 if(x == 30) {
                     x = 130;
                 }else if (x == 130) {
