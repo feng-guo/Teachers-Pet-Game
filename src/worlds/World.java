@@ -245,6 +245,20 @@ public class World {
 			entityManager.addEntity(new HallChairLowRight(handler, 320, (30 * y)));
 		}
 
+		for (int x = 20; x < 26; x++) {
+			entityManager.addEntity(new HallChairLowUp(handler, (35 * x), (110 + (int)(Math.random() * 5))));
+		}
+		for (int x = 15; x < 19; x++) {
+			entityManager.addEntity(new HallChairLowUp(handler, (50 * x), (140 + (int)(Math.random() * 5))));
+		}
+
+		for (int x = 17; x < 20; x++) {
+			entityManager.addEntity(new HallChairLowUp(handler, (45 * x), (195 + (int)(Math.random() * 5))));
+		}
+		for (int x = 22; x < 28; x++) {
+			entityManager.addEntity(new HallChairLowUp(handler, (30 * x), (230 + (int)(Math.random() * 5))));
+		}
+
 		//Caf tables
 		for (int x = 2; x < 6; x++) {
 			for (int y = 2; y < 7; y++) {
@@ -254,6 +268,26 @@ public class World {
 				entityManager.addEntity(new CafTableSide(handler, (150 * x - 260), (57 * y)));
 			}
 		}
+
+		for (int x = 11; x < 16; x++) {
+			for (int y = 2; y < 4; y++) {
+				entityManager.addEntity(new CafTableUp(handler, (57 * x + 20), (80 * y - 30)));
+			}
+		}
+
+		//Doors
+		entityManager.addEntity(new HallwayDoorClosed(handler, 650, 10));
+		entityManager.addEntity(new HallwayDoorClosed(handler, 950, 10));
+		entityManager.addEntity(new HallwayDoorClosed(handler, 340, 10));
+
+		//Vending machines
+		entityManager.addEntity(new Vending2(handler, 450, 20));
+		entityManager.addEntity(new Vending1(handler, 520, 20));
+		entityManager.addEntity(new Vending2(handler, 740, 20));
+		entityManager.addEntity(new Vending2(handler, 780, 20));
+		entityManager.addEntity(new Vending2(handler, 820, 20));
+		entityManager.addEntity(new Vending2(handler, 860, 20));
+
 		loadWorld(path);
 
 		entityManager.getPlayer().setX(spawnX);

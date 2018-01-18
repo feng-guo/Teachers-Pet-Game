@@ -15,39 +15,39 @@ public class Assets {
 	private static final int tileHeight = 16;
 
 
-	//public static BufferedImage feng_down_1, feng_down_2, feng_down_3;
+	//public static BufferedImage player_down_1, player_down_2, player_down_3;
 
 	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, 
 	floor, wall, blackBlock, battleBackground, characterSelect, hallFloor, locker, lockerTop,
 	openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench, 
 	hallCouch, hallChairLowLeft, hallChairLowRight, hallChairLowUp, hallChairHigh, hallTableLow, hallTableHigh,
-	cafTableUp, cafTableSide,
+	cafTableUp, cafTableSide, vending1, vending2,
 	foodBanner, happyFace, sadFace, blackBoard;
 
-	public static BufferedImage[] feng_down, feng_up, feng_left, feng_right, logo;
+	public static BufferedImage[] player_down, player_up, player_left, player_right,
+								feng_down, feng_up, feng_left, feng_right,
+								angela_down, angela_up, angela_left, angela_right,
+								bill_down, bill_up, bill_left, bill_right,
+								johann_down, johann_up, johann_left, johann_right,
+								joyce_down, joyce_up, joyce_left, joyce_right,
+								misha_down, misha_up, misha_left, misha_right,
+								sihan_down, sihan_up, sihan_left, sihan_right,
+								yash_down, yash_up, yash_left, yash_right;
+								
+	public static BufferedImage[] logo;
 	public static BufferedImage[][] tileArray, foodArray;
 	public static Font font24, font16, font12, font10, font8;
+	
+	public static String characterName = "Johann";
 
 
 	public static void init() {
 		
-		File fontFile = new File("./fonts/PokeFont.ttf");
-		String filePath = fontFile.getAbsolutePath().substring(0, fontFile.getAbsolutePath().indexOf(".")) + "res/fonts/PokeFont.ttf";
-		try {
-			font24 = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File(filePath))).deriveFont(Font.PLAIN, 24);
-			font16 = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File(filePath))).deriveFont(Font.PLAIN, 16);
-			font12 = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File(filePath))).deriveFont(Font.PLAIN, 12);
-			font10 = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File(filePath))).deriveFont(Font.PLAIN, 10);
-			font8 = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File(filePath))).deriveFont(Font.PLAIN, 8);
-		} catch (FontFormatException | IOException e) {
-			e.printStackTrace();
-		}
+		loadFont();
+		loadSprites();
+
+
 		
-
-		String characterName = "Johann";
-
-
-		SpriteSheet fengSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/" + characterName + "/" + characterName.toLowerCase() + "_spritesheet.png"));
 		SpriteSheet tileSheet = new SpriteSheet(ImageLoader.loadImage("/tile_sheet.png"));
 		SpriteSheet grassSheet = new SpriteSheet(ImageLoader.loadImage("/tile_textures.png"));
 		SpriteSheet floorSheet = new SpriteSheet(ImageLoader.loadImage("/sample4.png"));
@@ -90,6 +90,11 @@ public class Assets {
 		hallTableLow = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Table_Low.png");
 		hallTableHigh = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Table_High.png");
 
+		cafTableSide = ImageLoader.loadImage ("/textures/Indoor_Entities/Cafeteria/Caf_Table_Long_Left.png");
+		cafTableUp = ImageLoader.loadImage ("/textures/Indoor_Entities/Cafeteria/Caf_Table_Long_Up.png");
+		vending1 = ImageLoader.loadImage ("/textures/Indoor_Entities/Cafeteria/Vending1.png");
+		vending2 = ImageLoader.loadImage ("/textures/Indoor_Entities/Cafeteria/Vending2.png");
+
 		cafTableSide = ImageLoader.loadImage ("/Indoor_Entities/Cafeteria/Caf_Table_Long_Left.png");
 		cafTableUp = ImageLoader.loadImage ("/Indoor_Entities/Cafeteria/Caf_Table_Long_Up.png");
 
@@ -115,22 +120,6 @@ public class Assets {
 		logo[0] = ImageLoader.loadImage("/RHHSLogo.png");
 		logo[1] = ImageLoader.loadImage("/RHHSLogoDown.png");
 
-		feng_down = new BufferedImage[3];
-		feng_up = new BufferedImage[3];
-		feng_left = new BufferedImage[3];
-		feng_right = new BufferedImage[3];
-		feng_down[0] = fengSheet.crop(charWidth*0, 0, charWidth, charHeight);
-		feng_down[1] = fengSheet.crop(charWidth*1, 0, charWidth, charHeight);
-		feng_down[2] = fengSheet.crop(charWidth*2, 0, charWidth, charHeight);
-		feng_left[0] = fengSheet.crop(charWidth*3 + 1, 0, charWidth - 1, charHeight);
-		feng_left[1] = fengSheet.crop(charWidth*4 + 1, 0, charWidth - 1, charHeight);
-		feng_left[2] = fengSheet.crop(charWidth*5 + 1, 0, charWidth - 1, charHeight);
-		feng_right[0] = fengSheet.crop(charWidth*6 - 2, 0, charWidth - 1, charHeight);
-		feng_right[1] = fengSheet.crop(charWidth*7 - 2, 0, charWidth - 1, charHeight);
-		feng_right[2] = fengSheet.crop(charWidth*8 - 2, 0, charWidth - 1, charHeight);
-		feng_up[0] = fengSheet.crop(charWidth*9 - 3, 0, charWidth, charHeight);
-		feng_up[1] = fengSheet.crop(charWidth*10 - 3, 0, charWidth, charHeight);
-		feng_up[2] = fengSheet.crop(charWidth*11 - 3, 0, charWidth, charHeight);
 
 		//grass_1 = grassSheet.crop(0, 0, tileWidth, tileHeight);
 		//grass_2 = grassSheet.crop(tileWidth, 0, tileWidth, tileHeight);
@@ -145,6 +134,138 @@ public class Assets {
 		rock = tileArray[7][7];
 		blackBlock = tileArray[0][0];
 		//hallFloor = tileArray[58][14];
+
+	}
+	
+	public static void loadFont() {
+		File fontFile = new File("./fonts/PokeFont.ttf");
+		String filePath = fontFile.getAbsolutePath().substring(0, fontFile.getAbsolutePath().indexOf(".")) + "res/fonts/PokeFont.ttf";
+		try {
+			font24 = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File(filePath))).deriveFont(Font.PLAIN, 24);
+			font16 = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File(filePath))).deriveFont(Font.PLAIN, 16);
+			font12 = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File(filePath))).deriveFont(Font.PLAIN, 12);
+			font10 = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File(filePath))).deriveFont(Font.PLAIN, 10);
+			font8 = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File(filePath))).deriveFont(Font.PLAIN, 8);
+		} catch (FontFormatException | IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void loadSprites() {
+		SpriteSheet playerSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/" + characterName + "/" + characterName.toLowerCase() + "_spritesheet.png"));
+		SpriteSheet fengSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/Feng/feng_spritesheet.png"));
+		SpriteSheet angelaSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/Angela/angela_spritesheet.png"));
+		SpriteSheet billSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/Bill/bill_spritesheet.png"));
+		SpriteSheet johannSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/Johann/johann_spritesheet.png"));
+		SpriteSheet joyceSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/Joyce/joyce_spritesheet.png"));
+		SpriteSheet mishaSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/Misha/misha_spritesheet.png"));
+		SpriteSheet sihanSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/Sihan/sihan_spritesheet.png"));
+		SpriteSheet yashSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/Yash/yash_spritesheet.png"));
+		
+		player_down = new BufferedImage[3];
+		player_up = new BufferedImage[3];
+		player_left = new BufferedImage[3];
+		player_right = new BufferedImage[3];
+
+		feng_down = new BufferedImage[3];
+		feng_up = new BufferedImage[3];
+		feng_left = new BufferedImage[3];
+		feng_right = new BufferedImage[3];
+		
+		angela_down = new BufferedImage[3];
+		angela_up = new BufferedImage[3];
+		angela_left = new BufferedImage[3];
+		angela_right = new BufferedImage[3];
+		
+		bill_down = new BufferedImage[3];
+		bill_up = new BufferedImage[3];
+		bill_left = new BufferedImage[3];
+		bill_right = new BufferedImage[3];
+		
+		johann_down = new BufferedImage[3];
+		johann_up = new BufferedImage[3];
+		johann_left = new BufferedImage[3];
+		johann_right = new BufferedImage[3];
+		
+		joyce_down = new BufferedImage[3];
+		joyce_up = new BufferedImage[3];
+		joyce_left = new BufferedImage[3];
+		joyce_right = new BufferedImage[3];
+		
+		misha_down = new BufferedImage[3];
+		misha_up = new BufferedImage[3];
+		misha_left = new BufferedImage[3];
+		misha_right = new BufferedImage[3];
+		
+		sihan_down = new BufferedImage[3];
+		sihan_up = new BufferedImage[3];
+		sihan_left = new BufferedImage[3];
+		sihan_right = new BufferedImage[3];
+		
+		yash_down = new BufferedImage[3];
+		yash_up = new BufferedImage[3];
+		yash_left = new BufferedImage[3];
+		yash_right = new BufferedImage[3];
+		
+		for (int i = 0; i < 3; i++) {
+			player_down[i] = playerSheet.crop(charWidth*i, 0, charWidth, charHeight);
+			feng_down[i] = fengSheet.crop(charWidth*i, 0, charWidth, charHeight);
+			angela_down[i] = angelaSheet.crop(charWidth*i, 0, charWidth, charHeight);
+			bill_down[i] = billSheet.crop(charWidth*i, 0, charWidth, charHeight);
+			johann_down[i] = johannSheet.crop(charWidth*i, 0, charWidth, charHeight);
+			joyce_down[i] = joyceSheet.crop(charWidth*i, 0, charWidth, charHeight);
+			misha_down[i] = mishaSheet.crop(charWidth*i, 0, charWidth, charHeight);
+			sihan_down[i] = sihanSheet.crop(charWidth*i, 0, charWidth, charHeight);
+			yash_down[i] = yashSheet.crop(charWidth*i, 0, charWidth, charHeight);
+
+		}
+		for (int i = 0; i < 3; i++) {
+			player_left[i] = playerSheet.crop(charWidth*(i+3) + 1, 0, charWidth - 1, charHeight);
+			feng_left[i] = fengSheet.crop(charWidth*(i+3) + 1, 0, charWidth - 1, charHeight);
+			angela_left[i] = angelaSheet.crop(charWidth*(i+3) + 1, 0, charWidth - 1, charHeight);
+			bill_left[i] = billSheet.crop(charWidth*(i+3) + 1, 0, charWidth - 1, charHeight);
+			johann_left[i] = johannSheet.crop(charWidth*(i+3) + 1, 0, charWidth - 1, charHeight);
+			joyce_left[i] = joyceSheet.crop(charWidth*(i+3) + 1, 0, charWidth - 1, charHeight);
+			misha_left[i] = mishaSheet.crop(charWidth*(i+3) + 1, 0, charWidth - 1, charHeight);
+			sihan_left[i] = sihanSheet.crop(charWidth*(i+3) + 1, 0, charWidth - 1, charHeight);
+			yash_left[i] = yashSheet.crop(charWidth*(i+3) + 1, 0, charWidth - 1, charHeight);
+		}
+		for (int i = 0; i < 3; i++) {
+			player_right[i] = playerSheet.crop(charWidth*(i+6) - 2, 0, charWidth - 1, charHeight);
+			feng_right[i] = fengSheet.crop(charWidth*(i+6) - 2, 0, charWidth - 1, charHeight);
+			angela_right[i] = angelaSheet.crop(charWidth*(i+6) - 2, 0, charWidth - 1, charHeight);
+			bill_right[i] = billSheet.crop(charWidth*(i+6) - 2, 0, charWidth - 1, charHeight);
+			johann_right[i] = johannSheet.crop(charWidth*(i+6) - 2, 0, charWidth - 1, charHeight);
+			joyce_right[i] = joyceSheet.crop(charWidth*(i+6) - 2, 0, charWidth - 1, charHeight);
+			misha_right[i] = mishaSheet.crop(charWidth*(i+6) - 2, 0, charWidth - 1, charHeight);
+			sihan_right[i] = sihanSheet.crop(charWidth*(i+6) - 2, 0, charWidth - 1, charHeight);
+			yash_right[i] = yashSheet.crop(charWidth*(i+6) - 2, 0, charWidth - 1, charHeight);
+		}
+		for (int i = 0; i < 3; i++) {
+			player_up[i] = playerSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
+			feng_up[i] = fengSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
+			angela_up[i] = angelaSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
+			bill_up[i] = billSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
+			johann_up[i] = johannSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
+			joyce_up[i] = joyceSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
+			misha_up[i] = mishaSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
+			sihan_up[i] = sihanSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
+			yash_up[i] = yashSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
+
+		}
+//		
+//		player_down[0] = playerSheet.crop(charWidth*0, 0, charWidth, charHeight);
+//		player_down[1] = playerSheet.crop(charWidth*1, 0, charWidth, charHeight);
+//		player_down[2] = playerSheet.crop(charWidth*2, 0, charWidth, charHeight);
+//		player_left[0] = playerSheet.crop(charWidth*3 + 1, 0, charWidth - 1, charHeight);
+//		player_left[1] = playerSheet.crop(charWidth*4 + 1, 0, charWidth - 1, charHeight);
+//		player_left[2] = playerSheet.crop(charWidth*5 + 1, 0, charWidth - 1, charHeight);
+//		player_right[0] = playerSheet.crop(charWidth*6 - 2, 0, charWidth - 1, charHeight);
+//		player_right[1] = playerSheet.crop(charWidth*7 - 2, 0, charWidth - 1, charHeight);
+//		player_right[2] = playerSheet.crop(charWidth*8 - 2, 0, charWidth - 1, charHeight);
+//		player_up[0] = playerSheet.crop(charWidth*9 - 3, 0, charWidth, charHeight);
+//		player_up[1] = playerSheet.crop(charWidth*10 - 3, 0, charWidth, charHeight);
+//		player_up[2] = playerSheet.crop(charWidth*11 - 3, 0, charWidth, charHeight);
 
 	}
 }

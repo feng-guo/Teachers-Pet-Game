@@ -16,7 +16,7 @@ public class CafTableSide extends StaticEntity{
         bounds.x = 0;
         bounds.y = 0;
         bounds.width = 40;
-        bounds.height = 40;
+        bounds.height = 60;
     }
 
     @Override

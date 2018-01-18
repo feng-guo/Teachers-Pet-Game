@@ -19,8 +19,8 @@ public class BeepTestState extends State {
 
 	public BeepTestState(Handler handler) {
 		super(handler);
-		animLeft = new Animation(100, Assets.feng_left);
-		animRight = new Animation(100, Assets.feng_right);
+		animLeft = new Animation(100, Assets.player_left);
+		animRight = new Animation(100, Assets.player_right);
 	}
 
 	@Override
