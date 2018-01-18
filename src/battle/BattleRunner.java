@@ -46,9 +46,14 @@ public class BattleRunner {
         alston = (NonPlayableCharacter)characterList.returnCharacter("Alston");
         michael = (NonPlayableCharacter)characterList.returnCharacter("Michael");
         squad = new Squad(newSquad);
-        Item whatever = inventoryItems.retrieveItem("Caf Food");
-        inventory.addItem(whatever);
-    }
+
+        inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
+        inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
+        inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
+        inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
+        inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
+        inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
+
 
     public void startRandomBattle() {
         double random2 = Math.random();
