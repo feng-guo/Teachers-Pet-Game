@@ -23,7 +23,7 @@ public class MenuState extends State{
 		handler.getMouseManager().setUIManager(uiManager);
 		
 		// Add the front logo button
-		uiManager.addObject(new UIImageButton(200, 100, 200, 200, Assets.logo, new ClickListener(){
+		uiManager.addObject(new UIImageButton(250, 150, 100, 100, Assets.logo, new ClickListener(){
 
 			@Override
 			public void onClick() {
@@ -39,7 +39,12 @@ public class MenuState extends State{
 
 	@Override
 	public void render(Graphics g) {
+		
+		//g.setColor(Color.black);
+		//g.fillRect(0, 0, 600, 400);
+		g.drawImage(Assets.loadingBackground, 0, 0, 600, 400, null);
 		uiManager.render(g);
+
 		// g.setFont(new Font("Courier New", 10, 10));
 		//g.setFont(Font.BOLD);
 		

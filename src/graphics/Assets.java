@@ -2,6 +2,7 @@ package graphics;
 
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,7 +23,7 @@ public class Assets {
 	openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench, 
 	hallCouch, hallChairLowLeft, hallChairLowRight, hallChairLowUp, hallChairHigh, hallTableLow, hallTableHigh,
 	cafTableUp, cafTableSide, vending1, vending2,
-	foodBanner, happyFace, sadFace, blackBoard;
+	foodBanner, happyFace, sadFace, blackBoard, loadingBackground;
 
 	public static BufferedImage[] player_down, player_up, player_left, player_right,
 								feng_down, feng_up, feng_left, feng_right,
@@ -39,7 +40,6 @@ public class Assets {
 	public static Font font24, font16, font12, font10, font8;
 	
 	public static String characterName = "Johann";
-
 
 	public static void init() {
 		
@@ -61,7 +61,7 @@ public class Assets {
 		}
 		
 		characterSelect = ImageLoader.loadImage("/playerSelect.png");
-		
+		loadingBackground = ImageLoader.loadImage("/loadingBackground.png");
 		foodBanner = ImageLoader.loadImage("/foodBanner.png");
 		happyFace = ImageLoader.loadImage("/happyFace.png");
 		sadFace = ImageLoader.loadImage("/sadFace.png");
@@ -118,8 +118,8 @@ public class Assets {
 		hallTableHigh = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Table_High.png");
 
 		logo = new BufferedImage[2];
-		logo[0] = ImageLoader.loadImage("/RHHSLogo.png");
-		logo[1] = ImageLoader.loadImage("/RHHSLogoDown.png");
+		logo[0] = ImageLoader.loadImage("/logo_up.png");
+		logo[1] = ImageLoader.loadImage("/logo_down.png");
 
 
 		//grass_1 = grassSheet.crop(0, 0, tileWidth, tileHeight);

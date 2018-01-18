@@ -10,36 +10,31 @@ public class CatchBus extends State{
     private int clockTimer = 60;
     private int tempTimer = 0;
 
-    private int x = 230;
-    private int y = 370;
+    private int x = 267;
+    private int y = 300;
     private Rectangle playerRect;
     private Rectangle[] tempRect;
     private boolean[] sendRect;
+    private int score = 400;
 
     public CatchBus(Handler handler) {
         super(handler);
 
-        playerRect = new Rectangle(x, y, 30, 30);
+        playerRect = new Rectangle(x, y, 67, 100);
         tempRect = new Rectangle[200];
         sendRect = new boolean[200];
 
         for (int i = 0; i < 200; i++) {
-            int determiner = (int)(Math.random() * 6);
+            int determiner = (int)(Math.random() * 3);
             int X;
             if(determiner == 0){
-                X = 30;
+                X = 67;
             }else if (determiner == 1){
-                X = 130;
-            }else if (determiner == 2){
-                X = 230;
-            }else if (determiner == 3){
-                X = 330;
-            }else if (determiner == 4){
-                X = 430;
+                X = 267;
             }else{
-                X = 530;
+                X = 467;
             }
-            tempRect[i] = new Rectangle(X, -200 * i, 30, 30);
+            tempRect[i] = new Rectangle(X, -500 * i, 67, 100);
             sendRect[i] = false;
         }
     }
@@ -55,10 +50,13 @@ public class CatchBus extends State{
 
         if (tempTimer % 60 == 0) {
             clockTimer--;
-        }else if(tempTimer % 20 == 0){
-            sendRect[60 - clockTimer] = true;
         }
-        if (clockTimer < 1) {
+        for(int i = 0; i < 200; i++) {
+            if (tempTimer % 5 == 0) {
+                sendRect[i] = true;
+            }
+        }
+        if (clockTimer < 1 || score == 0) {
             handler.getGame().setGameState();
         }
     }
@@ -73,49 +71,44 @@ public class CatchBus extends State{
         g.setColor(Color.BLACK);
         g.fillRect(playerRect.x, playerRect.y, playerRect.width, playerRect.height);
 
-        int tempY = tempTimer - 200;
+        int tempY;
         for(int i = 0; i < 200; i++){
+            tempY = 7 * tempTimer - 800;
             if(sendRect[i]){
                 g.setColor(Color.WHITE);
                 g.fillRect(tempRect[i].x, tempY + tempRect[i].y, tempRect[i].width, tempRect[i].height);
             }
             if(new Rectangle(tempRect[i].x, tempY + tempRect[i].y, tempRect[i].width, tempRect[i].height).intersects(playerRect)){
-                playerRect.x = 262;
-                playerRect.y = 400;
+                score /= 2;
             }
         }
-
+        g.setColor(Color.GREEN);
+        if (score > 0) {
+            g.fillRect(560, 85, 20, score/3);
+        } else if (score <= 0) {
+            g.fillRect(560, 85, 20, 900);
+        }
         g.setColor(Color.BLACK);
+        g.drawRect(560, 85, 20, 300);
         g.drawString("Time Left: " + clockTimer, 40, 375);
+        g.drawString("Score: " + score, 340, 375);
     }
 
     public void movePosition() {
         if (handler.getKeyManager().left) {
-            if (tempTimer % 2 == 0) {
-                if(x == 530) {
-                    x = 430;
-                }else if (x == 430) {
-                    x = 330;
-                }else if(x == 330){
-                    x = 230;
-                }else if(x == 230){
-                    x = 130;
-                }else if(x == 130){
-                    x = 30;
+            if (tempTimer % 7 == 0) {
+                if(x == 467) {
+                    x = 267;
+                }else if (x == 267) {
+                    x = 67;
                 }
             }
         } else if (handler.getKeyManager().right) {
-            if (tempTimer % 2 == 0) {
-                if(x == 30) {
-                    x = 130;
-                }else if (x == 130) {
-                    x = 230;
-                }else if(x == 230){
-                    x = 330;
-                }else if(x == 330){
-                    x = 430;
-                }else if(x == 430){
-                    x = 530;
+            if (tempTimer % 7 == 0) {
+                if(x == 67) {
+                    x = 267;
+                }else if (x == 267) {
+                    x = 467;
                 }
             }
         }
