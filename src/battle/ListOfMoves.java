@@ -18,6 +18,7 @@ public class ListOfMoves {
         Move doubleUserIntelligence10 = new StatChangeMove("doubleUserIntelligence10", 0.1, "Neutral", 2, "Intelligence", 100, 0, "Self");
         Move halveOpponentDefence10 = new StatChangeMove("halveOpponentDefence10", 0.1, "Neutral", 2, "Defence", 100, 0, "Opponent");
         Move halveOpponentIntelligence10 = new StatChangeMove("halveOpponentIntelligence10", 0.1, "Neutral", 2, "Intelligence", 100, 0, "Opponent");
+        Move halveOpponentDefence = new StatChangeMove("halveOpponentIntelligence10", 1.0, "Neutral", 2, "Defence", 100, 0, "Opponent");
         Move opponentPoison10 = new StatusMove("opponentPoison10", 0.1, "Science", "Poison", 100, 0, "Opponent");
         Move opponentPoison30 = new StatusMove("opponentPoison10", 0.3, "Science", "Poison", 100, 0, "Opponent");
         Move opponentStun70 = new StatusMove("opponentStun70", 0.7, "Neutral", "Stun", 100, 0, "Opponent");
@@ -43,6 +44,7 @@ public class ListOfMoves {
         moveList.add(new StatChangeMove("Greet", 1.0, "Neutral", 2, "Defence", 15, 0, "Opponent", null));
         moveList.add(new AttackMove("Play Clarinet", 20, 1.0, "Neutral", "Intelligence", 20, 0, doubleUserIntelligence));
         moveList.add(new AttackMove("Play Saxophone", 20, 1.0, "Neutral", "Intelligence", 20, 0, doubleUserIntelligence));
+        moveList.add(new StatChangeMove("Balls Away", 1.0, "Neutral", 2, "Speed", 15, 0, "Opponent", halveOpponentDefence));
         //math
         moveList.add(new AttackMove("Spam Calculator", 50, 1.0, "Math", "Attack", 15, 0, null));
         moveList.add(new HealthMove("Calculate Mark", "Math", 0, "Health", -2, 8, 0, null));

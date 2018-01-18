@@ -41,6 +41,7 @@ public class ListOfCharacters{
         String[] mrGissingMoveNames = {"Greet", "Clap", "TLAP", "Meter Stick"};
         String[] nikhilMoveNames = {"Cry", "Debate", "Electrocute Paperclip", "Play Clarinet"};
         String[] aaronMoveNames = {"Play Saxophone", "Write Garbage Code", "Burn Piano Book", "Greet"};
+        String[] mrHarrisMoveNames = {"Balls Away", "Flex", "Work Out", "Throw Basketball"};
 
         Move[] mrChoiMoves = returnMoveArray(mrChoiMoveNames);
         Move[] mrShimMoves = returnMoveArray(mrShimMoveNames);
@@ -53,6 +54,7 @@ public class ListOfCharacters{
         Move[] mrGissingMoves = returnMoveArray(mrGissingMoveNames);
         Move[] nikhilMoves = returnMoveArray(nikhilMoveNames);
         Move[] aaronMoves = returnMoveArray(aaronMoveNames);
+        Move[] mrHarrisMoves = returnMoveArray(mrHarrisMoveNames);
 
 
         //List of playable characters
@@ -65,16 +67,17 @@ public class ListOfCharacters{
         characterList.add(new PlayableCharacter(35, 40, 65, 75, 35, "Science", "Angela", "[description]", angelaMoves, "Protective", null, null, null, null, null, Assets.angela_down));
         //List of nonplayable characters
         characterList.add(new NonPlayableCharacter(60, 30, 110, 70, 230, "Math", "Mr.Choi", "Perabler is the name of the game.", mrChoiMoves, 100, "Speed Boost", null, Assets.bill_down));
-        characterList.add(new NonPlayableCharacter(300, 50, 100, 30, 20, "Math", "Mr.Shim", "Let homework be your guide!", mrShimMoves, 100, "Demoralize", null, Assets.bill_down));
+        characterList.add(new NonPlayableCharacter(300, 50, 100, 30, 20, "Math", "Mr.Shim", "Let homework be your guide", mrShimMoves, 100, "Demoralize", null, Assets.bill_down));
         characterList.add(new NonPlayableCharacter(200, 40, 100, 60, 100, "Math", "Mr.Timmerman", "Focus isn't just the name of a car.", mrTimmermanMoves, 100, "Unaware", null, Assets.bill_down));
         characterList.add(new NonPlayableCharacter(20, 30, 30, 30, 30, "Neutral", "Random Niner", "Ahlieeeee faaammm...", randomNinerMoves, 200, "Annoying", null, Assets.bill_down));
-        characterList.add(new NonPlayableCharacter(40, 20, 60, 20, 30, "Science", "Alston", "Omae wa mo shindaeru!", alstonMoves, 200, "Osmosis", null, Assets.bill_down));
-        characterList.add(new NonPlayableCharacter(60, 70, 80, 10, 50, "Technology", "Michael", "My Rattata is better than your Rattata!", michaelMoves, 200, "Persistent", null, Assets.bill_down));
-        characterList.add(new NonPlayableCharacter(200, 40, 90, 40, 60, "Science", "Ms.Kostanenko", "Wake up people!", msKostanenkoMoves, 300, "Demoralize", null, Assets.bill_down));
+        characterList.add(new NonPlayableCharacter(40, 20, 60, 20, 30, "Science", "Alston", "Omae wa mo shindaeru", alstonMoves, 200, "Osmosis", null, Assets.bill_down));
+        characterList.add(new NonPlayableCharacter(60, 70, 80, 10, 50, "Technology", "Michael", "My Rattata is better than your Rattata", michaelMoves, 200, "Persistent", null, Assets.bill_down));
+        characterList.add(new NonPlayableCharacter(200, 40, 90, 40, 60, "Science", "Ms.Kostanenko", "Wake up people", msKostanenkoMoves, 300, "Demoralize", null, Assets.bill_down));
         characterList.add(new NonPlayableCharacter(50, 40, 90, 40, 60, "Neutral", "Rosemary", "What you do means more than what you say.", rosemaryMoves, 300, "Distressed", null, Assets.bill_down));
-        characterList.add(new NonPlayableCharacter(150, 70, 40, 50, 60, "Science", "Mr.Gissing", "Hi everyone!", mrGissingMoves, 300, "Friendly", null, Assets.bill_down));
+        characterList.add(new NonPlayableCharacter(150, 70, 40, 50, 60, "Science", "Mr.Gissing", "Hi everyone", mrGissingMoves, 300, "Friendly", null, Assets.bill_down));
         characterList.add(new NonPlayableCharacter(40, 60, 40, 50, 80, "English", "Nikhil", "I'm vegan", nikhilMoves, 100, "Clown", null, Assets.bill_down));
         characterList.add(new NonPlayableCharacter(30, 20, 20, 80, 70, "Technology", "Aaron", "Do u kno da wae", aaronMoves, 100, "Friendly", null, Assets.bill_down));
+        characterList.add(new NonPlayableCharacter(500, 10, 10, 100, 10, "Neutral", "Mr.Harris", "Balls away", mrHarrisMoves, 200, "Power Boost", null, Assets.bill_down));
     }
 
     private Move[] returnMoveArray(String[] moveNames) {

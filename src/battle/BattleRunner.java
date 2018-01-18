@@ -9,6 +9,7 @@ import characters.Squad;
 import items.Inventory;
 import items.Item;
 import items.ListOfInventoryItems;
+import items.StatItem;
 
 /* This is now an important file that interacts with a battle class
  */
@@ -23,7 +24,7 @@ public class BattleRunner {
     private PlayableCharacter[] newSquad = new PlayableCharacter[6];
 
 
-    private NonPlayableCharacter MrChoi, MrShim, MrTimmerman, randomNiner, alston, michael, msKostanenko, mrGissing, nikhil, aaron, rosemary;
+    private NonPlayableCharacter MrChoi, MrShim, MrTimmerman, randomNiner, alston, michael, msKostanenko, mrGissing, nikhil, aaron, rosemary, mrHarris;
     private Squad squad;
     public boolean battleStart;
     private Battle battle;
@@ -41,6 +42,7 @@ public class BattleRunner {
         newSquad[4] = (PlayableCharacter) characterList.returnCharacter("Johann");
         //newSquad[5] = (PlayableCharacter) characterList.returnCharacter("Misha");
         newSquad[5] = (PlayableCharacter)characterList.returnCharacter("Angela");
+        newSquad[5].setHeldItem((StatItem)inventoryItems.retrieveItem("Starbucks Card"));
         MrChoi = (NonPlayableCharacter) characterList.returnCharacter("Mr.Choi");
         MrShim = (NonPlayableCharacter) characterList.returnCharacter("Mr.Shim");
         MrTimmerman = (NonPlayableCharacter) characterList.returnCharacter("Mr.Timmerman");
@@ -52,6 +54,7 @@ public class BattleRunner {
         mrGissing = (NonPlayableCharacter) characterList.returnCharacter("Mr.Gissing");
         nikhil = (NonPlayableCharacter) characterList.returnCharacter("Nikhil");
         aaron = (NonPlayableCharacter) characterList.returnCharacter("Aaron");
+        mrHarris = (NonPlayableCharacter) characterList.returnCharacter("Mr.Harris");
         squad = new Squad(newSquad);
 
         inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
@@ -67,9 +70,9 @@ public class BattleRunner {
         System.out.println(random2);
         NonPlayableCharacter opponent;
         if (random2 < 0.33) {
-            opponent = nikhil;
+            opponent = mrHarris;
         } else if (random2 < 0.66) {
-            opponent = aaron;
+            opponent = rosemary;
         } else {
             opponent = mrGissing;
         }
