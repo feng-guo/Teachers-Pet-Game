@@ -3,6 +3,7 @@ package states;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 import game.Handler;
@@ -57,8 +58,11 @@ public class StressEatsState extends State {
 			sendRect[60-clockTimer] = true;
 		}
 		
-		if (clockTimer < 1 || score > 900) {
+		if (clockTimer < 1 || score > 5) {
+			handler.getKeyManager().forceKeyChange(KeyEvent.VK_Z, false);
+			handler.getGame().setRecentlyPlayed();
 			handler.getGame().setGameState();
+
 		}
 	}
 

@@ -99,7 +99,7 @@ public class NPC extends Creature{
 			} catch (NullPointerException e) {
 			}
 			
-			handler.getWorld().getEntityManager().getPlayer().stopPlayer();
+			//handler.getWorld().getEntityManager().getPlayer().stopPlayer();
 
 			if (handler.getWorld().getEntityManager().getPlayer().getDirection() == 1) {
 				ultimateDir = 2;
@@ -196,16 +196,18 @@ public class NPC extends Creature{
 	@Override
 	public void render(Graphics g) {
 		if (ultimateDir == 0) {
+			unStopNPC();
 			g.drawImage(getCurrentAnimationFrame(), (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 		} else {
+			stopNPC();
 			if(ultimateDir == 1) {
-				g.drawImage(Assets.player_left[0], (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+				g.drawImage(spriteSetLeft[0], (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 			} else if (ultimateDir == 2) {
-				g.drawImage(Assets.player_right[0], (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+				g.drawImage(spriteSetRight[0], (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 			} else if (ultimateDir == 3) {
-				g.drawImage(Assets.player_up[0], (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+				g.drawImage(spriteSetUp[0], (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 			} else if (ultimateDir == 4) {
-				g.drawImage(Assets.player_down[0], (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+				g.drawImage(spriteSetDown[0], (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
 			}
 		}
 		
