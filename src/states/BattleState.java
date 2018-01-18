@@ -1,7 +1,9 @@
 package states;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import battle.BattleRunner;
 import game.Handler;
@@ -258,7 +260,7 @@ public class BattleState extends State{
 
 
 		if (battleTest.getBattle().isOpponentAbilityTriggered() == true) {
-			System.out.println("Currently returns: True");
+			//System.out.println("Currently returns: True");
 			g.drawImage(shake.getCurrentFrame(), 390, 20, 120, 150, null);
 		} else {
 			g.drawImage(Assets.feng_down[0], 390, 20, 120, 150, null);
@@ -395,24 +397,28 @@ public class BattleState extends State{
 					g.drawImage(Assets.feng_down[0], 35, 285, null);
 					g.drawImage(Assets.feng_down[0], 325, 285, null);
 				} catch (NullPointerException e) {};
-				g.setColor(Color.RED);
+				
+				g.setColor(new Color(150, 150, 150));
+				Graphics2D g2 = (Graphics2D) g;
+				g2.setStroke(new BasicStroke(5F));
+				
 				if (y == 0) {
 					if (x == 0) {
-						g.drawRect(20, 25, 270, 100);
+						g2.drawRect(20, 25, 270, 100);
 					} else if (x == 1) {
-						g.drawRect(310, 25, 270, 100);
+						g2.drawRect(310, 25, 270, 100);
 					}
 				} else if (y == 1) {
 					if (x == 0) {
-						g.drawRect(20, 150, 270, 100);
+						g2.drawRect(20, 150, 270, 100);
 					} else if (x == 1) {
-						g.drawRect(310, 150, 270, 100);
+						g2.drawRect(310, 150, 270, 100);
 					}
 				} else if (y == 2) {
 					if (x == 0) {
-						g.drawRect(20, 275, 270, 100);
+						g2.drawRect(20, 275, 270, 100);
 					} else if (x == 1) {
-						g.drawRect(310, 275, 270, 100);
+						g2.drawRect(310, 275, 270, 100);
 					}
 				}
 			} else if (battleTest.isInventoryChoicePhase()) {
