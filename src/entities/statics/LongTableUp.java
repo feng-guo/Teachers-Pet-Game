@@ -7,18 +7,16 @@ import game.Handler;
 import graphics.Assets;
 import tiles.Tile;
 
-public class HallChairLowUp extends StaticEntity{
+public class LongTableUp extends StaticEntity{
 
-    int objDirection;
+    public LongTableUp(Handler handler, float x, float y) {
+        super(handler, x, y, (int) (Tile.TILE_WIDTH * 2), (int) (Tile.TILE_HEIGHT * 1));
 
-    public HallChairLowUp(Handler handler, float x, float y) {
-        super(handler, x, y, (int) (Tile.TILE_WIDTH * 0.75), (int) (Tile.TILE_HEIGHT * 0.75));
-
-        // SPECIFIC TO HALL CHAIR LOW UP
+        // SPECIFIC TO LONG TABLE UP
         bounds.x = 0;
         bounds.y = 0;
-        bounds.width = 15;
-        bounds.height = 10;
+        bounds.width = 60;
+        bounds.height = 40;
     }
 
     @Override
@@ -28,9 +26,10 @@ public class HallChairLowUp extends StaticEntity{
 
     @Override
     public void render(Graphics g) {
-        g.drawImage(Assets.hallChairLowUp, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
+        g.drawImage(Assets.longTableUp, (int) (x - handler.getGameCamera().getxOffset()), (int) (y - handler.getGameCamera().getyOffset()), width, height, null);
         //g.setColor(Color.RED);
         //g.fillRect((int) (x - handler.getGameCamera().getxOffset() + bounds.x), (int) (y - handler.getGameCamera().getyOffset() + bounds.y), bounds.width, bounds.height);
     }
 
 }
+

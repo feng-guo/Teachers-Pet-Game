@@ -23,7 +23,14 @@ public class Assets {
 	openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench, 
 	hallCouch, hallChairLowLeft, hallChairLowRight, hallChairLowUp, hallChairHigh, hallTableLow, hallTableHigh,
 	cafTableUp, cafTableSide, vending1, vending2,
-	foodBanner, happyFace, sadFace, blackBoard, loadingBackground, selectionArrow;
+	studentDeskLeft, studentDeskRight, studentDeskUp, studentDeskDown,
+	studentChairRight, studentChairLeft, studentChairUp,
+	teacherDeskSide, teacherDeskUp,
+	announcementBoard, announcementBoard2, greenBoard, brownBoard,
+	labBench, labTableSide,labTableUp, labStool, labShelf,
+	guidanceChairSide, guidanceChairBack,
+	counterSide, counterUp, longTableSide, longTableUp,
+	foodBanner, happyFace, sadFace, blackBoard, writingBlackBoard, projectorScreen, loadingBackground, selectionArrow;
 
 	public static BufferedImage[] player_down, player_up, player_left, player_right,
 								feng_down, feng_up, feng_left, feng_right,
@@ -71,6 +78,8 @@ public class Assets {
 		happyFace = ImageLoader.loadImage("/happyFace.png");
 		sadFace = ImageLoader.loadImage("/sadFace.png");
 		blackBoard = ImageLoader.loadImage("/Indoor_Entities/General_Classroom_Items/Clean_Blackboard.png");
+		writingBlackBoard = ImageLoader.loadImage("/Indoor_Entities/General_Classroom_Items/Writing_Blackboard.png");
+		projectorScreen = ImageLoader.loadImage("/Indoor_Entities/General_Classroom_Items/Projector_Screen.png");
 		blackScreen = ImageLoader.loadImage("/blackBoard.png");
 		
 		battleBackground = ImageLoader.loadImage("/game_background.png");
@@ -103,6 +112,33 @@ public class Assets {
 
 		cafTableSide = ImageLoader.loadImage ("/Indoor_Entities/Cafeteria/Caf_Table_Long_Left.png");
 		cafTableUp = ImageLoader.loadImage ("/Indoor_Entities/Cafeteria/Caf_Table_Long_Up.png");
+
+		studentDeskUp = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Desk_Chair_Front.png");
+		studentDeskDown = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Desk_Chair_Back.png");
+		studentDeskLeft = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Desk_Chair_Left.png");
+		studentDeskRight = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Desk_Chair_Right.png");
+		teacherDeskUp= ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Teacher_Desk_Up.png");
+		teacherDeskSide = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Teacher_Desk_Side.png");
+		studentChairRight = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Chair_Right.png");
+		studentChairLeft = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Chair_Left.png");
+		studentChairUp = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Chair_Front.png");
+
+		labBench = ImageLoader.loadImage ("/Indoor_Entities/Subject_Specific_Items/Science/Lab_Bench.png");
+		labTableSide = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Lab_Island_Side.png");
+		labTableUp = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Lab_Island_Front.png");
+		labStool = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Stool.png");
+		labShelf = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Shelf.png");
+
+		counterSide = ImageLoader.loadImage ("/Indoor_Entities/Guidance_Office/Counter_Side.png");
+		counterUp = ImageLoader.loadImage ("/Indoor_Entities/Guidance_Office/Counter_Up.png");
+		announcementBoard = ImageLoader.loadImage ("/Indoor_Entities/Guidance_Office/Announcement_Board.png");
+		announcementBoard2 = ImageLoader.loadImage ("/Indoor_Entities/Guidance_Office/Announcement_Board2.png");
+		greenBoard = ImageLoader.loadImage ("/Indoor_Entities/Guidance_Office/Green_Board.png");
+		brownBoard = ImageLoader.loadImage ("/Indoor_Entities/Guidance_Office/Brown_Board.png");
+		guidanceChairSide = ("/Indoor_Entities/Guidance_Office/Chair_Side.png");
+		guidanceChairBack = ("/Indoor_Entities/Guidance_Office/Chair_Back.png");
+		longTableSide = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Long_Table_Side.png");
+		longTableUp = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Long_Table_Up.png");
 
 		logo = new BufferedImage[2];
 		logo[0] = ImageLoader.loadImage("/logo_up.png");

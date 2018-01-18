@@ -16,7 +16,7 @@ public class HallwayDoorOpen extends StaticEntity{
     public HallwayDoorOpen(Handler handler, float x, float y) {
         super(handler, x, y, (int) (Tile.TILE_WIDTH * 1.25), (int) (Tile.TILE_HEIGHT * 1.75));
 
-        // SPECIFIC TO DOOR
+        // SPECIFIC TO DOOR OPEN
         bounds.x = 0;
         bounds.y = 0;
         bounds.width = 38;
