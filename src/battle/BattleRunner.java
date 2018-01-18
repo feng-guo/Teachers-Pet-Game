@@ -20,7 +20,7 @@ public class BattleRunner {
     private ListOfInventoryItems inventoryItems = new ListOfInventoryItems();
     private Inventory inventory = new Inventory();
     private PlayableCharacter[] newSquad = new PlayableCharacter[6];
-    private NonPlayableCharacter MrChoi, MrShim, MrTimmerman;
+    private NonPlayableCharacter MrChoi, MrShim, MrTimmerman, randomNiner;
     private Squad squad;
     public boolean battleStart;
     private Battle battle;
@@ -41,6 +41,7 @@ public class BattleRunner {
         MrChoi = (NonPlayableCharacter)characterList.returnCharacter("Mr.Choi");
         MrShim = (NonPlayableCharacter)characterList.returnCharacter("Mr.Shim");
         MrTimmerman = (NonPlayableCharacter)characterList.returnCharacter("Mr.Timmerman");
+        randomNiner = (NonPlayableCharacter)characterList.returnCharacter("Random Niner");
         squad = new Squad(newSquad);
     }
 

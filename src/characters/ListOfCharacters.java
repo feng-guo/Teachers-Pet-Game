@@ -33,9 +33,11 @@ public class ListOfCharacters{
         String[] mrChoiMoveNames = {"Trigonometry Test", "Olympiads Question", "Mark Test", "Quadratic Formula"};
         String[] mrShimMoveNames = {"Trigonometry Test", "Practice Set", "Life Lesson", "Meter Stick"};
         String[] mrTimmermanMoveNames = {"Divisibility Test", "Quadratic Formula", "Complete the Square", "Math Angels"};
+        String[] randomNinerMoveNames = {"Not Study", "Flex", "Swear", "Complain"};
         Move[] mrChoiMoves = returnMoveArray(mrChoiMoveNames);
         Move[] mrShimMoves = returnMoveArray(mrShimMoveNames);
         Move[] mrTimmermanMoves = returnMoveArray(mrTimmermanMoveNames);
+        Move[] randomNinerMoves = returnMoveArray(randomNinerMoveNames);
 
         //List of playable characters
         characterList.add(new PlayableCharacter(50, 60, 20, 50, 60, "Technology", "Feng", "[description]", fengMoves, "Clown", null, null, null, null, null, Assets.feng_down));
@@ -49,6 +51,7 @@ public class ListOfCharacters{
         characterList.add(new NonPlayableCharacter(60, 30, 110, 70, 230, "Math", "Mr.Choi", "perabler", mrChoiMoves, 100, "Speed Boost", null, Assets.bill_down));
         characterList.add(new NonPlayableCharacter(300, 50, 100, 30, 20, "Math", "Mr.Shim", "Let homework be your guide", mrShimMoves, 100, "Demoralize", null, Assets.bill_down));
         characterList.add(new NonPlayableCharacter(200, 40, 100, 60, 100, "Math", "Mr.Timmerman", "Focus isn't just the name of a car.", mrTimmermanMoves, 100, "Unaware", null, Assets.bill_down));
+        characterList.add(new NonPlayableCharacter(20, 30, 30, 30, 30, "Neutral", "Random Niner", "Ahlieeeee", randomNinerMoves, 200, "Annoying", null, Assets.bill_down));
     }
 
     private Move[] returnMoveArray(String[] moveNames) {
