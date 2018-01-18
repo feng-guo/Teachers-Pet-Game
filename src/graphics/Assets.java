@@ -18,12 +18,15 @@ public class Assets {
 	//public static BufferedImage feng_down_1, feng_down_2, feng_down_3;
 
 	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, 
+	floor, wall, blackBlock, battleBackground, characterSelect, hallFloor, locker, lockerTop,
 	openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench, 
 	hallCouch, hallChairLowLeft, hallChairLowRight, hallChairLowUp, hallChairHigh, hallTableLow, hallTableHigh,
 <<<<<<< HEAD
 	cafTableUp, cafTableSide, vending1, vending2,
 	foodBanner, happyFace, sadFace;
 =======
+	cafTableUp, cafTableSide,
+	foodBanner, happyFace, sadFace, blackBoard;
 >>>>>>> 9dd6dc514ddeca7886329f9d0a9ddc79998d6788
 
 	public static BufferedImage[] feng_down, feng_up, feng_left, feng_right, logo;
@@ -62,6 +65,8 @@ public class Assets {
 			}
 		}
 		
+		characterSelect = ImageLoader.loadImage("/playerSelect.png");
+		
 		foodBanner = ImageLoader.loadImage("/foodBanner.png");
 		happyFace = ImageLoader.loadImage("/happyFace.png");
 		sadFace = ImageLoader.loadImage("/sadFace.png");
@@ -96,6 +101,8 @@ public class Assets {
 		vending1 = ImageLoader.loadImage ("/textures/Indoor_Entities/Cafeteria/Vending1.png");
 		vending2 = ImageLoader.loadImage ("/textures/Indoor_Entities/Cafeteria/Vending2.png");
 =======
+		cafTableSide = ImageLoader.loadImage ("/Indoor_Entities/Cafeteria/Caf_Table_Long_Left.png");
+		cafTableUp = ImageLoader.loadImage ("/Indoor_Entities/Cafeteria/Caf_Table_Long_Up.png");
 >>>>>>> 9dd6dc514ddeca7886329f9d0a9ddc79998d6788
 
 		tree = ImageLoader.loadImage("/Outdoor_Entities/Tree.png");
