@@ -35,6 +35,7 @@ import states.StressEatsState;
 	private Graphics g;
 	
 	// States
+    public State catchBus;
 	public State catchBusState;
 	public State gameState;
 	public State menuState;
@@ -76,7 +77,7 @@ import states.StressEatsState;
 		gameCamera = new GameCamera(handler, 0, 0);
 
 		catchBusState = new CatchBusState(handler);
-		
+		catchBus = new CatchBus(handler);
 		
 		mathContestState = new MathContestState(handler);
 		beepTestState = new BeepTestState(handler);
@@ -86,9 +87,9 @@ import states.StressEatsState;
 		menuState = new MenuState(handler);
 		battleState = new BattleState(handler, g);
 
-		State.setState(catchBusState);
+		State.setState(catchBus);
 
-		State.setState(menuState);
+		//State.setState(menuState);
 
 	}
 	

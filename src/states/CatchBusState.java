@@ -5,7 +5,6 @@ import graphics.Assets;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.concurrent.TimeUnit;
 
 public class CatchBusState extends State{
 
