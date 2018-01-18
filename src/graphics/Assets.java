@@ -90,10 +90,10 @@ public class Assets {
 		hallTableLow = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Table_Low.png");
 		hallTableHigh = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hall_Table_High.png");
 
-		cafTableSide = ImageLoader.loadImage ("/textures/Indoor_Entities/Cafeteria/Caf_Table_Long_Left.png");
-		cafTableUp = ImageLoader.loadImage ("/textures/Indoor_Entities/Cafeteria/Caf_Table_Long_Up.png");
-		vending1 = ImageLoader.loadImage ("/textures/Indoor_Entities/Cafeteria/Vending1.png");
-		vending2 = ImageLoader.loadImage ("/textures/Indoor_Entities/Cafeteria/Vending2.png");
+		cafTableSide = ImageLoader.loadImage ("/Indoor_Entities/Cafeteria/Caf_Table_Long_Left.png");
+		cafTableUp = ImageLoader.loadImage ("/Indoor_Entities/Cafeteria/Caf_Table_Long_Up.png");
+		vending1 = ImageLoader.loadImage ("/Indoor_Entities/Cafeteria/Vending1.png");
+		vending2 = ImageLoader.loadImage ("/Indoor_Entities/Cafeteria/Vending2.png");
 
 		cafTableSide = ImageLoader.loadImage ("/Indoor_Entities/Cafeteria/Caf_Table_Long_Left.png");
 		cafTableUp = ImageLoader.loadImage ("/Indoor_Entities/Cafeteria/Caf_Table_Long_Up.png");

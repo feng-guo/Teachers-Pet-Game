@@ -41,7 +41,12 @@ public class EntityManager {
 			Entity e = entities.get(i);
 			e.tick();
 		}
-		entities.sort(renderSorter);
+		
+		try {
+			entities.sort(renderSorter);
+		} catch (IllegalArgumentException e) {
+			
+		}
 	}
 	
 	public void render(Graphics g) {
