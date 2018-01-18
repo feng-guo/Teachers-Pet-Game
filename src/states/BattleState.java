@@ -89,21 +89,21 @@ public class BattleState extends State{
 			} else if (handler.getKeyManager().enter) {
 				if (y == 0) {
 					if (x == 0) {
-						answer = 1;
+						answer = 0;
 					} else if (x == 1) {
-						answer = 2;
+						answer = 1;
 					}
 				} else if (y == 1) {
 					if (x == 0) {
-						answer = 3;
+						answer = 2;
 					} else if (x == 1) {
-						answer = 4;
+						answer = 3;
 					}
 				} else if (y == 2) {
 					if (x == 0) {
-						answer = 5;
+						answer = 4;
 					} else if (x == 1) {
-						answer = 6;
+						answer = 5;
 					}
 				}
 				if (battleTest.getSquad().getCharacter(answer) != null) {
