@@ -264,10 +264,9 @@ public class World {
 	}
 	
 	public void loadTopHall() {
-<<<<<<< HEAD
+
 		//entityManager.addEntity(new NPC(handler, Assets.angela_down, 100, 250, 100));
-=======
->>>>>>> fc9116481d27798df071418c9fa088ee0f267c51
+		entityManager.addEntity(new NPC(handler, Assets.angela_down, Assets.angela_up, Assets.angela_left, Assets.angela_right, 100, 250, 100));
 
 		//HALLWAY
 		//Walls and windows
