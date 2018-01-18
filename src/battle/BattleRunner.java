@@ -44,13 +44,15 @@ public class BattleRunner {
         MrTimmerman = (NonPlayableCharacter)characterList.returnCharacter("Mr.Timmerman");
         randomNiner = (NonPlayableCharacter)characterList.returnCharacter("Random Niner");
         squad = new Squad(newSquad);
-<<<<<<< HEAD
-        
-        //inventory.addItem(item);
-=======
-        Item whatever = inventoryItems.retrieveItem("Caf Food");
-        inventory.addItem(whatever);
->>>>>>> e7eef01a81f26ab752afc56efd01c8e535e4f16f
+
+
+        inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
+        inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
+        inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
+        inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
+        inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
+        inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
+
     }
 
     public void startRandomBattle() {
