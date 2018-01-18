@@ -31,7 +31,7 @@ public class BattleState extends State{
 		//handler.setWorld(null);
 		battleTest = new BattleRunner();
 
-		shake = new Animation(300, Assets.feng_down);
+		shake = new Animation(300, Assets.player_down);
 		menu[0][0] = false;
 		menu[0][1] = false;
 		menu[1][0] = false;
@@ -263,7 +263,7 @@ public class BattleState extends State{
 			//System.out.println("Currently returns: True");
 			g.drawImage(shake.getCurrentFrame(), 390, 20, 120, 150, null);
 		} else {
-			g.drawImage(Assets.feng_down[0], 390, 20, 120, 150, null);
+			g.drawImage(Assets.player_down[0], 390, 20, 120, 150, null);
 		}
 
 		g.setColor(Color.BLACK);
@@ -390,12 +390,12 @@ public class BattleState extends State{
 					g.drawString(battleTest.getSquad().getCharacter(5).getName(), 365, 300);
 				} catch (NullPointerException e) {}
 				try {
-					g.drawImage(Assets.feng_down[0], 35, 35, null);
-					g.drawImage(Assets.feng_down[0], 325, 35, null);
-					g.drawImage(Assets.feng_down[0], 35, 160, null);
-					g.drawImage(Assets.feng_down[0], 325, 160, null);
-					g.drawImage(Assets.feng_down[0], 35, 285, null);
-					g.drawImage(Assets.feng_down[0], 325, 285, null);
+					g.drawImage(Assets.player_down[0], 35, 35, null);
+					g.drawImage(Assets.player_down[0], 325, 35, null);
+					g.drawImage(Assets.player_down[0], 35, 160, null);
+					g.drawImage(Assets.player_down[0], 325, 160, null);
+					g.drawImage(Assets.player_down[0], 35, 285, null);
+					g.drawImage(Assets.player_down[0], 325, 285, null);
 				} catch (NullPointerException e) {};
 				
 				g.setColor(new Color(150, 150, 150));
