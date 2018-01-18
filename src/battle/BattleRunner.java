@@ -45,7 +45,6 @@ public class BattleRunner {
         randomNiner = (NonPlayableCharacter)characterList.returnCharacter("Random Niner");
         squad = new Squad(newSquad);
 
-
         inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
         inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
         inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
@@ -53,7 +52,6 @@ public class BattleRunner {
         inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
         inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
 
-    }
 
     public void startRandomBattle() {
         double random2 = Math.random();
