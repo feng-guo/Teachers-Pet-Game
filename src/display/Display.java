@@ -38,7 +38,7 @@ public class Display {
 		//frame.requestFocusInWindow();
 		
 		canvas = new Canvas();
-		canvas.setBackground(new Color(0, 0, 0, 0));
+		//canvas.setBackground(new Color(0, 0, 0, 0));
 		canvas.setPreferredSize(new Dimension(width, height));
 		canvas.setMaximumSize(new Dimension(width, height));
 		canvas.setMinimumSize(new Dimension(width, height));
