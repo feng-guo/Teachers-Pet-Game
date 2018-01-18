@@ -50,10 +50,6 @@ public class BattleState extends State{
 	public void tick() {
 		shake.tick();
 
-		// if (battleTest.isBattleEnd()) {
-		// 	State.setState(handler.getGame().getGameState());
-		// 	return;
-		// }
 		if (!battleTest.battleStart) {
 			return;
 		}
@@ -417,6 +413,10 @@ public class BattleState extends State{
 				}
 			} else if (battleTest.isInventoryChoicePhase()) {
 				//draw inventory
+			}
+			if (battleTest.isBattleEnd()) {
+				State.setState(handler.getGame().getGameState());
+				return;
 			}
 		}
 	}

@@ -106,7 +106,7 @@ public class Battle {
   private String[] selectionStrings;
   private String[] characterStrings; //Used for switching out
 
-  private boolean playerChoicePhase, playerPickAttackPhase, playerAttackChoicePhase, playerSwitchPhase, playerPickCharacterPhase, playerInventoryPhase, playerInventoryChoicePhase, playerRunPhase, playerEndPhase;
+  private boolean playerChoicePhase, playerPickAttackPhase, playerAttackChoicePhase, playerSwitchPhase, playerPickCharacterPhase, playerInventoryPhase, playerInventoryChoicePhase;
   private boolean forceSwitchCharacterPhase;
   private ArrayList<String> textArrayList = new ArrayList<>();
 
@@ -218,7 +218,6 @@ public class Battle {
     this.playerPickCharacterPhase = false;
     this.playerInventoryPhase = false;
     this.playerInventoryChoicePhase = false;
-    this.playerEndPhase = false;
     this.forceSwitchCharacterPhase = false;
 
     this.playerMovedFirst = false;
@@ -290,9 +289,8 @@ public class Battle {
         playerChoicePhase = false;
         playerAttacked = false;
       } else if (phase - 1 == 3) {
-        playerRunPhase = true;
-        playerChoicePhase = false;
-        playerAttacked = false;
+        playerRun();
+        goBackInMenu();
       }
       return;
     }
@@ -348,7 +346,6 @@ public class Battle {
       }
     }
     //Displays the health of both opponents. This could be a string output too
-    textArrayList.add("What would you like to do");
     selectionStrings[0] = "Fight";
     selectionStrings[1] = "Inventory";
     selectionStrings[2] = "Squad";
@@ -364,7 +361,6 @@ public class Battle {
     this.playerPickCharacterPhase = false;
     this.playerInventoryPhase = false;
     this.playerInventoryChoicePhase = false;
-    this.playerEndPhase = false;
     if (playerCurrentHealth != 0) {
       forceSwitchCharacterPhase = false;
     }
@@ -521,7 +517,6 @@ public class Battle {
   }
 
   public void playerRun() {
-    playerRunPhase = true;
     if (Math.random() < playerFleeChance) {
       playerFled = true;
       playerLoses = true;
@@ -529,7 +524,6 @@ public class Battle {
       textArrayList.add("Ran successfully!");
     } else {
       textArrayList.add("Could not run!");
-      playerRunPhase = false;
       opponentTurn();
     }
   }
@@ -1503,59 +1497,51 @@ public class Battle {
       }
   }
 
-  public boolean isPlayerChoicePhase() {
+  boolean isPlayerChoicePhase() {
     return playerChoicePhase;
   }
 
-  public boolean isPlayerAttackChoicePhase() {
+  boolean isPlayerAttackChoicePhase() {
     return playerAttackChoicePhase;
   }
 
-  public boolean isPlayerInventoryPhase() {
+  boolean isPlayerInventoryPhase() {
     return playerInventoryPhase;
   }
 
-  public boolean isPlayerSwitchPhase() {
+  boolean isPlayerSwitchPhase() {
     return playerSwitchPhase;
   }
 
-  public boolean isPlayerRunPhase() {
-    return playerRunPhase;
-  }
-
-  public boolean isPlayerInventoryChoicePhase() {
+  boolean isPlayerInventoryChoicePhase() {
     return playerInventoryChoicePhase;
   }
 
-  public boolean isPlayerPickAttackPhase() {
+  boolean isPlayerPickAttackPhase() {
     return playerPickAttackPhase;
   }
 
-  public boolean isPlayerPickCharacterPhase() {
+  boolean isPlayerPickCharacterPhase() {
     return playerPickCharacterPhase;
   }
-
-  public boolean isForceSwitchCharacterPhase() {
-    return forceSwitchCharacterPhase;
-  }
   
-  public ArrayList<String> getTextArrayList() {
+  ArrayList<String> getTextArrayList() {
     return textArrayList;
   }
 
-  public String getSelectionStrings(int i) {
+  String getSelectionStrings(int i) {
     return selectionStrings[i];
   }
 
-  public boolean isPlayerAttacked() {
+  boolean isPlayerAttacked() {
     return playerAttacked;
   }
 
-  public boolean isPlayerMovedFirst() {
+  boolean isPlayerMovedFirst() {
     return playerMovedFirst;
   }
 
-  public String[] getCharacterStrings() {
+  String[] getCharacterStrings() {
     return characterStrings;
   }
 }
