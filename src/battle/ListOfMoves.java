@@ -9,6 +9,7 @@ public class ListOfMoves {
         moveList = new ArrayList<Move>();
         //Basic moves
         Move selfSleep = new StatusMove("SelfSleep", 4.0, "Neutral", "Sleep", 100, 0, "Self");
+        Move opponentSleep = new StatusMove("OpponentSleep", 4.0, "Neutral", "Sleep", 100, 0, "Opponent");
         Move randomBurn50 = new StatusMove("randomBurn50", 0.5, "Neutral", "Burn", 100, 0, "Random"); //Code in the random!!
         Move opponentBurn75 = new StatusMove("opponentBurn75", 0.75, "Neutral", "Burn", 100, 0, "Opponent");
         Move doubleUserDefence = new StatChangeMove("doubleUserDefence", 4.0, "Neutral", 2, "Defence", 100, 0, "Self");
@@ -17,6 +18,7 @@ public class ListOfMoves {
         Move halveOpponentDefence10 = new StatChangeMove("halveOpponentDefence10", 0.1, "Neutral", 2, "Defence", 100, 0, "Opponent");
         Move halveOpponentIntelligence10 = new StatChangeMove("halveOpponentIntelligence10", 0.1, "Neutral", 2, "Intelligence", 100, 0, "Opponent");
         Move opponentPoison10 = new StatusMove("opponentPoison10", 0.1, "Science", "Poison", 100, 0, "Opponent");
+        Move opponentPoison30 = new StatusMove("opponentPoison10", 0.3, "Science", "Poison", 100, 0, "Opponent");
         Move doubleUserHealth = new StatChangeMove("doubleUserHealth", 1.0, "Neutral", 2, "Health", 100, 0, "Self");
         //neutral
         moveList.add(new AttackMove("Burn Piano Book", 60, 1.0, "Neutral", "Attack", 12, 0, randomBurn50));
@@ -61,9 +63,11 @@ public class ListOfMoves {
         moveList.add(new StatChangeMove("Self Loathe", 1, "English", 2, "Attack", 10, 0, "Self", doubleUserDefence));
         //science
         moveList.add(new StatChangeMove("TLAP", 1.0, "Science", 2, "Intelligence", 10, 0, "Self"));
+        moveList.add(new StatChangeMove("Teach Stoichiometry", 1.0, "Science", 2, "Intelligence", 12, 0, "Opponent", opponentSleep));
         moveList.add(new AttackMove("Chemistry Pun", 40, 1.0, "Science", "Intelligence", 15, 0, null));
         moveList.add(new AttackMove("Splash Acid", 80, 1.0, "Science", "Attack", 10, 0, opponentPoison10));
         moveList.add(new StatusMove("Dissect Frog", 0.9, "Science","Poison", 15, 0, "Opponent"));
+        moveList.add(new AttackMove("Titration", 70,1.0, "Science", "Intelligence", 15, 0, opponentPoison30));
         //technology
         moveList.add(new StatChangeMove("Implement APIs", 1.0, "Technology", 2, "Speed", 8, 0, "Self"));
         moveList.add(new AttackMove("Deoptimize Code", 50, 1.0, "Technology", "Intelligence", 10, 0, null));

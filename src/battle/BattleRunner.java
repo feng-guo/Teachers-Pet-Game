@@ -21,7 +21,7 @@ public class BattleRunner {
     private ListOfInventoryItems inventoryItems = new ListOfInventoryItems();
     private Inventory inventory = new Inventory();
     private PlayableCharacter[] newSquad = new PlayableCharacter[6];
-    private NonPlayableCharacter MrChoi, MrShim, MrTimmerman, randomNiner, alston, michael;
+    private NonPlayableCharacter MrChoi, MrShim, MrTimmerman, randomNiner, alston, michael, msKostanenko;
     private Squad squad;
     public boolean battleStart;
     private Battle battle;
@@ -32,19 +32,20 @@ public class BattleRunner {
 	}
 
     public void initializeBattleAssets() {
-        newSquad[0] = (PlayableCharacter)characterList.returnCharacter("Feng");
-        newSquad[1] = (PlayableCharacter)characterList.returnCharacter("Joyce");
-        newSquad[2] = (PlayableCharacter)characterList.returnCharacter("Sihan");
-        newSquad[3] = (PlayableCharacter)characterList.returnCharacter("Yash");
-        newSquad[4] = (PlayableCharacter)characterList.returnCharacter("Johann");
-        newSquad[5] = (PlayableCharacter)characterList.returnCharacter("Misha");
+        newSquad[0] = (PlayableCharacter) characterList.returnCharacter("Feng");
+        newSquad[1] = (PlayableCharacter) characterList.returnCharacter("Joyce");
+        newSquad[2] = (PlayableCharacter) characterList.returnCharacter("Sihan");
+        newSquad[3] = (PlayableCharacter) characterList.returnCharacter("Yash");
+        newSquad[4] = (PlayableCharacter) characterList.returnCharacter("Johann");
+        newSquad[5] = (PlayableCharacter) characterList.returnCharacter("Misha");
         //newSquad[5] = (PlayableCharacter)characterList.returnCharacter("Angela");
-        MrChoi = (NonPlayableCharacter)characterList.returnCharacter("Mr.Choi");
-        MrShim = (NonPlayableCharacter)characterList.returnCharacter("Mr.Shim");
-        MrTimmerman = (NonPlayableCharacter)characterList.returnCharacter("Mr.Timmerman");
-        randomNiner = (NonPlayableCharacter)characterList.returnCharacter("Random Niner");
-        alston = (NonPlayableCharacter)characterList.returnCharacter("Alston");
-        michael = (NonPlayableCharacter)characterList.returnCharacter("Michael");
+        MrChoi = (NonPlayableCharacter) characterList.returnCharacter("Mr.Choi");
+        MrShim = (NonPlayableCharacter) characterList.returnCharacter("Mr.Shim");
+        MrTimmerman = (NonPlayableCharacter) characterList.returnCharacter("Mr.Timmerman");
+        randomNiner = (NonPlayableCharacter) characterList.returnCharacter("Random Niner");
+        alston = (NonPlayableCharacter) characterList.returnCharacter("Alston");
+        michael = (NonPlayableCharacter) characterList.returnCharacter("Michael");
+        msKostanenko = (NonPlayableCharacter) characterList.returnCharacter("Ms.Kostanenko");
         squad = new Squad(newSquad);
 
         inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
@@ -53,6 +54,7 @@ public class BattleRunner {
         inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
         inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
         inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
+    }
 
 
     public void startRandomBattle() {

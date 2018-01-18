@@ -36,12 +36,14 @@ public class ListOfCharacters{
         String[] randomNinerMoveNames = {"Not Study", "Flex", "Swear", "Complain"};
         String[] alstonMoveNames = {"Trigonometry Test", "Practice Set", "Chemistry Pun", "Splash Acid"};
         String[] michaelMoveNames = {"Dodge Homework", "Math Angels", "Stack Overflow", "Dissect Frog"};
+        String[] msKostanenkoMoveNames = {"Splash Acid", "Teach Stoichiometry", "Titration", "Mark Test"};
         Move[] mrChoiMoves = returnMoveArray(mrChoiMoveNames);
         Move[] mrShimMoves = returnMoveArray(mrShimMoveNames);
         Move[] mrTimmermanMoves = returnMoveArray(mrTimmermanMoveNames);
         Move[] randomNinerMoves = returnMoveArray(randomNinerMoveNames);
         Move[] alstonMoves = returnMoveArray(alstonMoveNames);
         Move[] michaelMoves = returnMoveArray(michaelMoveNames);
+        Move[] msKostanenkoMoves = returnMoveArray(msKostanenkoMoveNames);
 
         //List of playable characters
         characterList.add(new PlayableCharacter(50, 60, 20, 50, 60, "Technology", "Feng", "[description]", fengMoves, "Clown", null, null, null, null, null, Assets.feng_down));
@@ -57,7 +59,8 @@ public class ListOfCharacters{
         characterList.add(new NonPlayableCharacter(200, 40, 100, 60, 100, "Math", "Mr.Timmerman", "Focus isn't just the name of a car.", mrTimmermanMoves, 100, "Unaware", null, Assets.bill_down));
         characterList.add(new NonPlayableCharacter(20, 30, 30, 30, 30, "Neutral", "Random Niner", "Ahlieeeee", randomNinerMoves, 200, "Annoying", null, Assets.bill_down));
         characterList.add(new NonPlayableCharacter(40, 20, 60, 20, 30, "Science", "Alston", "That math test was easy.", alstonMoves, 200, "Osmosis", null, Assets.bill_down));
-        characterList.add(new NonPlayableCharacter(60, 70, 80, 10, 50, "Techonology", "Michael", "Oh shoot!", michaelMoves, 200, "Persistent", null, Assets.bill_down));
+        characterList.add(new NonPlayableCharacter(60, 70, 80, 10, 50, "Technology", "Michael", "Oh shoot!", michaelMoves, 200, "Persistent", null, Assets.bill_down));
+        characterList.add(new NonPlayableCharacter(200, 40, 90, 40, 60, "Science", "Ms.Kostanenko", "Wake up people!", msKostanenkoMoves, 300, "Demoralize", null, Assets.bill_down));
     }
 
     private Move[] returnMoveArray(String[] moveNames) {
