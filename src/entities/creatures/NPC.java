@@ -32,7 +32,8 @@ public class NPC extends Creature{
 	
 	private BufferedImage[] spriteSetDown, spriteSetUp, spriteSetLeft, spriteSetRight;
 	
-	public NPC(Handler handler, BufferedImage[] spriteSetDown, BufferedImage[] spriteSetUp, BufferedImage[] spriteSetLeft, BufferedImage[] spriteSetRight,
+	public NPC(Handler handler, 
+			BufferedImage[] spriteSetDown, BufferedImage[] spriteSetUp, BufferedImage[] spriteSetLeft, BufferedImage[] spriteSetRight,
 			int boxSize, float x, float y) {
 
 		
@@ -174,11 +175,6 @@ public class NPC extends Creature{
 					yMove = 0;
 				}
 		}
-		
-		
-		
-		
-		
 		
 		if (x == -3) {
 			x = 0;
