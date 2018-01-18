@@ -27,6 +27,9 @@ public class BattleState extends State{
 	private boolean[][] characterSelection = new boolean[3][2];
 	private int x, y;
 	private boolean cannotSwitchCharacter;
+	private boolean[] inventorySelection = new boolean[10];
+	private int inventoryX;
+	private int topOfInventory;
 
 	public BattleState(Handler handler, Graphics g) {
 		super(handler);
@@ -364,10 +367,6 @@ public class BattleState extends State{
 			}
 		}
 		
-
-
-
-		
 		
 		if (!characterSelectionScreen) {
 			characterSelection[0][0] = true;
@@ -510,7 +509,7 @@ public class BattleState extends State{
 					}
 				}
 			} else if (battleTest.isInventoryChoicePhase()) {
-				//draw inventory
+
 			}
 			if (battleTest.isBattleEnd()) {
 				State.setState(handler.getGame().getGameState());

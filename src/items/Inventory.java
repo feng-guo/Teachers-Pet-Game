@@ -90,4 +90,12 @@ public class Inventory {
     public int getInventorySize() {
         return inventory.size();
     }
+
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
+
+    public ArrayList<Integer> getNumItems() {
+        return numItems;
+    }
 }
