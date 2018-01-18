@@ -849,7 +849,12 @@ public class Battle {
 
     //Calculating the damage of the attack move
     int damageDealt;
-    damageDealt = (int)(Math.ceil((move.getPower() * (attackerStatUsed/defence+1))/10) * multiplier);
+    
+    if (defence < 0) {
+    		defence = 0;
+    }
+	damageDealt = (int)(Math.ceil((move.getPower() * (attackerStatUsed/defence+1))/10) * multiplier);
+
 
     double determineHit = Math.random();
     //Factors in the clown ability

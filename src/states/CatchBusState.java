@@ -4,6 +4,7 @@ import game.Handler;
 import graphics.Assets;
 
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
 public class CatchBusState extends State{
@@ -67,7 +68,9 @@ public class CatchBusState extends State{
             }
         }
         if (clockTimer < 1 || score == 0) {
-            handler.getGame().setGameState();
+        		handler.getKeyManager().forceKeyChange(KeyEvent.VK_Z, false);
+			handler.getGame().setRecentlyPlayed();
+			handler.getGame().setGameState();
         }
     }
 
