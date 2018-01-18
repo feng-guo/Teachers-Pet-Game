@@ -18,7 +18,7 @@ public class Assets {
 
 	//public static BufferedImage player_down_1, player_down_2, player_down_3;
 
-	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, gymTile,
+	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, gymTile, blackScreen,
 	floor, wall, blackBlock, battleBackground, characterSelect, hallFloor, locker, lockerTop, stairs,
 	openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench, 
 	hallCouch, hallChairLowLeft, hallChairLowRight, hallChairLowUp, hallChairHigh, hallTableLow, hallTableHigh,
@@ -40,7 +40,7 @@ public class Assets {
 	public static Font font24, font16, font12, font10, font8;
 
 	public static String characterName = "Misha";
-	
+
 	public static void init() {
 		
 		loadFont();
@@ -71,7 +71,7 @@ public class Assets {
 		happyFace = ImageLoader.loadImage("/happyFace.png");
 		sadFace = ImageLoader.loadImage("/sadFace.png");
 		blackBoard = ImageLoader.loadImage("/Indoor_Entities/General_Classroom_Items/Clean_Blackboard.png");
-		
+		blackScreen = ImageLoader.loadImage("/blackBoard.png");
 		
 		battleBackground = ImageLoader.loadImage("/game_background.png");
 
