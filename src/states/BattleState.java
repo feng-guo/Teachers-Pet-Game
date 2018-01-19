@@ -304,7 +304,8 @@ public class BattleState extends State{
 		} else {
 			g.setFont(Assets.font16);
 		}
-		g.drawString(battleTest.getOpponent().getName(), 45, 70);
+		//g.drawString(battleTest.getOpponent().getName(), 45, 70);
+		g.drawString(handler.getGame().getCurrentOpponentName(), 45, 70);
 		//g.setFont(new Font("Arial", Font.PLAIN, 17));
 		g.setFont(Assets.font12);
 		g.drawString(Integer.toString(battleTest.getPlayer().getCurrentHealth()), 475, 255);

@@ -1,6 +1,6 @@
 package input;
 
-import states.BattleState;
+import states.BattleState; 
 import states.State;
 
 import java.awt.event.KeyEvent;
@@ -14,7 +14,7 @@ public class KeyManager implements KeyListener{
 	private Set<Integer> pressedKeys = new TreeSet<>();
 	
 	public boolean up, down, left, right;
-	public boolean battle, stressEat, beepTest, mathContest, catchBus;
+	public boolean battle, stressEat, beepTest, mathContest, catchBus, universalEnter;
 	public boolean first, second, third, fourth;
 	public boolean enter, backspace;
 	
@@ -36,6 +36,7 @@ public class KeyManager implements KeyListener{
 			beepTest = keys[KeyEvent.VK_C];
 			mathContest = keys[KeyEvent.VK_V];
 			catchBus = keys[KeyEvent.VK_B];
+			universalEnter = keys[KeyEvent.VK_ENTER];
 		}
 	}
 

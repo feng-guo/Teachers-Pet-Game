@@ -13,10 +13,13 @@ import characters.Character;
 import characters.NonPlayableCharacter;
 import characters.PlayableCharacter;
 import characters.Squad;
+import game.Handler;
 import items.*;
 
 public class Battle {
   //Objects that need to be saved here
+  private Handler handler;	
+	
   private PlayableCharacter player; //Since it is an object, when the values of the objects are changed, they stay changed
   private NonPlayableCharacter opponent; //Same for this one
   private Inventory playerInventory; //Interactions in the inventory during the battle are used here
@@ -110,8 +113,9 @@ public class Battle {
   private ArrayList<String> textArrayList = new ArrayList<>();
 
 
-  Battle (PlayableCharacter player, NonPlayableCharacter opponent, Squad squad, Inventory inventory) {
+  Battle (Handler handler, PlayableCharacter player, NonPlayableCharacter opponent, Squad squad, Inventory inventory) {
     //Constructor that requires some math
+	this.handler = handler;
     this.player = player; //Saves the player
     this.opponent = opponent; //Saves the opponent
     this.playerInventory = inventory;
@@ -175,7 +179,8 @@ public class Battle {
     this.opponentSpeed = opponent.getSpeed();
     
     //Strings
-    this.opponentName = opponent.getName();
+	this.opponentName = handler.getGame().getCurrentOpponentName();
+    //this.opponentName = opponent.getName();
     this.opponentType = opponent.getType();
     this.opponentStatus = null;
     this.opponentAbility = opponent.getAbility();
@@ -270,6 +275,8 @@ public class Battle {
   }
   
   public void runBattleTurn(int phase) {
+
+	System.out.println(handler.getGame().getCurrentOpponentName());
     if (phase > 0) {
       selectionStrings[0] = "null";
       if (phase - 1 == 0) {
@@ -1764,5 +1771,9 @@ public class Battle {
 
   String[] getCharacterStrings() {
     return characterStrings;
+  }
+  
+  void setOpponentName(String name) {
+	  opponentName = name;
   }
 }

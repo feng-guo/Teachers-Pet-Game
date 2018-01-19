@@ -157,15 +157,15 @@ public class World {
 	
 	public void loadTopHall() {
 
-		//entityManager.addEntity(new NPC(handler, Assets.angela_down, 100, 250, 100));
-		entityManager.addEntity(new NPC(handler, Assets.angela_down, Assets.angela_up, Assets.angela_left, Assets.angela_right, 100, 250, 100));
-		entityManager.addEntity(new NPC(handler, Assets.feng_down, Assets.feng_up, Assets.feng_left, Assets.feng_right, 100, 400, 100));
-		entityManager.addEntity(new NPC(handler, Assets.bill_down, Assets.bill_up, Assets.bill_left, Assets.bill_right, 100, 550, 100));
-		entityManager.addEntity(new NPC(handler, Assets.joyce_down, Assets.joyce_up, Assets.joyce_left, Assets.joyce_right, 100, 700, 100));
-		entityManager.addEntity(new NPC(handler, Assets.yash_down, Assets.yash_up, Assets.yash_left, Assets.yash_right, 100, 600, 300));
-		entityManager.addEntity(new NPC(handler, Assets.sihan_down, Assets.sihan_up, Assets.sihan_left, Assets.sihan_right, 100, 1000, 100));
-		entityManager.addEntity(new NPC(handler, Assets.misha_down, Assets.misha_up, Assets.misha_left, Assets.misha_right, 100, 1000, 300));
-		entityManager.addEntity(new NPC(handler, Assets.johann_down, Assets.johann_up, Assets.johann_left, Assets.johann_right, 100, 1300, 100));
+		//entityManager.addEntity(new NPC("name", handler, Assets.angela_down, 100, 250, 100));
+		entityManager.addEntity(new NPC("Rosemary", handler, Assets.angela_down, Assets.angela_up, Assets.angela_left, Assets.angela_right, 100, 250, 100));
+		entityManager.addEntity(new NPC("Aaron", handler, Assets.feng_down, Assets.feng_up, Assets.feng_left, Assets.feng_right, 100, 400, 100));
+		entityManager.addEntity(new NPC("Michael", handler, Assets.bill_down, Assets.bill_up, Assets.bill_left, Assets.bill_right, 100, 550, 100));
+		entityManager.addEntity(new NPC("Katelyn", handler, Assets.joyce_down, Assets.joyce_up, Assets.joyce_left, Assets.joyce_right, 100, 700, 100));
+		entityManager.addEntity(new NPC("Arjun", handler, Assets.yash_down, Assets.yash_up, Assets.yash_left, Assets.yash_right, 100, 600, 300));
+		entityManager.addEntity(new NPC("Veronica", handler, Assets.sihan_down, Assets.sihan_up, Assets.sihan_left, Assets.sihan_right, 100, 1000, 100));
+		entityManager.addEntity(new NPC("Misha", handler, Assets.misha_down, Assets.misha_up, Assets.misha_left, Assets.misha_right, 100, 1000, 300));
+		entityManager.addEntity(new NPC("Kishon", handler, Assets.johann_down, Assets.johann_up, Assets.johann_left, Assets.johann_right, 100, 1300, 100));
 
 
 		//HALLWAY
@@ -233,19 +233,19 @@ public class World {
 	
 	public void loadBottomHall() {
 
-		entityManager.addEntity(new NPC(handler, Assets.angela_down, Assets.angela_up, Assets.angela_left, Assets.angela_right, 100, 250, 100));
-		entityManager.addEntity(new NPC(handler, Assets.feng_down, Assets.feng_up, Assets.feng_left, Assets.feng_right, 100, 400, 100));
-		entityManager.addEntity(new NPC(handler, Assets.bill_down, Assets.bill_up, Assets.bill_left, Assets.bill_right, 100, 550, 100));
-		entityManager.addEntity(new NPC(handler, Assets.joyce_down, Assets.joyce_up, Assets.joyce_left, Assets.joyce_right, 100, 700, 60));
-		entityManager.addEntity(new NPC(handler, Assets.yash_down, Assets.yash_up, Assets.yash_left, Assets.yash_right, 100, 350, 300));
-		entityManager.addEntity(new NPC(handler, Assets.sihan_down, Assets.sihan_up, Assets.sihan_left, Assets.sihan_right, 100, 1000, 100));
-		entityManager.addEntity(new NPC(handler, Assets.misha_down, Assets.misha_up, Assets.misha_left, Assets.misha_right, 100, 1140, 440));
-		entityManager.addEntity(new NPC(handler, Assets.johann_down, Assets.johann_up, Assets.johann_left, Assets.johann_right, 100, 1300, 100));
+		entityManager.addEntity(new NPC("Angela", handler, Assets.angela_down, Assets.angela_up, Assets.angela_left, Assets.angela_right, 100, 250, 100));
+		entityManager.addEntity(new NPC("Joey", handler, Assets.feng_down, Assets.feng_up, Assets.feng_left, Assets.feng_right, 100, 400, 100));
+		entityManager.addEntity(new NPC("Joey", handler, Assets.bill_down, Assets.bill_up, Assets.bill_left, Assets.bill_right, 100, 550, 100));
+		entityManager.addEntity(new NPC("Carol", handler, Assets.joyce_down, Assets.joyce_up, Assets.joyce_left, Assets.joyce_right, 100, 700, 60));
+		entityManager.addEntity(new NPC("Nikhil", handler, Assets.yash_down, Assets.yash_up, Assets.yash_left, Assets.yash_right, 100, 350, 300));
+		entityManager.addEntity(new NPC("Eleanor", handler, Assets.sihan_down, Assets.sihan_up, Assets.sihan_left, Assets.sihan_right, 100, 1000, 100));
+		entityManager.addEntity(new NPC("Random Niner", handler, Assets.misha_down, Assets.misha_up, Assets.misha_left, Assets.misha_right, 100, 1140, 440));
+		entityManager.addEntity(new NPC("Samyar", handler, Assets.johann_down, Assets.johann_up, Assets.johann_left, Assets.johann_right, 100, 1300, 100));
 
 	    //HALLWAY
 		//Walls and windows
 
-		//entityManager.addEntity(new NPC(handler, "Feng2", 100, 400, 150));
+		//entityManager.addEntity(new NPC("name", handler, "Feng2", 100, 400, 150));
 
 		//Lockers & windows
 		for (int x = 2; x < 9; x++) {
@@ -305,8 +305,14 @@ public class World {
 
     public void loadCafeteria() {
 
-        entityManager.addEntity(new NPC(handler, Assets.angela_down, Assets.angela_up, Assets.angela_left, Assets.angela_right, 100, 250, 100));
-
+        entityManager.addEntity(new NPC("Random Niner", handler, Assets.angela_down, Assets.angela_up, Assets.angela_left, Assets.angela_right, 100, 250, 100));
+		entityManager.addEntity(new NPC("Random Niner", handler, Assets.feng_down, Assets.feng_up, Assets.feng_left, Assets.feng_right, 100, 400, 100));
+		entityManager.addEntity(new NPC("Random Niner", handler, Assets.bill_down, Assets.bill_up, Assets.bill_left, Assets.bill_right, 100, 550, 100));
+		entityManager.addEntity(new NPC("Random Niner", handler, Assets.joyce_down, Assets.joyce_up, Assets.joyce_left, Assets.joyce_right, 100, 700, 60));
+		entityManager.addEntity(new NPC("Random Niner", handler, Assets.yash_down, Assets.yash_up, Assets.yash_left, Assets.yash_right, 100, 380, 300));
+		entityManager.addEntity(new NPC("Random Niner", handler, Assets.sihan_down, Assets.sihan_up, Assets.sihan_left, Assets.sihan_right, 100, 450, 850));
+		entityManager.addEntity(new NPC("Random Niner", handler, Assets.misha_down, Assets.misha_up, Assets.misha_left, Assets.misha_right, 100, 250, 600));
+		entityManager.addEntity(new NPC("Random Niner", handler, Assets.johann_down, Assets.johann_up, Assets.johann_left, Assets.johann_right, 100, 400, 1100));
         //Caf Chairs Left
         for (int y = 21; y < 25; y++) {
             entityManager.addEntity(new HallChairLowLeft(handler, (20 + (int)(Math.random() * 5)), (30 * y)));
@@ -459,6 +465,9 @@ public class World {
     }
 
     public void loadGuidance() {
+    	
+    		// NPCs
+		entityManager.addEntity(new NPC("name", handler, Assets.joyce_down, Assets.joyce_up, Assets.joyce_left, Assets.joyce_right, 100, 220, 200));
 
 	    //Counter
         for (int y = 2; y < 6; y++) {

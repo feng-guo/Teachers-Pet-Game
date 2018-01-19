@@ -67,6 +67,7 @@ public class CatchBusState extends State{
                 sendRect[i] = true;
             }
         }
+
         if (clockTimer < 1 || health == 0) {
 			handler.getKeyManager().forceKeyChange(KeyEvent.VK_B, false);
 			handler.getGame().setRecentlyPlayed();

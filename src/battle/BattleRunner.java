@@ -17,7 +17,7 @@ import items.StatItem;
 
 public class BattleRunner {
 
-    private ListOfCharacters characterList = new ListOfCharacters();
+    private ListOfCharacters characterList;
     private ListOfInventoryItems inventoryItems = new ListOfInventoryItems();
     private Handler handler;
     private Inventory inventory;
@@ -33,6 +33,7 @@ public class BattleRunner {
 	public BattleRunner(Handler handler) {
 		battleStart = false;
 		this.handler = handler;
+		characterList = new ListOfCharacters(handler);
 		this.inventory = handler.getInventory();
 	}
 
@@ -81,12 +82,14 @@ public class BattleRunner {
         } else {
             opponent = mrGissing;
         }
-        battle = new Battle(squad.getCharacter(0), opponent, handler.getSquad(), inventory);
+        battle = new Battle(handler, squad.getCharacter(0), opponent, handler.getSquad(), inventory);
+        //battle.setOpponentName(handler.getGame().getCurrentOpponentName());
         battleStart = true;
     }
 
     public void startBattle (NonPlayableCharacter opponent) {
-	    battle = new Battle(squad.getCharacter(0), opponent, squad, inventory);
+	    battle = new Battle(handler, squad.getCharacter(0), opponent, squad, inventory);
+        //battle.setOpponentName(handler.getGame().getCurrentOpponentName());
 	    battleStart = true;
     }
 
