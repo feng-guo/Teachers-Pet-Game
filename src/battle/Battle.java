@@ -517,6 +517,7 @@ public class Battle {
   public void useInventoryItem(int answer) {
     boolean itemUsed = false;
     Item item = playerInventory.getItem(answer);
+    textArrayList.add(playerName + " used " + playerInventory.getItemName(answer));
     if (item instanceof CaptureItem) {
       itemUsed = true;
       //Code to capture the opponent (another method please)
@@ -543,7 +544,6 @@ public class Battle {
       textArrayList.add("You can't use that here!");
     }
     if (itemUsed) {
-      textArrayList.add("You used " + playerInventory.getItemName(answer));
       playerInventory.useItem(playerInventory.getItemName(answer));
       playerInventoryChoicePhase = false;
       opponentTurn();
@@ -1661,12 +1661,14 @@ public class Battle {
       player.setCurrentHealth(playerHealth);
     }
     playerCurrentHealth = player.getCurrentHealth();
+    textArrayList.add(playerName + "'s health was increased by " + item.getChange() + " HP.");
   }
 
   private void cureStatus(PlayableCharacter player, HealItem item){
       if(item.getType().equals(playerStatus)){
           player.resetStatus();
           playerStatus = player.getStatus();
+          textArrayList.add(playerName + "'s status was cured.");
       }
   }
 
@@ -1674,8 +1676,10 @@ public class Battle {
     if (player.isFainted()) {
       if(item.getType().equals("Half revive")) {
         player.setCurrentHealth(playerHealth/2);
+        textArrayList.add(playerName + " was revived with half health.");
       } else if(item.getType().equals("Full revive")) {
         player.resetCurrentHealth();
+        textArrayList.add(playerName + " was revived with full health.");
       }
       playerCurrentHealth = player.getCurrentHealth();
       numberOfFaintedStudents--;
@@ -1686,14 +1690,19 @@ public class Battle {
   private void useStatItem(PlayableCharacter player, StatItem item){
       if(item.getStatAffected().equals("Speed")){
           playerSpeed *= item.getMultiplier();
+          textArrayList.add("The player's speed was increased by " + item.getMultiplier() * 100 + "%");
       }else if(item.getStatAffected().equals("Attack")){
           playerAttack *= item.getMultiplier();
-      }else if(item.getStatAffected().equals("Defense")){
+          textArrayList.add("The player's attack was increased by " + item.getMultiplier() * 100 + "%");
+      }else if(item.getStatAffected().equals("Defence")){
           playerDefence *= item.getMultiplier();
+          textArrayList.add("The player's defence was increased by " + item.getMultiplier() * 100 + "%");
       }else if(item.getStatAffected().equals("Intelligence")){
           playerIntelligence *= item.getMultiplier();
+          textArrayList.add("The player's intelligence was increased by " + item.getMultiplier() * 100 + "%");
       }else if(item.getStatAffected().equals("Health")){
           playerCurrentHealth += playerHealth * item.getMultiplier();
+          textArrayList.add("The player's health was increased by " + item.getMultiplier() * 100 + "%");
       }
   }
 
