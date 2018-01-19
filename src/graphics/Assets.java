@@ -31,7 +31,7 @@ public class Assets {
 	guidanceChairSide, guidanceChairBack, guidanceCouch,
 	counterSide, counterUp, longTableSide, longTableUp, longTableSideTop, longTableUpTop,
     laptop, computer,
-	foodBanner, happyFace, sadFace, blackBoard, writingBlackBoard, projectorScreen, loadingBackground, selectionArrow;
+	foodBanner, happyFace, sadFace, blackBoard, writingBlackBoard, projectorScreen, loadingBackground, selectionArrow, court;
 
 	public static BufferedImage[] player_down, player_up, player_left, player_right,
 								feng_down, feng_up, feng_left, feng_right,
@@ -72,6 +72,7 @@ public class Assets {
 			}
 		}
 		
+		court = ImageLoader.loadImage("/court.png");
 		selectionArrow = ImageLoader.loadImage("/selection_arrow.png");
 		characterSelect = ImageLoader.loadImage("/playerSelect.png");
 		inventorySelect = ImageLoader.loadImage("/inventory_screen.png");

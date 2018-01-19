@@ -81,7 +81,10 @@ public class NPC extends Creature{
 			if (battlesStarted <= 1) {
 				
 				//handler.getKeyManager().battle = true;
-				handler.getKeyManager().forceKeyChange(KeyEvent.VK_X, true);
+				
+				
+				//UNCOMMENT THIS
+				//handler.getKeyManager().forceKeyChange(KeyEvent.VK_X, true);
 
 			} else if (battlesStarted > 1) {
 				handler.getKeyManager().forceKeyChange(KeyEvent.VK_X, false);

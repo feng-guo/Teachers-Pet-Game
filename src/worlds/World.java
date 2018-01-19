@@ -89,16 +89,26 @@ public class World {
 			}
 		}
 		
+//		if (path.equals("res/worlds/gym.txt")) {
+//			Graphics2D g2 = (Graphics2D) g;
+//			g2.setColor(Color.BLACK);
+//			g2.setStroke(new BasicStroke(12f));
+//			g2.drawImage(Assets.court, (int)(-handler.getGameCamera().getxOffset()), (int)(64-handler.getGameCamera().getyOffset()), 800, 490, null);
+//			g2.drawOval((int) (-200 - handler.getGameCamera().getxOffset()), (int) (160 - handler.getGameCamera().getyOffset()), 600, 300);
+//			g2.drawOval((int) (-200 - handler.getGameCamera().getxOffset()), (int) (160 - handler.getGameCamera().getyOffset()), 300, 300);
+//          g2.drawOval((int) (700 - handler.getGameCamera().getxOffset()), (int) (160 - handler.getGameCamera().getyOffset()), 300, 300);
+//			g2.drawLine((int)(400 - handler.getGameCamera().getxOffset()), (int)(68 - handler.getGameCamera().getyOffset()), (int)(400 - handler.getGameCamera().getxOffset()), (int)(800 - handler.getGameCamera().getyOffset()));
+//          g.fillOval((int) (350 - handler.getGameCamera().getxOffset()), (int)(240 - handler.getGameCamera().getyOffset()), 100, 100);
+//		}
+		
 		if (path.equals("res/worlds/gym.txt")) {
 			Graphics2D g2 = (Graphics2D) g;
 			g2.setColor(Color.BLACK);
 			g2.setStroke(new BasicStroke(12f));
-			g2.drawOval((int) (-200 - handler.getGameCamera().getxOffset()), (int) (160 - handler.getGameCamera().getyOffset()), 600, 300);
+			g2.drawImage(Assets.court, (int)(-handler.getGameCamera().getxOffset()), (int)(64-handler.getGameCamera().getyOffset()), 800, 490, null);
+			//g2.drawOval((int) (-200 - handler.getGameCamera().getxOffset()), (int) (160 - handler.getGameCamera().getyOffset()), 600, 300);
 		}
 
-		if(path.equals("res/worlds/gym.txt")){
-		    g.fillOval(20, 20, 300, 200);
-        }
 
 		entityManager.render(g);
 
@@ -191,16 +201,9 @@ public class World {
 		}
 
 		//Doors
-//		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10, "res/worlds/world2.txt", 410, 60));
-		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 20 - 9), 10, "res/worlds/world2.txt", 800, 60));
-		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 30 + 10), 10, "res/worlds/world2.txt", 1217, 90));
-		
-		//Top Floor Doors
-		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10, "res/worlds/math.txt", 90, 60));
-		//entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10, "res/worlds/math.txt", 30, 40));
-		//entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10, "res/worlds/math.txt", 30, 40));
-
-		
+		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 20 - 9), 10, "res/worlds/math.txt", 90, 60));
+		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 30 + 10), 10, "res/worlds/compsci.txt", 380, 60));
+		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10, "res/worlds/english.txt", 90, 60));
 
 		//Hall Library Chairs/Tables
 		entityManager.addEntity(new HallChairLowUp(handler, 828, 343));
@@ -283,9 +286,9 @@ public class World {
 		}
 
 		//Doors
-        entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10, "res/worlds/world1.txt", 400, 60));
-		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 20 - 9), 10, "res/worlds/world1.txt", 800, 60));
-		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 31 - 24), 40, "res/worlds/world1.txt", 1217, 60));
+        entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10, "res/worlds/drama.txt", 400, 60));
+		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 20 - 9), 10, "res/worlds/science.txt", 235, 60));
+		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 31 - 24), 40, "res/worlds/gym.txt", 1217, 60));
 
 		//Stairs
         entityManager.addEntity(new Stairs(handler, 576, 193, "res/worlds/world1.txt", 490, 310));
@@ -564,7 +567,8 @@ public class World {
         }
 
         //Door
-        entityManager.addEntity(new HallwayDoorOpen(handler, 365, 10, "res/worlds/world1.txt", 555, 350));
+        entityManager.addEntity(new HallwayDoorOpen(handler, 365, 10, "res/worlds/world1.txt", 1217, 60));
+
 
     }
 
@@ -611,7 +615,7 @@ public class World {
         entityManager.addEntity(new WritingBlackboard(handler, 320, 20));
 
         //Door
-        entityManager.addEntity(new HallwayDoorOpen(handler, 100, 10, "res/worlds/world1.txt", 400, 60));
+        entityManager.addEntity(new HallwayDoorOpen(handler, 100, 10, "res/worlds/world1.txt", 800, 60));
 
     }
 
@@ -666,7 +670,7 @@ public class World {
         }
 
         //Door
-        entityManager.addEntity(new HallwayDoorOpen(handler, 235, 10, "res/worlds/world2.txt", 20, 100));
+        entityManager.addEntity(new HallwayDoorOpen(handler, 235, 10, "res/worlds/world2.txt", 800, 60));
 
     }
     
