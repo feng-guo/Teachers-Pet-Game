@@ -513,10 +513,18 @@ public class World {
         entityManager.addEntity(new LongTableSideTop(handler, 711, 391));
 
         //Middle Desks
+        for (int y = 2; y < 7; y++) {
+            entityManager.addEntity(new LongTableSide(handler, 450, (50 * y + 22)));
+        }
+        for (int y = 9; y < 11; y++) {
+            entityManager.addEntity(new StudentDeskRight(handler, 500, (40 * y - 132)));
+        }
 
         //Chairs
 
+
         //Teacher's Desk and Chair
+        entityManager.addEntity(new TeacherDeskSide(handler, 670, 300));
 
         //Computers
 
