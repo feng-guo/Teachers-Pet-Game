@@ -28,7 +28,6 @@ public class NPC extends Creature{
 	private int boxSize;
 	private boolean hasStopped = false;
 	private int battlesStarted = 0;
-	private Display battleDisplay;
 	
 	private BufferedImage[] spriteSetDown, spriteSetUp, spriteSetLeft, spriteSetRight;
 	
@@ -69,8 +68,6 @@ public class NPC extends Creature{
 		animLeft.tick();
 		animRight.tick();
 		
-		
-		
 		Rectangle npcRect = new Rectangle((int) x, (int) y, (int) width, (int) height);
 		Rectangle playerRect = new Rectangle((int) handler.getWorld().getEntityManager().getPlayer().getX(),
 					(int) handler.getWorld().getEntityManager().getPlayer().getY(),
@@ -88,13 +85,12 @@ public class NPC extends Creature{
 
 			} else if (battlesStarted > 1) {
 				handler.getKeyManager().forceKeyChange(KeyEvent.VK_X, false);
-				unStopNPC();
+				//unStopNPC();
 				handler.getWorld().getEntityManager().getPlayer().unStopPlayer();
 			}
 			
 			try {
 				if (handler.getGame().getBattleState().getBattleTest().isBattleEnd()) {
-					System.out.println("battle over.");
 				}
 			} catch (NullPointerException e) {
 			}
@@ -221,6 +217,12 @@ public class NPC extends Creature{
 	}
 	
 	private BufferedImage getCurrentAnimationFrame() {
+		
+		if(hasStopped) {
+			xMove = 0;
+			yMove = 0;
+		}
+		
 		if (xMove < 0){ // going left
 			direction = 1;
 			return animLeft.getCurrentFrame();
