@@ -96,6 +96,10 @@ public class World {
 			g2.drawOval((int) (-200 - handler.getGameCamera().getxOffset()), (int) (160 - handler.getGameCamera().getyOffset()), 600, 300);
 		}
 
+		if(path.equals("res/worlds/gym.txt")){
+		    g.fillOval(20, 20, 300, 200);
+        }
+
 		entityManager.render(g);
 
 	}
