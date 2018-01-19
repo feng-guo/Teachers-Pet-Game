@@ -13,7 +13,6 @@ public class Handler {
 	
 	private Game game;
 	private World world;
-	private State battleState;
 	
 	public Handler (Game game) {
 		this.game = game;

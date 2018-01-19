@@ -77,7 +77,7 @@ public class Inventory {
         return null;
     }
 
-    public void displayItems(){
+    /*public void displayItems(){
         if (inventory.size() == 0) {
             System.out.println("You have an empty inventory");
         } else {
@@ -85,7 +85,7 @@ public class Inventory {
                 System.out.println(inventory.get(i).getName() + " x" + numItems.get(i));
             }
         }
-    }
+    }*/
 
     public int getInventorySize() {
         return inventory.size();
