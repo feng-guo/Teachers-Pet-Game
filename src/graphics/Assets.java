@@ -20,7 +20,7 @@ public class Assets {
 
 	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, gymTile, blackScreen,
 	floor, wall, blackBlock, battleBackground, characterSelect, inventorySelect, hallFloor, locker, lockerTop, stairs,
-	openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench, 
+	openDoor, closedDoor, sideDoor, indoorWindowOpen, indoorWindowClosed, bench,
 	hallCouch, hallChairLowLeft, hallChairLowRight, hallChairLowUp, hallChairHigh, hallTableLow, hallTableHigh,
 	cafTableUp, cafTableSide, vending1, vending2,
 	studentDeskRight, studentDeskUp,
@@ -97,6 +97,7 @@ public class Assets {
 		indoorWindowOpen = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hallway_Window_Open.png");
 		indoorWindowClosed = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Hallway_Window_Closed.png");
 		openDoor = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Open_Door.png");
+		sideDoor = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Side_Door.png");
 		closedDoor = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Closed_Door.png");
 		bench = ImageLoader.loadImage ("/Indoor_Entities/Hallway_Items/Bench.png");
 
