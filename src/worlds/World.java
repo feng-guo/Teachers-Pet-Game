@@ -89,6 +89,21 @@ public class World {
 			}
 		}
 		
+//		if (path.equals("res/worlds/gym.txt")) {
+//			Graphics2D g2 = (Graphics2D) g;
+//			g2.setColor(Color.BLACK);
+//			g2.setStroke(new BasicStroke(12f));
+//<<<<<<< HEAD
+//			g2.drawImage(Assets.court, (int)(-handler.getGameCamera().getxOffset()), (int)(64-handler.getGameCamera().getyOffset()), 800, 490, null);
+//			//g2.drawOval((int) (-200 - handler.getGameCamera().getxOffset()), (int) (160 - handler.getGameCamera().getyOffset()), 600, 300);
+//=======
+//			g2.drawOval((int) (-200 - handler.getGameCamera().getxOffset()), (int) (160 - handler.getGameCamera().getyOffset()), 300, 300);
+//            g2.drawOval((int) (700 - handler.getGameCamera().getxOffset()), (int) (160 - handler.getGameCamera().getyOffset()), 300, 300);
+//			g2.drawLine((int)(400 - handler.getGameCamera().getxOffset()), (int)(68 - handler.getGameCamera().getyOffset()), (int)(400 - handler.getGameCamera().getxOffset()), (int)(800 - handler.getGameCamera().getyOffset()));
+//            g.fillOval((int) (350 - handler.getGameCamera().getxOffset()), (int)(240 - handler.getGameCamera().getyOffset()), 100, 100);
+//>>>>>>> 895a77bee2d908db4a65428bb4540a28d9d3ae5f
+//		}
+		
 		if (path.equals("res/worlds/gym.txt")) {
 			Graphics2D g2 = (Graphics2D) g;
 			g2.setColor(Color.BLACK);
