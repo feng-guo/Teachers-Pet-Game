@@ -308,6 +308,8 @@ public class BattleState extends State{
 		g.drawString(handler.getGame().getCurrentOpponentName(), 45, 70);
 		//g.setFont(new Font("Arial", Font.PLAIN, 17));
 		g.setFont(Assets.font12);
+		opponentPercent = (double) battleTest.getOpponent().getCurrentHealth() / (double) battleTest.getOpponent().getInitialHealth();
+		playerPercent = (double) battleTest.getPlayer().getCurrentHealth() / (double) battleTest.getPlayer().getInitialHealth();
 		g.drawString(Integer.toString(battleTest.getPlayer().getCurrentHealth()), 475, 255);
 		g.drawString(Integer.toString(battleTest.getPlayer().getInitialHealth()), 530, 255);
 		//g.drawString(Integer.toString(battleTest.getOpponent().getCurrentHealth()), 50, 90);
@@ -372,6 +374,8 @@ public class BattleState extends State{
 
 
 		if (battleTest.isPlayerAttacked()) {
+			opponentPercent = (double) battleTest.getOpponent().getCurrentHealth() / (double) battleTest.getOpponent().getInitialHealth();
+			playerPercent = (double) battleTest.getPlayer().getCurrentHealth() / (double) battleTest.getPlayer().getInitialHealth();
 			//System.out.println("Currently returns: True");
 			g.drawImage(shake.getCurrentFrame(), 390, 20, 120, 150, null);
 		} else {
@@ -521,12 +525,13 @@ public class BattleState extends State{
 				try {
 					g.setColor(Color.BLACK);
 					g.setFont(Assets.font12);
-					g.drawString(battleTest.getSquad().getCharacter(0).getCurrentHealth() + "/" + battleTest.getSquad().getCharacter(0).getInitialHealth(), 175, 50);
-					g.drawString(battleTest.getSquad().getCharacter(1).getCurrentHealth() + "/" + battleTest.getSquad().getCharacter(1).getInitialHealth(), 465, 50);
-					g.drawString(battleTest.getSquad().getCharacter(2).getCurrentHealth() + "/" + battleTest.getSquad().getCharacter(2).getInitialHealth(), 175, 175);
-					g.drawString(battleTest.getSquad().getCharacter(3).getCurrentHealth() + "/" + battleTest.getSquad().getCharacter(3).getInitialHealth(), 465, 175);
-					g.drawString(battleTest.getSquad().getCharacter(4).getCurrentHealth() + "/" + battleTest.getSquad().getCharacter(4).getInitialHealth(), 175, 300);
-					g.drawString(battleTest.getSquad().getCharacter(5).getCurrentHealth() + "/" + battleTest.getSquad().getCharacter(5).getInitialHealth(), 465, 300);
+//					System.out.println(battleTest.getSquad().getCharacter(0).getCurrentHealth());
+//					g.drawString(battleTest.getSquad().getCharacter(0).getCurrentHealth() + "/" + battleTest.getSquad().getCharacter(0).getInitialHealth(), 175, 50);
+//					g.drawString(battleTest.getSquad().getCharacter(1).getCurrentHealth() + "/" + battleTest.getSquad().getCharacter(1).getInitialHealth(), 465, 50);
+//					g.drawString(battleTest.getSquad().getCharacter(2).getCurrentHealth() + "/" + battleTest.getSquad().getCharacter(2).getInitialHealth(), 175, 175);
+//					g.drawString(battleTest.getSquad().getCharacter(3).getCurrentHealth() + "/" + battleTest.getSquad().getCharacter(3).getInitialHealth(), 465, 175);
+//					g.drawString(battleTest.getSquad().getCharacter(4).getCurrentHealth() + "/" + battleTest.getSquad().getCharacter(4).getInitialHealth(), 175, 300);
+//					g.drawString(battleTest.getSquad().getCharacter(5).getCurrentHealth() + "/" + battleTest.getSquad().getCharacter(5).getInitialHealth(), 465, 300);
 				} catch (NullPointerException e) {};
 				try {
 					g.drawImage(battleTest.getSquad().getCharacter(0).getSprite(0), 35, 35, null);

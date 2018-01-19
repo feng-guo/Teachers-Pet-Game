@@ -80,18 +80,72 @@ public class BattleRunner {
     }
 
     public void startRandomBattle() {
-        double random2 = Math.random();
-        //System.out.println(random2);
+//        double random2 = Math.random();
+//        //System.out.println(random2);
+//        if (random2 < 1) {
+//            opponent = msKostanenko;
+//        } else if (random2 < 0.66) {
+//            opponent = rosemary;
+//        } else {
+//            opponent = mrGissing;
+//        }
+    	
         NonPlayableCharacter opponent;
-        if (random2 < 0.33) {
-            opponent = mrHarris;
-        } else if (random2 < 0.66) {
-            opponent = rosemary;
-        } else {
-            opponent = mrGissing;
-        }
+        
+        
+        if (handler.getGame().getCurrentOpponentName().equals("Rosemary")) {
+        		opponent = rosemary;
+        } else if (handler.getGame().getCurrentOpponentName().equals("Aaron")) {
+        		opponent = aaron;
+    		} else if (handler.getGame().getCurrentOpponentName().equals("Michael")) {
+    			opponent = michael;
+    		} else if (handler.getGame().getCurrentOpponentName().equals("Katleyn")) {
+    			opponent = msKostanenko;
+    		} else if (handler.getGame().getCurrentOpponentName().equals("Arjun")) {
+    			opponent = mrHarris;
+    		} else if (handler.getGame().getCurrentOpponentName().equals("Veronica")) {
+    			opponent = msKostanenko;
+    		} else if (handler.getGame().getCurrentOpponentName().equals("Misha")) {
+    			opponent = michael;
+    		} else if (handler.getGame().getCurrentOpponentName().equals("Kishon")) {
+    			opponent = rosemary;
+    		} else if (handler.getGame().getCurrentOpponentName().equals("Angela")) {
+    			opponent = alston;
+    		} else if (handler.getGame().getCurrentOpponentName().equals("Joey")) {
+    			opponent = aaron;
+    		} else if (handler.getGame().getCurrentOpponentName().equals("Carol")) {
+    			opponent = michael;
+    		} else if (handler.getGame().getCurrentOpponentName().equals("Nikhil")) {
+    			opponent = nikhil;
+    		} else if (handler.getGame().getCurrentOpponentName().equals("Eleanor")) {
+    			opponent = aaron;
+    		} else if (handler.getGame().getCurrentOpponentName().equals("Niner")) {
+    			opponent = randomNiner;
+    		} else if (handler.getGame().getCurrentOpponentName().equals("Samyar")) {
+    			opponent = randomNiner;
+    		} else if (handler.getGame().getCurrentOpponentName().equals("Alston")) {
+    			opponent = alston;
+    		} else if (handler.getGame().getCurrentOpponentName().equals("Bill")) {
+    			opponent = aaron;
+    		} else if (handler.getGame().getCurrentOpponentName().equals("Harris")) {
+    			opponent = mrHarris;
+    		} else if (handler.getGame().getCurrentOpponentName().equals("Gissing")) {
+    			opponent = mrGissing;
+    		} else if (handler.getGame().getCurrentOpponentName().equals("Kostanenko")) {
+    			opponent = msKostanenko;
+    		} else if (handler.getGame().getCurrentOpponentName().equals("Shim")) {
+    			opponent = MrShim;
+    		} else if (handler.getGame().getCurrentOpponentName().equals("Choi")) {
+    			opponent = MrChoi;
+    		} else if (handler.getGame().getCurrentOpponentName().equals("Timmerman")) {
+    			opponent = MrTimmerman;
+    		} else {
+    			opponent = aaron;
+    		}
+        	
+        
+    	
         battle = new Battle(handler, squad.getCharacter(0), opponent, handler.getSquad(), inventory);
-        //battle.setOpponentName(handler.getGame().getCurrentOpponentName());
         battleStart = true;
     }
 

@@ -237,7 +237,7 @@ public class World {
 		entityManager.addEntity(new NPC("Joey", handler, Assets.feng_down, Assets.feng_up, Assets.feng_left, Assets.feng_right, 100, 400, 100));
 		entityManager.addEntity(new NPC("Joey", handler, Assets.bill_down, Assets.bill_up, Assets.bill_left, Assets.bill_right, 100, 550, 100));
 		entityManager.addEntity(new NPC("Carol", handler, Assets.joyce_down, Assets.joyce_up, Assets.joyce_left, Assets.joyce_right, 100, 700, 60));
-		entityManager.addEntity(new NPC("Nikhil", handler, Assets.yash_down, Assets.yash_up, Assets.yash_left, Assets.yash_right, 100, 350, 300));
+		entityManager.addEntity(new NPC("Nikhil", handler, Assets.nikhil_down, Assets.nikhil_up, Assets.nikhil_left, Assets.nikhil_right, 100, 350, 300));
 		entityManager.addEntity(new NPC("Eleanor", handler, Assets.sihan_down, Assets.sihan_up, Assets.sihan_left, Assets.sihan_right, 100, 1000, 100));
 		entityManager.addEntity(new NPC("Niner", handler, Assets.misha_down, Assets.misha_up, Assets.misha_left, Assets.misha_right, 100, 1140, 440));
 		entityManager.addEntity(new NPC("Samyar", handler, Assets.johann_down, Assets.johann_up, Assets.johann_left, Assets.johann_right, 100, 1300, 100));
