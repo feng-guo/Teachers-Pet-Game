@@ -65,6 +65,7 @@ public class ListOfCharacters{
         characterList.add(new PlayableCharacter(50, 60, 35, 50, 60, "Technology", "Feng", "[description]", fengMoves, "Clown", null, null, null, null, null, Assets.feng_down));
         characterList.add(new PlayableCharacter(25, 25, 70, 20, 60, "Math", "Joyce", "[description]", joyceMoves, "Persistent", null, null, null, null, null, Assets.joyce_down));
         characterList.add(new PlayableCharacter(20, 20, 65, 60, 35, "English", "Sihan", "[description]", sihanMoves, "Distressed", null, null, null, null, null, Assets.sihan_down));
+        
         characterList.add(new PlayableCharacter(30, 40, 45, 70, 30, "Science", "Yash", "[description]", yashMoves, "Relieve", null, null, null, null, null, Assets.yash_down));
         characterList.add(new PlayableCharacter(80, 60, 80, 10, 70, "Math", "Johann", "[description]", johannMoves, "Extreme Luck", null, null, null, null, null, Assets.johann_down));
         characterList.add(new PlayableCharacter(30, 40, 50, 40, 40, "Technology", "Misha", "[description]", mishaMoves, "Avoidant", null, null, null, null, null, Assets.misha_down));
