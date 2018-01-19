@@ -509,7 +509,7 @@ public class BattleState extends State{
 					}
 				}
 			} else if (battleTest.isInventoryChoicePhase()) {
-
+				g.drawImage(Assets.inventorySelect, 0, 0, null);
 			}
 			if (battleTest.isBattleEnd()) {
 				handler.getGame().setRecentlyPlayed();
