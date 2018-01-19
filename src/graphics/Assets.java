@@ -41,7 +41,19 @@ public class Assets {
 								joyce_down, joyce_up, joyce_left, joyce_right,
 								misha_down, misha_up, misha_left, misha_right,
 								sihan_down, sihan_up, sihan_left, sihan_right,
-								yash_down, yash_up, yash_left, yash_right;
+								yash_down, yash_up, yash_left, yash_right,
+								aaron_down, aaron_up, aaron_left, aaron_right,
+								alston_down, alston_up, alston_left, alston_right,
+								michael_down, michael_up, michael_left, michael_right,
+								nikhil_down, nikhil_up, nikhil_left, nikhil_right,
+								rosemary_down, rosemary_up, rosemary_left, rosemary_right,
+								randomNiner_down, randomNiner_up, randomNiner_left, randomNiner_right,
+								timmerman_down, timmerman_up, timmerman_left, timmerman_right,
+								choi_down, choi_up, choi_left, choi_right,
+								shim_down, shim_up, shim_left, shim_right,
+								harris_down, harris_up, harris_left, harris_right,
+								kostanenko_down, kostanenko_up, kostanenko_left, kostanenko_right,
+								gissing_down, gissing_up, gissing_left, gissing_right;
 								
 	public static BufferedImage[] logo, cars;
 	public static BufferedImage[][] tileArray, foodArray;
@@ -199,7 +211,19 @@ public class Assets {
 		SpriteSheet mishaSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/Misha/misha_spritesheet.png"));
 		SpriteSheet sihanSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/Sihan/sihan_spritesheet.png"));
 		SpriteSheet yashSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/Yash/yash_spritesheet.png"));
-		
+		SpriteSheet aaronSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/Aaron/aaron_spritesheet.png"));
+		SpriteSheet alstonSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/Alston/alston_spritesheet.png"));
+		SpriteSheet michaelSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/Michael/michael_spritesheet.png"));
+		SpriteSheet nikhilSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/Nikhil/nikhil_spritesheet.png"));
+		SpriteSheet rosemarySheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/Rosemary/rosemary_spritesheet.png"));
+		SpriteSheet randomNinerSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/RandomNiner/niner_spritesheet.png"));
+		SpriteSheet choiSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/MrChoi/choi_spritesheet.png"));
+		SpriteSheet timmermanSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/MrTimmerman/timmerman_spritesheet.png"));
+		SpriteSheet shimSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/MrShim/shim_spritesheet.png"));
+		SpriteSheet kostanenkoSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/MsKostanenko/kostanenko_spritesheet.png"));
+		SpriteSheet harrisSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/MrHarris/harris_spritesheet.png"));
+		SpriteSheet gissingSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/MrGissing/gissing_spritesheet.png"));
+
 		player_down = new BufferedImage[3];
 		player_up = new BufferedImage[3];
 		player_left = new BufferedImage[3];
@@ -244,6 +268,67 @@ public class Assets {
 		yash_up = new BufferedImage[3];
 		yash_left = new BufferedImage[3];
 		yash_right = new BufferedImage[3];
+
+		aaron_down = new BufferedImage[3];
+		aaron_up = new BufferedImage[3];
+		aaron_left = new BufferedImage[3];
+		aaron_right = new BufferedImage[3];
+
+		alston_down = new BufferedImage[3];
+		alston_up = new BufferedImage[3];
+		alston_left = new BufferedImage[3];
+		alston_right = new BufferedImage[3];
+
+		michael_down = new BufferedImage[3];
+		michael_up = new BufferedImage[3];
+		michael_left = new BufferedImage[3];
+		michael_right = new BufferedImage[3];
+
+		nikhil_down = new BufferedImage[3];
+		nikhil_up = new BufferedImage[3];
+		nikhil_left = new BufferedImage[3];
+		nikhil_right = new BufferedImage[3];
+
+
+		rosemary_down = new BufferedImage[3];
+		rosemary_up = new BufferedImage[3];
+		rosemary_left = new BufferedImage[3];
+		rosemary_right = new BufferedImage[3];
+
+		randomNiner_down = new BufferedImage[3];
+		randomNiner_up = new BufferedImage[3];
+		randomNiner_left = new BufferedImage[3];
+		randomNiner_right = new BufferedImage[3];
+
+		timmerman_down = new BufferedImage[3];
+		timmerman_up = new BufferedImage[3];
+		timmerman_left = new BufferedImage[3];
+		timmerman_right = new BufferedImage[3];
+
+		choi_down = new BufferedImage[3];
+		choi_up = new BufferedImage[3];
+		choi_left = new BufferedImage[3];
+		choi_right = new BufferedImage[3];
+
+		shim_down = new BufferedImage[3];
+		shim_up = new BufferedImage[3];
+		shim_left = new BufferedImage[3];
+		shim_right = new BufferedImage[3];
+
+		harris_down = new BufferedImage[3];
+		harris_up = new BufferedImage[3];
+		harris_left = new BufferedImage[3];
+		harris_right = new BufferedImage[3];
+
+		kostanenko_down = new BufferedImage[3];
+		kostanenko_up = new BufferedImage[3];
+		kostanenko_left = new BufferedImage[3];
+		kostanenko_right = new BufferedImage[3];
+
+		gissing_down = new BufferedImage[3];
+		gissing_up = new BufferedImage[3];
+		gissing_left = new BufferedImage[3];
+		gissing_right = new BufferedImage[3];
 		
 		for (int i = 0; i < 3; i++) {
 			player_down[i] = playerSheet.crop((charWidth + 1 )*i, 0, charWidth, charHeight);
@@ -255,6 +340,18 @@ public class Assets {
 			misha_down[i] = mishaSheet.crop((charWidth + 1 )*i, 0, charWidth, charHeight);
 			sihan_down[i] = sihanSheet.crop((charWidth + 1 )*i, 0, charWidth, charHeight);
 			yash_down[i] = yashSheet.crop((charWidth + 1 )*i, 0, charWidth, charHeight);
+			aaron_down[i] = aaronSheet.crop((charWidth + 1 )*i, 0, charWidth, charHeight);
+			alston_down[i] = alstonSheet.crop((charWidth + 1 )*i, 0, charWidth, charHeight);
+			michael_down[i] = michaelSheet.crop((charWidth + 1 )*i, 0, charWidth, charHeight);
+			nikhil_down[i] = nikhilSheet.crop((charWidth + 1 )*i, 0, charWidth, charHeight);
+			rosemary_down[i] = rosemarySheet.crop((charWidth + 1 )*i, 0, charWidth, charHeight);
+			randomNiner_down[i] = randomNinerSheet.crop((charWidth + 1 )*i, 0, charWidth, charHeight);
+			timmerman_down[i] = timmermanSheet.crop((charWidth + 1 )*i, 0, charWidth, charHeight);
+			choi_down[i] = choiSheet.crop((charWidth + 1 )*i, 0, charWidth, charHeight);
+			shim_down[i] = shimSheet.crop((charWidth + 1 )*i, 0, charWidth, charHeight);
+			harris_down[i] = harrisSheet.crop((charWidth + 1 )*i, 0, charWidth, charHeight);
+			kostanenko_down[i] = kostanenkoSheet.crop((charWidth + 1 )*i, 0, charWidth, charHeight);
+			gissing_down[i] = gissingSheet.crop((charWidth + 1 )*i, 0, charWidth, charHeight);
 
 		}
 		for (int i = 0; i < 3; i++) {
@@ -267,6 +364,19 @@ public class Assets {
 			misha_left[i] = mishaSheet.crop(charWidth*(i+3) + 1, 0, charWidth - 1, charHeight);
 			sihan_left[i] = sihanSheet.crop(charWidth*(i+3) + 1, 0, charWidth - 1, charHeight);
 			yash_left[i] = yashSheet.crop(charWidth*(i+3) + 1, 0, charWidth - 1, charHeight);
+			aaron_left[i] = aaronSheet.crop(charWidth*(i+3) + 1, 0, charWidth - 1, charHeight);
+			alston_left[i] = alstonSheet.crop(charWidth*(i+3) + 1, 0, charWidth - 1, charHeight);
+			michael_left[i] = michaelSheet.crop(charWidth*(i+3) + 1, 0, charWidth - 1, charHeight);
+			nikhil_left[i] = nikhilSheet.crop(charWidth*(i+3) + 1, 0, charWidth - 1, charHeight);
+			rosemary_left[i] = rosemarySheet.crop(charWidth*(i+3) + 1, 0, charWidth - 1, charHeight);
+			randomNiner_left[i] = randomNinerSheet.crop(charWidth*(i+3) + 1, 0, charWidth - 1, charHeight);
+			timmerman_left[i] = timmermanSheet.crop(charWidth*(i+3) + 1, 0, charWidth - 1, charHeight);
+			choi_left[i] = choiSheet.crop(charWidth*(i+3) + 1, 0, charWidth - 1, charHeight);
+			shim_left[i] = shimSheet.crop(charWidth*(i+3) + 1, 0, charWidth - 1, charHeight);
+			harris_left[i] = harrisSheet.crop(charWidth*(i+3) + 1, 0, charWidth - 1, charHeight);
+			kostanenko_left[i] = kostanenkoSheet.crop(charWidth*(i+3) + 1, 0, charWidth - 1, charHeight);
+			gissing_left[i] = gissingSheet.crop(charWidth*(i+3) + 1, 0, charWidth - 1, charHeight);
+
 		}
 		for (int i = 0; i < 3; i++) {
 			player_right[i] = playerSheet.crop(charWidth*(i+6) - 2, 0, charWidth - 1, charHeight);
@@ -278,6 +388,18 @@ public class Assets {
 			misha_right[i] = mishaSheet.crop(charWidth*(i+6) - 2, 0, charWidth - 1, charHeight);
 			sihan_right[i] = sihanSheet.crop(charWidth*(i+6) - 2, 0, charWidth - 1, charHeight);
 			yash_right[i] = yashSheet.crop(charWidth*(i+6) - 2, 0, charWidth - 1, charHeight);
+			aaron_right[i] = aaronSheet.crop(charWidth*(i+6) - 2, 0, charWidth - 1, charHeight);
+			alston_right[i] = alstonSheet.crop(charWidth*(i+6) - 2, 0, charWidth - 1, charHeight);
+			michael_right[i] = michaelSheet.crop(charWidth*(i+6) - 2, 0, charWidth - 1, charHeight);
+			nikhil_right[i] = nikhilSheet.crop(charWidth*(i+6) - 2, 0, charWidth - 1, charHeight);
+			rosemary_right[i] = rosemarySheet.crop(charWidth*(i+6) - 2, 0, charWidth - 1, charHeight);
+			randomNiner_right[i] = randomNinerSheet.crop(charWidth*(i+6) - 2, 0, charWidth - 1, charHeight);
+			timmerman_right[i] = timmermanSheet.crop(charWidth*(i+6) - 2, 0, charWidth - 1, charHeight);
+			choi_right[i] = choiSheet.crop(charWidth*(i+6) - 2, 0, charWidth - 1, charHeight);
+			shim_right[i] = shimSheet.crop(charWidth*(i+6) - 2, 0, charWidth - 1, charHeight);
+			harris_right[i] = harrisSheet.crop(charWidth*(i+6) - 2, 0, charWidth - 1, charHeight);
+			kostanenko_right[i] = kostanenkoSheet.crop(charWidth*(i+6) - 2, 0, charWidth - 1, charHeight);
+			gissing_right[i] = gissingSheet.crop(charWidth*(i+6) - 2, 0, charWidth - 1, charHeight);
 		}
 		for (int i = 0; i < 3; i++) {
 			player_up[i] = playerSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
@@ -289,6 +411,18 @@ public class Assets {
 			misha_up[i] = mishaSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
 			sihan_up[i] = sihanSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
 			yash_up[i] = yashSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
+			aaron_up[i] = aaronSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
+			alston_up[i] = alstonSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
+			michael_up[i] = michaelSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
+			nikhil_up[i] = nikhilSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
+			rosemary_up[i] = yashSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
+			randomNiner_up[i] = randomNinerSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
+			timmerman_up[i] = timmermanSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
+			choi_up[i] = choiSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
+			shim_up[i] = shimSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
+			harris_up[i] = harrisSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
+			kostanenko_up[i] = kostanenkoSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
+			gissing_up[i] = gissingSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
 
 		}
 //		
