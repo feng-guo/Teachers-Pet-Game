@@ -29,7 +29,8 @@ public class Assets {
 	announcementBoard, announcementBoard2, greenBoard, brownBoard,
 	labBench, labTableSide,labTableUp, labStool, labShelf,
 	guidanceChairSide, guidanceChairBack, guidanceCouch,
-	counterSide, counterUp, longTableSide, longTableUp,
+	counterSide, counterUp, longTableSide, longTableUp, longTableSideTop, longTableUpTop,
+    laptop, computer,
 	foodBanner, happyFace, sadFace, blackBoard, writingBlackBoard, projectorScreen, loadingBackground, selectionArrow;
 
 	public static BufferedImage[] player_down, player_up, player_left, player_right,
@@ -110,9 +111,6 @@ public class Assets {
 		vending1 = ImageLoader.loadImage ("/Indoor_Entities/Cafeteria/Vending1.png");
 		vending2 = ImageLoader.loadImage ("/Indoor_Entities/Cafeteria/Vending2.png");
 
-		cafTableSide = ImageLoader.loadImage ("/Indoor_Entities/Cafeteria/Caf_Table_Long_Left.png");
-		cafTableUp = ImageLoader.loadImage ("/Indoor_Entities/Cafeteria/Caf_Table_Long_Up.png");
-
 		studentDeskUp = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Desk_Chair_Front.png");
 		studentDeskRight = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Desk_Chair_Right.png");
 		teacherDeskUp= ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Teacher_Desk_Up.png");
@@ -136,8 +134,14 @@ public class Assets {
 		guidanceChairSide = ImageLoader.loadImage ("/Indoor_Entities/Guidance_Office/Chair_Side.png");
 		guidanceChairBack = ImageLoader.loadImage ("/Indoor_Entities/Guidance_Office/Chair_Back.png");
 		guidanceCouch = ImageLoader.loadImage ("/Indoor_Entities/Guidance_Office/Guidance_Couch.png");
+
 		longTableSide = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Long_Table_Side.png");
 		longTableUp = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Long_Table_Up.png");
+		longTableSideTop = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Long_Table_Side_Top.png");
+		longTableUpTop = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Long_Table_Up_Top.png");
+
+		computer = ImageLoader.loadImage ("/Indoor_Entities/Subject_Specific_Items/Computer_Science/Computer.png");
+        laptop = ImageLoader.loadImage ("/Indoor_Entities/Subject_Specific_Items/Computer_Science/Laptop.png");
 
 		logo = new BufferedImage[2];
 		logo[0] = ImageLoader.loadImage("/logo_up.png");

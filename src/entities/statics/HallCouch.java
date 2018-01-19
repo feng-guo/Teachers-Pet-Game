@@ -9,8 +9,6 @@ import tiles.Tile;
 
 public class HallCouch extends StaticEntity{
 
-    int objDirection;
-
     public HallCouch(Handler handler, float x, float y) {
         super(handler, x, y, (int) (Tile.TILE_WIDTH * 1), (int) (Tile.TILE_HEIGHT * 2));
 

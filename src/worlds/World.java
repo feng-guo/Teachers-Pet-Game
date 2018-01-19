@@ -465,6 +465,56 @@ public class World {
 
     public void loadCompSci() {
 
+	    //Long Tables
+        for (int x = 1; x < 6; x++) {
+            entityManager.addEntity(new LongTableUp(handler, (63 * x - 60), 50));
+        }
+        for (int x = 1; x < 6; x++) {
+            entityManager.addEntity(new LongTableUpTop(handler, (63 * x - 60), 423));
+        }
+        for (int x = 8; x < 13; x++) {
+            entityManager.addEntity(new LongTableUp(handler, (63 * x - 85), 50));
+        }
+        for (int x = 8; x < 13; x++) {
+            entityManager.addEntity(new LongTableUpTop(handler, (63 * x - 85), 423));
+        }
+
+        for (int y = 1; y < 3; y++) {
+            entityManager.addEntity(new LongTableSide(handler, 100, (50 * y + 12)));
+        }
+        for (int y = 9; y < 11; y++) {
+            entityManager.addEntity(new LongTableSideTop(handler, 100, (50 * y - 132)));
+        }
+        for (int y = 1; y < 3; y++) {
+            entityManager.addEntity(new LongTableSide(handler, 295, (50 * y + 12)));
+        }
+        for (int y = 9; y < 11; y++) {
+            entityManager.addEntity(new LongTableSideTop(handler, 295, (50 * y - 132)));
+        }
+        entityManager.addEntity(new LongTableSide(handler, 711, 50));
+        entityManager.addEntity(new LongTableSideTop(handler, 711, 391));
+
+        //Middle Desks
+
+        //Chairs
+
+        //Teacher's Desk and Chair
+
+        //Computers
+
+        //Laptops
+
+        //Windows
+        for (int x = 1; x < 8; x++) {
+            entityManager.addEntity(new IndoorWindowOpen(handler, (40 * x - 20), 5));
+        }
+        for (int x = 11; x < 18; x++) {
+            entityManager.addEntity(new IndoorWindowOpen(handler, (40 * x - 20), 5));
+        }
+
+        //Door
+        entityManager.addEntity(new HallwayDoorOpen(handler, 365, 10, "res/worlds/world2.txt", 555, 350));
+
     }
 
     public void loadDrama() {
