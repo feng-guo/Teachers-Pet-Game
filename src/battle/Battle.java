@@ -512,7 +512,7 @@ public class Battle {
 
   public void playerPickInventory() {
     playerInventoryChoicePhase = true;
-    playerInventory.displayItems();
+    //playerInventory.displayItems();
   }
 
   public void useInventoryItem(int answer) {
