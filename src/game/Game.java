@@ -14,6 +14,7 @@ import graphics.ImageLoader;
 import graphics.SpriteSheet;
 import input.KeyManager;
 import input.MouseManager;
+import items.Inventory;
 import items.ListOfInventoryItems;
 import states.*;
 import states.BattleState;
@@ -62,6 +63,7 @@ import states.StressEatsState;
 	private ListOfCharacters listOfCharacters;
 	private ListOfInventoryItems listOfInventoryItems;
 	private ListOfMoves listOfMoves;
+	private Inventory inventory;
 	
 	public Game(String title, int width, int height) {
 		this.width = width;
@@ -72,6 +74,7 @@ import states.StressEatsState;
 		listOfCharacters = new ListOfCharacters();
 		listOfInventoryItems = new ListOfInventoryItems();
 		listOfMoves = new ListOfMoves();
+		inventory = new Inventory();
 	}
 	
 	private void init() {
@@ -133,7 +136,7 @@ import states.StressEatsState;
 	public void startBattle() {
 		((BattleState) battleState).getBattleTest().initializeBattleAssets();
 		((BattleState) battleState).getBattleTest().startRandomBattle();
-		((BattleState) battleState).getBattleTest().runPhase(-2);
+		((BattleState) battleState).getBattleTest().runPhase(-1);
 	}
 
 	private void render() {
@@ -281,7 +284,11 @@ import states.StressEatsState;
 		return listOfCharacters;
 	}
 
-	 public ListOfMoves getListOfMoves() {
-		 return listOfMoves;
+	public ListOfMoves getListOfMoves() {
+		return listOfMoves;
+	 }
+
+	 public Inventory getInventory() {
+		return inventory;
 	 }
  }

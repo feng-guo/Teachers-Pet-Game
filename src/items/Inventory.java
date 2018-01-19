@@ -77,6 +77,13 @@ public class Inventory {
         return null;
     }
 
+    public int getArrayNumberAtIndex(int index) {
+        if (index > -1 && index<numItems.size()) {
+            return numItems.get(index);
+        }
+        return -1;
+    }
+
     /*public void displayItems(){
         if (inventory.size() == 0) {
             System.out.println("You have an empty inventory");

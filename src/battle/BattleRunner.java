@@ -6,6 +6,7 @@ import characters.ListOfCharacters;
 import characters.NonPlayableCharacter;
 import characters.PlayableCharacter;
 import characters.Squad;
+import game.Handler;
 import items.Inventory;
 import items.Item;
 import items.ListOfInventoryItems;
@@ -14,13 +15,12 @@ import items.StatItem;
 /* This is now an important file that interacts with a battle class
  */
 
-//import java.util.Scanner;
-
 public class BattleRunner {
 
     private ListOfCharacters characterList = new ListOfCharacters();
     private ListOfInventoryItems inventoryItems = new ListOfInventoryItems();
-    private Inventory inventory = new Inventory();
+    private Handler handler;
+    private Inventory inventory;
     private PlayableCharacter[] newSquad = new PlayableCharacter[6];
 
 
@@ -30,8 +30,10 @@ public class BattleRunner {
     private Battle battle;
     private boolean battleStarted;
 	
-	public BattleRunner() {
+	public BattleRunner(Handler handler) {
 		battleStart = false;
+		this.handler = handler;
+		this.inventory = handler.getInventory();
 	}
 
     public void initializeBattleAssets() {
@@ -63,6 +65,8 @@ public class BattleRunner {
         inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
         inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
         inventory.addItem(inventoryItems.retrieveItem("Caf Food"));
+        inventory.addItem(inventoryItems.retrieveItem("McDonald's Burger"));
+        inventory.addItem(inventoryItems.retrieveItem("Red Bull"));
     }
 
     public void startRandomBattle() {
@@ -86,22 +90,24 @@ public class BattleRunner {
     }
 
     public void runPhase(int choice) {
-        if (choice == 10) {
+        if (choice == -10) {
             battle.goBackInMenu();
-        } else if (choice == 20) {
-            return;
-        } else if (battle.isPlayerPickCharacterPhase()) {
-            battle.playerPickCharacter(choice);
-        } else if (battle.isPlayerSwitchPhase()) {
-            battle.playerSwitchCharacter();
-        } else if (battle.isPlayerAttackChoicePhase()) {
-            battle.playerUseAttack(choice);
-        } else if (battle.isPlayerPickAttackPhase()) {
-            battle.playerPickAttack();
+        } else if (choice == -1) {
+            battle.runBattleTurn(-1);
         } else if (battle.isPlayerInventoryChoicePhase()) {
             battle.useInventoryItem(choice);
         } else if (battle.isPlayerInventoryPhase()) {
             battle.playerPickInventory();
+        } else if (choice < 5) {
+            if (battle.isPlayerPickCharacterPhase()) {
+                battle.playerPickCharacter(choice);
+            } else if (battle.isPlayerSwitchPhase()) {
+                battle.playerSwitchCharacter();
+            } else if (battle.isPlayerAttackChoicePhase()) {
+                battle.playerUseAttack(choice);
+            } else if (battle.isPlayerPickAttackPhase()) {
+                battle.playerPickAttack();
+            }
         } else {
             battle.runBattleTurn(choice);
         }
