@@ -579,21 +579,25 @@ public class BattleState extends State{
 				g.drawImage(Assets.inventorySelect, 0, 0, null);
 				try {
 					for (int i = topOfInventory; i < 10+topOfInventory; i++) {
-						if (inventoryY == i-topOfInventory) {
-							g.setColor(Color.RED);
-							g.drawRect(280, 25 + 35*(i-topOfInventory), 290, 30);
-							g.setColor(Color.BLACK);
-							g.setFont(Assets.font10);
-							g.drawString(handler.getInventory().getItem(i).getDescription(), 10, 270);
-							g.setFont(Assets.font12);
-							g.drawString(handler.getInventory().getItem(i).getItemType(), 75, 218);
-						}
-						g.setColor(Color.BLACK);
-						g.setFont(Assets.font12);
 						if (i < handler.getInventory().getInventorySize()) {
+							if (inventoryY == i-topOfInventory) {
+								g.setColor(Color.RED);
+								g.drawRect(280, 25 + 35*(i-topOfInventory), 290, 30);
+								g.setColor(Color.BLACK);
+								g.setFont(Assets.font10);
+								g.drawString(handler.getInventory().getItem(i).getDescription(), 10, 270);
+								g.setFont(Assets.font12);
+								g.drawString(handler.getInventory().getItem(i).getItemType(), 75, 218);
+							}
+							g.setColor(Color.BLACK);
+							g.setFont(Assets.font12);
 							g.drawString(handler.getInventory().getItem(i).getName(), 290, 45 + 35 * (i - topOfInventory));
 							g.drawString(handler.getInventory().getArrayNumberAtIndex(i) + "", 550, 45 + 35 * (i - topOfInventory));
 						}
+					}
+					if (handler.getInventory().getInventorySize() == 0) {
+						g.setFont(Assets.font12);
+						g.drawString("Nothing to show!", 290, 45);
 					}
 				} catch (NullPointerException e) {
 				} catch (ArrayIndexOutOfBoundsException e) {
