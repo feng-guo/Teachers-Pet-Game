@@ -124,7 +124,7 @@ import states.StressEatsState;
 				State.setState(new CatchBusState(handler));
 			}
 		}
-		System.out.println(State.getState());
+		//System.out.println(State.getState());
 		if(State.getState() != null) {
 			State.getState().tick();
 		}
