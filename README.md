@@ -24,6 +24,360 @@ This game is a adventure RPG for students of Richmond Hill High School. Users wi
 * Players must defeat the bosses to pass school
 * Players can alter their stats through items or minigames (dumbbell curls, math contests (answering easy/hard math questions), eating, running laps around the school)
 
+# English
+English is a type of subject that people can be. People with the English type show a general interest in English through essays and presentations. People who are interested in English have an expanded vocabulary and are very persuasive. English is effective against technology and is weak to math.
+
+# Moves
+## Attack
+### Rip Essay
+Ripping up a peers essay is almost always used in a figurative sense in that they should not hold back on constructive criticism. Used in a literal sense results in a ripped essay and a lot of confused people.
+
+**Description**: I meant rip it in a figurative sense!
+
+**Effect**
+* Base power: 60
+* Accuracy: 100%
+* PP: 15
+
+## Intelligence
+### Argue
+The art of arguing has its merits. Commonly used against teachers to scrape marks off of them, students must master the technique of arguing in order to succeed at RHHS. When used, teachers usually want to die because they do not want to deal with whining students constantly.
+
+**Description**: I am sure that Kanye West is a genius and I should not lose marks for saying so!
+
+**Effect**
+* Base power: 70
+* Accuracy: 95%
+* PP: 10
+
+### Complain
+Knowing that life sucks and ensuring that everyone around you is aware of that fact is a challenge in itself. People who complain are usually looked down upon not only because it is annoying, but also because of the fact that no one cares.
+
+**Description**: Suck it up, buttercup.
+
+**Effect**
+* Base power: 80
+* Accuracy: 100%
+* PP: 15
+
+### Debate
+Debating is the more articulate art of pure arguing and is generally more useful. Debating is a verbal sport with competitions around the globe to debate the merits of topics such as politics, human nature, and ethics. In the end, debating is arguing with concrete logic.
+
+**Description**: Nutella is better than peanut butter.
+
+**Effect**
+* Base power: 85
+* Accuracy: 100%
+* PP: 10
+
+### Scream
+Screaming is commonly observed in the households of couples in a turbulent time. Or teenagers looking at TeachAssist. Or generally anywhere with a high stress environment. Screaming is usually loud, hurts your ears and makes you more vulnerable.
+
+**Description**: Dude chill.
+
+**Effect**
+* Base power: 80
+* Accuracy: 95%
+* PP: 8
+* 10% chance to lower the opponents defence by half.
+
+### Swear
+Swearing, or cursing, is a category of words and/or phrases that are used whenever someone is distressed. Such words are taboo in the open because of the negative connotations that they carry. However, this does not stop some individuals doing so anyway.
+
+**Description**: Are you really swearing at Photoshop?
+
+**Effect**
+* Base power: 30
+* Accuracy: 95%
+* PP: 20
+
+### Write Reflection
+In drama class, reflections are probably the best opportunities to boost your failing mark. The relative ease of spilling tea or honestly making things up with a bit of sprinkled language here and there would certainly impressive bored teachers. Except when you're Johann and your reflections are so terrible that they hurt.
+
+**Description**: I considered failing you.
+
+**Effect**:
+* Base power: 90
+* Accuracy: 100%
+* PP: 10
+* 10% chance to halve the opponent's intelligence
+
+## Miscellaneous
+### Sleep Talk
+When you are having bad dreams of your partner of 20 years leaving, it's normal to talk in your sleep. It's not normal if you're living a sexual fancy. Whatever floats your boat honestly.
+
+**Description**: Better than snoring? At least more entertaining.
+
+**Effect**:
+* Randomly selects another move when the user is asleep. Fails if the user is awake.
+* Accuracy: 100%
+* PP: 20
+
+## Stat Change
+### Self Loathe
+Life sucks, you suck, everything sucks, you're going to die, no one loves you, the world is headed towards ruin, and your marks can't be raised. Might as well work out until you have massive guns.
+
+**Description**: Depression hurts. But you don't have to.
+
+**Effect**: 
+* Halves your defence, doubles your attack
+* Accuracy: 100%
+* PP: 10
+
+## Status
+### Life Lesson
+Knowing that marks are not the sole purpose of life is nice and all but there is no point in knowing that when your marks barely pass the point of failing. Also life lessons are boring and put everyone to sleep.
+
+**Description**: Stop procrastinating.
+
+**Effect**
+* Puts the opponent to sleep
+* Accuracy: 85%
+* PP: 15
+
+# Math
+Generally regarded as the most noble of all studies, math is a fundamental aspect of the universe, learning, and Chinese students of RHHS. Comparatively speaking, the mathematics department at RHHS is very competent, hosting a wide variety of challenging programs and playing host to top math students in the country. Despite this, math is regarded as one of the most dreaded subject areas of RHHS. The sheer intensity and competition between students fuels many sleepless nights either cramming for a test or regretting the existence of life itself after an assessment. Math is strong against English and weak against Science.
+
+# Moves
+## Attack
+### Spam Calculator
+When all else fails on a test, you can try brute-forcing the answer from abusing your poor calculator. Especially if it's the cheating one that allows you to solve almost any sort of math problem with it. After every test, your calculator will be begging for mercy.
+
+**Description**: Your calculator is actually unfair.
+
+**Effect**
+* Base power: 50
+* Accuracy: 100%
+* PP: 15 
+
+## Effect
+### Calculate Mark
+When it's the last week before exams, your marks are in the gutter and you know that you are going to end up working at McDonald's for the rest of your life, you can do nothing except for speculating. If you can calculate your potential mark with a perfect on the exam, there might be a glimmer of hope.
+
+**Description**: I can end with a 90 if I get 300% on the exam!
+
+**Effect**
+* Heals the user by 50% of their max.
+* PP: 8
+
+### Mark Test
+MR. Choi is infamous for the sheer speed of which he marks assessments. A 75 minute test can be fully marked and up on Teach Assist by the next period for the entire class. 
+
+**Description**: Hey the trig test is up on Teach Assist and look, I failed!
+
+**Effect**
+* Doubles the speed of the user
+* PP: 20
+
+### Math Angels
+Whenever you attempt an assessment for math, you either pray to the god Bimesh De Silva or hope that the Math Angels carry you to success. Whenever you factor wrong, communicate incorrectly or do not show substitution as a step, you only anger the Math Angels.
+
+**Description**: Math Angels will rain pain upon you!
+
+**Effect**
+* Doubles the intelligence of the user
+* PP: 5
+
+## Intelligence 
+### Complete the Square
+Before you learn what the quadratic formula is and why it works, it would be wise to learn what completing the square is. Useful for finding the vertex of the parabola and for min/max problems.
+
+**Description**: Don't despair, complete the square.
+
+**Effect**
+* Base power: 40
+* Accuracy: 100%
+* PP: 15
+
+### Divisibility Test
+Divisibility itself was not a hard concept. With some knowledge, application and critical thinking, most of divisibility is smooth sailing. Everything is basically divisible by 6 and different parities create even numbers. However, no one was ever prepared and a 10% drop in the class average was observed.
+
+**Description**: Prove that 2n^6-n^4-n^2 is divisible by 36.
+* Base power: 85
+* Accuracy: 100%
+* PP: 8
+
+### Olympiads Question
+Olympiads school is an absolute prison for all those unfortunate enough to enroll in one of their courses. Although students may think that they are improving their grades by learning ahead of fellow students, they are only setting themselves up for failure as they have more tasks to complete overall. Olympiads is notorious for delivering questions that can only be comprehended if the student spoke Chinese.
+
+**Description**: Sorry I don't understand Mandarin.
+
+**Effect**
+* Base power: 60
+* Accuracy: 95%
+* PP: 15
+
+### Practice Set
+When you want to challenge your students or help them out with key ideas, practice sets are the way to go. Treated as a buffet for the mind, practice sets enhance the learning of students. Except when you don't know how to do them and no one else does either.
+**Description**: Another practice set? I haven't finished the one from 3 months ago...
+
+**Effect**
+* Base power: 70
+* Accuracy: 100%
+* PP: 10
+
+## Quadratic Formula
+The staple behind all quadratic questions, when solving by factoring fails, the quadratic is the last resort. Comes equipped for solving both roots, as well as a checker to see if the quadratic has real roots.
+
+**Description**: Just use the quadratic formula.
+
+**Effect**
+* Base power: 40
+* Accuracy: 99%
+* PP: 20
+
+### Quick Maths
+When you panic, have 3 seconds remaining before the exam is over and you have 3 pages left to answer, quick maths is the way to go. Except you know you just failed.
+
+**Description**: 2+2 is 4. Minus 1 that's 3. Quick maths.
+
+**Effect**
+* Base power: 20
+* Accuracy: 95%
+* PP: 15
+* Priority +3
+
+### Trigonometry Test
+Nothing about trigonometry is inherently that hard. To be quite frank, trigonometry is based all around punching in buttons on a calculator. Yet there is nothing worse than a trigonometry test. Marks, tears, and mental health drop all around.
+
+**Description**: Trigonometry? More like triggered.
+
+**Effect**
+* Base power: 95
+* Accuracy: 95%
+* PP: 10
+
+# Science
+Science is a vital aspect that is used to explain natural phenomenons when people do not believe in religion. Present since humans started thinking, science is now used to explain why we fall when we jump, what the world is composed of and how we are sentient. RHHS science has gained an interesting reputation, backed by its enthusiastically eccentric staff. Most students endure TLAP, dangerous labs, and dissections that churn the insides of any student.
+
+# Moves
+## Attack moves
+### Electrocute Paperclip 
+Sticking a paperclip in a socket is never a good idea. The high voltage from an active outlet is more than enough to kill someone that is not thinking properly. They become stunned and can go into cardiac arrests as their sinoatrial node functions improperly.
+
+**Description**: You could have burned down the portable!
+
+**Effect**
+* Base power: 120
+* Accuracy: 70%
+* PP: 10
+* 70% chance to stun the player
+
+### Splash Acid
+A chemical substance that neutralizes alkalis, dissolves some metals, and turns litmus red; typically, a corrosive or sour-tasting liquid of this kind. Generally speaking, acids produce H+ ions when dissolved in water, but are now more recognized as a compound that accepts electron pairs. 
+
+**Description**: Please do not drink the acid when it is spilled. You will not hallucinate, you will die.
+
+**Effect**
+* Base power: 80
+* Accuracy: 100%
+* PP: 10
+* 10% chance to poison the opponent
+
+## Effect
+### Teach Stoichiometry
+Chemistry is just grade 4 math with ratios and having some equations next to each other and multiplying some random numbers together until you get a correct answer. You kinda just play around, sleep around and fail the test somehow.
+
+**Description**: Why did I just fail this unit.
+
+**Effect**
+* Halves the intelligence of the opponent
+* Puts the opponent to sleep
+
+**Description**: Why did I just fail this unit.
+
+**Effect**
+* Halves the intelligence of the opponent
+* Puts the opponent to sleep
+
+### TLAP
+Short for "Think Like a Physicist", TLAP is an integral aspect of the physics course at RHHS. TLAP is dreaded by all students taking physics and is rightfully so. Despite this, TLAP is probably useful somewhere in life
+
+**Description**: What is the point of TLAP, honestly.
+
+**Effect**
+* Doubles the intelligence of a user
+* PP: 10
+
+## Intelligence
+### Chemistry Pun
+Chemistry is a science where puns are aplenty. Many puns can be derived from the names of elements, and the general lack of willingness to live.
+
+**Description**: Oh chemistree, oh chemistree.
+
+**Effect**
+* Base power: 40
+* Accuracy: 100%
+* PP: 15
+
+## Status
+### Dissect Frog
+Dissections are an important aspect of biology and learning internal systems of organisms. However, because of the fact that the organisms have been preserved in a nasty liquid, it will make anyone sick. It smells gross, looks gross, and makes you feel gross. There is no point in taking biology because you learn everything you need to know about biology in computer science courses anyway.
+
+**Description**: Where is the duodenum in a fish I regret taking this course.
+
+**Effect**
+* Poisons the opponent
+* Accuracy: 90%
+* PP: 15
+
+## Intelligence
+### Titration
+Titration, in theory, is mixing two solutions and having some equations next to each other and multiplying some random numbers together until you get a correct answer. You kinda just play around with an expensive piece of glass, and hope that you don't overshoot the titrant. Usually, you should be working with dilute solutions but if you are dumb, 18M HCl isn't that bad.
+
+**Description**: Crap I used the wrong significant figures in my calculations and now my numbers are all wrong.
+
+**Effect**
+* Base power: 70
+* PP: 15
+* Accuracy = 100%
+* 30% chance to poison the opponent
+
+# Technology
+Technology is a type of subject that people can be. People with the technology type show a general interest with technology through innovation and design. Technological people can program in different languages and can use any sort of software available. Technology is effective against science and is weak to English.
+
+# Moves
+## Effect
+### Implement APIs
+Implementing APIs are generally easy except when they make no sense, the documentation is for a language that you are not using and you are trying to cram it in before submissions are due on Devpost
+
+**Description**: I hope I don't run out of API calls during the demo.
+
+**Effect**
+* Doubles the speed of the user
+* PP: 8
+
+## Intelligence
+### Deoptimize Code
+When you try to make a program, it's common sense to seek out help if you don't completely understand what you're doing. Usually, it's best to look at someone else's code to understand the situation. When you copy the code in your own style, you end up creating garbage. Realizing that you have something better to do than make a car find a gas station in Java, you just steal code but alter it a little bit.
+
+**Description**: Running inefficient stolen code is okay if your professor does not care about how fast your program is.
+
+**Effect**
+* Base power: 50
+* Accuracy: 100%
+* PP: 10
+
+### Stack Overflow
+Stack Overflow is the website, along with Google, that has been able to keep programmers employed for decades. Stack Overflow originates from the the term "Stack buffer overflow", which occurs when a program writes to memory on a call stack outside the intended data structure. This error usually occurs when a recursive program does not terminate.
+
+**Description**: Stack Overflow is the only website you need to land yourself a programming job. Frustrates teachers.
+
+**Effect**
+* Base power 30
+* Accuracy: 100%
+* PP: 20
+
+### Steal Code
+When you need help with an algorithm, it would make the most sense to ask for help. However, in the quest to attend the best schools, students find themselves on a crunch for time. Therefore, it is imperative to beg their friends for their code to "look" at it. In the end, the student knows that they're going to end up stealing the methods to navigate the city.
+
+**Description**: Programming is hard. Stealing? Not so much.
+
+**Effect**
+* Base power: 40
+* Accuracy: 95%
+* PP: 15
+
 # Abilities
 Abilities are a battle mechanic that affects how battles are fought. Abilities are all passive and may require specific scenarios to activate.
 
