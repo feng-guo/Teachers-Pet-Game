@@ -573,6 +573,9 @@ public class World {
 
     public void loadDrama() {
 
+	    //Door
+        entityManager.addEntity(new HallwayDoorOpen(handler, 100, 10, "res/worlds/world2.txt", 1217, 60));
+
     }
 
     public void loadEnglish() {
@@ -663,7 +666,11 @@ public class World {
     }
 
     public void loadGym() {
-    		
+
+        //Door
+        entityManager.addEntity(new HallwayDoorOpen(handler, 65, 8, "res/worlds/world2.txt", 1217, 60));
+        entityManager.addEntity(new HallwayDoorClosed(handler, 105, 8));
+
     }
 
     public void loadMath() {
