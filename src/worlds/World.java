@@ -83,6 +83,10 @@ public class World {
 			}
 		}
 
+		if(path.equals("res/worlds/gym.txt")){
+		    g.fillOval(20, 20, 300, 200);
+        }
+
 		entityManager.render(g);
 
 	}
