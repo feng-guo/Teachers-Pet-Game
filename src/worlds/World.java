@@ -167,7 +167,7 @@ public class World {
 	public void loadTopHall() {
 
 		//entityManager.addEntity(new NPC("name", handler, Assets.angela_down, 100, 250, 100));
-		entityManager.addEntity(new NPC("Rosemary", handler, Assets.angela_down, Assets.angela_up, Assets.angela_left, Assets.angela_right, 100, 250, 100));
+		entityManager.addEntity(new NPC("Rosemary", handler, Assets.rosemary_down, Assets.rosemary_up, Assets.rosemary_left, Assets.rosemary_right, 100, 250, 100));
 		entityManager.addEntity(new NPC("Aaron", handler, Assets.feng_down, Assets.feng_up, Assets.feng_left, Assets.feng_right, 100, 400, 100));
 		entityManager.addEntity(new NPC("Michael", handler, Assets.bill_down, Assets.bill_up, Assets.bill_left, Assets.bill_right, 100, 550, 100));
 		entityManager.addEntity(new NPC("Katelyn", handler, Assets.joyce_down, Assets.joyce_up, Assets.joyce_left, Assets.joyce_right, 100, 700, 100));

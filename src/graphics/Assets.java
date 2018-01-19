@@ -62,7 +62,7 @@ public class Assets {
 	public static Font font24, font16, font12, font10, font8;
 
 	// Start as Feng
-	public static String characterName = "Feng";
+	public static String characterName = "Rosemary";
 
 	public static void init() {
 		
