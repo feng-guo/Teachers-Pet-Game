@@ -174,9 +174,15 @@ public class World {
 		}
 
 		//Doors
-		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10, "res/worlds/world2.txt", 410, 60));
-		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 20 - 9), 10, "res/worlds/world2.txt", 800, 60));
-		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 30 + 10), 10, "res/worlds/world2.txt", 1217, 90));
+//		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10, "res/worlds/world2.txt", 410, 60));
+//		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 20 - 9), 10, "res/worlds/world2.txt", 800, 60));
+//		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 30 + 10), 10, "res/worlds/world2.txt", 1217, 90));
+		
+		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10, "res/worlds/math.txt", 0, 0));
+		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10, "res/worlds/math.txt", 0, 0));
+		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10, "res/worlds/math.txt", 0, 0));
+
+		
 
 		//Hall Library Chairs/Tables
 		entityManager.addEntity(new HallChairLowUp(handler, 828, 343));
