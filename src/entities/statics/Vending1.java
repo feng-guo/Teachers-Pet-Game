@@ -30,7 +30,7 @@ public class Vending1 extends StaticEntity{
 					(int) handler.getWorld().getEntityManager().getPlayer().getHeight());
 		
 		if(playerRect.intersects(vendingRect)) {
-			System.out.println(true);
+			//System.out.println(true);
 			handler.getKeyManager().forceKeyChange(KeyEvent.VK_Z, true);
 ;
 		}
