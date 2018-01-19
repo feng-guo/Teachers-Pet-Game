@@ -29,7 +29,7 @@ public class GameState extends State{
 		math = new World(handler, "res/worlds/math.txt");
 		science = new World(handler, "res/worlds/science.txt");
 
-		world = english;
+		world = world1;
 		
 		handler.setWorld(world);
 				
@@ -71,7 +71,6 @@ public class GameState extends State{
 			world = science;
 		}
 
-		world = gym;
 		handler.setWorld(world);
 		
 	}
