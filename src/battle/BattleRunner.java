@@ -98,7 +98,7 @@ public class BattleRunner {
             battle.useInventoryItem(choice);
         } else if (battle.isPlayerInventoryPhase()) {
             battle.playerPickInventory();
-        } else if (choice < 5) {
+        } else if (choice < 10) {
             if (battle.isPlayerPickCharacterPhase()) {
                 battle.playerPickCharacter(choice);
             } else if (battle.isPlayerSwitchPhase()) {
@@ -107,6 +107,8 @@ public class BattleRunner {
                 battle.playerUseAttack(choice);
             } else if (battle.isPlayerPickAttackPhase()) {
                 battle.playerPickAttack();
+            } else {
+                battle.runBattleTurn(choice);
             }
         } else {
             battle.runBattleTurn(choice);

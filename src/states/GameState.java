@@ -30,6 +30,7 @@ public class GameState extends State{
 		science = new World(handler, "res/worlds/science.txt");
 
 		world = guidance;
+
 		handler.setWorld(world);
 		//handler.getWorld().getEntityManager().getPlayer().setX(x);
 

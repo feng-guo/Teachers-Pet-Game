@@ -47,7 +47,7 @@ public class Assets {
 	public static BufferedImage[][] tileArray, foodArray;
 	public static Font font24, font16, font12, font10, font8;
 
-	public static String characterName = "Misha";
+	public static String characterName = "Feng";
 
 	public static void init() {
 		

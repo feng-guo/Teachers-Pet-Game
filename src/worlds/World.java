@@ -585,8 +585,36 @@ public class World {
 
     public void loadDrama() {
 
-	    //Door
-        entityManager.addEntity(new HallwayDoorOpen(handler, 100, 10, "res/worlds/world2.txt", 400, 60));
+	    //Desks
+        for (int x = 1; x < 6; x++) {
+            for (int y = 6; y < 8; y++) {
+                entityManager.addEntity(new StudentDeskRight(handler, (100 + x * 70), (35 * y - 147)));
+            }
+            for (int y = 10; y < 12; y++) {
+                entityManager.addEntity(new StudentDeskRight(handler, (100 + x * 70), (35 * y - 147)));
+            }
+        }
+
+        //Chairs
+        for (int x = 1; x < 6; x++) {
+            for (int y = 6; y < 8; y++) {
+                entityManager.addEntity(new StudentChairLeft(handler, (80 + (int)(Math.random() * 5) + x * 70), (35 * y - 142 + (int)(Math.random() * 5))));
+            }
+            for (int y = 10; y < 12; y++) {
+                entityManager.addEntity(new StudentChairLeft(handler, (80 + (int)(Math.random() * 5) + x * 70), (35 * y - 142 + (int)(Math.random() * 5))));
+            }
+        }
+
+        //Projector Screens
+        entityManager.addEntity(new ProjectorScreen(handler, 225, 0));
+        entityManager.addEntity(new ProjectorScreen(handler, 325, 0));
+        entityManager.addEntity(new ProjectorScreen(handler, 425, 0));
+
+        //Teacher's Desk and Chair
+        entityManager.addEntity(new TeacherDeskSide(handler, 530, 120));
+
+        //Door
+        entityManager.addEntity(new HallwayDoorOpen(handler, 80, 10, "res/worlds/world2.txt", 400, 60));
 
     }
 
