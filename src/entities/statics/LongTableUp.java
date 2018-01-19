@@ -16,7 +16,7 @@ public class LongTableUp extends StaticEntity{
         bounds.x = 0;
         bounds.y = 0;
         bounds.width = 60;
-        bounds.height = 40;
+        bounds.height = 30;
     }
 
     @Override
