@@ -204,6 +204,7 @@ public class World {
 		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 20 - 9), 10, "res/worlds/math.txt", 90, 60));
 		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 30 + 10), 10, "res/worlds/compsci.txt", 380, 60));
 		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10, "res/worlds/english.txt", 375, 60));
+		
 
 		//Hall Library Chairs/Tables
 		entityManager.addEntity(new HallChairLowUp(handler, 828, 343));
@@ -291,6 +292,13 @@ public class World {
 		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 31 - 24), 40, "res/worlds/gym.txt", 65, 60));
         entityManager.addEntity(new HallwayDoorOpen(handler, 1318, 392, "res/worlds/gym.txt", 65, 60));
 
+		entityManager.addEntity(new SideDoor(handler, 575, 375, "res/worlds/guidance.txt", 57, 60));
+		entityManager.addEntity(new SideDoor(handler, 311, 375, "res/worlds/cafeteria.txt", 560, 1500));
+		entityManager.addEntity(new SideDoor(handler, -10, 80, "res/worlds/cafeteria.txt", 950, 60));
+
+
+
+        
         //Stairs
         entityManager.addEntity(new Stairs(handler, 576, 193, "res/worlds/world1.txt", 490, 310));
 	}
@@ -437,6 +445,9 @@ public class World {
         entityManager.addEntity(new HallwayDoorClosed(handler, 650, 10));
         entityManager.addEntity(new HallwayDoorOpen(handler, 950, 10, "res/worlds/world2.txt", 20, 100));
         entityManager.addEntity(new HallwayDoorClosed(handler, 340, 10));
+        
+		entityManager.addEntity(new SideDoor(handler, 607, 1225, "res/worlds/world2.txt", 411, 375));
+
 
         //Vending machines
         entityManager.addEntity(new Vending2(handler, 450, 20));
@@ -480,7 +491,7 @@ public class World {
         entityManager.addEntity(new HallChairLowLeft(handler, 230, 90));
 
         //Door
-        entityManager.addEntity(new HallwayDoorOpen(handler, 50, 10, "res/worlds/world2.txt", 555, 350));
+        entityManager.addEntity(new HallwayDoorOpen(handler, 50, 10, "res/worlds/world2.txt", 535, 360));
         entityManager.addEntity(new HallwayDoorClosed(handler, 90, 10));
 
     }
