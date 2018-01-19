@@ -109,7 +109,6 @@ public class World {
 			//g2.drawOval((int) (-200 - handler.getGameCamera().getxOffset()), (int) (160 - handler.getGameCamera().getyOffset()), 600, 300);
 		}
 
-
 		entityManager.render(g);
 
 	}
@@ -300,7 +299,7 @@ public class World {
 
         
         //Stairs
-        entityManager.addEntity(new Stairs(handler, 576, 193, "res/worlds/world1.txt", 490, 310));
+        entityManager.addEntity(new Stairs(handler, 576, 193, "res/worlds/world1.txt", 485, 310));
 	}
 
     public void loadCafeteria() {
