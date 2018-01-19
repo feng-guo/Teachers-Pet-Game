@@ -2,6 +2,7 @@ package game;
 
 import battle.ListOfMoves;
 import characters.ListOfCharacters;
+import characters.Squad;
 import graphics.GameCamera;
 import input.KeyManager;
 import input.MouseManager;
@@ -69,5 +70,9 @@ public class Handler {
 
 	public Inventory getInventory() {
 		return game.getInventory();
+	}
+
+	public Squad getSquad() {
+		return game.getSquad();
 	}
 }

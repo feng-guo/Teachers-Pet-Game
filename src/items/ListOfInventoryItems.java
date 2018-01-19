@@ -27,9 +27,9 @@ public class ListOfInventoryItems {
         itemList.add(new HealItem("McDonald's Burger", "Increases HP by 20","HP", 20));
         itemList.add(new HealItem("Bubble Tea", "Increases HP by 25","HP", 25));
         itemList.add(new HealItem("Bulk Barn Candy", "Increases HP by 40","HP", 40));
-        itemList.add(new HealItem("Tim Hortons Coffee", "Increases PP for one  move by 10","PP", 10));
+        itemList.add(new HealItem("Tim Horton's Coffee", "Increases PP for one  move by 10","PP", 10));
         itemList.add(new HealItem("Starbucks Frappuccino", "Fully restores PP for one move","PP", 100)); //full restore of PP for a certain move
-        itemList.add(new HealItem("Red bull", "Cures sleep status", "Sleep", 0));
+        itemList.add(new HealItem("Red Bull", "Cures sleep status", "Sleep", 0));
         itemList.add(new HealItem("Ramen", "Cures burn status","Burn", 0));
         itemList.add(new HealItem("Doritos", "Cures poison status","Poison", 0));
         itemList.add(new HealItem("Tea", "Cures stun status","Stun", 0));

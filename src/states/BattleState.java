@@ -81,12 +81,14 @@ public class BattleState extends State{
 				}
 			} else if (handler.getKeyManager().down) {
 				if (inventoryY != 9) {
-					inventorySelection[inventoryY] = false;
-					inventoryY++;
-					characterSelection[y][x] = true;
-					handler.getKeyManager().down = false;
+					if (inventoryY != handler.getInventory().getInventorySize()-1) {
+						inventorySelection[inventoryY] = false;
+						inventoryY++;
+						characterSelection[y][x] = true;
+						handler.getKeyManager().down = false;
+					}
 				} else if (inventoryY == 9) {
-					if (topOfInventory+10 != handler.getInventory().getInventorySize()) {
+					if (topOfInventory+10 < handler.getInventory().getInventorySize()) {
 						topOfInventory++;
 					}
 					handler.getKeyManager().down = false;
@@ -565,17 +567,18 @@ public class BattleState extends State{
 				g.drawImage(Assets.inventorySelect, 0, 0, null);
 				g.setFont(Assets.font12);
 				try {
-					for (int i = 0+topOfInventory; i < 10+topOfInventory; i++) {
+					for (int i = topOfInventory; i < 10+topOfInventory; i++) {
 						if (inventoryY == i-topOfInventory) {
 							g.setColor(Color.RED);
-							g.drawRect(290, 45 + 35*i, 280, 35);
+							g.drawRect(280, 25 + 35*(i-topOfInventory), 290, 30);
 						}
 						g.setColor(Color.BLACK);
-						g.drawString(handler.getInventory().getItem(i).getName(), 290, 45 + 35 * (i-topOfInventory));
-						g.drawString(handler.getInventory().getArrayNumberAtIndex(i) + "", 550, 45 + 35 * (i-topOfInventory));
+						if (i < handler.getInventory().getInventorySize()) {
+							g.drawString(handler.getInventory().getItem(i).getName(), 290, 45 + 35 * (i - topOfInventory));
+							g.drawString(handler.getInventory().getArrayNumberAtIndex(i) + "", 550, 45 + 35 * (i - topOfInventory));
+						}
 					}
 				} catch (NullPointerException e) {
-					//Empty because they have less items
 				} catch (ArrayIndexOutOfBoundsException e) {
 					if (handler.getInventory().getInventorySize() == 0) {
 						g.drawString("Your inventory is empty", 290, 45);

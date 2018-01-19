@@ -7,6 +7,8 @@ import java.awt.image.BufferedImage;
 
 import battle.ListOfMoves;
 import characters.ListOfCharacters;
+import characters.PlayableCharacter;
+import characters.Squad;
 import display.Display;
 import graphics.Assets;
 import graphics.GameCamera;
@@ -64,6 +66,7 @@ import states.StressEatsState;
 	private ListOfInventoryItems listOfInventoryItems;
 	private ListOfMoves listOfMoves;
 	private Inventory inventory;
+	private Squad squad;
 	
 	public Game(String title, int width, int height) {
 		this.width = width;
@@ -75,6 +78,16 @@ import states.StressEatsState;
 		listOfInventoryItems = new ListOfInventoryItems();
 		listOfMoves = new ListOfMoves();
 		inventory = new Inventory();
+		PlayableCharacter[] newSquad = new PlayableCharacter[6];
+		newSquad[0] = (PlayableCharacter) listOfCharacters.returnCharacter("Feng");
+		newSquad[1] = (PlayableCharacter) listOfCharacters.returnCharacter("Joyce");
+		newSquad[2] = (PlayableCharacter) listOfCharacters.returnCharacter("Sihan");
+		newSquad[3] = (PlayableCharacter) listOfCharacters.returnCharacter("Yash");
+		newSquad[4] = (PlayableCharacter) listOfCharacters.returnCharacter("Johann");
+		newSquad[5] = (PlayableCharacter) listOfCharacters.returnCharacter("Angela");
+		//newSquad[5] = (PlayableCharacter) characterList.returnCharacter("Misha");
+		//newSquad[5] = (PlayableCharacter)characterList.returnCharacter("Angela");
+		squad = new Squad(newSquad);
 	}
 	
 	private void init() {
@@ -290,5 +303,9 @@ import states.StressEatsState;
 
 	 public Inventory getInventory() {
 		return inventory;
+	 }
+
+	 public Squad getSquad() {
+		return squad;
 	 }
  }
