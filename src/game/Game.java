@@ -143,9 +143,9 @@ import states.StressEatsState;
 			return;
 		}
 		g = bs.getDrawGraphics();
-		
-		
-		
+
+
+
 		// clear
 		g.clearRect(0, 0, width, height);
 		
