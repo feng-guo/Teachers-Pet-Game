@@ -475,6 +475,37 @@ public class World {
 
     public void loadMath() {
 
+	    //Desks
+        for (int y = 1; y < 4; y++) {
+            for (int x = 1; x < 5; x++) {
+                entityManager.addEntity(new StudentDeskUp(handler, (x * 40), (y * 80 + 35)));
+            }
+            for (int x = 2; x < 6; x++) {
+                entityManager.addEntity(new StudentDeskUp(handler, (x * 40 + 180), (y * 80 + 35)));
+            }
+        }
+
+        //Chairs
+        for (int y = 1; y < 4; y++) {
+            for (int x = 1; x < 5; x++) {
+                entityManager.addEntity(new StudentChairUp(handler, (x * 40 + 10), (y * 80 + 65)));
+            }
+            for (int x = 7; x < 11; x++) {
+                entityManager.addEntity(new StudentChairUp(handler, (x * 40 - 10), (y * 80 + 65)));
+            }
+        }
+
+        //Teacher's Desk and Chair
+        entityManager.addEntity(new TeacherDeskUp(handler, 270, 75));
+
+	    //Blackboard
+        entityManager.addEntity(new Blackboard(handler, 220, 20));
+        entityManager.addEntity(new Blackboard(handler, 270, 20));
+        entityManager.addEntity(new WritingBlackboard(handler, 320, 20));
+
+        //Door
+        entityManager.addEntity(new HallwayDoorOpen(handler, 100, 10, "res/worlds/world1.txt", 20, 100));
+
     }
 
     public void loadScience() {

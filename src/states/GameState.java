@@ -16,9 +16,6 @@ public class GameState extends State{
 	public GameState(Handler handler) {
 		super(handler);
 
-		//world = new World(handler, "res/worlds/world1.txt");
-		//world = new World(handler, "res/worlds/world2.txt");
-		//world = new World(handler, "res/worlds/cafeteria.txt");
 		guidance = new World(handler, "res/worlds/guidance.txt");
 
 		compsci = new World(handler, "res/worlds/compsci.txt");
@@ -32,7 +29,7 @@ public class GameState extends State{
 		world2 = new World(handler, "res/worlds/world2.txt");
 		cafeteria = new World(handler, "res/worlds/cafeteria.txt");
 		
-		world = guidance;
+		world = math;
 		
 		handler.setWorld(world);
 				
