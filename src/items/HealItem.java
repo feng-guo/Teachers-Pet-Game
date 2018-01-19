@@ -5,7 +5,7 @@ public class HealItem extends Item {
     private int change;
 
     HealItem(String name, String description, String type, int change) {
-        super(name,description);
+        super(name, description, "Heal Item");
         this.type = type;
         this.change = change;
     }

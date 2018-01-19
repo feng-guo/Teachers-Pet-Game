@@ -9,6 +9,7 @@ import battle.BattleRunner;
 import game.Handler;
 import graphics.Animation;
 import graphics.Assets;
+import items.StatItem;
 
 public class BattleState extends State{
 
@@ -96,13 +97,24 @@ public class BattleState extends State{
 			} else if (handler.getKeyManager().enter) {
 				answer = topOfInventory + inventoryY;
 				handler.getKeyManager().enter = false;
-				topOfInventory = 0;
-				inventoryY = 0;
+				if (!(handler.getInventory().getItem(answer) instanceof StatItem)) {
+					inventorySelectionScreen = false;
+					topOfInventory = 0;
+					inventoryY = 0;
+				}
 			} else if (handler.getKeyManager().backspace) {
 				answer = -10;
 				handler.getKeyManager().backspace = false;
 				topOfInventory = 0;
 				inventoryY = 0;
+				inventorySelectionScreen = false;
+				menuScreen = false;
+				menu[0][0] = false;
+				menu[0][1] = false;
+				menu[1][0] = false;
+				menu[1][1] = false;
+				x = 0;
+				y = 0;
 			}
 		} else if (characterSelectionScreen) {
 			if (handler.getKeyManager().up) {
@@ -565,14 +577,19 @@ public class BattleState extends State{
 				characterSelectionScreen = false;
 				menuScreen = false;
 				g.drawImage(Assets.inventorySelect, 0, 0, null);
-				g.setFont(Assets.font12);
 				try {
 					for (int i = topOfInventory; i < 10+topOfInventory; i++) {
 						if (inventoryY == i-topOfInventory) {
 							g.setColor(Color.RED);
 							g.drawRect(280, 25 + 35*(i-topOfInventory), 290, 30);
+							g.setColor(Color.BLACK);
+							g.setFont(Assets.font10);
+							g.drawString(handler.getInventory().getItem(i).getDescription(), 10, 270);
+							g.setFont(Assets.font12);
+							g.drawString(handler.getInventory().getItem(i).getItemType(), 75, 218);
 						}
 						g.setColor(Color.BLACK);
+						g.setFont(Assets.font12);
 						if (i < handler.getInventory().getInventorySize()) {
 							g.drawString(handler.getInventory().getItem(i).getName(), 290, 45 + 35 * (i - topOfInventory));
 							g.drawString(handler.getInventory().getArrayNumberAtIndex(i) + "", 550, 45 + 35 * (i - topOfInventory));

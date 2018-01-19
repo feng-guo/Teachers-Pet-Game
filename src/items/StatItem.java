@@ -6,7 +6,7 @@ public class StatItem extends Item {
     private double multiplier;
 
     StatItem(String name, String description, String type, String statAffected, double multiplier) {
-        super(name, description);
+        super(name, description, "Stat Item");
         this.type = type;
         this.statAffected = statAffected;
         this.multiplier = multiplier;
