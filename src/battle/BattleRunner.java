@@ -72,8 +72,8 @@ public class BattleRunner {
         inventory.addItem(inventoryItems.retrieveItem("Tea"));
         inventory.addItem(inventoryItems.retrieveItem("Red Bull"));
         inventory.addItem(inventoryItems.retrieveItem("Red Bull"));
-//        inventory.addItem(inventoryItems.retrieveItem("Adidas Pants"));
-//        inventory.addItem(inventoryItems.retrieveItem("Yeezys"));
+        inventory.addItem(inventoryItems.retrieveItem("Adidas Pants"));
+        inventory.addItem(inventoryItems.retrieveItem("Yeezys"));
 
 
 

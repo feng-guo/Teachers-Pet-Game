@@ -21,14 +21,12 @@ public class ListOfInventoryItems {
         itemList.add(new StatItem("Stussy Sweater", "Increases Attack by 20%","Shirt","Attack",1.2));
         itemList.add(new StatItem("Champion Sweater", "Increases Attack by 15%", "Shirt", "Attack", 1.15));
         itemList.add(new StatItem("Adidas Pants", "Increases Max Health by 5%", "Pants", "Health", 1.05));
-        itemList.add(new StatItem("Sweatpants", "Increases Defense by 20%", "Pants", "Defense", 1.2));
+        itemList.add(new StatItem("Sweatpants", "Increases Defense by 20/s%", "Pants", "Defense", 1.2));
         //heal items.items
         itemList.add(new HealItem("Caf Food", "Increases HP by 5","HP", 5));
         itemList.add(new HealItem("McDonald's Burger", "Increases HP by 20","HP", 20));
         itemList.add(new HealItem("Bubble Tea", "Increases HP by 25","HP", 25));
         itemList.add(new HealItem("Bulk Barn Candy", "Increases HP by 40","HP", 40));
-        itemList.add(new HealItem("Tim Horton's Coffee", "Increases PP for one  move by 10","PP", 10));
-        itemList.add(new HealItem("Starbucks Frappuccino", "Fully restores PP for one move","PP", 100)); //full restore of PP for a certain move
         itemList.add(new HealItem("Red Bull", "Cures sleep status", "Sleep", 0));
         itemList.add(new HealItem("Ramen", "Cures burn status","Burn", 0));
         itemList.add(new HealItem("Doritos", "Cures poison status","Poison", 0));
@@ -36,10 +34,6 @@ public class ListOfInventoryItems {
         itemList.add(new HealItem("Sushi", "Fully restores health and cures status","Full restore", 0));
         itemList.add(new HealItem("Chicken nuggets (20pc)", "Revives a pokemon with half their max health","Half revive", 0));
         itemList.add(new HealItem("Chicken nuggets (50pc)", "Revives a pokemon with their max health","Full revive", 0));
-        //capture items
-        itemList.add(new CaptureItem("Aced test", "80% chance of attracting a playable character onto your team",0.8));
-        itemList.add(new CaptureItem("Aced quiz", "50% chance of attracting a playable character onto your team",0.5));
-        itemList.add(new CaptureItem("\"Carry\" on project", "75% chance of attracting a playable character onto your team",0.75));
     }
 
     public Item retrieveItem(String name) {

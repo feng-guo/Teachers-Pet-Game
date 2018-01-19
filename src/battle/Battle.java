@@ -525,18 +525,12 @@ public class Battle {
     boolean itemUsed = false;
     Item item = playerInventory.getItem(answer);
     textArrayList.add(playerName + " used " + playerInventory.getItemName(answer));
-    if (item instanceof CaptureItem) {
-      itemUsed = true;
-      //Code to capture the opponent (another method please)
-    } else if (item instanceof HealItem) {
+    if (item instanceof HealItem) {
       itemUsed = true;
       HealItem itemToUse = (HealItem) item;
       switch (itemToUse.getType()) {
         case "HP":
           HP(player, itemToUse);
-          break;
-        case "PP":
-          //yet to create method for this
           break;
         case "Half revive":
         case "Full revive":
@@ -564,11 +558,6 @@ public class Battle {
       }
       playerCurrentHealth = player.getCurrentHealth();
       textArrayList.add(playerName + "'s health was increased by " + item.getChange() + " HP.");
-  }
-
-  private void PP(){
-      //select move to apply it to
-      //add change, cap it
   }
 
   private void revive(PlayableCharacter player, HealItem item){
