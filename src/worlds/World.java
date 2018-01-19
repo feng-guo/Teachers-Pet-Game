@@ -25,31 +25,30 @@ public class World {
 
 	public World(Handler handler, String path) {
 
-		this.handler = handler; 
-		entityManager = new EntityManager(handler, new Player(handler, spawnX * Tile.TILE_WIDTH, spawnY * Tile.TILE_WIDTH));
+        this.handler = handler;
+        entityManager = new EntityManager(handler, new Player(handler, spawnX * Tile.TILE_WIDTH, spawnY * Tile.TILE_WIDTH));
 
-
-		//loadTopHall();
-		//loadBottomHall();
-
-		//loadCafeteria();
-        //loadGuidance();
-
-        //loadCompSci();
-        //loadDrama();
-        //loadEnglish();
-        //loadGym();
-        //loadMath();
-        //loadScience();
-
-		
-		if (path.equals("res/worlds/world1.txt")) {
-			loadTopHall();
-		} else if (path.equals("res/worlds/world2.txt")) {
-			loadBottomHall();
-		} else if (path.equals("res/worlds/cafeteria.txt")) {
-			loadCafeteria();
-		}
+        if (path.equals("res/worlds/world1.txt")) {
+            loadTopHall();
+        } else if (path.equals("res/worlds/world2.txt")) {
+            loadBottomHall();
+        } else if (path.equals("res/worlds/cafeteria.txt")) {
+            loadCafeteria();
+        } else if (path.equals("res/worlds/guidance.txt")) {
+            loadGuidance();
+        } else if (path.equals("res/worlds/compsci.txt")) {
+            loadCompSci();
+        } else if (path.equals("res/worlds/drama.txt")) {
+            loadDrama();
+        } else if (path.equals("res/worlds/english.txt")) {
+            loadEnglish();
+        } else if (path.equals("res/worlds/gym.txt")) {
+            loadGym();
+        } else if (path.equals("res/worlds/math.txt")) {
+            loadMath();
+        } else {
+            loadScience();
+        }
 
 		loadWorld(path);
 
@@ -421,6 +420,40 @@ public class World {
     }
 
     public void loadGuidance() {
+
+	    //Counter
+        for (int y = 2; y < 6; y++) {
+            entityManager.addEntity(new CounterSide(handler, 180, (50 * y + 70)));
+        }
+        for (int x = 2; x < 6; x++) {
+            entityManager.addEntity(new CounterUp(handler, (x * 50 + 102), 170));
+        }
+        for (int y = 2; y < 6; y++) {
+            entityManager.addEntity(new CounterSide(handler, 385, (50 * y + 70)));
+        }
+        for (int y = 1; y < 6; y++) {
+            entityManager.addEntity(new CounterSide(handler, 0, (50 * y)));
+        }
+
+        //Chairs
+        entityManager.addEntity(new GuidanceChairBack(handler, 280, 190));
+        entityManager.addEntity(new GuidanceChairSide(handler, 365, 240));
+        entityManager.addEntity(new GuidanceChairSide(handler, 370, 300));
+        entityManager.addEntity(new GuidanceCouch(handler, 320, 50));
+
+        //Announcement Boards
+        entityManager.addEntity(new AnnouncementBoard(handler, 200, 20));
+        entityManager.addEntity(new AnnouncementBoard2(handler, 250, 20));
+        entityManager.addEntity(new GreenBoard(handler, 300, 20));
+
+        //Waiting Area
+        entityManager.addEntity(new HallTableHigh(handler, 250, 80));
+        entityManager.addEntity(new HallChairLowUp(handler, 258, 115));
+        entityManager.addEntity(new HallChairLowLeft(handler, 230, 90));
+
+        //Door
+        entityManager.addEntity(new HallwayDoorOpen(handler, 50, 10, "res/worlds/world2.txt", 20, 100));
+        entityManager.addEntity(new HallwayDoorClosed(handler, 90, 10));
 
     }
 

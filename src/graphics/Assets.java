@@ -28,7 +28,7 @@ public class Assets {
 	teacherDeskSide, teacherDeskUp,
 	announcementBoard, announcementBoard2, greenBoard, brownBoard,
 	labBench, labTableSide,labTableUp, labStool, labShelf,
-	guidanceChairSide, guidanceChairBack,
+	guidanceChairSide, guidanceChairBack, guidanceCouch,
 	counterSide, counterUp, longTableSide, longTableUp,
 	foodBanner, happyFace, sadFace, blackBoard, writingBlackBoard, projectorScreen, loadingBackground, selectionArrow;
 
@@ -137,6 +137,7 @@ public class Assets {
 		brownBoard = ImageLoader.loadImage ("/Indoor_Entities/Guidance_Office/Brown_Board.png");
 		guidanceChairSide = ImageLoader.loadImage ("/Indoor_Entities/Guidance_Office/Chair_Side.png");
 		guidanceChairBack = ImageLoader.loadImage ("/Indoor_Entities/Guidance_Office/Chair_Back.png");
+		guidanceCouch = ImageLoader.loadImage ("/Indoor_Entities/Guidance_Office/Guidance_Couch.png");
 		longTableSide = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Long_Table_Side.png");
 		longTableUp = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Long_Table_Up.png");
 
