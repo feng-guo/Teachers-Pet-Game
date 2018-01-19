@@ -121,7 +121,7 @@ import states.StressEatsState;
 	private void tick() {
 		recentlyPlayed++;
 		
-		System.out.println(coins);
+		//System.out.println(coins);
 		
 		keyManager.tick();
 		
@@ -157,12 +157,16 @@ import states.StressEatsState;
 	}
 
 	private void render() {
+
+		
 		bs = display.getCanvas().getBufferStrategy();
 		if(bs == null) {
 			display.getCanvas().createBufferStrategy(3);
 			return;
 		}
 		g = bs.getDrawGraphics();
+		g.setFont(Assets.font16);
+
 
 
 
@@ -178,6 +182,13 @@ import states.StressEatsState;
 			State.getState().render(g);
 		} else if (State.getState() != null) {
 			State.getState().render(g);
+		}
+		
+		if (handler.getKeyManager().universalEnter && !(State.getState() instanceof BattleState) && handler.getWorld().getPath().equals("res/worlds/guidance.txt")) {
+			g.setColor(Color.green);
+			g.fillRect(10, 0, 450, 30);
+			g.setColor(Color.white);
+			g.drawString("Your party has been healed!", 20, 20);
 		}
 		
 		//end of drawing
