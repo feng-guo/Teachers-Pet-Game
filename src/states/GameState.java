@@ -29,10 +29,11 @@ public class GameState extends State{
 		math = new World(handler, "res/worlds/math.txt");
 		science = new World(handler, "res/worlds/science.txt");
 
-		world = drama;
-		
+		world = guidance;
+
 		handler.setWorld(world);
-				
+		//handler.getWorld().getEntityManager().getPlayer().setX(x);
+
 	}
 	
 	@Override
