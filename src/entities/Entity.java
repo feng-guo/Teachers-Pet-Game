@@ -1,9 +1,8 @@
 package entities;
 
-import java.awt.Graphics;
+import java.awt.Graphics; 
 import java.awt.Rectangle;
 
-import game.Game;
 import game.Handler;
 
 public abstract class Entity {
@@ -26,9 +25,11 @@ public abstract class Entity {
 		bounds = new Rectangle(0, 0, width, height);
 	}
 	
+	// Will be called 60 times per second
 	public abstract void tick();
 	public abstract void render(Graphics g);
 	
+	// Collision detection
 	public boolean checkEntityCollisions(float xOffset, float yOffset) {
 		for (Entity e : handler.getWorld().getEntityManager().getEntities()) {
 			if(e.equals(this)) {
@@ -41,6 +42,7 @@ public abstract class Entity {
 		return false;
 	}
 
+	// Collision boundaries
 	public Rectangle getCollisionBounds(float xOffset, float yOffset) {
 		return new Rectangle((int) (x + bounds.x + xOffset), (int) (y + bounds.y + yOffset), bounds.width, bounds.height);
 	}

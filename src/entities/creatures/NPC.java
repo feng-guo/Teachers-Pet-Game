@@ -1,26 +1,21 @@
 package entities.creatures;
 
-import java.awt.Color;
+
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.awt.Toolkit;
+
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import javax.swing.JComboBox.KeySelectionManager;
-import javax.swing.JFrame;
-
-import display.Display;
-import game.Game;
 import game.Handler;
 import graphics.Animation;
-import graphics.Assets;
-import states.State;
+
 import tiles.Tile;
 
 public class NPC extends Creature{
 	
+	// variables
 	private Animation animDown, animUp, animLeft, animRight;
 	private int direction, ultimateDir;
 	private int secondTimer;
@@ -30,10 +25,10 @@ public class NPC extends Creature{
 	private boolean hasStopped = false;
 	private int battlesStarted = 0;
 	private String name;
-	
 	private BufferedImage[] spriteSetDown, spriteSetUp, spriteSetLeft, spriteSetRight;
 	private ArrayList<BufferedImage[]> spriteMoves;
 	
+	// constructor
 	public NPC(String name, Handler handler, 
 			BufferedImage[] spriteSetDown, BufferedImage[] spriteSetUp, BufferedImage[] spriteSetLeft, BufferedImage[] spriteSetRight,
 			int boxSize, float x, float y) {

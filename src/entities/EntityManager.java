@@ -9,12 +9,13 @@ import game.Handler;
 
 public class EntityManager {
 
+	// Variables
 	private Handler handler;
 	private Player player;
 	private ArrayList<Entity> entities;
-	
 	private Comparator<Entity> renderSorter = new Comparator<Entity>() {
 
+		// Used to draw in order
 		@Override
 		public int compare(Entity a, Entity b) {
 			if (a.getY() + a.getHeight() < b.getY() + b.getHeight()) {
@@ -26,8 +27,7 @@ public class EntityManager {
 		
 	};
 	
-	// 
-	
+	// Create the manager
 	public EntityManager(Handler handler, Player player) {
 		this.handler = handler;
 		this.player = player;
@@ -36,6 +36,7 @@ public class EntityManager {
 		
 	}
 	
+	// Makes the manager sort repeatedly
 	public void tick() {
 		for (int i = 0; i < entities.size(); i++) {
 			Entity e = entities.get(i);
@@ -49,12 +50,14 @@ public class EntityManager {
 		}
 	}
 	
+	// Continue to render the entities to the screen
 	public void render(Graphics g) {
 		for (Entity e : entities) {
 			e.render(g);
 		}
 	}
 	
+	// Allow new entities
 	public void addEntity(Entity e) {
 		entities.add(e);
 	}

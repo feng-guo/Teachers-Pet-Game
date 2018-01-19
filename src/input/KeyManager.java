@@ -13,6 +13,7 @@ public class KeyManager implements KeyListener{
 	private boolean[] keys;
 	private Set<Integer> pressedKeys = new TreeSet<>();
 	
+	// variables
 	public boolean up, down, left, right;
 	public boolean battle, stressEat, beepTest, mathContest, catchBus, universalEnter;
 	public boolean first, second, third, fourth;
@@ -22,6 +23,7 @@ public class KeyManager implements KeyListener{
 		keys = new boolean[256];
 	}
 	
+	// Allow certain keys for events
 	public void tick() {
 		if (!(State.getState() instanceof BattleState)) {
 			up = keys[KeyEvent.VK_W];
@@ -40,6 +42,7 @@ public class KeyManager implements KeyListener{
 		}
 	}
 
+	// Triggers key press
 	@Override
 	public void keyPressed(KeyEvent e) {
 		int code = e.getKeyCode();

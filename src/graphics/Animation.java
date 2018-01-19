@@ -8,6 +8,7 @@ public class Animation {
 	private long lastTime, timer;
 	private BufferedImage[] frames;
 	
+	// Create animation
 	public Animation(int speed, BufferedImage[] frames) {
 		this.speed = speed;
 		this.frames = frames;
@@ -16,6 +17,7 @@ public class Animation {
 		lastTime = System.currentTimeMillis();
 	}
 	
+	// Make the frame render
 	public void tick() {
 		timer += System.currentTimeMillis() - lastTime;
 		lastTime = System.currentTimeMillis();

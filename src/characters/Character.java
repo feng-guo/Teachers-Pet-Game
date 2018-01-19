@@ -31,8 +31,10 @@ public abstract class Character {
     private StatItem heldItem;
     private BufferedImage[] sprites;
 
+    // Create Character
     Character(int health, int attack, int intelligence, int defence, int speed, String type, String name, Move[] moveset, String ability, StatItem heldItem, BufferedImage[] sprites) {
-        //Integer variables
+        
+    		//Integer variables
         this.initialHealth = health;
         this.currentHealth = health;
         this.attack = attack;

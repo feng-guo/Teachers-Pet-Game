@@ -1,17 +1,18 @@
 package entities.creatures;
 
-import entities.Entity;
-import game.Game;
+import entities.Entity; 
 import game.Handler;
 import tiles.Tile;
 
 public abstract class Creature extends Entity{
 
+	// Statics 
 	public static final int DEFAULT_HEALTH = 10;
 	public static final float DEFAULT_SPEED = 3.0f;
 	public static final int DEFAULT_CREATURE_WIDTH = 32;
 	public static final int DEFAULT_CREATURE_HEIGHT = 42;
 	
+	// variables
 	protected int health;
 	protected float speed;
 	protected float xMove, yMove;
@@ -24,9 +25,9 @@ public abstract class Creature extends Entity{
 		yMove = 0;
 	}
 	
+	// Chooses their move
 	public void move() {
-		//System.out.println(x + ", " + y);
-		//System.out.println(handler.getGame().getWidth());
+
 			
 			if(!checkEntityCollisions(xMove,0f)) {
 				moveX();
@@ -38,6 +39,7 @@ public abstract class Creature extends Entity{
 			}
 	}
 	
+	// moves x
 	public void moveX() {
 		if(xMove > 0) { // moving right
 			int tx = (int) (x + xMove + bounds.x + bounds.width) / Tile.TILE_WIDTH;
@@ -61,6 +63,7 @@ public abstract class Creature extends Entity{
 		}
 	}
 	
+	// moves y
 	public void moveY() {
 		if(yMove < 0) { // moving up
 			int ty = (int) (y + yMove + bounds.y) / Tile.TILE_HEIGHT;
@@ -85,6 +88,7 @@ public abstract class Creature extends Entity{
 		}
 	}
 	
+	// checks for collisions
 	protected boolean collisionWithTile(int x, int y) {
 		if (x <= handler.getWorld().getWidth() * Tile.TILE_WIDTH && x >= 0 && y <= handler.getWorld().getHeight() * Tile.TILE_HEIGHT && y >= 0) {
 			//System.out.println(handler.getWorld().getHeight());

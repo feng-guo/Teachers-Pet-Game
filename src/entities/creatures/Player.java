@@ -1,10 +1,8 @@
 package entities.creatures;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import game.Game;
 import game.Handler;
 import graphics.Animation;
 import graphics.Assets;
@@ -12,11 +10,13 @@ import tiles.Tile;
 
 public class Player extends Creature{
 	
+	
+	// Variables
 	private Animation animDown, animUp, animLeft, animRight;
 	private int direction;
 	private boolean hasStopped;
 	
-	
+	// Creates player
 	public Player(Handler handler, float x, float y) {
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
 		
@@ -102,6 +102,7 @@ public class Player extends Creature{
 //					
 	}
 	
+	// Retrieves animation frame
 	private BufferedImage getCurrentAnimationFrame() {
 		
 		if (hasStopped) {
@@ -132,6 +133,7 @@ public class Player extends Creature{
 		
 	}
 	
+	// Makes them stay still
 	public BufferedImage returnStationarySprite(int direction) {
 		if(direction == 1) {
 			return Assets.player_left[0];
