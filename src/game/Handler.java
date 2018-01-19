@@ -5,6 +5,7 @@ import characters.ListOfCharacters;
 import graphics.GameCamera;
 import input.KeyManager;
 import input.MouseManager;
+import items.Inventory;
 import items.ListOfInventoryItems;
 import states.*;
 import worlds.World;
@@ -64,5 +65,9 @@ public class Handler {
 
 	public ListOfMoves getListOfMoves() {
 		return game.getListOfMoves();
+	}
+
+	public Inventory getInventory() {
+		return game.getInventory();
 	}
 }

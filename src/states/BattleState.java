@@ -22,19 +22,19 @@ public class BattleState extends State{
 	
 	private double opponentPercent, playerPercent;
 
-	private boolean menuScreen = false, characterSelectionScreen;
+	private boolean menuScreen = false, characterSelectionScreen, inventorySelectionScreen;
 	private boolean[][] menu = new boolean[2][2];
 	private boolean[][] characterSelection = new boolean[3][2];
 	private int x, y;
 	private boolean cannotSwitchCharacter;
 	private boolean[] inventorySelection = new boolean[10];
-	private int inventoryX;
+	private int inventoryY;
 	private int topOfInventory;
 
 	public BattleState(Handler handler, Graphics g) {
 		super(handler);
 		//handler.setWorld(null);
-		battleTest = new BattleRunner();
+		battleTest = new BattleRunner(handler);
 
 		shake = null;
 //		shake = new Animation(300, battleTest.getOpponent().getSprites());
@@ -50,6 +50,10 @@ public class BattleState extends State{
 		characterSelection[2][0] = false;
 		characterSelection[2][1] = false;
 
+		for (int i=0; i<10; i++) {
+			inventorySelection[i] = false;
+		}
+
 	}
 
 	@Override
@@ -62,7 +66,43 @@ public class BattleState extends State{
 		if (!battleTest.battleStart) {
 			return;
 		}
-		if (characterSelectionScreen) {
+
+		if (inventorySelectionScreen) {
+			if (handler.getKeyManager().up) {
+				if (inventoryY != 0) {
+					inventorySelection[inventoryY] = false;
+					inventoryY--;
+					inventorySelection[inventoryY] = true;
+					handler.getKeyManager().up = false;
+				} else if (inventoryY == 0) {
+					if (topOfInventory != 0) {
+						topOfInventory--;
+					}
+				}
+			} else if (handler.getKeyManager().down) {
+				if (inventoryY != 9) {
+					inventorySelection[inventoryY] = false;
+					inventoryY++;
+					characterSelection[y][x] = true;
+					handler.getKeyManager().down = false;
+				} else if (inventoryY == 9) {
+					if (topOfInventory+10 != handler.getInventory().getInventorySize()) {
+						topOfInventory++;
+					}
+					handler.getKeyManager().down = false;
+				}
+			} else if (handler.getKeyManager().enter) {
+				answer = topOfInventory + inventoryY;
+				handler.getKeyManager().enter = false;
+				topOfInventory = 0;
+				inventoryY = 0;
+			} else if (handler.getKeyManager().backspace) {
+				answer = -10;
+				handler.getKeyManager().backspace = false;
+				topOfInventory = 0;
+				inventoryY = 0;
+			}
+		} else if (characterSelectionScreen) {
 			if (handler.getKeyManager().up) {
 				if (y != 0) {
 					characterSelection[y][x] = false;
@@ -125,7 +165,7 @@ public class BattleState extends State{
 					handler.getKeyManager().enter = false;
 				}
 			} else if (handler.getKeyManager().backspace) {
-				answer = 10;
+				answer = -10;
 				characterSelectionScreen = false;
 				menuScreen = false;
 				characterSelection[0][0] = false;
@@ -191,7 +231,7 @@ public class BattleState extends State{
 				y = 0;
 				handler.getKeyManager().enter = false;
 			} else if (handler.getKeyManager().backspace) {
-				answer = 10;
+				answer = -10;
 				menuScreen = false;
 				menu[0][0] = true;
 				menu[0][1] = false;
@@ -346,8 +386,14 @@ public class BattleState extends State{
 				y = 0;
 			}
 		}
+		if (!inventorySelectionScreen) {
+			for (int i=0; i<10; i++) {
+				inventorySelection[i] = false;
+			}
+			inventoryY = 0;
+			topOfInventory = 0;
+		}
 		if (menuScreen) {
-
 			if (y == 0) {
 				if (x == 0) {
 					g.drawImage(Assets.selectionArrow, 36, 309, 10, 10, null);
@@ -509,7 +555,32 @@ public class BattleState extends State{
 					}
 				}
 			} else if (battleTest.isInventoryChoicePhase()) {
+				if (!inventorySelectionScreen) {
+					inventoryY = 0;
+					topOfInventory = 0;
+				}
+				inventorySelectionScreen = true;
+				characterSelectionScreen = false;
+				menuScreen = false;
 				g.drawImage(Assets.inventorySelect, 0, 0, null);
+				g.setFont(Assets.font12);
+				try {
+					for (int i = 0+topOfInventory; i < 10+topOfInventory; i++) {
+						if (inventoryY == i-topOfInventory) {
+							g.setColor(Color.RED);
+							g.drawRect(290, 45 + 35*i, 280, 35);
+						}
+						g.setColor(Color.BLACK);
+						g.drawString(handler.getInventory().getItem(i).getName(), 290, 45 + 35 * (i-topOfInventory));
+						g.drawString(handler.getInventory().getArrayNumberAtIndex(i) + "", 550, 45 + 35 * (i-topOfInventory));
+					}
+				} catch (NullPointerException e) {
+					//Empty because they have less items
+				} catch (ArrayIndexOutOfBoundsException e) {
+					if (handler.getInventory().getInventorySize() == 0) {
+						g.drawString("Your inventory is empty", 290, 45);
+					}
+				}
 			}
 			if (battleTest.isBattleEnd()) {
 				handler.getGame().setRecentlyPlayed();
