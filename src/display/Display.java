@@ -31,7 +31,7 @@ public class Display {
 		frame.setLocationRelativeTo(null);
 		//frame.setBackground(new Color(0, 0, 0, 0));
 		frame.setVisible(true);
-		//frame.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width/4, Toolkit.getDefaultToolkit().getScreenSize().height/4);
+		frame.setLocation(Toolkit.getDefaultToolkit().getScreenSize().width/4, Toolkit.getDefaultToolkit().getScreenSize().height/4);
 
 		
 		//frame.setFocusable(true);

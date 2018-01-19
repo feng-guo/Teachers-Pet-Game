@@ -2,6 +2,7 @@ package states;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 
 import game.Handler;
 import graphics.Animation;
@@ -52,6 +53,8 @@ public class BeepTestState extends State {
 		// System.out.println(x);
 		
 		if (clockTimer < 1) {
+			handler.getKeyManager().forceKeyChange(KeyEvent.VK_C, false);
+			handler.getGame().setRecentlyPlayed();
 			handler.getGame().setGameState();
 		}
 

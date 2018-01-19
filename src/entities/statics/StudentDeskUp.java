@@ -10,12 +10,12 @@ import tiles.Tile;
 public class StudentDeskUp extends StaticEntity{
 
     public StudentDeskUp(Handler handler, float x, float y) {
-        super(handler, x, y, (int) (Tile.TILE_WIDTH * 1.0), (int) (Tile.TILE_HEIGHT * 1.75));
+        super(handler, x, y, (int) (Tile.TILE_WIDTH * 1.5), (int) (Tile.TILE_HEIGHT * 1.5));
 
         // SPECIFIC TO STUDENT DESK UP
         bounds.x = 0;
         bounds.y = 10;
-        bounds.width = 30;
+        bounds.width = 50;
         bounds.height = 30;
     }
 

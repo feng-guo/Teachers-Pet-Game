@@ -116,11 +116,11 @@ import states.StressEatsState;
 				}
 			} else if (handler.getKeyManager().stressEat && !(State.getState() instanceof StressEatsState)) {
 				State.setState(new StressEatsState(handler));
-			} else if (handler.getKeyManager().beepTest) {
+			} else if (handler.getKeyManager().beepTest && !(State.getState() instanceof BeepTestState)) {
 				State.setState(new BeepTestState(handler));
-			} else if (handler.getKeyManager().mathContest) {
+			} else if (handler.getKeyManager().mathContest && !(State.getState() instanceof MathContestState)) {
 				State.setState(new MathContestState(handler));
-			} else if (handler.getKeyManager().catchBus) {
+			} else if (handler.getKeyManager().catchBus && !(State.getState() instanceof CatchBusState)) {
 				State.setState(new CatchBusState(handler));
 			}
 		}

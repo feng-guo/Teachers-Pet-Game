@@ -23,12 +23,12 @@ public class Assets {
 	openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench, 
 	hallCouch, hallChairLowLeft, hallChairLowRight, hallChairLowUp, hallChairHigh, hallTableLow, hallTableHigh,
 	cafTableUp, cafTableSide, vending1, vending2,
-	studentDeskLeft, studentDeskRight, studentDeskUp, studentDeskDown,
+	studentDeskRight, studentDeskUp,
 	studentChairRight, studentChairLeft, studentChairUp,
 	teacherDeskSide, teacherDeskUp,
 	announcementBoard, announcementBoard2, greenBoard, brownBoard,
 	labBench, labTableSide,labTableUp, labStool, labShelf,
-	guidanceChairSide, guidanceChairBack,
+	guidanceChairSide, guidanceChairBack, guidanceCouch,
 	counterSide, counterUp, longTableSide, longTableUp,
 	foodBanner, happyFace, sadFace, blackBoard, writingBlackBoard, projectorScreen, loadingBackground, selectionArrow;
 
@@ -115,8 +115,6 @@ public class Assets {
 		cafTableUp = ImageLoader.loadImage ("/Indoor_Entities/Cafeteria/Caf_Table_Long_Up.png");
 
 		studentDeskUp = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Desk_Chair_Front.png");
-		studentDeskDown = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Desk_Chair_Back.png");
-		studentDeskLeft = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Desk_Chair_Left.png");
 		studentDeskRight = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Desk_Chair_Right.png");
 		teacherDeskUp= ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Teacher_Desk_Up.png");
 		teacherDeskSide = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Teacher_Desk_Side.png");
@@ -138,6 +136,7 @@ public class Assets {
 		brownBoard = ImageLoader.loadImage ("/Indoor_Entities/Guidance_Office/Brown_Board.png");
 		guidanceChairSide = ImageLoader.loadImage ("/Indoor_Entities/Guidance_Office/Chair_Side.png");
 		guidanceChairBack = ImageLoader.loadImage ("/Indoor_Entities/Guidance_Office/Chair_Back.png");
+		guidanceCouch = ImageLoader.loadImage ("/Indoor_Entities/Guidance_Office/Guidance_Couch.png");
 		longTableSide = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Long_Table_Side.png");
 		longTableUp = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Long_Table_Up.png");
 

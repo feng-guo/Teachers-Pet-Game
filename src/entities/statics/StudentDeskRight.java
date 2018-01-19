@@ -10,13 +10,13 @@ import tiles.Tile;
 public class StudentDeskRight extends StaticEntity{
 
     public StudentDeskRight(Handler handler, float x, float y) {
-        super(handler, x, y, (int) (Tile.TILE_WIDTH * 1.0), (int) (Tile.TILE_HEIGHT * 1));
+        super(handler, x, y, (int) (Tile.TILE_WIDTH * 1.5), (int) (Tile.TILE_HEIGHT * 1.5));
 
         // SPECIFIC TO STUDENT DESK RIGHT
         bounds.x = 0;
         bounds.y = 10;
         bounds.width = 30;
-        bounds.height = 30;
+        bounds.height = 50;
     }
 
     @Override
