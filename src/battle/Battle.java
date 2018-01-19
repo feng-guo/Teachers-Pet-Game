@@ -615,7 +615,6 @@ public class Battle {
       PlayableCharacter character = squad.getCharacter(i);
       characterStrings[i] = character.getName() + " " + character.getCurrentHealth() + "/" + character.getInitialHealth();
     }
-    //I don't think I ever use this ^^
     playerPickCharacterPhase = true;
   }
 

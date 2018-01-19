@@ -36,6 +36,7 @@ public class ListOfInventoryItems {
         itemList.add(new HealItem("Chicken nuggets (50pc)", "Revives a pokemon with their max health","Full revive", 0));
     }
 
+    //return specific item in array list
     public Item retrieveItem(String name) {
         for (int i=0; i<itemList.size(); i++) {
             if (name.equals(itemList.get(i).getName())) {

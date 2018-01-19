@@ -16,8 +16,10 @@ public class Inventory {
         numItems = new ArrayList<Integer>();
     }
 
+    //add item to inventory
     public void addItem(Item item){
         boolean flag = true;
+        //if item is already existing, just update num item array
         for(int i = 0; i < inventory.size(); i++){
             if(item == inventory.get(i)){
                 numItems.set(i, numItems.get(i)+1);
@@ -30,19 +32,7 @@ public class Inventory {
         }
     }
 
-    public void removeItem (String name, int numRemove){
-        for(int i = 0; i < inventory.size(); i++){
-            if(inventory.get(i).getName().equals(name)){
-                if(numRemove == numItems.get(i)){
-                    inventory.remove(i);
-                    numItems.remove(i);
-                }else if(numRemove < numItems.get(i)){
-                    numItems.set(i, numItems.get(i) - numRemove);
-                }
-            }
-        }
-    }
-
+    //use item in inventory
     public Item useItem(String name){
         Item result = null;
         for(int i = 0; i < inventory.size(); i++){
@@ -84,25 +74,7 @@ public class Inventory {
         return -1;
     }
 
-    /*public void displayItems(){
-        if (inventory.size() == 0) {
-            System.out.println("You have an empty inventory");
-        } else {
-            for (int i = 0; i < inventory.size(); i++) {
-                System.out.println(inventory.get(i).getName() + " x" + numItems.get(i));
-            }
-        }
-    }*/
-
     public int getInventorySize() {
         return inventory.size();
-    }
-
-    public ArrayList<Item> getInventory() {
-        return inventory;
-    }
-
-    public ArrayList<Integer> getNumItems() {
-        return numItems;
     }
 }

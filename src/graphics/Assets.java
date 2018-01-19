@@ -15,8 +15,9 @@ public class Assets {
 	private static final int tileHeight = 16;
 
 
-	//public static BufferedImage player_down_1, player_down_2, player_down_3;
+	//public static BufferedImage images
 
+	// Initialise each image and buffer it in
 	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, gymTile, blackScreen,
 	floor, wall, blackBlock, battleBackground, characterSelect, inventorySelect, hallFloor, locker, lockerTop, stairs,
 	openDoor, closedDoor, sideDoor, indoorWindowOpen, indoorWindowClosed, bench,
@@ -56,15 +57,19 @@ public class Assets {
 								
 	public static BufferedImage[] logo, cars;
 	public static BufferedImage[][] tileArray, foodArray;
+
+	// Get fonts
 	public static Font font24, font16, font12, font10, font8;
 
+	// Start as Feng
 	public static String characterName = "Feng";
 
 	public static void init() {
 		
 		loadFont();
 		loadSprites();
-		
+
+		// Load all image files below
 		cars = new BufferedImage[3];
 		cars[0] = ImageLoader.loadImage("/red_car.png");
 		cars[1] = ImageLoader.loadImage("/blue_car.png");
@@ -185,7 +190,7 @@ public class Assets {
 		gymTile = ImageLoader.loadImage("/gym_tile.png");
 
 	}
-	
+
 	public static void loadFont() {
 		File fontFile = new File("./fonts/PokeFont.ttf");
 		String filePath = fontFile.getAbsolutePath().substring(0, fontFile.getAbsolutePath().indexOf(".")) + "res/fonts/PokeFont.ttf";
@@ -199,7 +204,9 @@ public class Assets {
 			e.printStackTrace();
 		}
 	}
-	
+
+	// ALL SPRITE INITIALISATION BELOW
+
 	public static void loadSprites() {
 		SpriteSheet playerSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/" + characterName + "/" + characterName.toLowerCase() + "_spritesheet.png"));
 		SpriteSheet fengSheet = new SpriteSheet(ImageLoader.loadImage ("/Sprite_Images/sprites/characters/Feng/feng_spritesheet.png"));
@@ -424,7 +431,7 @@ public class Assets {
 			gissing_up[i] = gissingSheet.crop(charWidth*(i+9) - 3, 0, charWidth, charHeight);
 
 		}
-//		
+
 //		player_down[0] = playerSheet.crop(charWidth*0, 0, charWidth, charHeight);
 //		player_down[1] = playerSheet.crop(charWidth*1, 0, charWidth, charHeight);
 //		player_down[2] = playerSheet.crop(charWidth*2, 0, charWidth, charHeight);
