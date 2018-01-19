@@ -147,7 +147,7 @@ public class Battle {
     this.playerFainted = player.isFainted();
     this.playerAbilityTriggered = false;
     
-    //Player items.items
+    //Player items
     this.playerHeldItem = player.getHeldItem();
     this.playerHatItem = player.getHatItem();
     this.playerShirtItem = player.getShirtItem();
@@ -248,7 +248,7 @@ public class Battle {
     this.playerProtected = false;
     this.playerFainted = player.isFainted();
     this.playerAbilityTriggered = false;
-    //Player items.items
+    //Player items
     this.playerHeldItem = player.getHeldItem();
     this.playerHatItem = player.getHatItem();
     this.playerShirtItem = player.getShirtItem();
@@ -512,7 +512,6 @@ public class Battle {
 
   public void playerPickInventory() {
     playerInventoryChoicePhase = true;
-    textArrayList.add("Inventory items.items");
     playerInventory.displayItems();
   }
 

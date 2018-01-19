@@ -19,7 +19,7 @@ public class Assets {
 	//public static BufferedImage player_down_1, player_down_2, player_down_3;
 
 	public static BufferedImage /*grass_1,*/ grass_2, rock, path, tree, gymTile, blackScreen,
-	floor, wall, blackBlock, battleBackground, characterSelect, hallFloor, locker, lockerTop, stairs,
+	floor, wall, blackBlock, battleBackground, characterSelect, inventorySelect, hallFloor, locker, lockerTop, stairs,
 	openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench, 
 	hallCouch, hallChairLowLeft, hallChairLowRight, hallChairLowUp, hallChairHigh, hallTableLow, hallTableHigh,
 	cafTableUp, cafTableSide, vending1, vending2,
@@ -73,6 +73,7 @@ public class Assets {
 		
 		selectionArrow = ImageLoader.loadImage("/selection_arrow.png");
 		characterSelect = ImageLoader.loadImage("/playerSelect.png");
+		inventorySelect = ImageLoader.loadImage("/inventory_screen.png");
 		loadingBackground = ImageLoader.loadImage("/loadingBackground.png");
 		foodBanner = ImageLoader.loadImage("/foodBanner.png");
 		happyFace = ImageLoader.loadImage("/happyFace.png");
