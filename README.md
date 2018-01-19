@@ -378,6 +378,219 @@ When you need help with an algorithm, it would make the most sense to ask for he
 * Accuracy: 95%
 * PP: 15
 
+# Neutral
+Neutral moves do not belong in either science, math, English, or Technology. If a person is neutral, it is because they specialize in something non-STEM (Science, Technology, English, Math, and we are aware that E is not supposed to correspond to English) and therefore irrelevant. Moves that are neutral are either physical or also non-STEM. 
+
+# Moves
+## Attack
+### Burn Piano Book
+You know as a child how your parents forced you to play the piano. You either loved it or hated it. The constant mind-numbingly boring practice sessions made you wish for a swift death as your fingers lost sensation hammering at the keys for so long. Well some people decided burning their piano book would solve the problem.
+
+**Description**: If you do this, there is seriously something wrong with you.
+
+**Effect**
+* Base power: 60
+* Accuracy: 100
+* PP: 12
+* 50% chance to burn either the player or opponent
+
+### Clap
+Clapping is something you do when you celebrate an achievement: your's or someone other's. Clapping is a very positive action that you can do very quickly.
+
+**Description**: Yay, TLAP!
+
+**Effect**
+* Base power: 40
+* Accuracy: 100
+* PP: 15
+* Priority: 3
+* 10% to double the intelligence of the user
+
+### Explode Phone
+Whether it's from months of misuse or you washed it or your charger malfunctions, an exploding phone can get the best of us sometimes.
+
+**Description**: I got two phones, and now I have none.
+
+**Effect**
+* Base power: 120
+* Accuracy: 80
+* PP: 10
+* 75% chance to burn the opponent
+
+### Meter Stick
+As a measuring tool, a meter stick is vital to every experiment conducted in elementary school. From fake helicopters to seeing how long the hallway is, the meter has served an essential function. In the older days, in addition to its measuring capabilities, can be used as a tool for corporal punishment. While uncommon today, the threat of it is always present to those sleeping, or otherwise unsuspecting.
+
+**Description**: Whack whack
+
+**Effect**
+* Base power: 65
+* Accuracy: 90%
+* PP: 12
+* Priority +1
+
+### Throw Basketball
+As a sport, basketball is very popular sport among young individuals. It is a high-intensity sport because players are expected to run, dribble a ball, and shoot when necessary. Basketballs are also relatively hard, except not really.
+
+**Description**: Don't break your ankles.
+
+**Effect**
+* Base power: 30
+* Accuracy: 95%
+* PP: 20
+* Priority +2
+
+### Throw Chair
+Whenever frustrated, a student my resort to flinging furniture around to relieve them of tension. Usually this involves a desk or a chair. When thrown, chairs can be extremely lethal, causing heavy bruising, concussions, or open wounds. Many school boards have a policy against throwing, especially chairs.
+
+**Description**:
+Put that chair down!
+
+**Effect**
+* Base power: 80
+* Accuracy: 75%
+* PP: 10
+
+## Effect
+### Balls Away
+When you balling in gym class and then class starts and you already know what's about to go down. BALLS AWAYYYYYYY.
+
+**Description**: BALLS AWAY
+
+**Effect**
+* Doubles the speed of the user
+* Halves defence of opponent
+* PP: 10
+
+### Call Uber
+Instead of walking the 2 meters, some people prefer calling an Uber to arrive at their destination. Said people are usually stacked or just very, very lazy.
+
+**Description**: Why are you Ubering there, it's literally 2 steps away.
+
+**Effect**
+* Doubles the speed of the user
+* PP: 10
+
+### Cram
+Cramming right before an assessment is a surefire way to get someone to want death. You do gain short-term memory of a certain subject, however.
+
+**Description**: There is no way that I am going to remember all 15 chapters before the exam.
+
+**Effect**
+* Doubles the intelligence of the user
+* PP: 5
+
+### Crash 
+After 48 sleepless hours, crashing is the most natural thing to do, especially after just running on caffeine the entire day. Crashing induces hysteria, hallucinations and increased aggressiveness until the person goes to sleep.
+
+**Description**: Misha why are you laughing at your counter.
+
+**Effect**
+* Doubles the attack of the user
+* Puts the user to sleep
+* PP: 10
+
+### Cry
+Crying is a good part of school because it relieves the mental stresses associated with learning. Even though you end up feeling like crap for crying your heart out, biologically, it should relieve something. Whether that happens or not depends on what you cry over.
+
+**Description**: This is the fourth time I've cried at school this week and it's only Tuesday.
+
+**Effect**
+* Refills the health of the user
+* Puts the user to sleep
+* PP: 5
+
+### Drink Bubble Tea
+Bubble tea is an essential aspect of student life in the GTA. Shops rake in massive profits selling glorified tea with milk to rich fobs who must intake an overage of sugar. Despite the immense health issues, bubble tea drinkers ignore these health warnings simply because they either don't care or just love bubble tea.
+
+**Description**: You wanna go to Chatime?
+
+**Effect**
+* Refills half the health of the user
+* PP: 10
+
+### Flex
+Jacked people flex because they have muscles. They like to compensate for something else and let others notice what they have been working on for the longest time.
+
+**Description**: Stop flexing, you're embarrassing yourself here.
+
+**Effect**
+* Doubles the attack and defence of the user
+* PP: 10
+
+### Greet
+Greeting someone is a very friendly action that makes them feel more welcome. Being acknowledged is very nice.
+
+**Description**: Hi everyone!
+
+**Effect**
+* Halves the defence of the user
+* PP: 15
+
+### Make Memes
+Memes are a universal method of communication. People of different cultures can all learn to accept this form of communication, mainly via the Internet. While a lot of memes are garbage, the more relatable ones are considered to be funny and are therefore more accepted. There is a sense of pride when making memes, which increases the mental health of the user.
+
+**Description**:
+Nice meme bro.
+
+**Effect**
+* Heals user by half their overall health.
+* Accuracy: 100%
+* PP: 8
+
+### Not Study
+People that get by without studying for any sort of assessment usually fail or still do well somehow. Either they are way too intelligence to study or are lucky. Either way, it's not fair
+
+**Description**: How do you pass without studying??
+
+**Effect**
+* Doubles the intelligence of the user
+* Halves the intelligence of the opponent
+* PP: 10
+
+### Snort Candy
+During the 80's, cocaine was the most popular drug, which induced an instantaneous euphoric high for the user. Due to this, powered cocaine became a booming illicit trade in the Americas. The war on drugs did nothing except for fueling demand of the product itself and increasing the power of those who produced it. Cocaine is fondly called nose candy because users generally use their nostrils as an entry point for the drug. Although students at RHHS probably cannot afford cocaine unless their parents are exceedingly rich, they can indulge in snorting pure sugar for the fun of it.
+
+**Description**:
+Feng, this is the second time I've seen you snort candy in class!
+
+**Effect**
+* Heals user by 40 HP.
+* Accuracy: 100%
+* PP: 20
+
+### Work Out
+Working out, or exercising is an excellent to stay fit. Used to lose weight, gain muscle or just to maintain a healthy lifestyle, exercising should be part of everyone's daily schedule. Except for the fact that everyone is getting fat from poor nutrition and living a sedentary lifestyle thanks to the Internet.
+
+**Description**: What does this move even mean?
+
+**Effect**
+* Doubles the attack and speed of the user.
+* Accuracy: 100%
+* PP: 20
+
+## Intelligence
+### Play Clarinet
+A long, black, and glorified recorder, clarinets are hallmarked as one of the easiest instruments to pick up and play. Despite this, it does take a good chunk of time to skill and master, in order to play faster, more accurately, and with better tone.
+
+**Description**: You kinda look like a snake charmer.
+
+**Effect**
+* Base power: 20
+* Accuracy: 100%
+* PP: 20
+* Double's the user's intelligence
+
+### Play Clarinet
+A curved, brass, and glorified recorder, saxophones are hallmarked as probably the second easiest instrument to pick up and play. Despite this, it does take a good chunk of time to skill and master, in order to play faster, more accurately, and with better tone. Saxophones are also much cooler than the other instruments because they're a jazz staple.
+
+**Description**: You kinda look like sad.
+
+**Effect**
+* Base power: 20
+* Accuracy: 100%
+* PP: 20
+* Double's the user's intelligence
+
 # Abilities
 Abilities are a battle mechanic that affects how battles are fought. Abilities are all passive and may require specific scenarios to activate.
 
@@ -1017,3 +1230,36 @@ Random Niner has the [Annoying](https://github.com/feng-guo/Teachers-Pet-Game/wi
 * [Swear](https://github.com/feng-guo/Teachers-Pet-Game/wiki/English#swear)
 * [Complain](https://github.com/feng-guo/Teachers-Pet-Game/wiki/English#complain) 
 
+Items can be used by playable characters to improve either their stats or their power points, depending on the type. They appear randomly on the map for the characters to pick up. Inventory space is unlimited. 
+
+## Stats Items
+Stats items improve either the attack, defense, intelligence, speed, or health of the character. They can consist of items that can be held by the character or worn as an article of clothing.
+### Held Items
+* Glasses: Increase Intelligence by 10%
+* Dumbbells: Increase Attack by 10%
+* Notes: Increase Defense by 10%
+* Calculator: Increase Intelligence by 10%
+* Starbucks Card: Increase Health by 6% of Max Health per turn
+### Clothing Items
+* Jordans(Shoes): Increase Speed by 10%
+* Yeezys(Shoes): Increase Speed by 15%
+* Headband(Hat): Increase Intelligence by 10%
+* Headphones(Hat): Increase Max Health by 10%
+* Stussy Sweater(Shirt): Increase Attack by 20%
+* Champion Sweater(Shirt): Increase Attack by 15%
+* Adidas Pants(Pants): Increase Max Health by 5%
+* Sweatpants(Pants): Increase Defense by 20%
+
+## Heal Items
+Heal items help the character recover HP or PP for certain moves so they can continue using them in battle. They generally consist of various food and drinks.
+* Caf food: +5 (HP)
+* McDonald's burger: +20 (HP)
+* Bubble Tea: +25 (HP)
+* Bulk Barn Candy: +40 (HP)
+* Red bull: cure sleep status 
+* Ramen: cure burn status
+* Doritos: cure poison status
+* Tea: cure stunned status
+* Sushi: full restore health and status
+* Chicken Nuggets (20): half revive
+* Chicken Nuggets (50): full revive`
