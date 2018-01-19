@@ -28,7 +28,7 @@ public class GameState extends State{
 		gym = new World(handler, "res/worlds/gym.txt");
 		math = new World(handler, "res/worlds/math.txt");
 		science = new World(handler, "res/worlds/science.txt");
-
+		
 		world = compsci;
 		
 		handler.setWorld(world);
@@ -68,10 +68,9 @@ public class GameState extends State{
 			world = gym;
 		} else if (path.equals("res/worlds/math.txt")) {
 			world = math;
-		} else {
+		} else if (path.equals("res/worlds/science.txt")) {
 			world = science;
 		}
-
 		handler.setWorld(world);
 		
 	}
