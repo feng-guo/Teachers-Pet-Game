@@ -52,7 +52,12 @@ public class BeepTestState extends State {
 		}
 		// System.out.println(x);
 		
-		if (clockTimer < 1) {
+		if (clockTimer < 1 && clicksPerSecond > 5.7) {
+			handler.getKeyManager().forceKeyChange(KeyEvent.VK_C, false);
+			handler.getGame().setRecentlyPlayed();
+			handler.getGame().setGameState();
+			handler.getGame().increaseScore(clicksPerSecond*10);
+		} else if (clockTimer < 1) {
 			handler.getKeyManager().forceKeyChange(KeyEvent.VK_C, false);
 			handler.getGame().setRecentlyPlayed();
 			handler.getGame().setGameState();

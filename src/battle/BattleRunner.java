@@ -72,7 +72,7 @@ public class BattleRunner {
 
     public void startRandomBattle() {
         double random2 = Math.random();
-        System.out.println(random2);
+        //System.out.println(random2);
         NonPlayableCharacter opponent;
         if (random2 < 0.33) {
             opponent = mrHarris;

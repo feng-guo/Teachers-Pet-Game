@@ -32,6 +32,7 @@ import states.StressEatsState;
 
 	private int width, height;
 	private int recentlyPlayed;
+	private int coins;
 	private String title;
 	private Display display;
 	
@@ -69,6 +70,7 @@ import states.StressEatsState;
 	private Squad squad;
 	
 	public Game(String title, int width, int height) {
+		coins = 0;
 		this.width = width;
 		this.height = height;
 		this.title = title;
@@ -119,9 +121,11 @@ import states.StressEatsState;
 	private void tick() {
 		recentlyPlayed++;
 		
+		System.out.println(coins);
+		
 		keyManager.tick();
 		
-		if (State.getState() instanceof GameState && recentlyPlayed > 120) {
+		if (State.getState() instanceof GameState && recentlyPlayed > 180) {
 			// CHANGE TO BATTLE STATE
 			if(handler.getKeyManager().battle && !(State.getState() instanceof BattleState)) {
 				
@@ -308,4 +312,8 @@ import states.StressEatsState;
 	 public Squad getSquad() {
 		return squad;
 	 }
+
+	public void increaseScore(double d) {
+		coins += (int) d;
+	}
  }

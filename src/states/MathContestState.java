@@ -39,11 +39,23 @@ public class MathContestState extends State {
 //		handler.getGame().getDisplay().getFrame().setFocusable(false);
 //		handler.getGame().getDisplay().getCanvas().setFocusable(false);
 
-		if(clockTimer < 1 || score == 20) {
+        if (clockTimer < 1 || score == 20) {
 			handler.getKeyManager().forceKeyChange(KeyEvent.VK_V, false);
 			handler.getGame().setRecentlyPlayed();
-			handler.getGame().setGameState();
+			
+			input.setVisible(false);
 			frame.setVisible(false);
+			
+			handler.getGame().setGameState();
+			handler.getGame().increaseScore(score + 30);
+		} else if (clockTimer < 1) {
+			handler.getKeyManager().forceKeyChange(KeyEvent.VK_V, false);
+			handler.getGame().setRecentlyPlayed();
+			
+			input.setVisible(false);
+			frame.setVisible(false);
+			
+			handler.getGame().setGameState();
 		}
 
 		

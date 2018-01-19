@@ -58,11 +58,15 @@ public class StressEatsState extends State {
 			sendRect[60-clockTimer] = true;
 		}
 		
-		if (clockTimer < 1 || score >= 900) {
+        if (clockTimer < 1 || score >= 900) {
 			handler.getKeyManager().forceKeyChange(KeyEvent.VK_Z, false);
 			handler.getGame().setRecentlyPlayed();
 			handler.getGame().setGameState();
-
+			handler.getGame().increaseScore((score/20) + 10);
+		} else if (clockTimer < 1) {
+			handler.getKeyManager().forceKeyChange(KeyEvent.VK_Z, false);
+			handler.getGame().setRecentlyPlayed();
+			handler.getGame().setGameState();
 		}
 	}
 
