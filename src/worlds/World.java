@@ -93,15 +93,12 @@ public class World {
 //			Graphics2D g2 = (Graphics2D) g;
 //			g2.setColor(Color.BLACK);
 //			g2.setStroke(new BasicStroke(12f));
-//<<<<<<< HEAD
 //			g2.drawImage(Assets.court, (int)(-handler.getGameCamera().getxOffset()), (int)(64-handler.getGameCamera().getyOffset()), 800, 490, null);
-//			//g2.drawOval((int) (-200 - handler.getGameCamera().getxOffset()), (int) (160 - handler.getGameCamera().getyOffset()), 600, 300);
-//=======
+//			g2.drawOval((int) (-200 - handler.getGameCamera().getxOffset()), (int) (160 - handler.getGameCamera().getyOffset()), 600, 300);
 //			g2.drawOval((int) (-200 - handler.getGameCamera().getxOffset()), (int) (160 - handler.getGameCamera().getyOffset()), 300, 300);
-//            g2.drawOval((int) (700 - handler.getGameCamera().getxOffset()), (int) (160 - handler.getGameCamera().getyOffset()), 300, 300);
+//          g2.drawOval((int) (700 - handler.getGameCamera().getxOffset()), (int) (160 - handler.getGameCamera().getyOffset()), 300, 300);
 //			g2.drawLine((int)(400 - handler.getGameCamera().getxOffset()), (int)(68 - handler.getGameCamera().getyOffset()), (int)(400 - handler.getGameCamera().getxOffset()), (int)(800 - handler.getGameCamera().getyOffset()));
-//            g.fillOval((int) (350 - handler.getGameCamera().getxOffset()), (int)(240 - handler.getGameCamera().getyOffset()), 100, 100);
-//>>>>>>> 895a77bee2d908db4a65428bb4540a28d9d3ae5f
+//          g.fillOval((int) (350 - handler.getGameCamera().getxOffset()), (int)(240 - handler.getGameCamera().getyOffset()), 100, 100);
 //		}
 		
 		if (path.equals("res/worlds/gym.txt")) {
@@ -206,7 +203,7 @@ public class World {
 		//Doors
 		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 20 - 9), 10, "res/worlds/math.txt", 90, 60));
 		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 30 + 10), 10, "res/worlds/compsci.txt", 380, 60));
-		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10, "res/worlds/english.txt", 90, 60));
+		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10, "res/worlds/english.txt", 375, 60));
 
 		//Hall Library Chairs/Tables
 		entityManager.addEntity(new HallChairLowUp(handler, 828, 343));
@@ -234,7 +231,8 @@ public class World {
 	}
 	
 	public void loadBottomHall() {
-		
+
+	    /*
 		entityManager.addEntity(new NPC(handler, Assets.angela_down, Assets.angela_up, Assets.angela_left, Assets.angela_right, 100, 250, 100));
 		entityManager.addEntity(new NPC(handler, Assets.feng_down, Assets.feng_up, Assets.feng_left, Assets.feng_right, 100, 400, 100));
 		entityManager.addEntity(new NPC(handler, Assets.bill_down, Assets.bill_up, Assets.bill_left, Assets.bill_right, 100, 550, 100));
@@ -243,6 +241,7 @@ public class World {
 		entityManager.addEntity(new NPC(handler, Assets.sihan_down, Assets.sihan_up, Assets.sihan_left, Assets.sihan_right, 100, 1000, 100));
 		entityManager.addEntity(new NPC(handler, Assets.misha_down, Assets.misha_up, Assets.misha_left, Assets.misha_right, 100, 1140, 440));
 		entityManager.addEntity(new NPC(handler, Assets.johann_down, Assets.johann_up, Assets.johann_left, Assets.johann_right, 100, 1300, 100));
+        */
 
 	    //HALLWAY
 		//Walls and windows
@@ -289,11 +288,12 @@ public class World {
 		}
 
 		//Doors
-        entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10, "res/worlds/drama.txt", 400, 60));
+        entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10, "res/worlds/drama.txt", 110, 60));
 		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 20 - 9), 10, "res/worlds/science.txt", 235, 60));
-		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 31 - 24), 40, "res/worlds/gym.txt", 1217, 60));
+		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 31 - 24), 40, "res/worlds/gym.txt", 65, 60));
+        entityManager.addEntity(new HallwayDoorOpen(handler, 1318, 392, "res/worlds/gym.txt", 65, 60));
 
-		//Stairs
+        //Stairs
         entityManager.addEntity(new Stairs(handler, 576, 193, "res/worlds/world1.txt", 490, 310));
 	}
 
@@ -492,27 +492,19 @@ public class World {
 	    //Long Tables
         for (int x = 1; x < 6; x++) {
             entityManager.addEntity(new LongTableUp(handler, (63 * x - 60), 50));
-        }
-        for (int x = 1; x < 6; x++) {
             entityManager.addEntity(new LongTableUpTop(handler, (63 * x - 60), 423));
         }
         for (int x = 8; x < 13; x++) {
             entityManager.addEntity(new LongTableUp(handler, (63 * x - 85), 50));
-        }
-        for (int x = 8; x < 13; x++) {
             entityManager.addEntity(new LongTableUpTop(handler, (63 * x - 85), 423));
         }
 
         for (int y = 1; y < 3; y++) {
             entityManager.addEntity(new LongTableSide(handler, 100, (50 * y + 12)));
-        }
-        for (int y = 9; y < 11; y++) {
-            entityManager.addEntity(new LongTableSideTop(handler, 100, (50 * y - 132)));
-        }
-        for (int y = 1; y < 3; y++) {
             entityManager.addEntity(new LongTableSide(handler, 295, (50 * y + 12)));
         }
         for (int y = 9; y < 11; y++) {
+            entityManager.addEntity(new LongTableSideTop(handler, 100, (50 * y - 132)));
             entityManager.addEntity(new LongTableSideTop(handler, 295, (50 * y - 132)));
         }
         entityManager.addEntity(new LongTableSide(handler, 711, 50));
@@ -522,19 +514,52 @@ public class World {
         for (int y = 2; y < 7; y++) {
             entityManager.addEntity(new LongTableSide(handler, 450, (50 * y + 22)));
         }
-        for (int y = 9; y < 11; y++) {
-            entityManager.addEntity(new StudentDeskRight(handler, 500, (40 * y - 132)));
+        for (int x = 6; x < 8; x++) {
+            for (int y = 6; y < 8; y++) {
+                entityManager.addEntity(new StudentDeskRight(handler, (100 + x * 70), (35 * y - 72)));
+            }
+            for (int y = 10; y < 12; y++) {
+                entityManager.addEntity(new StudentDeskRight(handler, (100 + x * 70), (35 * y - 72)));
+            }
         }
 
         //Chairs
+        for (int x = 1; x < 6; x++) {
+            entityManager.addEntity(new StudentChairUp(handler, (63 * x - 55 + (int)(Math.random() * 5)), 70 + (int)(Math.random() * 5)));
+            entityManager.addEntity(new StudentChairUp(handler, (63 * x - 55 + (int)(Math.random() * 5)), 403 + (int)(Math.random() * 5)));
+        }
+        for (int x = 8; x < 11; x++) {
+            entityManager.addEntity(new StudentChairUp(handler, (63 * x - 55 + (int)(Math.random() * 5)), 70 + (int)(Math.random() * 5)));
+        }
+        for (int x = 8; x < 12; x++) {
+            entityManager.addEntity(new StudentChairUp(handler, (63 * x - 55 + (int)(Math.random() * 5)), 403 + (int)(Math.random() * 5)));
+        }
 
+        for (int y = 2; y < 3; y++) {
+            entityManager.addEntity(new StudentChairLeft(handler, (80 + (int)(Math.random() * 5)), (50 * y + 17 + (int)(Math.random() * 5))));
+            entityManager.addEntity(new StudentChairRight(handler, (115 + (int)(Math.random() * 5)), (50 * y + 17 + (int)(Math.random() * 5))));
+            entityManager.addEntity(new StudentChairLeft(handler, (275 + (int)(Math.random() * 5)), (50 * y + 17 + (int)(Math.random() * 5))));
+        }
+        for (int y = 9; y < 10; y++) {
+            entityManager.addEntity(new StudentChairLeft(handler, (80 + (int)(Math.random() * 5)), (50 * y - 127 + (int)(Math.random() * 5))));
+            entityManager.addEntity(new StudentChairRight(handler, (115 + (int)(Math.random() * 5)), (50 * y -127 + (int)(Math.random() * 5))));
+            entityManager.addEntity(new StudentChairLeft(handler, (275 + (int)(Math.random() * 5)), (50 * y - 127 + (int)(Math.random() * 5))));
+        }
+
+        for (int y = 2; y < 7; y++) {
+            entityManager.addEntity(new StudentChairLeft(handler, (430 + (int)(Math.random() * 5)), (50 * y + 27 + (int)(Math.random() * 5))));
+        }
+        for (int x = 6; x < 8; x++) {
+            for (int y = 6; y < 8; y++) {
+                entityManager.addEntity(new StudentChairLeft(handler, (80 + (int)(Math.random() * 5) + x * 70), (35 * y - 67 + (int)(Math.random() * 5))));
+            }
+            for (int y = 10; y < 12; y++) {
+                entityManager.addEntity(new StudentChairLeft(handler, (80 + (int)(Math.random() * 5) + x * 70), (35 * y - 67 + (int)(Math.random() * 5))));
+            }
+        }
 
         //Teacher's Desk and Chair
-        entityManager.addEntity(new TeacherDeskSide(handler, 670, 300));
-
-        //Computers
-
-        //Laptops
+        entityManager.addEntity(new TeacherDeskSide(handler, 640, 65));
 
         //Windows
         for (int x = 1; x < 8; x++) {
@@ -551,14 +576,104 @@ public class World {
 
     public void loadDrama() {
 
+	    //Door
+        entityManager.addEntity(new HallwayDoorOpen(handler, 100, 10, "res/worlds/world2.txt", 400, 60));
+
     }
 
     public void loadEnglish() {
 
+        //Long Tables
+        for (int x = 1; x < 6; x++) {
+            entityManager.addEntity(new LongTableUp(handler, (63 * x - 60), 50));
+            entityManager.addEntity(new LongTableUpTop(handler, (63 * x - 60), 423));
+        }
+        for (int x = 8; x < 13; x++) {
+            entityManager.addEntity(new LongTableUp(handler, (63 * x - 85), 50));
+            entityManager.addEntity(new LongTableUpTop(handler, (63 * x - 85), 423));
+        }
+
+        for (int y = 1; y < 3; y++) {
+            entityManager.addEntity(new LongTableSide(handler, 100, (50 * y + 12)));
+            entityManager.addEntity(new LongTableSide(handler, 295, (50 * y + 12)));
+        }
+        for (int y = 9; y < 11; y++) {
+            entityManager.addEntity(new LongTableSideTop(handler, 100, (50 * y - 132)));
+            entityManager.addEntity(new LongTableSideTop(handler, 295, (50 * y - 132)));
+        }
+        entityManager.addEntity(new LongTableSide(handler, 711, 50));
+        entityManager.addEntity(new LongTableSideTop(handler, 711, 391));
+
+        //Middle Desks
+        for (int y = 2; y < 7; y++) {
+            entityManager.addEntity(new LongTableSide(handler, 450, (50 * y + 22)));
+        }
+        for (int x = 6; x < 8; x++) {
+            for (int y = 6; y < 8; y++) {
+                entityManager.addEntity(new StudentDeskRight(handler, (100 + x * 70), (35 * y - 72)));
+            }
+            for (int y = 10; y < 12; y++) {
+                entityManager.addEntity(new StudentDeskRight(handler, (100 + x * 70), (35 * y - 72)));
+            }
+        }
+
+        //Chairs
+        for (int x = 1; x < 6; x++) {
+            entityManager.addEntity(new StudentChairUp(handler, (63 * x - 55 + (int)(Math.random() * 5)), 70 + (int)(Math.random() * 5)));
+            entityManager.addEntity(new StudentChairUp(handler, (63 * x - 55 + (int)(Math.random() * 5)), 403 + (int)(Math.random() * 5)));
+        }
+        for (int x = 8; x < 11; x++) {
+            entityManager.addEntity(new StudentChairUp(handler, (63 * x - 55 + (int)(Math.random() * 5)), 70 + (int)(Math.random() * 5)));
+        }
+        for (int x = 8; x < 12; x++) {
+            entityManager.addEntity(new StudentChairUp(handler, (63 * x - 55 + (int)(Math.random() * 5)), 403 + (int)(Math.random() * 5)));
+        }
+
+        for (int y = 2; y < 3; y++) {
+            entityManager.addEntity(new StudentChairLeft(handler, (80 + (int)(Math.random() * 5)), (50 * y + 17 + (int)(Math.random() * 5))));
+            entityManager.addEntity(new StudentChairRight(handler, (115 + (int)(Math.random() * 5)), (50 * y + 17 + (int)(Math.random() * 5))));
+            entityManager.addEntity(new StudentChairLeft(handler, (275 + (int)(Math.random() * 5)), (50 * y + 17 + (int)(Math.random() * 5))));
+        }
+        for (int y = 9; y < 10; y++) {
+            entityManager.addEntity(new StudentChairLeft(handler, (80 + (int)(Math.random() * 5)), (50 * y - 127 + (int)(Math.random() * 5))));
+            entityManager.addEntity(new StudentChairRight(handler, (115 + (int)(Math.random() * 5)), (50 * y -127 + (int)(Math.random() * 5))));
+            entityManager.addEntity(new StudentChairLeft(handler, (275 + (int)(Math.random() * 5)), (50 * y - 127 + (int)(Math.random() * 5))));
+        }
+
+        for (int y = 2; y < 7; y++) {
+            entityManager.addEntity(new StudentChairLeft(handler, (430 + (int)(Math.random() * 5)), (50 * y + 27 + (int)(Math.random() * 5))));
+        }
+        for (int x = 6; x < 8; x++) {
+            for (int y = 6; y < 8; y++) {
+                entityManager.addEntity(new StudentChairLeft(handler, (80 + (int)(Math.random() * 5) + x * 70), (35 * y - 67 + (int)(Math.random() * 5))));
+            }
+            for (int y = 10; y < 12; y++) {
+                entityManager.addEntity(new StudentChairLeft(handler, (80 + (int)(Math.random() * 5) + x * 70), (35 * y - 67 + (int)(Math.random() * 5))));
+            }
+        }
+
+        //Teacher's Desk and Chair
+        entityManager.addEntity(new TeacherDeskSide(handler, 640, 165));
+
+        //Windows
+        for (int x = 1; x < 8; x++) {
+            entityManager.addEntity(new IndoorWindowOpen(handler, (40 * x - 20), 5));
+        }
+        for (int x = 11; x < 18; x++) {
+            entityManager.addEntity(new IndoorWindowOpen(handler, (40 * x - 20), 5));
+        }
+
+        //Door
+        entityManager.addEntity(new HallwayDoorOpen(handler, 365, 10, "res/worlds/world1.txt", 400, 60));
+
     }
 
     public void loadGym() {
-    		
+
+        //Door
+        entityManager.addEntity(new HallwayDoorOpen(handler, 65, 8, "res/worlds/world2.txt", 1217, 95));
+        entityManager.addEntity(new HallwayDoorClosed(handler, 105, 8));
+
     }
 
     public void loadMath() {

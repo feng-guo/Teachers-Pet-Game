@@ -16,7 +16,7 @@ public class StudentDeskRight extends StaticEntity{
         bounds.x = 0;
         bounds.y = 10;
         bounds.width = 30;
-        bounds.height = 50;
+        bounds.height = 40;
     }
 
     @Override
