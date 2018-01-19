@@ -596,7 +596,7 @@ public class World {
 
     public void loadDrama() {
     	
-        //entityManager.addEntity(new NPC("Douche", handler, Assets.randomNiner_down, Assets.randomNiner_up, Assets.randomNiner_left, Assets.randomNiner_right, 100, 250, 150));
+        //entityManager.addEntity(new NPC("Niner", handler, Assets.randomNiner_down, Assets.randomNiner_up, Assets.randomNiner_left, Assets.randomNiner_right, 100, 250, 150));
 
 
 	    //Desks
