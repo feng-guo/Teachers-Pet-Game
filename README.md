@@ -190,4 +190,287 @@ Aaron has the [Friendly](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Abil
 * [Greet](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#greet)
 * [Write Garbage Code](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Technology#write-garbage-code)
 * [Play Saxophone](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#play-saxophone)
-* [Burn Piano Book](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#burn-piano-book) 
+* [Burn Piano Book](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#burn-piano-book)
+
+# Alston
+Alston is a science student at RHHS. He is an NPC.
+
+## History
+Alston used to be a respected member of his society. A bright man with large ambitions, Alston was set to accomplish great things. Until he saw anime. Then Alston's life was ruined.  
+
+## Base Statistics
+* Health: 40
+* Attack: 20
+* Intelligence: 60
+* Defence: 20
+* Speed: 30
+
+## Typing
+Alston is of the [Science](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Science) Type.
+
+## Ability
+Alston has the [Osmosis](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Abilities#osmosis) ability
+
+## Moveset
+* [Trigonometry Test](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Math#trigonometry-test)
+* [Practice Set](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Math#practice-set)
+* [Chemistry Pun](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Science#chemistry-pun)
+* [Splash Acid](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Science#splash-acid)
+
+# Angela
+Angela is a playable character of Teacher's Pet. She can be obtained as a squad member through special means.
+
+# History
+Angela is a sweet girl who acts like a mom towards her friends. However, due to her tragic past with badminton, she can also prove to be salty and let her temper show through when the situation calls for it. As a cross between basic and fob, Angela can either be found in Sephora with her Starbucks or eating Korean Barbeque with her Chatime. Her interests include gossipping about certain Korean boybands and she has a soft spot for twinks. Her dream is to work in the medical field, which comes from her great interest in [Science.](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Science)
+
+# Typing
+* Health: 35
+* Attack: 40
+* Intelligence: 65
+* Defence: 75
+* Speed: 35
+
+# Typing
+Angela is of the [Science](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Science) Type
+
+# Ability
+Angela has the [Protective](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Abilities#protective) Ability
+
+# Moveset
+### Starting Moveset
+* [Dissect frog](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Science#dissect-frog)
+* [Drink bubble tea](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#drink-bubble-tea)
+* [Splash acid](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Science#splash-acid)
+* [Chemistry Pun](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Science#chemistry-pun)
+
+### Learnable Moves
+* [Quick Maths](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Math#quick-maths)
+* [Cram](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#cram)
+* [Argue](https://github.com/feng-guo/Teachers-Pet-Game/wiki/English#argue)
+* [Cry](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#cry)
+
+# Feng
+Feng is a playable character of Teacher's Pet. He is one of the four starting protagonists.
+
+## History
+Feng is known to be a violent individual with a short temper and explosive personality. He is 6 feet tall and has a beefy physique composed of both fat and muscle. His academics are mediocre at best. Feng has shown interest in the [Technology](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Technology) subject.
+
+## Base statistics
+* Health: 50
+* Attack: 60
+* Intelligence: 20
+* Defence: 50
+* Speed: 20
+
+## Typing
+Feng is of the Technology type.
+
+## Ability
+Feng has the [Clown](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Abilities#clown) ability.
+
+## Moveset
+### Starting moveset
+* [Steal Code](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Technology#steal-code)
+* [Throw Chair](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#throw-code)
+* [Stack Overflow](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Technology#stack-overflow)
+* [Snort Candy](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#snort-candy)
+
+### Learnable moves
+* [Rip Essay](https://github.com/feng-guo/Teachers-Pet-Game/wiki/English#rip-essay)
+* [Swear](https://github.com/feng-guo/Teachers-Pet-Game/wiki/English#swear)
+* [Deoptimize Code](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Technology#deoptimize-code) 
+* [Make memes](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#make-memes)
+
+# Johann
+Johann is a playable character of Teacher's Pet. He can be obtained as a squad member through special means.
+
+## History
+Johann was brought up in a household of religion and music. As time wore on, he realized that he hated both. A prodigy at everything he did, Johann was very unappreciative of his strict upbringing. Many years of carpal tunnel from prodding at the piano, he finally quit only to lose his privilege to a phone, swimming, existing, and forced to attend Brown Jesus Camp. Despite this and his hatred towards any sort of deity, the computer science god Bimesh has taken pity upon his fellow brethren and Johann is flying through school on pure wit and luck. His high math marks makes him good at [Math](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Math).
+
+## Base Statistics
+* Health: 80
+* Attack: 60
+* Intelligence: 80
+* Defence: 10
+* Speed: 70
+
+## Typing
+Johann is of the Math type.
+
+## Ability
+Johann has the [Extreme Luck](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Abilities#extreme-luck) ability.
+
+## Moveset
+### Starting moves
+* [Spam Calculator](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Math#spam-calculator)
+* [Quick Maths](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Math#quick-maths)
+* [Work Out](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#work-out)
+* [Not Study](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#not-study)
+
+### Learnable moves
+* [Flex](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#flex)
+* [Burn Piano Book](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#burn-piano-book)
+* [Write Reflection](https://github.com/feng-guo/Teachers-Pet-Game/wiki/English#write-reflection)
+* [Self Loathe](https://github.com/feng-guo/Teachers-Pet-Game/wiki/English#self-loathe)
+* [Explode Phone](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#explode-phone)
+
+# Joyce
+Joyce is a playable character of Teacher's Pet. She is one of the four starting protagonists.
+
+## History
+Joyce is a mentally constipated and sleep deprived individual who values her academics more than her sanity. She is a very high achieving student who signs up for more than she can handle. She is constantly working and maintains a good work ethic. She is interested in the [Math](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Math) subject.
+
+## Base statistics
+* Health: 25
+* Attack: 25
+* Intelligence: 70
+* Defence: 20
+* Speed: 60
+
+## Typing
+Joyce is of the [Math](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Math) type.
+
+## Ability
+Joyce has the [Persistent](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Abilities#persistent) ability. 
+
+## Moveset
+### Starting moveset
+* [Cram](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#cram)
+* [Throw Basketball](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#throw-basketball)
+* [Quick Maths](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Math#quick-maths)
+* [Call Uber](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#call-uber)
+
+### Learnable moveset
+* [Calculate Mark](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Math#calculate-mark)
+* [Spam Calculator](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Math#spam-calculator)
+
+# Michael
+Michael is a technology student at RHHS. He is an NPC
+
+## History
+Michael was once a young boy on a breakthrough for achieving great things in life. An intelligent student, Michael was a stellar math contest writer. When he went to RHHS, this trend continued. However, he has made so many stupid mistakes in math over the course of his lifetime that he has decided to give up on math and pursue technology instead. 
+
+## Base Statistics
+* Health: 60
+* Attack: 70
+* Intelligence: 80
+* Defence: 10
+* Speed: 50
+
+## Typing
+Michael is of the [Technology](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Technology) Type.
+
+## Ability
+Michael has the [Persistent](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Abilities#persistent) ability
+
+## Moveset
+* [Dodge Homework](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#dodge-homework)
+* [Math Angels](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Math#math-angels)
+* [Stack Overflow](https://github.com/feng-guo/Teachers-Pet-Game/wiki/technology#stack-overflow)
+* [Dissect Frog](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Science#dissect-frog)
+
+# Misha
+Misha is a playable character of Teacher's Pet. He can be obtained through special means.
+
+## History
+As a child Misha was especially gifted in pissing people off. From his French teacher to his parents, and even his fellow peers, Misha was a bit of an outcast in the community. He found solace in the feel friends he had and eventually realized that he needed a turnaround in his life. Meanwhile, he developed his passion working with technology and created games on Roblox as his first stepping stone into computer software. Eventually he landed himself a girlfriend, some friends of his own and regularly attended hackathons. In the end, his lack of sleep affects his overall mentality and many periods of class are dedicated to sleeping. He is very enthusiastic about [Technology](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Technology).
+
+## Base Statistics
+* Health: 30
+* Attack: 40
+* Intelligence: 50
+* Defence: 40
+* Speed: 40
+
+## Typing
+Misha is of the Technology type.
+
+## Ability
+Misha has the [Avoidant](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Abilities#avoidant) ability.
+
+## Moveset
+### Starting moveset
+* [Stack Overflow](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Technology#stack-overflow)
+* [Argue](https://github.com/feng-guo/Teachers-Pet-Game/wiki/English#argue)
+* [Cry](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#cry)
+* [Sleep Talk](https://github.com/feng-guo/Teachers-Pet-Game/wiki/English#sleep-talk)
+
+### Learnable moves
+* [Crash](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#crash)
+* [Scream](https://github.com/feng-guo/Teachers-Pet-Game/wiki/English#scream)
+* [Write Garbage Code](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Technology#write-garbage-code)
+
+# Mr. Choi
+Mr. Choi is a math teacher at RHHS. He is one of the teachers that the player will face.
+
+## History
+Rumour has it that Mr. Choi himself is very stacked because of the business that he owns to teach math to struggling students in York Region. The only reason he teaches is because being a teacher is a very fulfilling job. He can be seen marking tests in polynomial time, or walking around the school with his many pairs of >$100 True Religion jeans. Many of his students are frustrated with the math problems on their assessments because they are usually from Olympiads.
+
+## Base Statistics
+* Health: 60
+* Attack: 30
+* Intelligence: 110
+* Defence: 70
+* Speed: 230
+
+## Typing
+Mr. Choi is of the [Math](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Math) Type.
+
+## Ability
+Mr. Choi has the [Speed Boost](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Abilities#speed-boost) ability.
+
+## Moveset
+* [Trigonometry Test](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Math#trigonometry-test)
+* [Olympiads Question](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Math#olympiads-question)
+* [Mark Test](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Math#mark-test)
+* [Quadratic Formula](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Math#quadratic-formula)
+
+# Mr. Gissing
+Mr. Gissing is a science teacher at RHHS. He is one of the teachers that the player will face.
+
+## History
+Mr. Gissing is considered one of the best teachers to have for AP Physics at RHHS. His friendly and outgoing nature creates a very welcoming atmosphere in physics class. The class itself may be slow and frustrating at times but students know that this is better than just failing tests.
+
+## Base Statistics
+* Health: 150
+* Attack: 70
+* Intelligence: 40
+* Defence: 50
+* Speed: 60
+
+## Typing
+Mr. Gissing is of the [Science](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Science) Type.
+
+## Ability
+Mr. Gissing has the [Friendly](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Abilities#friendly) ability
+
+## Moveset
+* [Greet](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#greet)
+* [Clap](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#clap)
+* [TLAP](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Science#tlap)
+* [Meter Stick](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#meter-stick) 
+
+# Mr. Harris
+Mr. Harris is a gym teacher at RHHS. He is one of the teachers that the player will face.
+
+## History
+Mr. Harris is a great guy.
+
+## Base Statistics
+* Health: 500
+* Attack: 10
+* Intelligence: 10
+* Defence: 100
+* Speed: 10
+
+## Typing
+Mr. Harris is of the [Neutral](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral) Type.
+
+## Ability
+Mr. Harris has the [Power Boost](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Abilities#power-boost) ability
+
+## Moveset
+* [Work Out](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#work-out)
+* [Flex](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#flex)
+* [Balls Away](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#balls-away)
+* [Throw Basketball](https://github.com/feng-guo/Teachers-Pet-Game/wiki/Neutral#throw-basketball) 
