@@ -1262,4 +1262,4 @@ Heal items help the character recover HP or PP for certain moves so they can con
 * Tea: cure stunned status
 * Sushi: full restore health and status
 * Chicken Nuggets (20): half revive
-* Chicken Nuggets (50): full revive`
+* Chicken Nuggets (50): full revive
