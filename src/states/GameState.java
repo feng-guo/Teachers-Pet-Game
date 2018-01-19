@@ -71,6 +71,8 @@ public class GameState extends State{
 		} else if (path.equals("res/worlds/science.txt")) {
 			world = science;
 		}
+
+		world = gym;
 		handler.setWorld(world);
 		
 	}

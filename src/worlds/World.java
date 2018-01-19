@@ -93,12 +93,12 @@ public class World {
 			Graphics2D g2 = (Graphics2D) g;
 			g2.setColor(Color.BLACK);
 			g2.setStroke(new BasicStroke(12f));
-			g2.drawOval((int) (-200 - handler.getGameCamera().getxOffset()), (int) (160 - handler.getGameCamera().getyOffset()), 600, 300);
+			g2.drawOval((int) (-200 - handler.getGameCamera().getxOffset()), (int) (160 - handler.getGameCamera().getyOffset()), 300, 300);
+            g2.drawOval((int) (700 - handler.getGameCamera().getxOffset()), (int) (160 - handler.getGameCamera().getyOffset()), 300, 300);
+			g2.drawLine((int)(400 - handler.getGameCamera().getxOffset()), (int)(68 - handler.getGameCamera().getyOffset()), (int)(400 - handler.getGameCamera().getxOffset()), (int)(800 - handler.getGameCamera().getyOffset()));
+            g.fillOval((int) (350 - handler.getGameCamera().getxOffset()), (int)(240 - handler.getGameCamera().getyOffset()), 100, 100);
 		}
 
-		if(path.equals("res/worlds/gym.txt")){
-		    g.fillOval(20, 20, 300, 200);
-        }
 
 		entityManager.render(g);
 
