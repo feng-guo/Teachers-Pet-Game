@@ -17,7 +17,7 @@ public class CatchBusState extends State{
     private Rectangle[] tempRect;
     private boolean[] sendRect;
     private BufferedImage[] rectSprite;
-    private int score = 400;
+    private int health = 400;
 
     public CatchBusState(Handler handler) {
         super(handler);
@@ -67,7 +67,7 @@ public class CatchBusState extends State{
                 sendRect[i] = true;
             }
         }
-        if (clockTimer < 1 && score == 0) {
+        if (clockTimer < 1 || health == 0) {
 			handler.getKeyManager().forceKeyChange(KeyEvent.VK_B, false);
 			handler.getGame().setRecentlyPlayed();
 			handler.getGame().setGameState();
@@ -106,21 +106,21 @@ public class CatchBusState extends State{
                 g.drawImage(rectSprite[i], tempRect[i].x, tempY + tempRect[i].y, tempRect[i].width, tempRect[i].height, null);
             }
             if(new Rectangle(tempRect[i].x, tempY + tempRect[i].y, tempRect[i].width, tempRect[i].height).intersects(playerRect)){
-                score /= 2;
+                health /= 2;
             }
         }
         g.setColor(Color.GREEN);
-        if (score > 0) {
-            g.fillRect(560, 85, 20, score/3);
-        } else if (score <= 0) {
-            g.fillRect(560, 85, 20, 900);
+        if (health > 0) {
+            g.fillRect(560, 85, 20, health/3);
+        } else if (health <= 0) {
+            g.fillRect(560, 85, 20, 0);
         }
         g.setColor(Color.BLACK);
         g.drawRect(560, 85, 20, 300);
         g.setColor(Color.LIGHT_GRAY);
         
         g.drawString("Time: " + clockTimer, 40, 375);
-        g.drawString("Health: " + score, 340, 375);
+        g.drawString("Health: " + health, 340, 375);
     }
 
     public void movePosition() {

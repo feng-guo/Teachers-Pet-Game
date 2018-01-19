@@ -1666,10 +1666,18 @@ public class Battle {
 
   private void cureStatus(PlayableCharacter player, HealItem item){
       if(item.getType().equals(playerStatus)){
+          if(playerStatus.equals("Sleep")){
+            textArrayList.add(playerName + " " + " woke up.");
+          }else {
+            textArrayList.add(playerName + "'s status was cured.");
+          }
+
           player.resetStatus();
           playerStatus = player.getStatus();
-          textArrayList.add(playerName + "'s status was cured.");
-      }
+      }else{
+            textArrayList.add("There has been no previous damage to your status.");
+            textArrayList.add("Using" + item.getName() + " was not very effective...");
+        }
   }
 
   private void revive(PlayableCharacter player, HealItem item){
