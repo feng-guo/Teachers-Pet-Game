@@ -510,6 +510,57 @@ public class World {
 
     public void loadScience() {
 
+	    //Lab Benches
+        for (int y = 1; y < 4; y++) {
+            for (int x = 1; x < 4; x++) {
+                entityManager.addEntity(new LabBench(handler, (x * 160 - 90), (y * 110 + 195)));
+            }
+        }
+
+        //Lab Stools
+        for (int y = 1; y < 4; y++) {
+            for (int x = 1; x < 4; x++) {
+                entityManager.addEntity(new LabStool(handler, (x * 150 - 50 + (int)(Math.random() * 7)), (y * 110 + 250 + (int)(Math.random() * 7))));
+            }
+        }
+        for (int y = 1; y < 4; y++) {
+            for (int x = 1; x < 4; x++) {
+                entityManager.addEntity(new LabStool(handler, (x * 160 - 115 + (int)(Math.random() * 7)), (y * 110 + 220 + (int)(Math.random() * 7))));
+            }
+        }
+        for (int y = 1; y < 4; y++) {
+            for (int x = 1; x < 4; x++) {
+                entityManager.addEntity(new LabStool(handler, (x * 160 - 30 + (int)(Math.random() * 7)), (y * 110 + 215 + (int)(Math.random() * 7))));
+            }
+        }
+        for (int y = 1; y < 4; y++) {
+            for (int x = 1; x < 4; x++) {
+                entityManager.addEntity(new LabStool(handler, (x * 150 - 45 + (int)(Math.random() * 7)), (y * 110 + 190 + (int)(Math.random() * 7))));
+            }
+        }
+
+        //Lab Counter
+        for (int x = 0; x < 5; x++) {
+            entityManager.addEntity(new LabTableUp(handler, (x * 40), 240));
+        }
+        for (int x = 7; x < 12; x++) {
+            entityManager.addEntity(new LabTableUp(handler, (x * 40 + 8), 240));
+        }
+
+        //Lab Shelf
+        for (int x = 0; x < 2; x++) {
+            entityManager.addEntity(new LabShelf(handler, (x * 40), 210));
+        }
+        for (int x = 3; x < 5; x++) {
+            entityManager.addEntity(new LabShelf(handler, (x * 40), 210));
+        }
+        for (int x = 7; x < 11; x++) {
+            entityManager.addEntity(new LabShelf(handler, (x * 40 + 48), 210));
+        }
+
+        //Door
+        entityManager.addEntity(new HallwayDoorOpen(handler, 235, 10, "res/worlds/world2.txt", 20, 100));
+
     }
 
 }
