@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import javax.swing.JComboBox.KeySelectionManager;
 import javax.swing.JFrame;
@@ -28,15 +29,19 @@ public class NPC extends Creature{
 	private int boxSize;
 	private boolean hasStopped = false;
 	private int battlesStarted = 0;
+	private String name;
 	
 	private BufferedImage[] spriteSetDown, spriteSetUp, spriteSetLeft, spriteSetRight;
+	private ArrayList<BufferedImage[]> spriteMoves;
 	
-	public NPC(Handler handler, 
+	public NPC(String name, Handler handler, 
 			BufferedImage[] spriteSetDown, BufferedImage[] spriteSetUp, BufferedImage[] spriteSetLeft, BufferedImage[] spriteSetRight,
 			int boxSize, float x, float y) {
 
 		
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
+		
+		this.name = name;
 		startX = x;
 		startY = y;
 		this.boxSize = boxSize;
@@ -45,6 +50,14 @@ public class NPC extends Creature{
 		this.spriteSetUp = spriteSetUp;
 		this.spriteSetLeft = spriteSetLeft;
 		this.spriteSetRight = spriteSetRight;
+		
+		spriteMoves = new ArrayList<BufferedImage[]>();
+		spriteMoves.add(spriteSetUp);
+		spriteMoves.add(spriteSetDown);
+		spriteMoves.add(spriteSetLeft);
+		spriteMoves.add(spriteSetRight);
+
+		
 		
 		
 		// SPECIFIC TO A STANDARD NPC
@@ -85,6 +98,8 @@ public class NPC extends Creature{
 				
 				//UNCOMMENT THIS
 				handler.getKeyManager().forceKeyChange(KeyEvent.VK_X, true);
+				handler.getGame().setCurrentOpponentName(name);
+				handler.getGame().setCurrentOpponentSprites(spriteMoves);
 
 			} else if (battlesStarted > 1) {
 				handler.getKeyManager().forceKeyChange(KeyEvent.VK_X, false);
@@ -259,8 +274,14 @@ public class NPC extends Creature{
 	public void stopNPC() {
 		hasStopped = true;
 	}
+	
 	public void unStopNPC() {
 		hasStopped = false;
 	}
+	
+	public ArrayList<BufferedImage[]> getSprites() {
+		return spriteMoves;
+	}
+	
 
 }

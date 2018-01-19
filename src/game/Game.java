@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import battle.ListOfMoves;
 import characters.ListOfCharacters;
@@ -68,15 +69,18 @@ import states.StressEatsState;
 	private ListOfMoves listOfMoves;
 	private Inventory inventory;
 	private Squad squad;
+	private String currentOpponentName;
+	private ArrayList<BufferedImage[]> currentOpponentSprites;
 	
 	public Game(String title, int width, int height) {
 		coins = 0;
 		this.width = width;
 		this.height = height;
 		this.title = title;
+		
 		keyManager = new KeyManager();
 		mouseManager = new MouseManager();
-		listOfCharacters = new ListOfCharacters();
+		listOfCharacters = new ListOfCharacters(handler);
 		listOfInventoryItems = new ListOfInventoryItems();
 		listOfMoves = new ListOfMoves();
 		inventory = new Inventory();
@@ -90,6 +94,8 @@ import states.StressEatsState;
 		//newSquad[5] = (PlayableCharacter) characterList.returnCharacter("Misha");
 		//newSquad[5] = (PlayableCharacter)characterList.returnCharacter("Angela");
 		squad = new Squad(newSquad);
+		currentOpponentName = "";
+
 	}
 	
 	private void init() {
@@ -104,6 +110,13 @@ import states.StressEatsState;
 		
 		handler = new Handler(this);
 		gameCamera = new GameCamera(handler, 0, 0);
+		
+
+		
+		
+		
+		
+		
 
 		catchBusState = new CatchBusState(handler);		
 		mathContestState = new MathContestState(handler);
@@ -134,6 +147,7 @@ import states.StressEatsState;
 				if (!((BattleState) battleState).getBattleTest().isBattleStart()) {
 					startBattle();
 				}
+				
 			} else if (handler.getKeyManager().stressEat && !(State.getState() instanceof StressEatsState)) {
 				State.setState(new StressEatsState(handler));
 			} else if (handler.getKeyManager().beepTest && !(State.getState() instanceof BeepTestState)) {
@@ -326,5 +340,21 @@ import states.StressEatsState;
 
 	public void increaseScore(double d) {
 		coins += (int) d;
+	}
+
+	public void setCurrentOpponentName(String name) {
+		currentOpponentName = name;
+	}
+	
+	public String getCurrentOpponentName() {
+		return currentOpponentName;
+	}
+	
+	public void setCurrentOpponentSprites(ArrayList<BufferedImage[]> sprites) {
+		currentOpponentSprites = sprites;
+	}
+	
+	public ArrayList<BufferedImage[]> getCurrentOpponentSprites() {
+		return currentOpponentSprites;
 	}
  }
