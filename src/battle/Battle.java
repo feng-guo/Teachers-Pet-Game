@@ -546,14 +546,13 @@ public class Battle {
           cureStatus(player, itemToUse);
           break;
       }
-      //ALL IN DIFFERENT METHODS (pp and hp can be same method)
     } else if (item instanceof StatItem) {
-      textArrayList.add("You can't use that here!");
+        textArrayList.add("You can't use that here!");
     }
     if (itemUsed) {
-      playerInventory.useItem(playerInventory.getItemName(answer));
-      playerInventoryChoicePhase = false;
-      opponentTurn();
+        playerInventory.useItem(playerInventory.getItemName(answer));
+        playerInventoryChoicePhase = false;
+        opponentTurn();
     }
   }
 
@@ -598,7 +597,7 @@ public class Battle {
           playerStatus = player.getStatus();
       }else{
           textArrayList.add("There has been no previous damage to your status.");
-          textArrayList.add("Using" + item.getName() + " was not very effective...");
+          textArrayList.add("Using " + item.getName() + " was not very effective...");
       }
   }
 
