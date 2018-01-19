@@ -10,7 +10,7 @@ import tiles.Tile;
 public class LongTableSide extends StaticEntity{
 
     public LongTableSide(Handler handler, float x, float y) {
-        super(handler, x, y, (int) (Tile.TILE_WIDTH * 1), (int) (Tile.TILE_HEIGHT * 2));
+        super(handler, x, y, (int) (Tile.TILE_WIDTH * 0.8), (int) (Tile.TILE_HEIGHT * 2));
 
         // SPECIFIC TO LONG TABLE SIDE
         bounds.x = 0;

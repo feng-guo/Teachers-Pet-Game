@@ -93,8 +93,10 @@ public class World {
 			Graphics2D g2 = (Graphics2D) g;
 			g2.setColor(Color.BLACK);
 			g2.setStroke(new BasicStroke(12f));
-			g2.drawOval((int) (-200 - handler.getGameCamera().getxOffset()), (int) (160 - handler.getGameCamera().getyOffset()), 600, 300);
+			g2.drawImage(Assets.court, (int)(-handler.getGameCamera().getxOffset()), (int)(64-handler.getGameCamera().getyOffset()), 800, 490, null);
+			//g2.drawOval((int) (-200 - handler.getGameCamera().getxOffset()), (int) (160 - handler.getGameCamera().getyOffset()), 600, 300);
 		}
+
 
 		entityManager.render(g);
 
@@ -188,7 +190,7 @@ public class World {
 
 		//Doors
 		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 20 - 9), 10, "res/worlds/math.txt", 90, 60));
-		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 30 + 10), 10, "res/worlds/compsci.txt", 90, 60));
+		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 30 + 10), 10, "res/worlds/compsci.txt", 380, 60));
 		entityManager.addEntity(new HallwayDoorOpen(handler, (40 * 10), 10, "res/worlds/english.txt", 90, 60));
 
 		//Hall Library Chairs/Tables
@@ -471,6 +473,64 @@ public class World {
     }
 
     public void loadCompSci() {
+
+	    //Long Tables
+        for (int x = 1; x < 6; x++) {
+            entityManager.addEntity(new LongTableUp(handler, (63 * x - 60), 50));
+        }
+        for (int x = 1; x < 6; x++) {
+            entityManager.addEntity(new LongTableUpTop(handler, (63 * x - 60), 423));
+        }
+        for (int x = 8; x < 13; x++) {
+            entityManager.addEntity(new LongTableUp(handler, (63 * x - 85), 50));
+        }
+        for (int x = 8; x < 13; x++) {
+            entityManager.addEntity(new LongTableUpTop(handler, (63 * x - 85), 423));
+        }
+
+        for (int y = 1; y < 3; y++) {
+            entityManager.addEntity(new LongTableSide(handler, 100, (50 * y + 12)));
+        }
+        for (int y = 9; y < 11; y++) {
+            entityManager.addEntity(new LongTableSideTop(handler, 100, (50 * y - 132)));
+        }
+        for (int y = 1; y < 3; y++) {
+            entityManager.addEntity(new LongTableSide(handler, 295, (50 * y + 12)));
+        }
+        for (int y = 9; y < 11; y++) {
+            entityManager.addEntity(new LongTableSideTop(handler, 295, (50 * y - 132)));
+        }
+        entityManager.addEntity(new LongTableSide(handler, 711, 50));
+        entityManager.addEntity(new LongTableSideTop(handler, 711, 391));
+
+        //Middle Desks
+        for (int y = 2; y < 7; y++) {
+            entityManager.addEntity(new LongTableSide(handler, 450, (50 * y + 22)));
+        }
+        for (int y = 9; y < 11; y++) {
+            entityManager.addEntity(new StudentDeskRight(handler, 500, (40 * y - 132)));
+        }
+
+        //Chairs
+
+
+        //Teacher's Desk and Chair
+        entityManager.addEntity(new TeacherDeskSide(handler, 670, 300));
+
+        //Computers
+
+        //Laptops
+
+        //Windows
+        for (int x = 1; x < 8; x++) {
+            entityManager.addEntity(new IndoorWindowOpen(handler, (40 * x - 20), 5));
+        }
+        for (int x = 11; x < 18; x++) {
+            entityManager.addEntity(new IndoorWindowOpen(handler, (40 * x - 20), 5));
+        }
+
+        //Door
+        entityManager.addEntity(new HallwayDoorOpen(handler, 365, 10, "res/worlds/world1.txt", 1217, 60));
 
     }
 
