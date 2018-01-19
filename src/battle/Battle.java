@@ -543,6 +543,7 @@ public class Battle {
       textArrayList.add("You can't use that here!");
     }
     if (itemUsed) {
+      textArrayList.add("You used " + playerInventory.getItemName(answer));
       playerInventory.useItem(playerInventory.getItemName(answer));
       playerInventoryChoicePhase = false;
       opponentTurn();
