@@ -30,7 +30,7 @@ public class GameState extends State{
 		science = new World(handler, "res/worlds/science.txt");
 
 
-		world = gym;
+		world = world1;
 		
 		handler.setWorld(world);
 				
@@ -72,7 +72,6 @@ public class GameState extends State{
 			world = science;
 		}
 
-		world = gym;
 		handler.setWorld(world);
 		
 	}
