@@ -14,8 +14,8 @@ public class LockerTop extends StaticEntity{
 
         // SPECIFIC TO LOCKER TOP
         bounds.x = 0;
-        bounds.y = 10;
-        bounds.width = 35;
+        bounds.y = 0;
+        bounds.width = 17;
         bounds.height = 40;
     }
 
