@@ -582,7 +582,7 @@ public class BattleState extends State{
 					for (int i = topOfInventory; i < 10+topOfInventory; i++) {
 						if (i < handler.getInventory().getInventorySize()) {
 							if (inventoryY == i-topOfInventory) {
-								g.setColor(Color.RED);
+								g.setColor(Color.LIGHT_GRAY);
 								g.drawRect(280, 25 + 35*(i-topOfInventory), 290, 30);
 								g.setColor(Color.BLACK);
 								g.setFont(Assets.font10);
