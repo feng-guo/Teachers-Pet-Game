@@ -3,6 +3,7 @@ package states;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -39,6 +40,8 @@ public class MathContestState extends State {
 //		handler.getGame().getDisplay().getCanvas().setFocusable(false);
 
 		if(clockTimer < 1 || score == 20) {
+			handler.getKeyManager().forceKeyChange(KeyEvent.VK_V, false);
+			handler.getGame().setRecentlyPlayed();
 			handler.getGame().setGameState();
 			frame.setVisible(false);
 		}
