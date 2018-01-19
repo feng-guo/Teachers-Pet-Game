@@ -15,8 +15,8 @@ public class LabBench extends StaticEntity{
         // SPECIFIC TO LAB BENCH
         bounds.x = 0;
         bounds.y = 10;
-        bounds.width = 60;
-        bounds.height = 60;
+        bounds.width = 65;
+        bounds.height = 55;
     }
 
     @Override
