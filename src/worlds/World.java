@@ -16,6 +16,8 @@ import graphics.Assets;
 import tiles.Tile;
 import utils.Utils;
 
+
+// The world where the the graphics are loaded in
 public class World {
 
 	private Handler handler;
@@ -27,12 +29,13 @@ public class World {
 	// Entities
 	private EntityManager entityManager;
 
-
+    // The world constructor
 	public World(Handler handler, String path) {
 		this.path = path;
         this.handler = handler;
         entityManager = new EntityManager(handler, new Player(handler, spawnX * Tile.TILE_WIDTH, spawnY * Tile.TILE_WIDTH));
 
+        // Loads different maps
         if (path.equals("res/worlds/world1.txt")) {
             loadTopHall();
         } else if (path.equals("res/worlds/world2.txt")) {
@@ -57,6 +60,7 @@ public class World {
 
 		loadWorld(path);
 
+        // Spawns player according to map coords
 		entityManager.getPlayer().setX(spawnX);
 		entityManager.getPlayer().setY(spawnY);
 
@@ -67,10 +71,12 @@ public class World {
 		return entityManager;
 	}
 
+	// Tick based game
 	public void tick() {
 		entityManager.tick();
 	}
 
+	// Render graphics
 	public void render(Graphics g) {
 		
 		
@@ -81,7 +87,7 @@ public class World {
 		int yStart = (int) Math.max(0, handler.getGameCamera().getyOffset() / Tile.TILE_HEIGHT);
 		int yEnd = (int) Math.min(height, (handler.getGameCamera().getyOffset() + handler.getHeight()) / Tile.TILE_HEIGHT + 1);
 
-
+        // SMART CAMERA
 		for(int y = yStart; y < yEnd; y++) {
 			for(int x = xStart; x < xEnd; x++) {
 				getTile(x, y).render(g,
@@ -101,7 +107,8 @@ public class World {
 //			g2.drawLine((int)(400 - handler.getGameCamera().getxOffset()), (int)(68 - handler.getGameCamera().getyOffset()), (int)(400 - handler.getGameCamera().getxOffset()), (int)(800 - handler.getGameCamera().getyOffset()));
 //          g.fillOval((int) (350 - handler.getGameCamera().getxOffset()), (int)(240 - handler.getGameCamera().getyOffset()), 100, 100);
 //		}
-		
+
+        // GYM WORLD FOR TILES
 		if (path.equals("res/worlds/gym.txt")) {
 			Graphics2D g2 = (Graphics2D) g;
 			g2.setColor(Color.BLACK);
@@ -114,6 +121,7 @@ public class World {
 
 	}
 
+	// Tiles for flooring
 	public Tile getTile(int x, int y) {
 		//System.out.println(x + "," + y);
 		if(x < 0 || y < 0 || x >= width || y >= height) {
@@ -154,7 +162,8 @@ public class World {
 	public int getHeight() {
 		return height;
 	}
-	
+
+	// Top hall
 	public void loadTopHall() {
 
 		//entityManager.addEntity(new NPC("name", handler, Assets.angela_down, 100, 250, 100));
@@ -230,7 +239,8 @@ public class World {
 		//Stairs
 		entityManager.addEntity(new Stairs(handler, 384, 320, "res/worlds/world2.txt", 545, 205));
 	}
-	
+
+	// Bottom hall
 	public void loadBottomHall() {
 
 		entityManager.addEntity(new NPC("Angela", handler, Assets.angela_down, Assets.angela_up, Assets.angela_left, Assets.angela_right, 100, 250, 100));
@@ -303,6 +313,7 @@ public class World {
         entityManager.addEntity(new Stairs(handler, 576, 193, "res/worlds/world1.txt", 485, 310));
 	}
 
+    // Cafeteria
     public void loadCafeteria() {
 
         entityManager.addEntity(new NPC("Aaron", handler, Assets.aaron_down, Assets.aaron_up, Assets.aaron_left, Assets.aaron_right, 100, 250, 100));
@@ -464,6 +475,7 @@ public class World {
         entityManager.addEntity(new Vending2(handler, 860, 20));
     }
 
+    // Guidance
     public void loadGuidance() {
     	
     		// NPCs
@@ -505,6 +517,7 @@ public class World {
 
     }
 
+    // Comp sci
     public void loadCompSci() {
     	
         entityManager.addEntity(new NPC("Michael", handler, Assets.michael_down, Assets.michael_up, Assets.michael_left, Assets.michael_right, 100, 150, 150));
@@ -594,6 +607,7 @@ public class World {
 
     }
 
+    // Drama
     public void loadDrama() {
     	
         //entityManager.addEntity(new NPC("Niner", handler, Assets.randomNiner_down, Assets.randomNiner_up, Assets.randomNiner_left, Assets.randomNiner_right, 100, 250, 150));
@@ -632,10 +646,9 @@ public class World {
 
     }
 
+    // English
     public void loadEnglish() {
-    		
 
-    	
         //Long Tables
         for (int x = 1; x < 6; x++) {
             entityManager.addEntity(new LongTableUp(handler, (63 * x - 60), 50));
@@ -713,6 +726,7 @@ public class World {
 
     }
 
+    // Gym
     public void loadGym() {
     	
 		entityManager.addEntity(new NPC("Harris", handler, Assets.harris_down, Assets.harris_up, Assets.harris_left, Assets.harris_right, 100, 220, 200));
@@ -724,6 +738,7 @@ public class World {
 
     }
 
+    // Math
     public void loadMath() {
 		entityManager.addEntity(new NPC("Timmerman", handler, Assets.timmerman_down, Assets.timmerman_up, Assets.timmerman_left, Assets.timmerman_right, 100, 190, 60));
 		entityManager.addEntity(new NPC("Choi", handler, Assets.choi_down, Assets.choi_up, Assets.choi_left, Assets.choi_right, 100, 220, 200));
@@ -762,6 +777,7 @@ public class World {
 
     }
 
+    // Science
     public void loadScience() {
     	
     		entityManager.addEntity(new NPC("Kostanenko", handler, Assets.kostanenko_down, Assets.kostanenko_up, Assets.kostanenko_left, Assets.kostanenko_right, 100, 370, 370));
