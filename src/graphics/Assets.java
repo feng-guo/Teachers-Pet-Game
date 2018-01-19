@@ -23,7 +23,7 @@ public class Assets {
 	openDoor, closedDoor, indoorWindowOpen, indoorWindowClosed, bench, 
 	hallCouch, hallChairLowLeft, hallChairLowRight, hallChairLowUp, hallChairHigh, hallTableLow, hallTableHigh,
 	cafTableUp, cafTableSide, vending1, vending2,
-	studentDeskLeft, studentDeskRight, studentDeskUp, studentDeskDown,
+	studentDeskRight, studentDeskUp,
 	studentChairRight, studentChairLeft, studentChairUp,
 	teacherDeskSide, teacherDeskUp,
 	announcementBoard, announcementBoard2, greenBoard, brownBoard,
@@ -114,8 +114,6 @@ public class Assets {
 		cafTableUp = ImageLoader.loadImage ("/Indoor_Entities/Cafeteria/Caf_Table_Long_Up.png");
 
 		studentDeskUp = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Desk_Chair_Front.png");
-		studentDeskDown = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Desk_Chair_Back.png");
-		studentDeskLeft = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Desk_Chair_Left.png");
 		studentDeskRight = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Desk_Chair_Right.png");
 		teacherDeskUp= ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Teacher_Desk_Up.png");
 		teacherDeskSide = ImageLoader.loadImage ("/Indoor_Entities/General_Classroom_Items/Teacher_Desk_Side.png");
