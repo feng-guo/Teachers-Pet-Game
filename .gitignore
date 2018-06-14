@@ -1,8 +1,6 @@
 *.java~
-.class
 /TeachersPet/nbproject/*
 *.xml
 *.mf
-/bin/
 \.idea
 /Mini Games/StressEat/build/
