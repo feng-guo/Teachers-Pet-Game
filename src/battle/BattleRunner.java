@@ -95,12 +95,12 @@ public class BattleRunner {
         		opponent = aaron;
     		} else if (handler.getGame().getCurrentOpponentName().equals("Michael")) {
     			opponent = michael;
-    		} else if (handler.getGame().getCurrentOpponentName().equals("Katleyn")) {
-    			opponent = msKostanenko;
+    		} else if (handler.getGame().getCurrentOpponentName().equals("Katelyn")) {
+    			opponent = rosemary;
     		} else if (handler.getGame().getCurrentOpponentName().equals("Arjun")) {
     			opponent = mrHarris;
     		} else if (handler.getGame().getCurrentOpponentName().equals("Veronica")) {
-    			opponent = msKostanenko;
+    			opponent = rosemary;
     		} else if (handler.getGame().getCurrentOpponentName().equals("Misha")) {
     			opponent = michael;
     		} else if (handler.getGame().getCurrentOpponentName().equals("Kishon")) {

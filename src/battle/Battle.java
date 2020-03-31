@@ -275,8 +275,9 @@ public class Battle {
   }
   
   public void runBattleTurn(int phase) {
+	  
+	  System.out.println(opponentCurrentHealth);
 
-	System.out.println(handler.getGame().getCurrentOpponentName());
     if (phase > 0) {
       selectionStrings[0] = "null";
       if (phase - 1 == 0) {
@@ -910,7 +911,7 @@ public class Battle {
     if (defence < 0) {
     		defence = 0;
     }
-	damageDealt = (int)(Math.ceil((move.getPower() * (attackerStatUsed/(defence+1)))/10) * multiplier);
+	damageDealt = (int)(Math.ceil((move.getPower() * (attackerStatUsed/defence+1))/10) * multiplier);
 
 
     double determineHit = Math.random();
